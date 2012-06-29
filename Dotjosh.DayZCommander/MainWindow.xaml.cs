@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,7 +10,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Dotjosh.DayZCommander.Core;
 
 namespace Dotjosh.DayZCommander
 {
@@ -25,20 +22,12 @@ namespace Dotjosh.DayZCommander
 		{
 			InitializeComponent();
 
-			DataContext = new MainWindowViewModel();
+			Loaded += OnLoaded;
 		}
-	}
 
-	public class MainWindowViewModel
-	{
-		public MainWindowViewModel()
+		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
 		{
-			Servers = new ObservableCollection<Query.Server>();
-			var q = new Query("94.242.227.14");
-			var server = q.Execute();
-			Servers.Add(server);
+			DataContext = new MainWindowViewModel(Dispatcher);
 		}
-
-		public ObservableCollection<Query.Server> Servers { get; private set; }
 	}
 }

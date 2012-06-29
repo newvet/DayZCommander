@@ -63,13 +63,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Core\Query.cs" />
+    <Compile Include="Core\BindableBase.cs" />
+    <Compile Include="Core\ExtensionMethods.cs" />
+    <Compile Include="Core\Player.cs" />
+    <Compile Include="Core\Server.cs" />
+    <Compile Include="Core\ServerList.cs" />
+    <Compile Include="Core\ServerQueryClient.cs" />
+    <Compile Include="Core\ServerQueryResult.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -18,7 +18,7 @@ namespace Dotjosh.DayZCommander
 
 		public MainWindowViewModel(Dispatcher dispatcher)
 		{
-			_executeOnMainThread = action => dispatcher.BeginInvoke(DispatcherPriority.Input, action);
+			_executeOnMainThread = action => dispatcher.BeginInvoke(DispatcherPriority.Send, action);
 			FriendsList = new FriendsListViewModel();
 			GetServerList();
 			_maxPing = 150;
@@ -30,16 +30,17 @@ namespace Dotjosh.DayZCommander
 
 			getAllTask.ContinueWith(task =>
 			{
+				_rawServers = task.Result;
 				_executeOnMainThread(() =>
 				                     	{
-				                     		_rawServers = task.Result;
 											PropertyHasChanged("TotalServerCount");
 				                     		_rawObservableServers = new ObservableCollection<Server>();
 				                     		Servers = CollectionViewSource.GetDefaultView(_rawObservableServers) as ListCollectionView;
 				                     		SortByPing = true;
 											Servers.Filter = Filter;
-				                     		UpdateServerDetails();
 				});
+				UpdateServerDetails();
+
 			});
 		}
 
@@ -114,14 +115,14 @@ namespace Dotjosh.DayZCommander
 				.ToList(server =>
 				        Task.Factory
 				        	.StartNew(() =>
-				        	          server.Update(_executeOnMainThread)
-				        	)
-				        	.ContinueWith(task =>
-				        	              _executeOnMainThread(() =>
-				        	                                   	{
-				        	                                   		ProcessedServersCount++;
-				        	                                   		_rawObservableServers.Add(server);
-				        	                                   	})
+				        	          	{
+				        	          		server.Update(_executeOnMainThread);
+				        	          		_executeOnMainThread(() =>
+				        	          		                     	{
+				        	          		                     		ProcessedServersCount++;
+				        	          		                     		_rawObservableServers.Add(server);
+				        	          		                     	});
+				        	          	}, TaskCreationOptions.LongRunning
 				        	)
 				);
 		}

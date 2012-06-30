@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Threading;
 using Dotjosh.DayZCommander.Core;
 
@@ -17,23 +19,23 @@ namespace Dotjosh.DayZCommander
 		public MainWindowViewModel(Dispatcher dispatcher)
 		{
 			_executeOnMainThread = action => dispatcher.BeginInvoke(DispatcherPriority.Input, action);
-			Servers = new ObservableCollection<Server>();
 			FriendsList = new FriendsListViewModel();
 			GetServerList();
 		}
 
 		private void GetServerList()
 		{
-			Servers.Clear();
-
 			var getAllTask = Task.Factory.StartNew(() => ServerList.GetAll());
 
 			getAllTask.ContinueWith(task =>
 			{
 				_executeOnMainThread(() =>
-				{
-					task.Result.ForEach(Servers.Add);
-					UpdateServerDetails();
+				                     	{
+				                     		_rawServers = task.Result;
+											this.PropertyHasChanged("TotalServerCount");
+				                     		Servers = CollectionViewSource.GetDefaultView(new List<Server>()) as ListCollectionView;
+											Servers.SortDescriptions.Add(new SortDescription("Ping", ListSortDirection.Ascending));
+				                     		UpdateServerDetails();
 				});
 			});
 		}
@@ -51,21 +53,47 @@ namespace Dotjosh.DayZCommander
 		private void UpdateServerDetails()
 		{
 			ProcessedServersCount = 0;
-			Servers
+			_rawServers
 				.ToList(server =>
 				        Task.Factory
 				        	.StartNew(() =>
 				        	          server.Update(_executeOnMainThread)
 				        	)
 				        	.ContinueWith(task =>
-				        	              _executeOnMainThread(() => ProcessedServersCount++)
+				        	              _executeOnMainThread(() =>
+				        	                                   	{
+				        	                                   		ProcessedServersCount++;
+				        	                                   		Servers.AddNewItem(server);
+
+				        	                                   	})
 				        	)
 				);
 		}
 
-		public ObservableCollection<Server> Servers { get; private set; }
+		public int TotalServerCount
+		{
+			get { 
+				return _rawServers != null 
+				? _rawServers.Count
+				:0; 
+			}
+		}
+
+
+		private ListCollectionView _servers;
+		public ListCollectionView Servers
+		{
+			get { return _servers; }
+			private set
+			{
+				_servers = value;
+				PropertyHasChanged("Servers");
+			}
+		}
 
 		private int _processedServersCount;
+		private List<Server> _rawServers;
+
 		public int ProcessedServersCount
 		{
 			get { return _processedServersCount; }

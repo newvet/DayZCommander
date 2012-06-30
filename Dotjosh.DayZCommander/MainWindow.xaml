@@ -30,21 +30,25 @@
 									   VerticalAlignment="Stretch"
 									   HorizontalAlignment="Stretch"/>
 		</StackPanel>
-		
-		<StackPanel Orientation="Horizontal"
-				   Margin="5 8 0 4"
-				   Grid.Row="1">
 
-			<TextBlock Text="servers " Foreground="#EEE" Margin="20 0 0 0" FontSize="22"/>
-			<TextBlock Text="{Binding ProcessedServersCount, StringFormat={}({0}/}" 
-					   Foreground="#AAA"
-					   Margin="0 9 0 0"
-					   FontSize="14"/>
-			<TextBlock Text="{Binding Servers.Count, StringFormat={}{0})}"
-				   FontSize="14"
-					   Margin="0 9 0 0"
-					  Foreground="#EEE"/>
+		<StackPanel
+				   Margin="25 8 0 0"
+				   Grid.Row="1">		
+			<StackPanel Orientation="Horizontal">
+
+				<TextBlock Text="servers " Foreground="#EEE" Margin="0 0 0 0" FontSize="22"/>
+				<TextBlock Text="{Binding ProcessedServersCount, StringFormat={}({0}/, FallbackValue=0}" 
+						   Foreground="#AAA"
+						   Margin="0 7 0 0"
+						   FontSize="15"/>
+				<TextBlock Text="{Binding TotalServerCount, StringFormat={}{0}), FallbackValue=0}"
+					   FontSize="15"
+						   Margin="0 7 0 0"
+						  Foreground="#EEE"/>
+			</StackPanel>
+			<ProgressBar Width="150" HorizontalAlignment="Left" BorderThickness="0" Height="3" Background="Transparent" Maximum="{Binding Servers.Count, FallbackValue=0}" Value="{Binding ProcessedServersCount, FallbackValue=0}" />
 		</StackPanel>
+
 
 		<StackPanel Grid.Row="2"
 					 Margin="13 10 8 0"
@@ -58,21 +62,23 @@
 		<ScrollViewer BorderThickness="0" 
 					  Padding="0" 
 					  
-					 Margin="14 17 10 30"
+					 Margin="14 8 10 30"
 					  HorizontalScrollBarVisibility="Hidden" 
 					  VerticalScrollBarVisibility="Auto"
 					Grid.Row="3">
 			<ItemsControl ItemsSource="{Binding Servers}">
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
-						<Grid Margin="0 1 0 0">
+						<Grid Margin="12 1 0 0" Visibility="{Binding Ping, Converter={StaticResource CountToVisibilityConverter}}">
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="50"/>
 								<ColumnDefinition/>
 							</Grid.ColumnDefinitions>
-							
-							<TextBlock Text="{Binding Ping}" Grid.Column="0" Foreground="#DDD" FontSize="13" Width="50" Margin="12 5 0 5"/>
-							<TextBlock Text="{Binding Name}" Grid.Column="1" Foreground="#DDD" FontSize="13" Margin="0 5 4 5"/>
+
+							<ProgressBar Value="{Binding Ping}" Maximum="400" Width="50" Height="20" IsIndeterminate="False" Foreground="{Binding Ping, Converter={StaticResource PingToForegroundConverter}}" Background="Transparent"/>
+
+							<TextBlock Text="{Binding Ping}" Grid.Column="0"  Foreground="{Binding Ping, Converter={StaticResource PingToForegroundConverter}}"  FontSize="10" Padding="0 4 4 0" Width="50" Height="20" VerticalAlignment="Center" TextAlignment="Right"/>
+							<TextBlock Text="{Binding Name}" Grid.Column="1" Foreground="#DDD" FontSize="13" Margin="10 5 4 5"/>
 							
 						</Grid>
 					</DataTemplate>

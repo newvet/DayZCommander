@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UI\Converters\CountToVisibilityConverter.cs" />
+    <Compile Include="UI\Converters\PingToForegroundConverter.cs" />
     <Page Include="FriendsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

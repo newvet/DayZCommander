@@ -1,8 +1,9 @@
 ﻿<Application x:Class="Dotjosh.DayZCommander.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml">
+             xmlns:Converters="clr-namespace:Dotjosh.DayZCommander.UI.Converters" StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+		<Converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
+		<Converters:PingToForegroundConverter x:Key="PingToForegroundConverter" />
     </Application.Resources>
 </Application>

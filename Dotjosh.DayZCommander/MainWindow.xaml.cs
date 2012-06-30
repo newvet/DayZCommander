@@ -29,5 +29,10 @@ namespace Dotjosh.DayZCommander
 		{
 			DataContext = new MainWindowViewModel(Dispatcher);
 		}
+
+		private void MainWindow_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			DragMove();
+		}
 	}
 }

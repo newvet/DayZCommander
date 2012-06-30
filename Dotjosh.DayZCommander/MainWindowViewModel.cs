@@ -21,6 +21,7 @@ namespace Dotjosh.DayZCommander
 			_executeOnMainThread = action => dispatcher.BeginInvoke(DispatcherPriority.Input, action);
 			FriendsList = new FriendsListViewModel();
 			GetServerList();
+			_maxPing = 150;
 		}
 
 		private void GetServerList()
@@ -32,12 +33,22 @@ namespace Dotjosh.DayZCommander
 				_executeOnMainThread(() =>
 				                     	{
 				                     		_rawServers = task.Result;
-											this.PropertyHasChanged("TotalServerCount");
-				                     		Servers = CollectionViewSource.GetDefaultView(new List<Server>()) as ListCollectionView;
+											PropertyHasChanged("TotalServerCount");
+				                     		_rawObservableServers = new ObservableCollection<Server>();
+				                     		Servers = CollectionViewSource.GetDefaultView(_rawObservableServers) as ListCollectionView;
 											Servers.SortDescriptions.Add(new SortDescription("Ping", ListSortDirection.Ascending));
+											Servers.Filter = Filter;
 				                     		UpdateServerDetails();
 				});
 			});
+		}
+
+		private bool Filter(object o)
+		{
+			var server = o as Server;
+			if(server.Ping > _maxPing)
+				return false;
+			return true;
 		}
 
 		public FriendsListViewModel FriendsList
@@ -47,6 +58,17 @@ namespace Dotjosh.DayZCommander
 			{
 				_friendslist = value;
 				PropertyHasChanged("FriendsList");
+			}
+		}
+
+		public long MaxPing
+		{
+			get { return _maxPing; }
+			set
+			{
+				_maxPing = value;
+				PropertyHasChanged("MaxPing");
+				Servers.Refresh();
 			}
 		}
 
@@ -63,8 +85,7 @@ namespace Dotjosh.DayZCommander
 				        	              _executeOnMainThread(() =>
 				        	                                   	{
 				        	                                   		ProcessedServersCount++;
-				        	                                   		Servers.AddNewItem(server);
-
+				        	                                   		_rawObservableServers.Add(server);
 				        	                                   	})
 				        	)
 				);
@@ -93,6 +114,8 @@ namespace Dotjosh.DayZCommander
 
 		private int _processedServersCount;
 		private List<Server> _rawServers;
+		private long _maxPing;
+		private ObservableCollection<Server> _rawObservableServers;
 
 		public int ProcessedServersCount
 		{

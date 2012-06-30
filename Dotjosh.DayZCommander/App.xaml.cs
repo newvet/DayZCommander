@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Net;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
+using Caliburn.Micro;
 using Dotjosh.DayZCommander.Core;
 
 namespace Dotjosh.DayZCommander
@@ -14,10 +11,18 @@ namespace Dotjosh.DayZCommander
 	/// </summary>
 	public partial class App : Application
 	{
+		public static EventAggregator Events = new EventAggregator();
+	}
 
-		protected override void OnStartup(StartupEventArgs e)
+	public class PlayersChangedEvent
+	{
+		public ObservableCollection<Player> OldPlayers { get; set; }
+		public List<Player> NewPlayers { get; set; }
+
+		public PlayersChangedEvent(ObservableCollection<Player> oldPlayers, List<Player> newPlayers)
 		{
-			base.OnStartup(e);
+			OldPlayers = oldPlayers;
+			NewPlayers = newPlayers;
 		}
 	}
 }

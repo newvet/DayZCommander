@@ -9,12 +9,14 @@ namespace Dotjosh.DayZCommander.Core
 {
 	public class ServerQueryClient
 	{
+		private readonly Server _server;
 		private readonly string _ipAddress;
 		private readonly int _port;
 		private IPEndPoint _ipEndPoint;
 
-		public ServerQueryClient(string ipAddress, int port)
+		public ServerQueryClient(Server server, string ipAddress, int port)
 		{
+			_server = server;
 			_ipAddress = ipAddress;
 			_port = port;
 			_ipEndPoint = new IPEndPoint(IPAddress.Any, 0);
@@ -66,7 +68,7 @@ namespace Dotjosh.DayZCommander.Core
 				var players = items
 					.Skip(61)
 					.TakeWhile(x => x != "team_" && x != "")
-					.Select(x => new Player {Name = x})
+					.Select(x => new Player(_server) {Name = x})
 					.ToList();
 
 				var scores = items.SkipWhile(x => x != "score_")

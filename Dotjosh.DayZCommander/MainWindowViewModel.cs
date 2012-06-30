@@ -9,14 +9,16 @@ using Dotjosh.DayZCommander.Core;
 
 namespace Dotjosh.DayZCommander
 {
-	public class MainWindowViewModel
+	public class MainWindowViewModel : BindableBase
 	{
 		private readonly Action<Action> _executeOnMainThread;
+		private FriendsListViewModel _friendslist;
 
 		public MainWindowViewModel(Dispatcher dispatcher)
 		{
 			_executeOnMainThread = action => dispatcher.BeginInvoke(DispatcherPriority.Input, action);
 			Servers = new ObservableCollection<Server>();
+			FriendsList = new FriendsListViewModel();
 			GetServerList();
 		}
 
@@ -36,14 +38,42 @@ namespace Dotjosh.DayZCommander
 			});
 		}
 
+		public FriendsListViewModel FriendsList
+		{
+			get { return _friendslist; }
+			set
+			{
+				_friendslist = value;
+				PropertyHasChanged("FriendsList");
+			}
+		}
+
 		private void UpdateServerDetails()
 		{
+			ProcessedServersCount = 0;
 			Servers
-				.ForEach(server =>
-				         ThreadPool.QueueUserWorkItem(state => server.Update(_executeOnMainThread))
+				.ToList(server =>
+				        Task.Factory
+				        	.StartNew(() =>
+				        	          server.Update(_executeOnMainThread)
+				        	)
+				        	.ContinueWith(task =>
+				        	              _executeOnMainThread(() => ProcessedServersCount++)
+				        	)
 				);
 		}
 
 		public ObservableCollection<Server> Servers { get; private set; }
+
+		private int _processedServersCount;
+		public int ProcessedServersCount
+		{
+			get { return _processedServersCount; }
+			set
+			{
+				_processedServersCount = value;
+				PropertyHasChanged("ProcessedServersCount");
+			}
+		}
 	}
 }

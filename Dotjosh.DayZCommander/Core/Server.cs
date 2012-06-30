@@ -1,36 +1,31 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
 namespace Dotjosh.DayZCommander.Core
 {
 	public class Server : BindableBase
 	{
+		private readonly string _ipAddress;
 		private readonly ServerQueryClient _queryClient;
+		private long _ping;
+		private ObservableCollection<Player> _players;
+		private SortedDictionary<string, string> _settings;
+		private string LastException = null;
 
 		public Server(string ipAddress, int port)
 		{
-			_queryClient = new ServerQueryClient(ipAddress, port);
+			_ipAddress = ipAddress;
+			_queryClient = new ServerQueryClient(this, ipAddress, port);
 			Settings = new SortedDictionary<string, string>();
 			Players = new ObservableCollection<Player>();
 		}
 
 		public string Name
 		{
-			get { return GetSettingOrDefault("hostname") ?? "Loading..."; }
+			get { return LastException ?? GetSettingOrDefault("hostname") ?? "Loading..."; }
 		}
 
-		private string GetSettingOrDefault(string settingName)
-		{
-			if(Settings.ContainsKey(settingName))
-			{
-				return Settings[settingName];
-			}
-			return null;
-		}
-
-		private SortedDictionary<string, string> _settings;
 		public SortedDictionary<string, string> Settings
 		{
 			get { return _settings; }
@@ -42,8 +37,15 @@ namespace Dotjosh.DayZCommander.Core
 			}
 		}
 
-		private ObservableCollection<Player> _players;
-		private long _ping;
+		public long Ping
+		{
+			get { return _ping; }
+			set
+			{
+				_ping = value;
+				PropertyHasChanged("Ping");
+			}
+		}
 
 		public ObservableCollection<Player> Players
 		{
@@ -55,30 +57,45 @@ namespace Dotjosh.DayZCommander.Core
 			}
 		}
 
+		public string IpAddress
+		{
+			get { return _ipAddress; }
+		}
+
+		private string GetSettingOrDefault(string settingName)
+		{
+			if (Settings.ContainsKey(settingName))
+			{
+				return Settings[settingName];
+			}
+			return null;
+		}
+
 		public void Update(Action<Action> executeOnMainThread)
 		{
 			try
 			{
 				var serverResult = _queryClient.Execute();
-					Players = new ObservableCollection<Player>(serverResult.Players);
-					Settings = serverResult.Settings;
-					Ping = serverResult.Ping;
+				executeOnMainThread(() =>
+				                    	{
+											App.Events.Publish(new PlayersChangedEvent(Players, serverResult.Players));
+				                    		Players = new ObservableCollection<Player>(serverResult.Players);
+				                    		LastException = null;
+				                    		Settings = serverResult.Settings;
+				                    		Ping = serverResult.Ping;
+				                    	});
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
-					
-			}
-		}
-
-		public long Ping
-		{
-			get {
-				return _ping;
-			}
-			set {
-				_ping = value;
-				PropertyHasChanged("Ping");
+				executeOnMainThread(() =>
+				                    	{
+											LastException = ex.Message;
+											PropertyHasChanged("Name");
+				                    	});
+				
 			}
 		}
 	}
+
+	
 }

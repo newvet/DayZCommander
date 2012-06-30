@@ -16,7 +16,7 @@ namespace Dotjosh.DayZCommander.Core
 			return 0;
 		}
 
-		public static List<T> ForEach<T>(this IEnumerable<T> items, Action<T> action)
+		public static List<T> ToList<T>(this IEnumerable<T> items, Action<T> action)
 		{
 			List<T> list = items.ToList();
 			foreach(var item in list)
@@ -24,6 +24,11 @@ namespace Dotjosh.DayZCommander.Core
 				action(item);
 			}
 			return list;
+		}
+
+		public static bool None<T>(this IEnumerable<T> items, Func<T, bool> predicate)
+		{
+			return !items.Any(predicate);
 		}
 	}
 }

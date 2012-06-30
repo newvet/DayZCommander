@@ -12,10 +12,17 @@
 			</ItemsControl.Resources>
 			<ItemsControl.ItemTemplate>
 				<DataTemplate>
-					<TextBlock Text="{Binding Name}" 
+					<StackPanel Orientation="Horizontal" Margin="0 0 0 4">
+						<TextBlock Text="{Binding Name}" 
 							   FontSize="14"
 							   FontWeight="Bold"
-							   Foreground="{Binding IsPlaying, Converter={StaticResource IsPlayingToColorConverter}}"/>
+							   Foreground="{Binding IsPlaying, Converter={StaticResource IsPlayingToColorConverter}}"/>		
+						<TextBlock Text="{Binding Players.Count, StringFormat={} ({0})}" 
+							   FontSize="14"
+								   Foreground="#AAA"
+							   Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"/>						
+					</StackPanel>
+					
 				</DataTemplate>
 			</ItemsControl.ItemTemplate>
 		</ItemsControl>

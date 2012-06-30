@@ -36,17 +36,52 @@ namespace Dotjosh.DayZCommander
 											PropertyHasChanged("TotalServerCount");
 				                     		_rawObservableServers = new ObservableCollection<Server>();
 				                     		Servers = CollectionViewSource.GetDefaultView(_rawObservableServers) as ListCollectionView;
-											Servers.SortDescriptions.Add(new SortDescription("Ping", ListSortDirection.Ascending));
+				                     		SortByPing = true;
 											Servers.Filter = Filter;
 				                     		UpdateServerDetails();
 				});
 			});
 		}
 
+		public bool SortByPing
+		{
+			get { return Servers != null && Servers.SortDescriptions.All(x => x.PropertyName == "Ping"); }
+			set
+			{
+				Servers.SortDescriptions.Clear();
+				if(value)
+					Servers.SortDescriptions.Add(new SortDescription("Ping", ListSortDirection.Ascending));		
+
+				PropertyHasChanged("SortByPing");
+				PropertyHasChanged("SortByMostPlayers");
+			}
+		}
+
+		public bool SortByMostPlayers
+		{
+			get { 
+					return Servers != null 
+						&& Servers.SortDescriptions.Any(x => x.PropertyName == "CurrentPlayers")
+						&& Servers.SortDescriptions.Any(x => x.PropertyName == "Ping"); 
+			}
+			set
+			{
+				Servers.SortDescriptions.Clear();
+				if(value)
+				{
+					Servers.SortDescriptions.Add(new SortDescription("CurrentPlayers", ListSortDirection.Descending));
+					Servers.SortDescriptions.Add(new SortDescription("Ping", ListSortDirection.Ascending));
+				}
+
+				PropertyHasChanged("SortByPing");
+				PropertyHasChanged("SortByMostPlayers");
+			}
+		}
+
 		private bool Filter(object o)
 		{
 			var server = o as Server;
-			if(server.Ping > _maxPing)
+			if(server.Ping == 0)// || server.Ping > _maxPing)
 				return false;
 			return true;
 		}
@@ -109,6 +144,7 @@ namespace Dotjosh.DayZCommander
 			{
 				_servers = value;
 				PropertyHasChanged("Servers");
+				PropertyHasChanged("SortByPing");
 			}
 		}
 

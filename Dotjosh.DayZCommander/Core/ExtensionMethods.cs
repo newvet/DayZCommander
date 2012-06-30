@@ -16,6 +16,16 @@ namespace Dotjosh.DayZCommander.Core
 			return 0;
 		}
 
+		public static int? TryIntNullable(this string val)
+		{
+			int result;
+			if(int.TryParse(val, out result))
+			{
+				return result;
+			}
+			return null;
+		}
+
 		public static List<T> ToList<T>(this IEnumerable<T> items, Action<T> action)
 		{
 			List<T> list = items.ToList();

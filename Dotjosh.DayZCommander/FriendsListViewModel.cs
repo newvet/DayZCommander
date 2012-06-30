@@ -10,7 +10,7 @@ namespace Dotjosh.DayZCommander
 	{
 		public FriendsListViewModel()
 		{
-			Friends = new ObservableCollection<Friend>(new [] { new Friend("Travis") });
+			Friends = new ObservableCollection<Friend>(new [] { new Friend("dotjosh"), new Friend("Owner"),  });
 			App.Events.Subscribe(this);
 		}
 

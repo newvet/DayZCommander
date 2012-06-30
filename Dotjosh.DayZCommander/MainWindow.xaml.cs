@@ -34,5 +34,15 @@ namespace Dotjosh.DayZCommander
 		{
 			DragMove();
 		}
+
+		private void LowestPing_Click(object sender, RoutedEventArgs e)
+		{
+			((MainWindowViewModel) DataContext).SortByPing = true;
+		}
+
+		private void MostPlayers_Click(object sender, RoutedEventArgs e)
+		{
+			((MainWindowViewModel) DataContext).SortByMostPlayers = true;
+		}
 	}
 }

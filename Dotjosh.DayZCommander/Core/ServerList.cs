@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Dotjosh.DayZCommander.Core
@@ -23,6 +25,11 @@ namespace Dotjosh.DayZCommander.Core
 
 		private static string ExecuteGSList(string arguments)
 		{
+			var currentDirectoryUri = new Uri( Path.GetDirectoryName(
+				Assembly.GetExecutingAssembly().GetName().CodeBase));
+
+			var currentDirectory = currentDirectoryUri.AbsolutePath;
+
 			var p = new Process
 			{
 				StartInfo =
@@ -31,7 +38,7 @@ namespace Dotjosh.DayZCommander.Core
 						CreateNoWindow = true,
 						WindowStyle = ProcessWindowStyle.Hidden,
 						RedirectStandardOutput = true,
-						FileName = @"C:\Program Files (x86)\SIX Projects\Six Updater\tools\gslist.exe",
+						FileName = Path.Combine(currentDirectory, @"GSList\gslist.exe"),
 						Arguments = arguments
 					}
 			};

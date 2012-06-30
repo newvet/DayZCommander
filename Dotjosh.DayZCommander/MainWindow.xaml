@@ -5,7 +5,7 @@
 		 AllowsTransparency="True" Background="Transparent" WindowStyle="None"
 		MouseLeftButtonDown="MainWindow_OnMouseLeftButtonDown"
 		>
-    <Grid Background="#333333">
+    <Grid Background="#222222">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
@@ -14,21 +14,21 @@
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition/>
-			<ColumnDefinition Width="180"/>
+			<ColumnDefinition Width="200"/>
 		</Grid.ColumnDefinitions>
 		
 		<TextBlock Text="DayZ Commander"
 				   Foreground="#CD3232"
-				   FontSize="28"
+				   FontSize="26"
 				   Margin="24 10 15 5"/>
 		
 		<StackPanel Grid.Row="1" Grid.RowSpan="3" Grid.Column="1">
 			<TextBlock Text="friends" 
 					   FontSize="22" 
 					   Foreground="#5A97F2"
-					   Margin="15 8 0 4"/>
+					   Margin="30 8 0 4"/>
 			<DayZCommander:FriendsList DataContext="{Binding FriendsList}" 
-									   Margin="15 6 8 0"
+									   Margin="30 6 8 0"
 									   VerticalAlignment="Stretch"
 									   HorizontalAlignment="Stretch"/>
 		</StackPanel>
@@ -48,62 +48,153 @@
 						   Margin="0 7 0 0"
 						  Foreground="#EEE"/>
 			</StackPanel>
-			<ProgressBar Width="150" HorizontalAlignment="Left" BorderThickness="0" Height="3" Background="Transparent" Maximum="{Binding Servers.Count, FallbackValue=0}" Value="{Binding ProcessedServersCount, FallbackValue=0}" />
+			<ProgressBar Width="150" HorizontalAlignment="Left" BorderThickness="0" Height="3" Background="Transparent" Maximum="{Binding TotalServerCount, FallbackValue=0}" Value="{Binding ProcessedServersCount, FallbackValue=0}" />
 		</StackPanel>
 
 
 		<StackPanel Grid.Row="2"
-					 Margin="13 10 8 0"
+					 Margin="13 12 8 0"
 					Orientation="Horizontal">
 
 
-			<TextBlock Text="LOWEST PING" Foreground="#FFF" Margin="12 0 0 0" FontSize="10"/>
-			<TextBlock Text="ALPHABETICAL" Foreground="#CCC" Margin="14 0 4 0" FontSize="10"/>
+			<Button Tag="LOWEST PING" Margin="6 0 0 0" FontSize="10"
+					   
+					   Foreground="{Binding SortByPing, Converter={StaticResource BooleanToSelectedOptionColorConverter}}" 
+					Click="LowestPing_Click">
+				<Button.Template>
+					<ControlTemplate>
+						<TextBlock Text="{TemplateBinding Tag}" 
+								   Foreground="{TemplateBinding Foreground}" 
+								   FontSize="{TemplateBinding FontSize}" 
+								   Margin="{TemplateBinding Margin}"/>
+					</ControlTemplate>
+				</Button.Template>
+			</Button>
+			<Button Tag="MOST PLAYERS" Margin="8 0 4 0" FontSize="10"
+					   Foreground="{Binding SortByMostPlayers, Converter={StaticResource BooleanToSelectedOptionColorConverter}}" 
+					Click="MostPlayers_Click">
+				<Button.Template>
+					<ControlTemplate>
+						<TextBlock Text="{TemplateBinding Tag}" 
+								   Foreground="{TemplateBinding Foreground}" 
+								   FontSize="{TemplateBinding FontSize}" 
+								   Margin="{TemplateBinding Margin}"/>
+					</ControlTemplate>
+				</Button.Template>
+			</Button>
+			
+			<!--
 			<TextBlock Text="{Binding MaxPing,  StringFormat={}MAX PING: {0}ms}" Foreground="{Binding MaxPing, Converter={StaticResource PingToForegroundConverter}}" Margin="50 0 6 0" Width="100" TextAlignment="Right" FontSize="10" />
 			<Slider Width="100" Height="8" Margin="5 0 0 0" Background="{Binding MaxPing, Converter={StaticResource PingToForegroundConverter}}" IsSnapToTickEnabled="True" TickFrequency="50" Minimum="50" Maximum="1000" Value="{Binding MaxPing, Mode=TwoWay}" />
+			-->
 		</StackPanel>
 
-		<ScrollViewer BorderThickness="0" 
-					  Padding="0 0 14 0" 
-					  
-					 Margin="14 8 10 30"
-					  HorizontalScrollBarVisibility="Hidden" 
-					  VerticalScrollBarVisibility="Auto"
-					Grid.Row="3">
-			<ItemsControl ItemsSource="{Binding Servers}">
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
-						<Grid Margin="12 1 0 0" Visibility="{Binding Ping, Converter={StaticResource CountToVisibilityConverter}}">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="50"/>
-								<ColumnDefinition/>
-							</Grid.ColumnDefinitions>
+<!--		<ScrollViewer BorderThickness="0" -->
+<!--					  Padding="0 0 14 0" -->
+<!--					  -->
+<!--					 Margin="14 8 10 30"-->
+<!--					  HorizontalScrollBarVisibility="Hidden" -->
+<!--					  VerticalScrollBarVisibility="Auto"-->
+<!--					Grid.Row="3">-->
+<!--			<ItemsControl ItemsSource="{Binding Servers}">-->
+<!--				<ItemsControl.ItemTemplate>-->
+<!--					<DataTemplate>-->
+<!--						<Grid Margin="12 1 0 0" Visibility="{Binding Ping, Converter={StaticResource CountToVisibilityConverter}}">-->
+<!--							<Grid.ColumnDefinitions>-->
+<!--								<ColumnDefinition Width="50"/>-->
+<!--								<ColumnDefinition/>-->
+<!--							</Grid.ColumnDefinitions>-->
+<!---->
+<!--							<ProgressBar Value="{Binding Ping}" Maximum="400" Width="50" Height="20" IsIndeterminate="False" Foreground="{Binding Ping, Converter={StaticResource PingToForegroundConverter}}" Background="Transparent"/>-->
+<!---->
+<!--							<TextBlock Text="{Binding Ping}" Grid.Column="0"  Foreground="{Binding Ping, Converter={StaticResource PingToForegroundConverter}}"  FontSize="10" Padding="0 4 4 0" Width="50" Height="20" VerticalAlignment="Center" TextAlignment="Right"/>-->
+<!--							<TextBlock Text="{Binding Name}" Grid.Column="1" Foreground="#DDD" FontSize="13" Margin="10 5 4 5"/>-->
+<!--							-->
+<!--						</Grid>-->
+<!--					</DataTemplate>-->
+<!--				</ItemsControl.ItemTemplate>-->
+<!--			</ItemsControl>-->
+<!--		</ScrollViewer>-->
 
-							<ProgressBar Value="{Binding Ping}" Maximum="400" Width="50" Height="20" IsIndeterminate="False" Foreground="{Binding Ping, Converter={StaticResource PingToForegroundConverter}}" Background="Transparent"/>
-
-							<TextBlock Text="{Binding Ping}" Grid.Column="0"  Foreground="{Binding Ping, Converter={StaticResource PingToForegroundConverter}}"  FontSize="10" Padding="0 4 4 0" Width="50" Height="20" VerticalAlignment="Center" TextAlignment="Right"/>
-							<TextBlock Text="{Binding Name}" Grid.Column="1" Foreground="#DDD" FontSize="13" Margin="10 5 4 5"/>
-							
-						</Grid>
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
-		</ScrollViewer>
-
-		<!--
 		<DataGrid ItemsSource="{Binding Servers}"
-				  Visibility="Hidden"
-				  Margin="8 0 0 0"
-				  Grid.Row="2"
-				  Grid.Column="1"
+				  Margin="14 12 0 30"
+				  VerticalScrollBarVisibility="Visible"
+				  Grid.Row="3"
+				  Background="Transparent"
+				  Foreground="#DDD"
+				  HeadersVisibility="None"
+				  RowBackground="Transparent"
+				  BorderThickness="0"
+				  AlternatingRowBackground="#444"
 				  AutoGenerateColumns="False">
+			<DataGrid.Resources>
+				<Style TargetType="{x:Type DataGridCell}">
+					<Setter Property="Template">
+						<Setter.Value>
+							<ControlTemplate TargetType="{x:Type DataGridCell}">
+								<Border Padding="8 4 8 4">
+									<ContentPresenter />
+								</Border>
+							</ControlTemplate>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</DataGrid.Resources>
 			<DataGrid.Columns>
-				<DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="*" />
-				<DataGridTextColumn Binding="{Binding Players.Count}" Header="Players"  Width="50"/>
-				<DataGridTextColumn Binding="{Binding Ping}" Header="Ping" Width="50" />
+				<DataGridTextColumn Binding="{Binding Name}" 
+									Header="Name" 
+									Width="*" />
+				<DataGridTemplateColumn Width="75">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding ServerTime, StringFormat={}{0:h:mm tt}}"
+									   TextAlignment="Right"
+									   FontSize="10"
+									   FontWeight="Bold"
+									   HorizontalAlignment="Right"
+									   VerticalAlignment="Center"
+									Foreground="{Binding ServerTime, Converter={StaticResource TimeToColorConverter}}"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTemplateColumn Width="60">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal" 
+										VerticalAlignment="Center"
+										HorizontalAlignment="Right">
+								<TextBlock Text="{Binding CurrentPlayers}" Foreground="{Binding Converter={StaticResource ServerFullnessToColorConverter}}"/>
+								<TextBlock Text="/"/>
+								<TextBlock Text="{Binding MaxPlayers}" Foreground="{Binding Converter={StaticResource ServerFullnessToColorConverter}}"/>
+							</StackPanel>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTemplateColumn Width="76">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Grid>
+								<ProgressBar Value="{Binding Ping}" 
+											 Maximum="400" 
+											 Width="50" 
+											 Height="20" 
+											 IsIndeterminate="False" 
+											 Foreground="{Binding Ping, Converter={StaticResource PingToForegroundConverter}}" 
+											 Background="Transparent"/>
+								<TextBlock Text="{Binding Ping, StringFormat={}{0}ms}" 
+										   Foreground="{Binding Ping, Converter={StaticResource PingToForegroundConverter}}"  
+										   FontSize="10" 
+										   Padding="0 4 4 0"
+										   Width="50" 
+										   Height="20" 
+										   VerticalAlignment="Center" 
+										   TextAlignment="Right"/>								
+							</Grid>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
 			</DataGrid.Columns>
 		</DataGrid>
 		
-		-->
 	</Grid>
 </Window>

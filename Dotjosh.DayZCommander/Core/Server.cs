@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 
 namespace Dotjosh.DayZCommander.Core
 {
@@ -26,6 +27,38 @@ namespace Dotjosh.DayZCommander.Core
 			get { return LastException ?? GetSettingOrDefault("hostname") ?? "Loading..."; }
 		}
 
+		public int? CurrentPlayers
+		{
+			get { return GetSettingOrDefault("numplayers").TryIntNullable(); }
+		}
+
+		public int? MaxPlayers
+		{
+			get { return GetSettingOrDefault("maxplayers").TryIntNullable(); }
+		}
+
+		public static Regex ServerTimeRegex = new Regex(@"((GmT|Utc)[\s]*(?<Offset>([+]|[-])[\s]?[\d]))", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+		public DateTime? ServerTime
+		{
+			get
+			{
+				var name = GetSettingOrDefault("hostname");
+				if(string.IsNullOrWhiteSpace(name))
+					return null;
+
+				var match = ServerTimeRegex.Match(name);
+				if(!match.Success)
+					return null;
+
+				var offset = match.Groups["Offset"].Value.Replace(" ", "");
+				var offsetInt = int.Parse(offset);
+
+				return DateTime.UtcNow
+							.AddHours(offsetInt);
+			}
+		}
+
 		public SortedDictionary<string, string> Settings
 		{
 			get { return _settings; }
@@ -34,6 +67,9 @@ namespace Dotjosh.DayZCommander.Core
 				_settings = value;
 				PropertyHasChanged("Settings");
 				PropertyHasChanged("Name");
+				PropertyHasChanged("CurrentPlayers");
+				PropertyHasChanged("MaxPlayers");
+				PropertyHasChanged("ServerTime");
 			}
 		}
 
@@ -60,6 +96,23 @@ namespace Dotjosh.DayZCommander.Core
 		public string IpAddress
 		{
 			get { return _ipAddress; }
+		}
+
+		public int FreeSlots
+		{
+			get 
+			{ 
+				if(MaxPlayers != null && CurrentPlayers != null)
+				{
+					return (int) (MaxPlayers - CurrentPlayers);
+				}
+				return 0;
+			}
+		}
+
+		public bool IsEmpty
+		{
+			get { return CurrentPlayers == null || CurrentPlayers == 0; }
 		}
 
 		private string GetSettingOrDefault(string settingName)

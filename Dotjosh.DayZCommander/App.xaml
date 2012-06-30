@@ -5,5 +5,9 @@
     <Application.Resources>
 		<Converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
 		<Converters:PingToForegroundConverter x:Key="PingToForegroundConverter" />
+		<Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+		<Converters:TimeToColorConverter x:Key="TimeToColorConverter" />
+		<Converters:ServerFullnessToColorConverter x:Key="ServerFullnessToColorConverter" />
+		<Converters:BooleanToSelectedOptionColorConverter x:Key="BooleanToSelectedOptionColorConverter" />
     </Application.Resources>
 </Application>

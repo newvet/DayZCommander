@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Threading;
 using Dotjosh.DayZCommander.Core;
 
-namespace Dotjosh.DayZCommander
+namespace Dotjosh.DayZCommander.UI
 {
 	public class MainWindowViewModel : BindableBase
 	{
 		private readonly Action<Action> _executeOnMainThread;
 		private FriendsListViewModel _friendslist;
+		private ListCollectionView _servers;
+		private int _processedServersCount;
+		private List<Server> _rawServers;
+		private long _maxPing;
+		private ObservableCollection<Server> _rawObservableServers = new ObservableCollection<Server>();
 
 		public MainWindowViewModel(Dispatcher dispatcher)
 		{
@@ -22,26 +26,20 @@ namespace Dotjosh.DayZCommander
 			FriendsList = new FriendsListViewModel();
 			GetServerList();
 			_maxPing = 150;
+
+			Servers = (ListCollectionView)CollectionViewSource.GetDefaultView(_rawObservableServers);
+			Servers.Filter = Filter;
+			SortByPing = true;
 		}
 
 		private void GetServerList()
 		{
-			var getAllTask = Task.Factory.StartNew(() => ServerList.GetAll());
-
-			getAllTask.ContinueWith(task =>
-			{
-				_rawServers = task.Result;
-				_executeOnMainThread(() =>
-				                     	{
-											PropertyHasChanged("TotalServerCount");
-				                     		_rawObservableServers = new ObservableCollection<Server>();
-				                     		Servers = CollectionViewSource.GetDefaultView(_rawObservableServers) as ListCollectionView;
-				                     		SortByPing = true;
-											Servers.Filter = Filter;
-				});
-				UpdateServerDetails();
-
-			});
+			Task.Factory.StartNew(() =>
+			                      	{
+			                      		_rawServers = ServerList.GetAll();
+			                      		_executeOnMainThread(() => PropertyHasChanged("TotalServerCount"));
+			                      		UpdateAllServers();
+			                      	});
 		}
 
 		public bool SortByPing
@@ -108,7 +106,7 @@ namespace Dotjosh.DayZCommander
 			}
 		}
 
-		private void UpdateServerDetails()
+		public void UpdateAllServers()
 		{
 			ProcessedServersCount = 0;
 			_rawServers
@@ -137,7 +135,6 @@ namespace Dotjosh.DayZCommander
 		}
 
 
-		private ListCollectionView _servers;
 		public ListCollectionView Servers
 		{
 			get { return _servers; }
@@ -148,11 +145,6 @@ namespace Dotjosh.DayZCommander
 				PropertyHasChanged("SortByPing");
 			}
 		}
-
-		private int _processedServersCount;
-		private List<Server> _rawServers;
-		private long _maxPing;
-		private ObservableCollection<Server> _rawObservableServers;
 
 		public int ProcessedServersCount
 		{

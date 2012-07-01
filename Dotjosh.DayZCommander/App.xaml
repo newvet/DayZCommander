@@ -1,7 +1,7 @@
 ﻿<Application x:Class="Dotjosh.DayZCommander.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:Converters="clr-namespace:Dotjosh.DayZCommander.UI.Converters" StartupUri="MainWindow.xaml">
+             xmlns:Converters="clr-namespace:Dotjosh.DayZCommander.UI.Converters" StartupUri="UI\MainWindow.xaml">
     <Application.Resources>
 		<Converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
 		<Converters:PingToForegroundConverter x:Key="PingToForegroundConverter" />
@@ -9,5 +9,13 @@
 		<Converters:TimeToColorConverter x:Key="TimeToColorConverter" />
 		<Converters:ServerFullnessToColorConverter x:Key="ServerFullnessToColorConverter" />
 		<Converters:BooleanToSelectedOptionColorConverter x:Key="BooleanToSelectedOptionColorConverter" />
-    </Application.Resources>
+
+		<ControlTemplate TargetType="Button" x:Key="MetroButton">
+			<TextBlock Text="{TemplateBinding Tag}" 
+								   Foreground="{TemplateBinding Foreground}" 
+								   FontSize="{TemplateBinding FontSize}" 
+									Cursor="Hand"
+								   Margin="{TemplateBinding Margin}"/>
+		</ControlTemplate>
+	</Application.Resources>
 </Application>

@@ -8,6 +8,7 @@ namespace Dotjosh.DayZCommander.Core
 	public class Server : BindableBase
 	{
 		private readonly string _ipAddress;
+		private readonly int _port;
 		private readonly ServerQueryClient _queryClient;
 		private long _ping;
 		private ObservableCollection<Player> _players;
@@ -17,6 +18,7 @@ namespace Dotjosh.DayZCommander.Core
 		public Server(string ipAddress, int port)
 		{
 			_ipAddress = ipAddress;
+			_port = port;
 			_queryClient = new ServerQueryClient(this, ipAddress, port);
 			Settings = new SortedDictionary<string, string>();
 			Players = new ObservableCollection<Player>();
@@ -113,6 +115,11 @@ namespace Dotjosh.DayZCommander.Core
 		public bool IsEmpty
 		{
 			get { return CurrentPlayers == null || CurrentPlayers == 0; }
+		}
+
+		public int Port
+		{
+			get { return _port; }
 		}
 
 		private string GetSettingOrDefault(string settingName)

@@ -1,10 +1,8 @@
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Caliburn.Micro;
 using Dotjosh.DayZCommander.Core;
 
-namespace Dotjosh.DayZCommander
+namespace Dotjosh.DayZCommander.UI
 {
 	public class FriendsListViewModel : BindableBase, IHandle<PlayersChangedEvent>
 	{

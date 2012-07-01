@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace Dotjosh.DayZCommander
+namespace Dotjosh.DayZCommander.UI
 {
 	public class IsPlayingToColorConverter : IValueConverter
 	{

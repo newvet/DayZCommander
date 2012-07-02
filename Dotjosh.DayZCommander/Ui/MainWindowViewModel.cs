@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Threading;
@@ -105,19 +106,26 @@ namespace Dotjosh.DayZCommander.Ui
 		public void UpdateAllServers()
 		{
 			ProcessedServersCount = 0;
-			for (int index = 0; index < _rawServers.Count; index++)
+			new Thread(() =>
 			{
-				var server = _rawServers[index];
-				Task.Factory.StartNew(() =>
-				                      	{
-				                      		server.Update(_executeOnMainThread);
-				                      		_executeOnMainThread(() =>
-				                      		                     	{
-				                      		                     		ProcessedServersCount++;
-				                      		                     		_rawObservableServers.Add(server);
-				                      		                     	});
-				                      	});
-			}
+				for (int index = 0; index < _rawServers.Count; index++)
+				{
+					var server = _rawServers[index];
+				
+					new Thread(() =>
+				                      		{
+				                      			server.Update(_executeOnMainThread);
+				                      			_executeOnMainThread(() =>
+				                      		                     		{
+				                      		                     			ProcessedServersCount++;
+				                      		                     			_rawObservableServers.Add(server);
+				                      		                     		});
+				                      		}).Start();
+
+					if(index % 70 == 0)
+						Thread.Sleep(300);
+				}
+			}).Start();
 		}
 
 		public string CurrentVersion

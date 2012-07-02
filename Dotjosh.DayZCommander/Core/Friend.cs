@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Dotjosh.DayZCommander.Ui;
 
 namespace Dotjosh.DayZCommander.Core
 {
 	public class Friend : BindableBase
 	{
+		private bool _isSelected;
+
 		public string Name { get; set; }
 
 		public Friend(string name)
@@ -43,6 +46,17 @@ namespace Dotjosh.DayZCommander.Core
 
 			Players.Remove(player);
 			PropertyHasChanged("IsPlaying");
+		}
+
+		public bool IsSelected
+		{
+			get { return _isSelected; }
+			set
+			{
+				_isSelected = value;
+				PropertyHasChanged("IsSelected");
+				App.Events.Publish(new FilterByFriendRequest(this, value));
+			}
 		}
 	}
 }

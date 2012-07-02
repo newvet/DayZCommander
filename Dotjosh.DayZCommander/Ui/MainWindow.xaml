@@ -118,8 +118,8 @@
 						</Button.Content>
 					</Button>
 				</StackPanel>
-				<ProgressBar Width="150" 
-							 HorizontalAlignment="Left" 
+				<ProgressBar 
+							 HorizontalAlignment="Stretch" 
 							 BorderThickness="0" 
 							 Height="3" 
 							 Background="Transparent" 

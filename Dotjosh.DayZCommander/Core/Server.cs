@@ -72,6 +72,7 @@ namespace Dotjosh.DayZCommander.Core
 				PropertyHasChanged("CurrentPlayers");
 				PropertyHasChanged("MaxPlayers");
 				PropertyHasChanged("ServerTime");
+				PropertyHasChanged("Difficulty");
 			}
 		}
 
@@ -100,6 +101,11 @@ namespace Dotjosh.DayZCommander.Core
 			get { return _ipAddress; }
 		}
 
+		public int? Difficulty
+		{
+			get { return GetSettingOrDefault("difficulty").TryIntNullable(); }
+		}
+
 		public int FreeSlots
 		{
 			get 
@@ -120,6 +126,18 @@ namespace Dotjosh.DayZCommander.Core
 		public int Port
 		{
 			get { return _port; }
+		}
+
+		public bool? IsNight
+		{
+			get
+			{
+				var serverTime = ServerTime;
+				if(serverTime == null)
+					return null;
+
+				return serverTime.Value.Hour < 5 || serverTime.Value.Hour > 19;
+			}
 		}
 
 		private string GetSettingOrDefault(string settingName)

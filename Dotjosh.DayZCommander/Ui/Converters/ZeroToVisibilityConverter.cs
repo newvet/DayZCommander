@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Globalization;
+using System.Windows;
 using System.Windows.Data;
-using System.Windows.Media;
 
-namespace Dotjosh.DayZCommander.UI
+namespace Dotjosh.DayZCommander.Ui.Converters
 {
-	public class IsPlayingToColorConverter : IValueConverter
+	public class ZeroToVisibilityConverter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			if((bool)value)
-				return new SolidColorBrush(Colors.LightGreen);
-			return new SolidColorBrush(Color.FromArgb(255, 130, 130, 130));
+			if((int)value == 0)
+				return Visibility.Visible;
+
+			return Visibility.Collapsed;
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

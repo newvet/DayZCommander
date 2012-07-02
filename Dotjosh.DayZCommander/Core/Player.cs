@@ -17,5 +17,12 @@ namespace Dotjosh.DayZCommander.Core
 		public string Name { get; set; }
 		public int Score { get; set; }
 		public int Deaths { get; set; }
+
+		public Server Server
+		{
+			get {
+				return _server;
+			}
+		}
 	}
 }

@@ -6,10 +6,14 @@ namespace Dotjosh.DayZCommander.Core
 	{
 		#region Implementation of INotifyPropertyChanged
 
-		protected void PropertyHasChanged(string name)
+		protected void PropertyHasChanged(params string[] names)
 		{
 			if(PropertyChanged != null)
-				PropertyChanged(this, new PropertyChangedEventArgs(name));
+			{
+				foreach(var name in names)
+					PropertyChanged(this, new PropertyChangedEventArgs(name));
+			}
+				
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

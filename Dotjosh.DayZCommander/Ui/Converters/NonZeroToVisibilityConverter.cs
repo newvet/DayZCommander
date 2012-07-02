@@ -3,13 +3,13 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Dotjosh.DayZCommander.UI.Converters
+namespace Dotjosh.DayZCommander.Ui.Converters
 {
-	public class CountToVisibilityConverter : IValueConverter
+	public class NonZeroToVisibilityConverter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			if(value != null && (long)value > 0)
+			if((int)value > 0)
 				return Visibility.Visible;
 
 			return Visibility.Collapsed;

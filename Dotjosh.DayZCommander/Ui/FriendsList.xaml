@@ -31,7 +31,7 @@
 							 x:Name="NewFriendName"
 						Text="{Binding NewFriendName, Mode=TwoWay}"
 						LostFocus="NewFriendName_LostFocus"
-						Visibility="{Binding IsAdding, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+						Visibility="{Binding IsAdding, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityHiddenConverter}}"
 						KeyDown="NewFriendName_KeyDown"
 						Width="100"/>
 				</Canvas>
@@ -55,7 +55,7 @@
 							<TextBlock Text="{Binding Players.Count, StringFormat={} ({0})}" 
 							   FontSize="14"
 								   Foreground="#AAA"
-							   Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+							   Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityHiddenConverter}}"/>
 						</StackPanel>
 
 					</DataTemplate>

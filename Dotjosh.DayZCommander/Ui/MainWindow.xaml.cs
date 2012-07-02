@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Deployment.Application;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,24 +31,9 @@ namespace Dotjosh.DayZCommander.Ui
 			DragMove();
 		}
 
-		private void LowestPing_Click(object sender, RoutedEventArgs e)
-		{
-			((MainWindowViewModel) DataContext).SortByPing = true;
-		}
-
-		private void MostPlayers_Click(object sender, RoutedEventArgs e)
-		{
-			((MainWindowViewModel) DataContext).SortByMostPlayers = true;
-		}
-
 		private void CloseButton_Click(object sender, RoutedEventArgs e)
 		{
 			Application.Current.Shutdown();
-		}
-
-		private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
-		{
-
 		}
 
 		private void MainWindow_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -75,6 +61,11 @@ namespace Dotjosh.DayZCommander.Ui
 			var arma2OAPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Bohemia Interactive Studio\ArmA 2 OA", "main", "");
 			var arma2OaBetaExePath = Path.Combine(arma2OAPath, @"Expansion\beta\arma2oa.exe");
 
+			if(string.IsNullOrWhiteSpace(arma2Path))
+			{
+				arma2Path = Path.Combine(new DirectoryInfo(arma2OAPath).Parent.FullName, "ArmA 2");
+			}
+
 			var arguments = @"";
 			arguments += " -noSplash -noFilePatching";
 			arguments += " -connect=" + server.IpAddress;
@@ -101,7 +92,7 @@ namespace Dotjosh.DayZCommander.Ui
 
 		private void RefreshAll_Click(object sender, RoutedEventArgs e)
 		{
-			((MainWindowViewModel) DataContext).UpdateAllServers();
+			((MainWindowViewModel) DataContext).UpdateServerList();
 		}
 	}
 }

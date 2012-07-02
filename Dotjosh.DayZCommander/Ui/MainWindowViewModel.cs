@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Deployment.Application;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -26,21 +27,55 @@ namespace Dotjosh.DayZCommander.Ui
 		private List<Friend> _friendFilter = new List<Friend>();
 		private ObservableCollection<Server> _rawObservableServers = new ObservableCollection<Server>();
 		private Func<Server, bool> _filter;
+		private bool _restartToApplyUpdate;
 
 		public MainWindowViewModel(Dispatcher dispatcher)
 		{
 			App.Events.Subscribe(this);
 
 			_executeOnMainThread = action => dispatcher.BeginInvoke(DispatcherPriority.Send, action);
-			GetServerList();
+			UpdateServerList();
 
 			Servers = (ListCollectionView)CollectionViewSource.GetDefaultView(_rawObservableServers);
 			Servers.Filter = Filter;
 			SortByPing = true;
+
+			CheckForUpdates();
 		}
 
-		private void GetServerList()
+		private void CheckForUpdates()
 		{
+			 if (ApplicationDeployment.IsNetworkDeployed)
+			 {
+			 	ApplicationDeployment.CurrentDeployment.CheckForUpdateCompleted += (sender, args) =>
+			 	{
+					if(args.UpdateAvailable)
+					{
+						ApplicationDeployment.CurrentDeployment.UpdateCompleted += (o, eventArgs) =>
+						{
+							RestartToApplyUpdate = true;
+						};
+						ApplicationDeployment.CurrentDeployment.UpdateAsync();
+					}
+			 	};
+				ApplicationDeployment.CurrentDeployment.CheckForUpdateAsync();
+			 }
+		}
+
+		public bool RestartToApplyUpdate
+		{
+			get { return _restartToApplyUpdate; }
+			set
+			{
+				_restartToApplyUpdate = value;
+				PropertyHasChanged("RestartToApplyUpdate");
+			}
+		}
+
+		public void UpdateServerList()
+		{
+			_rawObservableServers.Clear();
+			PropertyHasChanged("TotalServerCount", "UnprocessedServersCount");
 			Task.Factory.StartNew(() =>
 			                      	{
 			                      		_rawServers = ServerList.GetAll();

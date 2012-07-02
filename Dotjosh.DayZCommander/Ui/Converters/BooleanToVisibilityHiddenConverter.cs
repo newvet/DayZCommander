@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace Dotjosh.DayZCommander.Ui.Converters
 {
-	public class BooleanToVisibilityConverter : IValueConverter
+	public class BooleanToVisibilityHiddenConverter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{

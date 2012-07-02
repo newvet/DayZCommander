@@ -48,22 +48,6 @@
 					  ItemsSource="{Binding TimeOfDayOptions}">
 			</ComboBox>
 
-			<TextBlock 
-				Margin="0 10 0 0"
-				Foreground="#CCC"
-				Text="{Binding MaximumDifficulty, StringFormat={}Max difficulty: {0}, Converter={StaticResource DifficultyToDescriptionConverter}, ConverterParameter='Any difficulty'}"
-			/>
-			<Slider Minimum="0"
-					Maximum="3"
-					Background="#CCC"
-					Value="{Binding MaximumDifficulty, Mode=TwoWay}"
-					IsSnapToTickEnabled="True" 
-					Height="8" 
-					Margin="0 4 0 0"
-					HorizontalAlignment="Left"
-					Width="100"
-					TickFrequency="1" />
-
 		</StackPanel>
 	</Grid>
 </UserControl>

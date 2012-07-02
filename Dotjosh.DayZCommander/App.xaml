@@ -5,14 +5,16 @@
     <Application.Resources>
 		<Converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
 		<Converters:PingToForegroundConverter x:Key="PingToForegroundConverter" />
-		<Converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+		<Converters:BooleanToVisibilityHiddenConverter x:Key="BooleanToVisibilityHiddenConverter" />
 		<Converters:TimeToColorConverter x:Key="TimeToColorConverter" />
 		<Converters:ServerFullnessToColorConverter x:Key="ServerFullnessToColorConverter" />
 		<Converters:BooleanToSelectedOptionColorConverter x:Key="BooleanToSelectedOptionColorConverter" />
 		<Converters:NotNullToVisibilityConverter x:Key="NotNullToVisibilityConverter" />
-		<Converters:NonZeroToVisibilityConverter x:Key="NonZeroToVisibilityConverter" />
+		<Converters:NonZeroToVisibilityCollapsedConverter x:Key="NonZeroToVisibilityConverter" />
 		<Converters:ZeroToVisibilityConverter x:Key="ZeroToVisibilityConverter" />
 		<Converters:DifficultyToDescriptionConverter x:Key="DifficultyToDescriptionConverter" />
+		<Converters:NonZeroToVisibilityHiddenConverter x:Key="NonZeroToVisibilityHiddenConverter" />
+		<Converters:EnabledSettingToForegroundConverter x:Key="EnabledSettingToForegroundConverter" />
 
 		<ControlTemplate TargetType="Button" x:Key="MetroTextButton">
 			<TextBlock Text="{TemplateBinding Tag}" 
@@ -53,6 +55,22 @@
 								   Foreground="#BBBBBB" 
 								   TextAlignment="Right"
 								   Margin="0 3 8 3"/>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style x:Key="MetroDataGridHeaderCenter"
+			   BasedOn="{StaticResource MetroDataGridHeader}"
+					  TargetType="{x:Type DataGridColumnHeader}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+
+						<TextBlock Text="{TemplateBinding ContentControl.Content}"
+								   Foreground="#BBBBBB" 
+								   TextAlignment="Center"
+								   Margin="0 3 0 3"/>
 					</ControlTemplate>
 				</Setter.Value>
 			</Setter>

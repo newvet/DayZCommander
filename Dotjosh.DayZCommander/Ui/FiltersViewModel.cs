@@ -27,7 +27,6 @@ namespace Dotjosh.DayZCommander.Ui
 			HideEmpty = false;
 			HideFull = false;
 			TimeOfDay = "Any time of day";
-			MaximumDifficulty = 3;
 			_supressPublish = false;
 		}
 
@@ -88,17 +87,6 @@ namespace Dotjosh.DayZCommander.Ui
 			}
 		}
 
-		public int MaximumDifficulty
-		{
-			get { return _maximumDifficulty; }
-			set
-			{
-				_maximumDifficulty = value;
-				PropertyHasChanged("MaximumDifficulty");
-				PublishFilter();
-			}
-		}
-
 		public bool HideFull
 		{
 			get { return _hideFull; }
@@ -143,9 +131,6 @@ namespace Dotjosh.DayZCommander.Ui
 									if(s.IsNight == null || s.IsNight == true)
 										return false;							
 								}
-
-								if(s.Difficulty != null && s.Difficulty > MaximumDifficulty)
-									return false;
 
 								return true;
 			             	};

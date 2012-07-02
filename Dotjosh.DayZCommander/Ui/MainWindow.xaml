@@ -39,13 +39,21 @@
 				</Grid.ColumnDefinitions>
 
 				<StackPanel>
-					<TextBlock Text="{Binding CurrentVersion, FallbackValue=Unknown}"
+					<StackPanel Orientation="Horizontal"
+					           Margin="30 4 0 -8">
+						<TextBlock Text="{Binding CurrentVersion, FallbackValue=Unknown}"
 					           FontSize="10"
 					           Width="245"
 					           TextAlignment="Right"
 					           HorizontalAlignment="Left"
-					           Margin="30 4 0 -8"
 					           Foreground="#777"/>
+						<TextBlock Text="A new version will be applied the next time you run this program."
+								   Margin="10 0 0 0"
+								   FontSize="10"
+								   Visibility="{Binding RestartToApplyUpdate, Converter={StaticResource BooleanToVisibilityHiddenConverter}}"
+								   HorizontalAlignment="Right"
+								   Foreground="LightGreen"/>
+					</StackPanel>
 					<TextBlock Text="DayZ Commander"
 						   Foreground="#EEEEEE"
 						   FontSize="28"
@@ -121,9 +129,9 @@
 				<ProgressBar 
 							 HorizontalAlignment="Stretch" 
 							 BorderThickness="0" 
-							 Height="3" 
+							 Height="5" 
 							 Background="Transparent" 
-							 Visibility="{Binding UnprocessedServersCount, Converter={StaticResource NonZeroToVisibilityConverter}}"
+							 Visibility="{Binding UnprocessedServersCount, Converter={StaticResource NonZeroToVisibilityHiddenConverter}}"
 							 Maximum="{Binding TotalServerCount, FallbackValue=0}" 
 							 Value="{Binding ProcessedServersCount, FallbackValue=0}" />
 			</StackPanel>
@@ -139,6 +147,7 @@
 				<DataGrid ItemsSource="{Binding Servers}"
 						  Margin="8 0 0 0"
 					  VerticalScrollBarVisibility="Visible"
+						HorizontalScrollBarVisibility="Disabled"
 					  Background="Transparent"
 					 HeadersVisibility="Column"
 					  Foreground="#DDD"
@@ -167,18 +176,24 @@
 											Width="*" >
 						</DataGridTextColumn>
 						<DataGridTemplateColumn 
-											HeaderStyle="{StaticResource MetroDataGridHeader}"
-											Header="DIFFICULTY"	
+											HeaderStyle="{StaticResource MetroDataGridHeaderCenter}"
+											Header="SETTINGS"	
 											SortMemberPath="Difficulty"
-											Width="75" >
+											Width="80" >
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
-									<TextBlock Text="{Binding Difficulty, Converter={StaticResource DifficultyToDescriptionConverter}, ConverterParameter=''}"
-										   FontSize="10"
-										   FontWeight="Bold"
-											Foreground="#CCC"
-											   Margin="3 0 0 0"
-										   VerticalAlignment="Center"/>
+									<StackPanel Orientation="Horizontal" 
+												VerticalAlignment="Center"
+												Margin="5 0 0 0"
+												HorizontalAlignment="Center">
+										<TextBlock Text="A" ToolTipService.ToolTip="Armor" Margin="1 0 1 0" Foreground="{Binding Info.Armor.Enabled, Converter={StaticResource EnabledSettingToForegroundConverter}}" />
+										<TextBlock Text="3" ToolTipService.ToolTip="Third Person" Margin="1 0 1 0" Foreground="{Binding Info.ThirdPerson.Enabled, Converter={StaticResource EnabledSettingToForegroundConverter}}" />
+										<TextBlock Text="T" ToolTipService.ToolTip="Tracers" Margin="1 0 1 0" Foreground="{Binding Info.Tracers.Enabled, Converter={StaticResource EnabledSettingToForegroundConverter}}" />
+										<TextBlock Text="N" ToolTipService.ToolTip="Nameplates" Margin="1 0 1 0" Foreground="{Binding Info.Nameplates.Enabled, Converter={StaticResource EnabledSettingToForegroundConverter}}" />
+										<TextBlock Text="C" ToolTipService.ToolTip="Crosshairs" Margin="1 0 1 0" Foreground="{Binding Info.Crosshairs.Enabled, Converter={StaticResource EnabledSettingToForegroundConverter}}" />
+										<TextBlock Text="D" ToolTipService.ToolTip="Death Messages" Margin="1 0 1 0" Foreground="{Binding Info.DeathMessages.Enabled, Converter={StaticResource EnabledSettingToForegroundConverter}}" />
+										<TextBlock Text="S" ToolTipService.ToolTip="Scores" Margin="1 0 1 0" Foreground="{Binding Info.Scores.Enabled, Converter={StaticResource EnabledSettingToForegroundConverter}}" />
+									</StackPanel>
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>							
 						</DataGridTemplateColumn>

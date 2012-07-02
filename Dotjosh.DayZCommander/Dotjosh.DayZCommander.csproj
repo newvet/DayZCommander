@@ -20,16 +20,17 @@
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
+    <UpdateMode>Background</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
+    <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://dotjosh.com/</InstallUrl>
+    <MinimumRequiredVersion>1.0.0.21</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>17</ApplicationRevision>
+    <ApplicationRevision>24</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -69,6 +70,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -90,10 +92,12 @@
     <Compile Include="Core\ServerInfo.cs" />
     <Compile Include="Core\ServerSetting.cs" />
     <Compile Include="Ui\Converters\BooleanToSelectedOptionColorConverter.cs" />
-    <Compile Include="Ui\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Ui\Converters\BooleanToVisibilityHiddenConverter.cs" />
+    <Compile Include="Ui\Converters\EnabledSettingToForegroundConverter.cs" />
+    <Compile Include="Ui\Converters\NonZeroToVisibilityHiddenConverter.cs" />
     <Compile Include="Ui\Converters\DifficultyToDescriptionConverter.cs" />
     <Compile Include="Ui\Converters\ZeroToVisibilityConverter.cs" />
-    <Compile Include="Ui\Converters\NonZeroToVisibilityConverter.cs" />
+    <Compile Include="Ui\Converters\NonZeroToVisibilityCollapsedConverter.cs" />
     <Compile Include="Ui\Converters\NotNullToVisibilityConverter.cs" />
     <Compile Include="Ui\Converters\CountToVisibilityConverter.cs" />
     <Compile Include="Ui\Converters\PingToForegroundConverter.cs" />

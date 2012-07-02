@@ -40,6 +40,7 @@ namespace Dotjosh.DayZCommander.Core
 		}
 
 		public static Regex ServerTimeRegex = new Regex(@"((GmT|Utc)[\s]*(?<Offset>([+]|[-])[\s]?[\d]))", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+		private ServerInfo _info;
 
 		public DateTime? ServerTime
 		{
@@ -67,12 +68,23 @@ namespace Dotjosh.DayZCommander.Core
 			private set
 			{
 				_settings = value;
+				Info = new ServerInfo((ServerDifficulty?) Difficulty, Name);
 				PropertyHasChanged("Settings");
 				PropertyHasChanged("Name");
 				PropertyHasChanged("CurrentPlayers");
 				PropertyHasChanged("MaxPlayers");
 				PropertyHasChanged("ServerTime");
 				PropertyHasChanged("Difficulty");
+			}
+		}
+
+		public ServerInfo Info
+		{
+			get { return _info; }
+			set
+			{
+				_info = value;
+				PropertyHasChanged("Info");
 			}
 		}
 

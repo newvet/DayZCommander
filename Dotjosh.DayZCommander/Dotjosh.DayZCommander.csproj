@@ -86,6 +86,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\ServerDifficulty.cs" />
+    <Compile Include="Core\ServerInfo.cs" />
+    <Compile Include="Core\ServerSetting.cs" />
     <Compile Include="Ui\Converters\BooleanToSelectedOptionColorConverter.cs" />
     <Compile Include="Ui\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Ui\Converters\DifficultyToDescriptionConverter.cs" />

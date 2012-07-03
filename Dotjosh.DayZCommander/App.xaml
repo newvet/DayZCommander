@@ -15,6 +15,7 @@
 		<Converters:DifficultyToDescriptionConverter x:Key="DifficultyToDescriptionConverter" />
 		<Converters:NonZeroToVisibilityHiddenConverter x:Key="NonZeroToVisibilityHiddenConverter" />
 		<Converters:EnabledSettingToForegroundConverter x:Key="EnabledSettingToForegroundConverter" />
+		<Converters:BooleanToVisibilityCollapsedConverter x:Key="BooleanToVisibilityCollapsedConverter" />
 
 		<ControlTemplate TargetType="Button" x:Key="MetroTextButton">
 			<TextBlock Text="{TemplateBinding Tag}" 
@@ -37,8 +38,9 @@
 					<ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
 
 						<TextBlock Text="{TemplateBinding ContentControl.Content}"
-								   Foreground="#BBBBBB" 
-								   Margin="2 3 4 3"/>
+								   Foreground="#EEE" 
+								   FontWeight="Bold"
+								   Margin="5 3 4 3"/>
 					</ControlTemplate>
 				</Setter.Value>
 			</Setter>
@@ -52,7 +54,8 @@
 					<ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
 
 						<TextBlock Text="{TemplateBinding ContentControl.Content}"
-								   Foreground="#BBBBBB" 
+								   Foreground="#EEE" 
+								   FontWeight="Bold"
 								   TextAlignment="Right"
 								   Margin="0 3 8 3"/>
 					</ControlTemplate>
@@ -68,7 +71,8 @@
 					<ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
 
 						<TextBlock Text="{TemplateBinding ContentControl.Content}"
-								   Foreground="#BBBBBB" 
+								   Foreground="#EEE" 
+								   FontWeight="Bold"
 								   TextAlignment="Center"
 								   Margin="0 3 0 3"/>
 					</ControlTemplate>

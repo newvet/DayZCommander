@@ -17,7 +17,9 @@ namespace Dotjosh.DayZCommander.Ui
 {
 	public class MainWindowViewModel : BindableBase, 
 		IHandle<FilterByFriendRequest>,
-		IHandle<FilterUpdated>
+		IHandle<FilterUpdated>,
+		IHandle<ServerUpdatedEvent>,
+		IHandle<RepublishFriendsRequest>
 	{
 		private readonly Action<Action> _executeOnMainThread;
 		private ListCollectionView _servers;
@@ -28,6 +30,7 @@ namespace Dotjosh.DayZCommander.Ui
 		private ObservableCollection<Server> _rawObservableServers = new ObservableCollection<Server>();
 		private Func<Server, bool> _filter;
 		private bool _restartToApplyUpdate;
+		private DateTime? _lastLeftMouseDown;
 
 		public MainWindowViewModel(Dispatcher dispatcher)
 		{
@@ -38,7 +41,7 @@ namespace Dotjosh.DayZCommander.Ui
 
 			Servers = (ListCollectionView)CollectionViewSource.GetDefaultView(_rawObservableServers);
 			Servers.Filter = Filter;
-			SortByPing = true;
+			Servers.Refresh();
 
 			CheckForUpdates();
 		}
@@ -79,45 +82,11 @@ namespace Dotjosh.DayZCommander.Ui
 			Task.Factory.StartNew(() =>
 			                      	{
 			                      		_rawServers = ServerList.GetAll();
-			                      		_executeOnMainThread(() => PropertyHasChanged("TotalServerCount", "UnprocessedServersCount"));
+			                      		_executeOnMainThread(() => PropertyHasChanged("TotalServerCount", "UnprocessedServersCount", "HasFilteredServers"));
 			                      		UpdateAllServers();
 			                      	});
 		}
 
-		public bool SortByPing
-		{
-			get { return Servers != null && Servers.SortDescriptions.All(x => x.PropertyName == "Ping"); }
-			set
-			{
-				Servers.SortDescriptions.Clear();
-				if(value)
-					Servers.SortDescriptions.Add(new SortDescription("Ping", ListSortDirection.Ascending));		
-
-				PropertyHasChanged("SortByPing");
-				PropertyHasChanged("SortByMostPlayers");
-			}
-		}
-
-		public bool SortByMostPlayers
-		{
-			get { 
-					return Servers != null 
-						&& Servers.SortDescriptions.Any(x => x.PropertyName == "CurrentPlayers")
-						&& Servers.SortDescriptions.Any(x => x.PropertyName == "Ping"); 
-			}
-			set
-			{
-				Servers.SortDescriptions.Clear();
-				if(value)
-				{
-					Servers.SortDescriptions.Add(new SortDescription("CurrentPlayers", ListSortDirection.Descending));
-					Servers.SortDescriptions.Add(new SortDescription("Ping", ListSortDirection.Ascending));
-				}
-
-				PropertyHasChanged("SortByPing");
-				PropertyHasChanged("SortByMostPlayers");
-			}
-		}
 
 		private bool Filter(object o)
 		{
@@ -128,9 +97,6 @@ namespace Dotjosh.DayZCommander.Ui
 				return _friendFilter
 							.SelectMany(f => f.Players)
 							.Any(x => x.Server.IpAddress == server.IpAddress && x.Server.Port == server.Port);
-
-			if(server.Ping == 0)
-				return false;
 
 			if(_filter != null)
 				return _filter(server);
@@ -153,7 +119,6 @@ namespace Dotjosh.DayZCommander.Ui
 				                      			_executeOnMainThread(() =>
 				                      		                     		{
 				                      		                     			ProcessedServersCount++;
-				                      		                     			_rawObservableServers.Add(server);
 				                      		                     		});
 				                      		}).Start();
 
@@ -169,7 +134,7 @@ namespace Dotjosh.DayZCommander.Ui
 			{
 
 				XmlDocument xmlDoc = new XmlDocument();
-				Assembly asmCurrent = System.Reflection.Assembly.GetExecutingAssembly();
+				Assembly asmCurrent = Assembly.GetExecutingAssembly();
 				string executePath = new Uri(asmCurrent.GetName().CodeBase).LocalPath;
 
 				xmlDoc.Load(executePath + ".manifest");
@@ -192,6 +157,16 @@ namespace Dotjosh.DayZCommander.Ui
 			}
 		}
 
+		public bool HasFilteredServers
+		{
+			get
+			{
+				if(_rawServers == null || Servers ==null)
+					return false;
+				return _rawServers.Count > Servers.Count;
+			}
+		}
+
 		public int UnprocessedServersCount
 		{
 			get { return TotalServerCount - ProcessedServersCount; }
@@ -205,7 +180,7 @@ namespace Dotjosh.DayZCommander.Ui
 			{
 				_servers = value;
 				PropertyHasChanged("Servers");
-				PropertyHasChanged("SortByPing");
+				PropertyHasChanged("HasFilteredServers");
 			}
 		}
 
@@ -243,12 +218,14 @@ namespace Dotjosh.DayZCommander.Ui
 				_friendFilter.RemoveAll(f => f.Name == message.Friend.Name);
 			}
 			Servers.Refresh();
+			PropertyHasChanged("HasFilteredServers");
 		}
 
 		public void Handle(FilterUpdated message)
 		{
 			_filter = message.Filter;
 			Servers.Refresh();
+			PropertyHasChanged("HasFilteredServers");
 		}
 
 		public void UpdateSelectedServer()
@@ -259,6 +236,45 @@ namespace Dotjosh.DayZCommander.Ui
 					.StartNew(() => SelectedServer.Update(_executeOnMainThread));
 			}
 		}
+
+		#region Implementation of IHandle<ServerUpdatedEvent>
+
+		public void Handle(ServerUpdatedEvent message)
+		{
+			if(_lastLeftMouseDown != null && DateTime.Now - _lastLeftMouseDown < TimeSpan.FromMilliseconds(750))
+			{
+				new Thread(() =>
+				{
+					Thread.Sleep(TimeSpan.FromMilliseconds(500));
+					_executeOnMainThread(() => Handle(message));
+				});
+			}
+			else
+			{
+				_rawObservableServers.Remove(message.Server);
+				_rawObservableServers.Add(message.Server);
+				PropertyHasChanged("HasFilteredServers");
+			}
+		}
+
+		#endregion
+
+		public void LeftMouseDown()
+		{
+			_lastLeftMouseDown = DateTime.Now;
+		}
+
+		#region Implementation of IHandle<RepublishFriendsRequest>
+
+		public void Handle(RepublishFriendsRequest message)
+		{
+			foreach(var server in _rawServers)
+			{
+				App.Events.Publish(new PlayersChangedEvent(server.Players, server.Players));
+			}
+		}
+
+		#endregion
 	}
 
 	public class FilterUpdated

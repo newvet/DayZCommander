@@ -24,7 +24,7 @@
 			<TextBlock Text="{Binding MaxPing,  StringFormat={}Max ping: {0}}"
 						   Foreground="{Binding MaxPing, Converter={StaticResource PingToForegroundConverter}}" 
 						   Width="100"
-					   Margin="0 10 0 0"
+					   Margin="0 20 0 0"
 						   HorizontalAlignment="Left"
 						   FontSize="12" />
 			<Slider Width="100" Height="8" 
@@ -33,20 +33,61 @@
 						Value="{Binding MaxPing, Mode=TwoWay}"
 						Background="{Binding MaxPing, Converter={StaticResource PingToForegroundConverter}}" 
 						IsSnapToTickEnabled="True" TickFrequency="50" Minimum="0" Maximum="500" />
+			<CheckBox Content="Hide Unresponsive"
+					  IsChecked="{Binding HideUnresponsive, Mode=TwoWay}"
+					  Foreground="#EEEEEE"
+					  Margin="0 10 0 0"/>			
 			
 			<CheckBox Content="Hide Full"
 					  IsChecked="{Binding HideFull, Mode=TwoWay}"
 					  Foreground="#EEEEEE"
-					  Margin="0 10 0 0"/>
+					  Margin="0 20 0 0"/>
 			<CheckBox Content="Hide Empty"
 					  IsChecked="{Binding HideEmpty, Mode=TwoWay}"
 					  Foreground="#EEEEEE"
 					  Margin="0 10 0 0"/>
 
-			<ComboBox Margin="0 10 0 0" 
+			<ComboBox Margin="0 20 0 0" 
+					  Width="120"
+					  HorizontalAlignment="Left"
 					  SelectedItem="{Binding TimeOfDay, Mode=TwoWay}"
 					  ItemsSource="{Binding TimeOfDayOptions}">
 			</ComboBox>
+
+			<CheckBox Content="Armor"
+					  IsChecked="{Binding HasArmor, Mode=TwoWay}"
+					  Foreground="#EEEEEE"
+					  Margin="0 10 0 0"/>	
+			
+			<CheckBox Content="Third Person"
+					  IsChecked="{Binding HasThirdPerson, Mode=TwoWay}"
+					  Foreground="#EEEEEE"
+					  Margin="0 10 0 0"/>
+
+			<CheckBox Content="Tracers"
+					  IsChecked="{Binding HasTracers, Mode=TwoWay}"
+					  Foreground="#EEEEEE"
+					  Margin="0 10 0 0"/>
+
+			<CheckBox Content="Nameplates"
+					  IsChecked="{Binding HasNameplates, Mode=TwoWay}"
+					  Foreground="#EEEEEE"
+					  Margin="0 10 0 0"/>
+			
+			<CheckBox Content="Crosshairs"
+					  IsChecked="{Binding HasCrosshairs, Mode=TwoWay}"
+					  Foreground="#EEEEEE"
+					  Margin="0 10 0 0"/>
+
+			<CheckBox Content="Death Messages"
+					  IsChecked="{Binding HasDeathMessages, Mode=TwoWay}"
+					  Foreground="#EEEEEE"
+					  Margin="0 10 0 0"/>
+
+			<CheckBox Content="Scores"
+					  IsChecked="{Binding HasScores, Mode=TwoWay}"
+					  Foreground="#EEEEEE"
+					  Margin="0 10 0 0"/>			
 
 		</StackPanel>
 	</Grid>

@@ -62,12 +62,7 @@ namespace Dotjosh.DayZCommander.Ui
 
 			foreach(var newPlayer in message.NewPlayers)
 			{
-				var newPlayerHash = newPlayer.Hash;
-				var isNew = message
-								.OldPlayers
-								.None(oldPlayer => oldPlayer.Hash == newPlayerHash);
-				if(isNew)
-					Add(newPlayer);
+				Add(newPlayer);
 			}
 		}
 
@@ -97,6 +92,7 @@ namespace Dotjosh.DayZCommander.Ui
 			}
 			IsAdding = false;
 			NewFriendName = "";
+			App.Events.Publish(new RepublishFriendsRequest());
 		}
 
 		private void SaveFriends()

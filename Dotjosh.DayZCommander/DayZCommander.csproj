@@ -98,6 +98,7 @@
     <Compile Include="Core\ServerSetting.cs" />
     <Compile Include="Ui\Converters\BooleanToSelectedOptionColorConverter.cs" />
     <Compile Include="Ui\Converters\BooleanToVisibilityHiddenConverter.cs" />
+    <Compile Include="Ui\Converters\BooleanToVisibilityCollapsedConverter.cs" />
     <Compile Include="Ui\Converters\EnabledSettingToForegroundConverter.cs" />
     <Compile Include="Ui\Converters\NonZeroToVisibilityHiddenConverter.cs" />
     <Compile Include="Ui\Converters\DifficultyToDescriptionConverter.cs" />
@@ -168,6 +169,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Dotjosh.DayZCommander_TemporaryKey.pfx" />
     <None Include="GSList\gslist">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

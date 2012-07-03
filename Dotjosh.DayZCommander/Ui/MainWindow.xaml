@@ -85,6 +85,7 @@
 						   Margin="0 0 0 4"/>
 				<Ui:Filters 
 					Margin="0 0 8 0"
+					x:Name="Filters"
 					VerticalAlignment="Stretch"
 					HorizontalAlignment="Stretch"/>
 
@@ -97,25 +98,29 @@
 			<StackPanel
 						Grid.Column="1"
 					   Margin="36 8 20 0"
-					   Grid.Row="1">		
-				<StackPanel Orientation="Horizontal">
+					   Grid.Row="1">
+				<Grid>
+					<StackPanel Orientation="Horizontal">
 
-					<TextBlock Text="servers " Foreground="#EEE" Margin="0 0 0 0" FontSize="22"/>
-					<TextBlock Text="(" FontSize="15" Foreground="#EEE" Margin="0 7 0 0"/>
-					<TextBlock Text="{Binding ProcessedServersCount, StringFormat={}{0}/, FallbackValue=0}" 
-							   Visibility="{Binding UnprocessedServersCount, Converter={StaticResource NonZeroToVisibilityConverter}}"
+						<TextBlock Text="servers " Foreground="#EEE" Margin="0 0 0 0" FontSize="22"/>
+						<TextBlock Text="(" FontSize="15" Foreground="#EEE" Margin="0 7 0 0"/>
+						<TextBlock Text="{Binding Servers.Count, StringFormat={}{0}/, FallbackValue=0}" 
+							   Visibility="{Binding HasFilteredServers, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}"
 							   Foreground="#AAA"
 							   Margin="0 7 0 0"
 							   FontSize="15"/>
-					<TextBlock Text="{Binding TotalServerCount, StringFormat={}{0}), FallbackValue=0}"
+						<TextBlock Text="{Binding TotalServerCount, StringFormat={}{0}), FallbackValue=0}"
 						   FontSize="15"
 							   Margin="0 7 0 0"
 							  Foreground="#EEE"/>
 
+					</StackPanel>
+
 					<Button Template="{StaticResource MetroButton}"
 							Click="RefreshAll_Click"
+							HorizontalAlignment="Right"
 							Visibility="{Binding UnprocessedServersCount, Converter={StaticResource ZeroToVisibilityConverter}}"
-							Margin="20 6 0 0">
+							Margin="0 6 23 0">
 						<Button.Content>
 							<StackPanel Orientation="Horizontal">
 								<Image Source="..\Assets\Images\refresh.png" 
@@ -127,11 +132,12 @@
 							</StackPanel>
 						</Button.Content>
 					</Button>
-				</StackPanel>
+
+				</Grid>
 				<ProgressBar 
 							 HorizontalAlignment="Stretch" 
 							 BorderThickness="0" 
-							 Height="5" 
+							 Height="7" 
 							 Background="Transparent" 
 							 Visibility="{Binding UnprocessedServersCount, Converter={StaticResource NonZeroToVisibilityHiddenConverter}}"
 							 Maximum="{Binding TotalServerCount, FallbackValue=0}" 
@@ -139,7 +145,7 @@
 			</StackPanel>
 
 				<DataGrid ItemsSource="{Binding Servers}"
-						 Margin="34 3 20 20"
+						 Margin="31 3 20 20"
 				  Grid.Column="1"
 				  Grid.Row="3"
 					  VerticalScrollBarVisibility="Visible"
@@ -155,6 +161,7 @@
 				<DataGrid.RowStyle>
 					<Style TargetType="{x:Type DataGridRow}">
 						<EventSetter Event="MouseDoubleClick" Handler="RowDoubleClick"/>
+						<EventSetter Event="PreviewMouseLeftButtonDown" Handler="RowLeftButtonDown"/>
 					</Style>
 				</DataGrid.RowStyle>
 				<DataGrid.Resources>
@@ -162,7 +169,7 @@
 							<Setter Property="Template">
 								<Setter.Value>
 									<ControlTemplate TargetType="{x:Type DataGridCell}">
-										<Border Padding="0 2 8 2">
+										<Border Padding="3 2 8 2">
 											<ContentPresenter />
 										</Border>
 									</ControlTemplate>
@@ -199,22 +206,20 @@
 							</DataGridTemplateColumn.CellTemplate>							
 						</DataGridTemplateColumn>
 						<DataGridTemplateColumn Width="80" 
-												Header="SERVER TIME" 
+												Header="DAY/NIGHT" 
 												SortMemberPath="ServerTime" 
 												HeaderStyle="{StaticResource MetroDataGridHeaderRight}">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
 									<TextBlock Text="{Binding ServerTime, StringFormat={}{0:h:mm tt}}"
 										   TextAlignment="Right"
-										   FontSize="10"
-										   FontWeight="Bold"
 										   HorizontalAlignment="Right"
 										   VerticalAlignment="Center"
 										Foreground="{Binding ServerTime, Converter={StaticResource TimeToColorConverter}}"/>
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
 						</DataGridTemplateColumn>
-						<DataGridTemplateColumn Width="60" Header="PLAYERS" SortMemberPath="CurrentPlayers" HeaderStyle="{StaticResource MetroDataGridHeaderRight}">
+						<DataGridTemplateColumn Width="66" Header="PLAYERS" SortMemberPath="CurrentPlayers" HeaderStyle="{StaticResource MetroDataGridHeaderRight}">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
 									<StackPanel Orientation="Horizontal" 
@@ -235,7 +240,8 @@
 												<ItemsControl.ItemTemplate>
 													<DataTemplate>
 														<TextBlock Text="{Binding Name}" 
-																   Foreground="#333" />
+																   Foreground="#333"
+																   Margin="0 0 6 0"/>
 													</DataTemplate>
 												</ItemsControl.ItemTemplate>
 											</ItemsControl>
@@ -245,26 +251,30 @@
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
 						</DataGridTemplateColumn>
-						<DataGridTemplateColumn Width="60" Header="PING" SortMemberPath="Ping" HeaderStyle="{StaticResource MetroDataGridHeaderRight}">
+						<DataGridTemplateColumn Width="65" Header="PING" SortMemberPath="Ping" HeaderStyle="{StaticResource MetroDataGridHeaderRight}">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
 									<Grid>
 										<ProgressBar Value="{Binding Ping}" 
 												 Maximum="400" 
-												 Width="50" 
+												 Width="55" 
 												 Height="20" 
+													 HorizontalAlignment="Right"
 												 IsIndeterminate="False" 
 												 Foreground="{Binding Ping, Converter={StaticResource PingToForegroundConverter}}" 
-												 Background="Transparent"/>
-										<TextBlock Text="{Binding Ping, StringFormat={}{0}ms}" 
-											   Foreground="{Binding Ping, Converter={StaticResource PingToForegroundConverter}}"  
-											   FontSize="10" 
+												 Background="#AAA"/>
+									<TextBlock Text="{Binding Ping, StringFormat={}{0}ms}" 
+											   Foreground="#000"  
+											   FontSize="12" 
 											   Padding="0 4 4 0"
 											   Width="50" 
+											   HorizontalAlignment="Right"
 											   Height="20" 
 											   VerticalAlignment="Center" 
-											   TextAlignment="Right"/>
-									</Grid>
+											   TextAlignment="Right">
+																		
+									</TextBlock>
+								</Grid>
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
 						</DataGridTemplateColumn>

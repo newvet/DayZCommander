@@ -16,13 +16,27 @@ namespace Dotjosh.DayZCommander
 
 	public class PlayersChangedEvent
 	{
-		public ObservableCollection<Player> OldPlayers { get; set; }
-		public List<Player> NewPlayers { get; set; }
+		public IEnumerable<Player> OldPlayers { get; set; }
+		public IEnumerable<Player> NewPlayers { get; set; }
 
-		public PlayersChangedEvent(ObservableCollection<Player> oldPlayers, List<Player> newPlayers)
+		public PlayersChangedEvent(IEnumerable<Player> oldPlayers, IEnumerable<Player> newPlayers)
 		{
 			OldPlayers = oldPlayers;
 			NewPlayers = newPlayers;
 		}
+	}
+
+	public class ServerUpdatedEvent
+	{
+		public Server Server { get; set; }
+
+		public ServerUpdatedEvent(Server server)
+		{
+			Server = server;
+		}
+	}
+
+	public class RepublishFriendsRequest
+	{
 	}
 }

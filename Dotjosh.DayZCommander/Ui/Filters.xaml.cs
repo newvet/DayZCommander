@@ -24,6 +24,7 @@ namespace Dotjosh.DayZCommander.Ui
 			InitializeComponent();
 
 			DataContext = new FiltersViewModel();
+
 		}
 
 		private void Name_KeyUp(object sender, KeyEventArgs e)

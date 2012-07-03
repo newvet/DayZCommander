@@ -14,6 +14,8 @@ namespace Dotjosh.DayZCommander.Core
 
 		public ServerInfo(ServerDifficulty? difficulty, string serverName)
 		{
+			SetDefaults(); //Null values suck
+
 			if(difficulty == null)
 			{
 				ParseName(serverName);
@@ -38,6 +40,17 @@ namespace Dotjosh.DayZCommander.Core
 					throw new ArgumentOutOfRangeException();
 			}
 			ParseName(serverName);
+		}
+
+		private void SetDefaults()
+		{
+			Armor = new ServerSetting();
+			ThirdPerson = new ServerSetting();
+			Tracers = new ServerSetting();
+			Nameplates = new ServerSetting();
+			Crosshairs = new ServerSetting();
+			DeathMessages = new ServerSetting();
+			Scores = new ServerSetting();
 		}
 
 		private void SetRecruitDefaults()

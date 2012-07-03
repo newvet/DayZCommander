@@ -22,26 +22,17 @@ namespace Dotjosh.DayZCommander.Ui
 		{
 			InitializeComponent();
 
+			DataContext = new MainWindowViewModel(Dispatcher);
+
+			var screen = Screen.FromHandle(new WindowInteropHelper(this).Handle);
+			MaxHeight = screen.WorkingArea.Height;
+
 			Loaded += OnLoaded;
-
-			StateChanged += OnStateChanged;
-		}
-
-		private void OnStateChanged(object sender, EventArgs eventArgs)
-		{
-			if(sender == this)
-				return;
-
-			if(WindowState == WindowState.Maximized)
-			{
-				var screen = Screen.FromHandle(new WindowInteropHelper(this).Handle);
-				MaxHeight = screen.WorkingArea.Height;
-			}
 		}
 
 		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
 		{
-			DataContext = new MainWindowViewModel(Dispatcher);
+			((FiltersViewModel)Filters.DataContext).PublishFilter();
 		}
 
 		private void MainWindow_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -108,7 +99,7 @@ namespace Dotjosh.DayZCommander.Ui
 
 		private void RefreshAll_Click(object sender, RoutedEventArgs e)
 		{
-			((MainWindowViewModel) DataContext).UpdateServerList();
+			((MainWindowViewModel) DataContext).UpdateAllServers();
 		}
 
 		private void RowDoubleClick(object sender, MouseButtonEventArgs e)
@@ -116,6 +107,11 @@ namespace Dotjosh.DayZCommander.Ui
 			var server = (Server) ((Control) sender).DataContext;
 
 			JoinServer(server);
+		}
+
+		private void RowLeftButtonDown(object sender, RoutedEventArgs routedEventArgs)
+		{
+			((MainWindowViewModel) DataContext).LeftMouseDown();
 		}
 	}
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text.RegularExpressions;
 
 namespace Dotjosh.DayZCommander.Core
@@ -14,7 +15,7 @@ namespace Dotjosh.DayZCommander.Core
 		private long _ping;
 		private ObservableCollection<Player> _players;
 		private SortedDictionary<string, string> _settings;
-		private string LastException = null;
+		public string LastException = null;
 
 		public Server(string ipAddress, int port)
 		{
@@ -23,11 +24,19 @@ namespace Dotjosh.DayZCommander.Core
 			_queryClient = new ServerQueryClient(this, ipAddress, port);
 			Settings = new SortedDictionary<string, string>();
 			Players = new ObservableCollection<Player>();
+			Info = new ServerInfo(null, null);
 		}
 
 		public string Name
 		{
-			get { return LastException ?? GetSettingOrDefault("hostname") ?? "Loading..."; }
+			get
+			{
+				if(LastException != null)
+				{
+					return "Server did not respond.";
+				}
+				return GetSettingOrDefault("hostname") ?? "Loading...";
+			}
 		}
 
 		public int? CurrentPlayers
@@ -82,7 +91,7 @@ namespace Dotjosh.DayZCommander.Core
 		public ServerInfo Info
 		{
 			get { return _info; }
-			set
+			private set
 			{
 				_info = value;
 				PropertyHasChanged("Info");
@@ -91,7 +100,14 @@ namespace Dotjosh.DayZCommander.Core
 
 		public long Ping
 		{
-			get { return _ping; }
+			get
+			{
+				if(LastException != null)
+				{
+					return 10 * 1000;
+				}
+				return _ping;
+			}
 			set
 			{
 				_ping = value;
@@ -174,6 +190,7 @@ namespace Dotjosh.DayZCommander.Core
 				                    		LastException = null;
 				                    		Settings = serverResult.Settings;
 				                    		Ping = serverResult.Ping;
+											App.Events.Publish(new ServerUpdatedEvent(this));
 				                    	});
 			}
 			catch (Exception ex)
@@ -181,7 +198,8 @@ namespace Dotjosh.DayZCommander.Core
 				executeOnMainThread(() =>
 				                    	{
 											LastException = ex.Message;
-											PropertyHasChanged("Name");
+											PropertyHasChanged("Name", "Ping");
+											App.Events.Publish(new ServerUpdatedEvent(this));
 				                    	});
 				
 			}

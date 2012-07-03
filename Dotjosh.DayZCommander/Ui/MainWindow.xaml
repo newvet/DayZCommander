@@ -6,13 +6,15 @@
 		Height="650" 
 		Width="970"
 		AllowsTransparency="True" 
-		Background="Transparent" 
 		WindowStyle="None"
+		WindowStartupLocation="CenterScreen"
 		ResizeMode="CanResizeWithGrip"
 		MouseLeftButtonDown="MainWindow_OnMouseLeftButtonDown"
+		MouseDoubleClick="MainWindow_OnMouseDoubleClick"
 		>
 	<Border Background="#222222"
 			BorderBrush="#BBBBBB"
+			x:Name="VisualRoot"
 			BorderThickness="1">
 		<Grid>
 			<Grid.RowDefinitions>
@@ -26,9 +28,9 @@
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
 
-
-			<Rectangle Fill="#444444"
+				<Rectangle Fill="#444444"
 					   Grid.Row="1"
+						    IsHitTestVisible="True"
 					   Grid.RowSpan="4"
 					   Grid.ColumnSpan="2"/>
 
@@ -136,16 +138,10 @@
 							 Value="{Binding ProcessedServersCount, FallbackValue=0}" />
 			</StackPanel>
 
-			<Grid Margin="26 3 20 20"
-				  Grid.Column="1"
-				  Grid.Row="3">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="55*"/>
-					<RowDefinition Height="45*"/>
-				</Grid.RowDefinitions>
-				
 				<DataGrid ItemsSource="{Binding Servers}"
-						  Margin="8 0 0 0"
+						 Margin="34 3 20 20"
+				  Grid.Column="1"
+				  Grid.Row="3"
 					  VerticalScrollBarVisibility="Visible"
 						HorizontalScrollBarVisibility="Disabled"
 					  Background="Transparent"
@@ -156,7 +152,12 @@
 					  SelectedItem="{Binding SelectedServer, Mode=TwoWay}"
 					ColumnHeaderStyle="{StaticResource MetroDataGridHeader}"						  
 					  AutoGenerateColumns="False">
-					<DataGrid.Resources>
+				<DataGrid.RowStyle>
+					<Style TargetType="{x:Type DataGridRow}">
+						<EventSetter Event="MouseDoubleClick" Handler="RowDoubleClick"/>
+					</Style>
+				</DataGrid.RowStyle>
+				<DataGrid.Resources>
 						<Style TargetType="{x:Type DataGridCell}">
 							<Setter Property="Template">
 								<Setter.Value>
@@ -197,8 +198,8 @@
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>							
 						</DataGridTemplateColumn>
-						<DataGridTemplateColumn Width="60" 
-												Header="TIME" 
+						<DataGridTemplateColumn Width="80" 
+												Header="SERVER TIME" 
 												SortMemberPath="ServerTime" 
 												HeaderStyle="{StaticResource MetroDataGridHeaderRight}">
 							<DataGridTemplateColumn.CellTemplate>
@@ -222,7 +223,25 @@
 										<TextBlock Text="{Binding CurrentPlayers}" Foreground="{Binding Converter={StaticResource ServerFullnessToColorConverter}}"/>
 										<TextBlock Text="/"/>
 										<TextBlock Text="{Binding MaxPlayers}" Foreground="{Binding Converter={StaticResource ServerFullnessToColorConverter}}"/>
-									</StackPanel>
+									<StackPanel.ToolTip>
+										<ToolTip>
+											<ItemsControl ItemsSource="{Binding Players}">
+												<ItemsControl.Template>
+													<ControlTemplate>
+														<UniformGrid Columns="4"
+																   IsItemsHost="True"/>
+													</ControlTemplate>
+												</ItemsControl.Template>
+												<ItemsControl.ItemTemplate>
+													<DataTemplate>
+														<TextBlock Text="{Binding Name}" 
+																   Foreground="#333" />
+													</DataTemplate>
+												</ItemsControl.ItemTemplate>
+											</ItemsControl>
+										</ToolTip>
+									</StackPanel.ToolTip>
+								</StackPanel>
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
 						</DataGridTemplateColumn>
@@ -252,150 +271,6 @@
 					</DataGrid.Columns>
 				</DataGrid>
 				
-				<Grid DataContext="{Binding SelectedServer}" 
-					  Visibility="{Binding Converter={StaticResource NotNullToVisibilityConverter}}"
-					  Margin="0 20 0 0"
-					  Background="#333333"
-					  Grid.Row="1">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto"/>	
-						<RowDefinition/>	
-					</Grid.RowDefinitions>
-
-					<StackPanel 
-						Orientation="Horizontal"
-						Margin="25 10 25 4">
-						<TextBlock Text="{Binding Name}" 
-								   Margin="0 0 10 0"
-							   FontSize="18"
-							   Foreground="#EEEEEE"/>
-					</StackPanel>
-					<StackPanel
-						Margin="25 10 0 0"
-						Orientation="Horizontal"
-						Grid.Row="1">
-						
-						<StackPanel>
-							<Button Content="Join" 
-								FontWeight="Bold"
-								Width="100"
-								Background="#96F896" 
-								FontSize="20" 
-								Padding="8 2" 
-								Grid.ColumnSpan="2"
-								Click="JoinServer"
-								VerticalAlignment="Top"/>
-
-							<Button Content="Refresh" 
-								Background="#7DCF7D" 
-								FontSize="12" 
-								Padding="8 2" 
-								Margin="0 5"
-								Width="100"
-								Grid.Row="1"
-								Grid.ColumnSpan="2"
-								Click="RefreshServer"
-								VerticalAlignment="Top"/>
-						</StackPanel>
-						
-						<Grid HorizontalAlignment="Left"
-							  Margin="24 0 0 0">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto"/>
-								<ColumnDefinition />
-							</Grid.ColumnDefinitions>
-							<Grid.RowDefinitions>
-								<RowDefinition Height="Auto"/>
-								<RowDefinition Height="Auto"/>
-								<RowDefinition Height="Auto"/>
-							</Grid.RowDefinitions>
-
-							<Grid Grid.Row="0"
-								  Grid.ColumnSpan="2"
-								  Margin="0 0 0 6">
-								<ProgressBar Value="{Binding Ping}" 
-												 Maximum="400" 
-												 Width="100" 
-												 Height="24" 
-												 IsIndeterminate="False" 
-												 Foreground="{Binding Ping, Converter={StaticResource PingToForegroundConverter}}" 
-												 Background="Transparent"/>
-								<TextBlock Text="{Binding Ping, StringFormat={}{0}ms}" 
-											   Foreground="{Binding Ping, Converter={StaticResource PingToForegroundConverter}}"  
-											   FontWeight="Bold" 
-											   Padding="0 4 4 0"
-											   Width="100" 
-											   Height="20" 
-											   VerticalAlignment="Center" 
-											   TextAlignment="Right"/>
-							</Grid>
-
-							<TextBlock Text="Players"
-									   Margin="0 0 4 6"
-									   Grid.Row="1"
-									   Foreground="#CCC"/>
-							<StackPanel Orientation="Horizontal" 
-										Margin="0 0 0 6"
-										Grid.Column="1"
-										Grid.Row="1"
-											HorizontalAlignment="Right">
-								<TextBlock Text="{Binding CurrentPlayers}"
-										   FontWeight="Bold" 
-										   Foreground="{Binding Converter={StaticResource ServerFullnessToColorConverter}}"/>
-								<TextBlock Text="/"
-										   FontWeight="Bold" 
-										   Foreground="#EEE"/>
-								<TextBlock Text="{Binding MaxPlayers}"
-										   FontWeight="Bold" 
-										   Foreground="{Binding Converter={StaticResource ServerFullnessToColorConverter}}"/>
-							</StackPanel>
-
-							<TextBlock Text="Time"
-									   Margin="0 0 4 6"
-									   Grid.Row="2"
-									   Foreground="#CCC"/>
-							<TextBlock Text="{Binding ServerTime, StringFormat={}{0:h:mm tt}}"
-										   TextAlignment="Right"
-											Margin="0 0 0 6"
-											Grid.Row="2"
-											Grid.Column="1"
-										   FontWeight="Bold"
-										   HorizontalAlignment="Right"
-										   VerticalAlignment="Center"
-										Foreground="{Binding ServerTime, Converter={StaticResource TimeToColorConverter}}"/>
-
-						</Grid>
-
-						<DataGrid ItemsSource="{Binding Players}"
-								  x:Name="PlayersList"
-								  Background="Transparent"
-								  SelectionChanged="OnPlayerSelectionChanged"
-								  HeadersVisibility="Column"
-								  BorderThickness="0"
-								  Grid.Column="1"
-								  Margin="24 0 0 10"
-								  HorizontalAlignment="Right"
-								  RowBackground="Transparent"
-								  VerticalScrollBarVisibility="Auto"
-								  Foreground="#EEEEEE"
-								  ColumnHeaderStyle="{StaticResource MetroDataGridHeader}"
-								  AutoGenerateColumns="False">
-							<DataGrid.Resources>
-								<Style TargetType="{x:Type DataGridCell}">
-									<Setter Property="IsHitTestVisible" Value="False"/>
-								</Style>
-							</DataGrid.Resources>
-							
-							<DataGrid.Columns>
-								<DataGridTextColumn Binding="{Binding Name}" Header="NAME" HeaderStyle="{StaticResource MetroDataGridHeader}" />
-								<DataGridTextColumn Binding="{Binding Score}" Header="SCORE" HeaderStyle="{StaticResource MetroDataGridHeader}"/>
-								<DataGridTextColumn Binding="{Binding Deaths}" Header="DEATHS" HeaderStyle="{StaticResource MetroDataGridHeader}"/>
-							</DataGrid.Columns>
-
-						</DataGrid>
-					</StackPanel>
-				</Grid>
-			</Grid>
 		
 		</Grid>
 

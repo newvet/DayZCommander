@@ -1,11 +1,15 @@
-﻿using System.Deployment.Application;
+﻿using System;
+using System.Deployment.Application;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Interop;
 using Dotjosh.DayZCommander.Core;
 using Microsoft.Win32;
+using Application = System.Windows.Application;
+using Control = System.Windows.Controls.Control;
 
 namespace Dotjosh.DayZCommander.Ui
 {
@@ -19,6 +23,20 @@ namespace Dotjosh.DayZCommander.Ui
 			InitializeComponent();
 
 			Loaded += OnLoaded;
+
+			StateChanged += OnStateChanged;
+		}
+
+		private void OnStateChanged(object sender, EventArgs eventArgs)
+		{
+			if(sender == this)
+				return;
+
+			if(WindowState == WindowState.Maximized)
+			{
+				var screen = Screen.FromHandle(new WindowInteropHelper(this).Handle);
+				MaxHeight = screen.WorkingArea.Height;
+			}
 		}
 
 		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
@@ -38,8 +56,18 @@ namespace Dotjosh.DayZCommander.Ui
 
 		private void MainWindow_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
+			if(e.OriginalSource != VisualRoot)
+				return;
+
+			ToggleMaximized();
+		}
+
+		private void ToggleMaximized()
+		{
 			if(WindowState == WindowState.Normal)
 			{
+				var screen = Screen.FromHandle(new WindowInteropHelper(this).Handle);
+				MaxHeight = screen.WorkingArea.Height;
 				WindowState = WindowState.Maximized;
 			}
 			else
@@ -48,15 +76,8 @@ namespace Dotjosh.DayZCommander.Ui
 			}
 		}
 
-		private void OnPlayerSelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void JoinServer(Server server)
 		{
-			PlayersList.UnselectAll();
-		}
-
-		private void JoinServer(object sender, RoutedEventArgs e)
-		{
-			var server = ((MainWindowViewModel) DataContext).SelectedServer;
-
 			var arma2Path = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Bohemia Interactive Studio\ArmA 2", "main", "");
 			var arma2OAPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Bohemia Interactive Studio\ArmA 2 OA", "main", "");
 			var arma2OaBetaExePath = Path.Combine(arma2OAPath, @"Expansion\beta\arma2oa.exe");
@@ -85,14 +106,16 @@ namespace Dotjosh.DayZCommander.Ui
 			p.Start();			
 		}
 
-		private void RefreshServer(object sender, RoutedEventArgs e)
-		{
-			((MainWindowViewModel) DataContext).UpdateSelectedServer();
-		}
-
 		private void RefreshAll_Click(object sender, RoutedEventArgs e)
 		{
 			((MainWindowViewModel) DataContext).UpdateServerList();
+		}
+
+		private void RowDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			var server = (Server) ((Control) sender).DataContext;
+
+			JoinServer(server);
 		}
 	}
 }

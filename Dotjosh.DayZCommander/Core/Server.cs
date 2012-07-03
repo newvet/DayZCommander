@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Dotjosh.DayZCommander.Core
@@ -169,7 +170,7 @@ namespace Dotjosh.DayZCommander.Core
 				executeOnMainThread(() =>
 				                    	{
 											App.Events.Publish(new PlayersChangedEvent(Players, serverResult.Players));
-				                    		Players = new ObservableCollection<Player>(serverResult.Players);
+				                    		Players = new ObservableCollection<Player>(serverResult.Players.OrderBy(x => x.Name));
 				                    		LastException = null;
 				                    		Settings = serverResult.Settings;
 				                    		Ping = serverResult.Ping;

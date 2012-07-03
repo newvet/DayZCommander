@@ -116,6 +116,7 @@ UpgradeLog*.XML
 
 # Azure
 *ServiceConfiguration.*
+*Website.Publish*
 
 ############
 ## Windows

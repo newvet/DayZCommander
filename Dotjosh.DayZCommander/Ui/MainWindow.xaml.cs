@@ -1,13 +1,8 @@
-﻿using System;
-using System.Deployment.Application;
-using System.Diagnostics;
-using System.IO;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Interop;
 using Dotjosh.DayZCommander.Core;
-using Microsoft.Win32;
 using Application = System.Windows.Application;
 using Control = System.Windows.Controls.Control;
 
@@ -22,11 +17,16 @@ namespace Dotjosh.DayZCommander.Ui
 		{
 			InitializeComponent();
 
-			DataContext = new MainWindowViewModel(Dispatcher);
+			DataContext = new MainWindowViewModel();
 
 			var screen = Screen.FromHandle(new WindowInteropHelper(this).Handle);
 			MaxHeight = screen.WorkingArea.Height;
 
+		}
+
+		private MainWindowViewModel ViewModel
+		{
+			get { return ((MainWindowViewModel) DataContext); }
 		}
 
 		private void MainWindow_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -34,7 +34,7 @@ namespace Dotjosh.DayZCommander.Ui
 			DragMove();
 		}
 
-		private void CloseButton_Click(object sender, RoutedEventArgs e)
+		private void CloseButtonClick(object sender, RoutedEventArgs e)
 		{
 			Application.Current.Shutdown();
 		}
@@ -61,66 +61,21 @@ namespace Dotjosh.DayZCommander.Ui
 			}
 		}
 
-		private void JoinServer(Server server)
-		{
-			var arma2Path = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Bohemia Interactive Studio\ArmA 2", "main", "");
-			var arma2OAPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Bohemia Interactive Studio\ArmA 2 OA", "main", "");
-			var arma2OaBetaExePath = Path.Combine(arma2OAPath, @"Expansion\beta\arma2oa.exe");
-
-			if(string.IsNullOrWhiteSpace(arma2Path))
-			{
-				arma2Path = Path.Combine(new DirectoryInfo(arma2OAPath).Parent.FullName, "ArmA 2");
-			}
-
-			var arguments = @"";
-			arguments += " -noSplash -noFilePatching";
-			arguments += " -connect=" + server.IpAddress;
-			arguments += " -port=" + server.Port;
-			arguments += string.Format(" \"-mod={0};expansion;expansion\\beta;expansion\\beta\\expansion;@DayZ\"", arma2Path);
-			var p = new Process
-			{
-				StartInfo =
-					{
-						FileName = arma2OaBetaExePath,
-						Arguments = arguments,
-						Verb = "runas",
-						WorkingDirectory = arma2OAPath,
-						UseShellExecute = true,
-					}
-			};
-			p.Start();			
-		}
-
 		private void RefreshAll_Click(object sender, RoutedEventArgs e)
 		{
-			((MainWindowViewModel) DataContext).UpdateAllServers();
+			ViewModel.ServerList.UpdateAll();
 		}
 
 		private void RowDoubleClick(object sender, MouseButtonEventArgs e)
 		{
 			var server = (Server) ((Control) sender).DataContext;
 
-			JoinServer(server);
-		}
-
-		private void RowLeftButtonDown(object sender, RoutedEventArgs routedEventArgs)
-		{
-			ViewModel.LeftMouseDown();
-		}
-
-		private MainWindowViewModel ViewModel
-		{
-			get { return ((MainWindowViewModel) DataContext); }
-		}
-
-		private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-
+			ViewModel.JoinServer(server);
 		}
 
 		private void TabHeader_Click(object sender, RoutedEventArgs e)
 		{
-			ViewModel.LeftPaneViewModel.CurrentScreen = (ViewModelBase) ((Control) sender).DataContext;
+			ViewModel.CurrentTab = (ViewModelBase) ((Control) sender).DataContext;
 		}
 	}
 }

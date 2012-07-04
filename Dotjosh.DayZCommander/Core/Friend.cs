@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using Dotjosh.DayZCommander.Ui;
+using Dotjosh.DayZCommander.Ui.Friends;
 
 namespace Dotjosh.DayZCommander.Core
 {

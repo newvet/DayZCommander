@@ -1,14 +1,14 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Dotjosh.DayZCommander.Ui
+namespace Dotjosh.DayZCommander.Ui.ServerList
 {
 	/// <summary>
-	/// Interaction logic for Filters.xaml
+	/// Interaction logic for FiltersView.xaml
 	/// </summary>
-	public partial class Filters : UserControl
+	public partial class FiltersView : UserControl
 	{
-		public Filters()
+		public FiltersView()
 		{
 			InitializeComponent();
 

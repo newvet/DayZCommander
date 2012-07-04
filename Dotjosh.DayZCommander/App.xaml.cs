@@ -26,11 +26,11 @@ namespace Dotjosh.DayZCommander
 		}
 	}
 
-	public class ServerUpdatedEvent
+	public class ServerUpdated
 	{
 		public Server Server { get; set; }
 
-		public ServerUpdatedEvent(Server server)
+		public ServerUpdated(Server server)
 		{
 			Server = server;
 		}

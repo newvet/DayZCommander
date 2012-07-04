@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Caliburn.Micro;
 using Dotjosh.DayZCommander.Core;
 
-namespace Dotjosh.DayZCommander.Ui
+namespace Dotjosh.DayZCommander.Ui.ServerList
 {
 	public class FiltersViewModel : ViewModelBase,
 		IHandle<PublishFiltersRequest>
@@ -18,7 +18,6 @@ namespace Dotjosh.DayZCommander.Ui
 
 		public FiltersViewModel()
 		{
-			App.Events.Subscribe(this);
 			LoadDefaults();
 			Title = "filters";
 		}

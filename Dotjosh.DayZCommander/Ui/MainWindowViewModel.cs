@@ -1,302 +1,153 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Deployment.Application;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Data;
-using System.Windows.Threading;
 using System.Xml;
 using Caliburn.Micro;
 using Dotjosh.DayZCommander.Core;
-using Dotjosh.DayZCommander.Properties;
+using Dotjosh.DayZCommander.Ui.Friends;
+using Dotjosh.DayZCommander.Ui.ServerList;
+using Microsoft.Win32;
 
 namespace Dotjosh.DayZCommander.Ui
 {
 	public class MainWindowViewModel : BindableBase, 
-		IHandle<FilterByFriendRequest>,
-		IHandle<FilterUpdated>,
-		IHandle<ServerUpdatedEvent>,
 		IHandle<RepublishFriendsRequest>
 	{
-		private readonly Action<Action> _executeOnMainThread;
-		private ListCollectionView _servers;
-		private int _processedServersCount;
-		private List<Server> _rawServers;
-		private Server _selectedServer;
-		private List<Friend> _friendFilter = new List<Friend>();
-		private ObservableCollection<Server> _rawObservableServers = new ObservableCollection<Server>();
-		private Func<Server, bool> _filter;
-		private bool _restartToApplyUpdate;
-		private DateTime? _lastLeftMouseDown;
-		private readonly LeftPaneViewModel _leftPaneViewModel;
+		private DayZCommanderUpdater _updater;
+		private Core.ServerList _serverList;
+		private ViewModelBase _currentTab;
+		private ObservableCollection<ViewModelBase> _tabs;
 
-		public MainWindowViewModel(Dispatcher dispatcher)
+		public MainWindowViewModel()
 		{
-			App.Events.Subscribe(this);
+			Updater = new DayZCommanderUpdater();
+			Updater.StartCheckingForUpdates();
 
-			_executeOnMainThread = action => dispatcher.BeginInvoke(DispatcherPriority.Send, action);
-			UpdateServerList();
+			
+			Tabs = new ObservableCollection<ViewModelBase>(new ViewModelBase[]
+			                                               	{
+			                                               		ServerListViewModel = new ServerListViewModel(),
+																FriendsViewModel = new FriendsViewModel()
+			                                               	});
+			CurrentTab = Tabs.First();
 
-			Servers = (ListCollectionView)CollectionViewSource.GetDefaultView(_rawObservableServers);
-			Servers.Filter = Filter;
-			Servers.Refresh();
-
-			UpdateSettings();
-
-			StartCheckingForUpdates();
-
-			_leftPaneViewModel = new LeftPaneViewModel();
-
-			App.Events.Publish(new PublishFiltersRequest());
+			ServerList = new Core.ServerList();
+			ServerList.GetAndUpdateAll();
 		}
 
-		private void UpdateSettings()
+		public DayZCommanderUpdater Updater
 		{
-		   if (Settings.Default.UpgradeRequired)  
-		   {  
-			  Settings.Default.Upgrade();  
-			  Settings.Default.UpgradeRequired = false;  
-			  Settings.Default.Save();  
-		   }  
-		}
-
-		private void StartCheckingForUpdates()
-		{
-			var t = new System.Timers.Timer();
-			t.Interval = TimeSpan.FromHours(2).TotalMilliseconds;
-			t.Elapsed += (sender, args) => CheckForUpdates();
-			CheckForUpdates();
-			t.Start();
-		}
-
-		private void CheckForUpdates()
-		{
-			 if (ApplicationDeployment.IsNetworkDeployed)
-			 {
-			 	ApplicationDeployment.CurrentDeployment.CheckForUpdateCompleted += (sender, args) =>
-			 	{
-					if(args.UpdateAvailable)
-					{
-						ApplicationDeployment.CurrentDeployment.UpdateCompleted += (o, eventArgs) =>
-						{
-							RestartToApplyUpdate = true;
-						};
-						ApplicationDeployment.CurrentDeployment.UpdateAsync();
-					}
-			 	};
-				ApplicationDeployment.CurrentDeployment.CheckForUpdateAsync();
-			 }
-		}
-
-		public LeftPaneViewModel LeftPaneViewModel
-		{
-			get { return _leftPaneViewModel; }
-		}
-
-		public bool RestartToApplyUpdate
-		{
-			get { return _restartToApplyUpdate; }
+			get { return _updater; }
 			set
 			{
-				_restartToApplyUpdate = value;
-				PropertyHasChanged("RestartToApplyUpdate");
+				_updater = value;
+				PropertyHasChanged("Updater");
 			}
 		}
 
-		public void UpdateServerList()
+		public Core.ServerList ServerList
 		{
-			_rawObservableServers.Clear();
-			PropertyHasChanged("TotalServerCount", "UnprocessedServersCount");
-			Task.Factory.StartNew(() =>
-			                      	{
-			                      		_rawServers = ServerList.GetAll();
-			                      		_executeOnMainThread(() => PropertyHasChanged("TotalServerCount", "UnprocessedServersCount", "HasFilteredServers"));
-			                      		UpdateAllServers();
-			                      	});
-		}
-
-
-		private bool Filter(object o)
-		{
-		
-			var server = (Server)o;
-
-			if(_friendFilter.Count > 0)
-				return _friendFilter
-							.SelectMany(f => f.Players)
-							.Any(x => x.Server.IpAddress == server.IpAddress && x.Server.Port == server.Port);
-
-			if(_filter != null)
-				return _filter(server);
-
-			return true;
-		}
-
-		public void UpdateAllServers()
-		{
-			ProcessedServersCount = 0;
-			new Thread(() =>
+			get { return _serverList; }
+			set
 			{
-				for (int index = 0; index < _rawServers.Count; index++)
-				{
-					var server = _rawServers[index];
-				
-					new Thread(() =>
-				                      		{
-				                      			server.Update(_executeOnMainThread);
-				                      			_executeOnMainThread(() =>
-				                      		                     		{
-				                      		                     			ProcessedServersCount++;
-				                      		                     		});
-				                      		}).Start();
-
-					if(index % 70 == 0)
-						Thread.Sleep(300);
-				}
-			}).Start();
+				_serverList = value;
+				PropertyHasChanged("ServerList");
+			}
 		}
+
+		public bool IsServerListSelected
+		{
+			get { return CurrentTab == ServerListViewModel; }
+		}
+		public ServerListViewModel ServerListViewModel { get; set; }
+		public bool IsFriendsSelected
+		{
+			get { return CurrentTab == FriendsViewModel; }
+		}
+		public FriendsViewModel FriendsViewModel { get; set; }
 
 		public string CurrentVersion
 		{
 			get
 			{
-
-				XmlDocument xmlDoc = new XmlDocument();
-				Assembly asmCurrent = Assembly.GetExecutingAssembly();
+				var xmlDoc = new XmlDocument();
+				var asmCurrent = Assembly.GetExecutingAssembly();
 				string executePath = new Uri(asmCurrent.GetName().CodeBase).LocalPath;
 
 				xmlDoc.Load(executePath + ".manifest");
 				string retval = string.Empty;
 				if (xmlDoc.HasChildNodes)
 				{
-					retval = xmlDoc.ChildNodes[1].ChildNodes[0].Attributes.GetNamedItem("version").Value.ToString();
+					retval = xmlDoc.ChildNodes[1].ChildNodes[0].Attributes.GetNamedItem("version").Value;
 				}
 				return new Version(retval).ToString();
 			
 			}
 		}
 
-		public int TotalServerCount
+		public ViewModelBase CurrentTab
 		{
-			get { 
-				return _rawServers != null 
-				? _rawServers.Count
-				:0; 
-			}
-		}
-
-		public bool HasFilteredServers
-		{
-			get
-			{
-				if(_rawServers == null || Servers ==null)
-					return false;
-				return _rawServers.Count > Servers.Count;
-			}
-		}
-
-		public int UnprocessedServersCount
-		{
-			get { return TotalServerCount - ProcessedServersCount; }
-		}
-
-
-		public ListCollectionView Servers
-		{
-			get { return _servers; }
-			private set
-			{
-				_servers = value;
-				PropertyHasChanged("Servers");
-				PropertyHasChanged("HasFilteredServers");
-			}
-		}
-
-		public int ProcessedServersCount
-		{
-			get { return _processedServersCount; }
+			get { return _currentTab; }
 			set
 			{
-				_processedServersCount = value;
-				PropertyHasChanged("ProcessedServersCount", "UnprocessedServersCount");
+				if(_currentTab != null)
+					_currentTab.IsSelected = false;
+				_currentTab = value;
+				if(_currentTab != null)
+					_currentTab.IsSelected = true;
+				PropertyHasChanged("CurrentTab", "IsFriendsSelected", "IsServerListSelected");
 			}
 		}
 
-		public void Handle(FilterByFriendRequest message)
+		public ObservableCollection<ViewModelBase> Tabs
 		{
-			if(message.IsFiltered)
+			get { return _tabs; }
+			set
 			{
-				if(!_friendFilter.Any(f => f.Name == message.Friend.Name))
-				{
-					_friendFilter.Add(message.Friend);
-				}
-			}
-			else
-			{
-				_friendFilter.RemoveAll(f => f.Name == message.Friend.Name);
-			}
-			Servers.Refresh();
-			PropertyHasChanged("HasFilteredServers");
-		}
-
-		public void Handle(FilterUpdated message)
-		{
-			_filter = message.Filter;
-			Servers.Refresh();
-			PropertyHasChanged("HasFilteredServers");
-		}
-
-		#region Implementation of IHandle<ServerUpdatedEvent>
-
-		public void Handle(ServerUpdatedEvent message)
-		{
-			if(_lastLeftMouseDown != null && DateTime.Now - _lastLeftMouseDown < TimeSpan.FromMilliseconds(750))
-			{
-				new Thread(() =>
-				{
-					Thread.Sleep(TimeSpan.FromMilliseconds(500));
-					_executeOnMainThread(() => Handle(message));
-				});
-			}
-			else
-			{
-				_rawObservableServers.Remove(message.Server);
-				_rawObservableServers.Add(message.Server);
-				PropertyHasChanged("HasFilteredServers");
+				_tabs = value;
+				PropertyHasChanged("Tabs");
 			}
 		}
-
-		#endregion
-
-		public void LeftMouseDown()
-		{
-			_lastLeftMouseDown = DateTime.Now;
-		}
-
-		#region Implementation of IHandle<RepublishFriendsRequest>
 
 		public void Handle(RepublishFriendsRequest message)
 		{
-			foreach(var server in _rawServers)
+			foreach(var server in ServerList.Items)
 			{
 				App.Events.Publish(new PlayersChangedEvent(server.Players, server.Players));
 			}
 		}
 
-		#endregion
-	}
-
-	public class FilterUpdated
-	{
-		public Func<Server, bool> Filter { get; set; }
-
-		public FilterUpdated(Func<Server, bool> filter)
+		public void JoinServer(Server server)
 		{
-			Filter = filter;
+			var arma2Path = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Bohemia Interactive Studio\ArmA 2", "main", "");
+			var arma2OAPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Bohemia Interactive Studio\ArmA 2 OA", "main", "");
+			var arma2OaBetaExePath = Path.Combine(arma2OAPath, @"Expansion\beta\arma2oa.exe");
+
+			if(string.IsNullOrWhiteSpace(arma2Path))
+			{
+				arma2Path = Path.Combine(new DirectoryInfo(arma2OAPath).Parent.FullName, "ArmA 2");
+			}
+
+			var arguments = @"";
+			arguments += " -noSplash -noFilePatching";
+			arguments += " -connect=" + server.IpAddress;
+			arguments += " -port=" + server.Port;
+			arguments += string.Format(" \"-mod={0};expansion;expansion\\beta;expansion\\beta\\expansion;@DayZ\"", arma2Path);
+			var p = new Process
+			{
+				StartInfo =
+					{
+						FileName = arma2OaBetaExePath,
+						Arguments = arguments,
+						Verb = "runas",
+						WorkingDirectory = arma2OAPath,
+						UseShellExecute = true,
+					}
+			};
+			p.Start();			
 		}
 	}
 }

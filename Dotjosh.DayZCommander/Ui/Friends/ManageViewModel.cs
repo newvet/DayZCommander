@@ -5,15 +5,15 @@ using Caliburn.Micro;
 using Dotjosh.DayZCommander.Core;
 using Dotjosh.DayZCommander.Properties;
 
-namespace Dotjosh.DayZCommander.Ui
+namespace Dotjosh.DayZCommander.Ui.Friends
 {
-	public class FriendsListViewModel : ViewModelBase,
+	public class ManageViewModel : ViewModelBase,
 	                                    IHandle<PlayersChangedEvent>
 	{
 		private bool _isAdding;
 		private string _newFriendName;
 
-		public FriendsListViewModel()
+		public ManageViewModel()
 		{
 			Friends = new ObservableCollection<Friend>();
 			if (Settings.Default.Friends == null)
@@ -26,7 +26,6 @@ namespace Dotjosh.DayZCommander.Ui
 			{
 				Friends.Add(new Friend(friendName));
 			}
-			App.Events.Subscribe(this);
 			Title = "friends";
 		}
 

@@ -1,23 +1,22 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Dotjosh.DayZCommander.Core;
 
-namespace Dotjosh.DayZCommander.Ui
+namespace Dotjosh.DayZCommander.Ui.Friends
 {
 	/// <summary>
 	/// Interaction logic for FriendsList.xaml
 	/// </summary>
-	public partial class FriendsList : UserControl
+	public partial class ManageView : UserControl
 	{
-		public FriendsList()
+		public ManageView()
 		{
 			InitializeComponent();
 		}
 
-		private FriendsListViewModel ViewModel
+		private ManageViewModel ViewModel
 		{
-			get { return (FriendsListViewModel) DataContext; }
+			get { return (ManageViewModel) DataContext; }
 		}
 
 		private void NewFriend(object sender, RoutedEventArgs e)
@@ -37,7 +36,7 @@ namespace Dotjosh.DayZCommander.Ui
 
 		private void NewFriendName_LostFocus(object sender, RoutedEventArgs e)
 		{
-			ViewModel.CancelNewFriend();
+		//	ViewModel.CancelNewFriend();
 		}
 	}
 }

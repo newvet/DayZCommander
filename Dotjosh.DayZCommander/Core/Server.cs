@@ -178,28 +178,28 @@ namespace Dotjosh.DayZCommander.Core
 			return null;
 		}
 
-		public void Update(Action<Action> executeOnMainThread)
+		public void Update()
 		{
 			try
 			{
 				var serverResult = _queryClient.Execute();
-				executeOnMainThread(() =>
+				Execute.OnUiThread(() =>
 				                    	{
 											App.Events.Publish(new PlayersChangedEvent(Players, serverResult.Players));
 				                    		Players = new ObservableCollection<Player>(serverResult.Players.OrderBy(x => x.Name));
 				                    		LastException = null;
 				                    		Settings = serverResult.Settings;
 				                    		Ping = serverResult.Ping;
-											App.Events.Publish(new ServerUpdatedEvent(this));
+											App.Events.Publish(new ServerUpdated(this));
 				                    	});
 			}
 			catch (Exception ex)
 			{
-				executeOnMainThread(() =>
+				Execute.OnUiThread(() =>
 				                    	{
 											LastException = ex.Message;
 											PropertyHasChanged("Name", "Ping");
-											App.Events.Publish(new ServerUpdatedEvent(this));
+											App.Events.Publish(new ServerUpdated(this));
 				                    	});
 				
 			}

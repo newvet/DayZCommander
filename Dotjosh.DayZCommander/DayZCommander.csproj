@@ -93,9 +93,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\Execute.cs" />
     <Compile Include="Core\ServerDifficulty.cs" />
     <Compile Include="Core\ServerInfo.cs" />
     <Compile Include="Core\ServerSetting.cs" />
+    <Compile Include="Core\DayZCommanderUpdater.cs" />
     <Compile Include="Ui\Converters\BooleanToSelectedOptionColorConverter.cs" />
     <Compile Include="Ui\Converters\BooleanToVisibilityHiddenConverter.cs" />
     <Compile Include="Ui\Converters\BooleanToVisibilityCollapsedConverter.cs" />
@@ -110,11 +112,15 @@
     <Compile Include="Ui\Converters\PingToForegroundConverter.cs" />
     <Compile Include="Ui\Converters\ServerFullnessToColorConverter.cs" />
     <Compile Include="Ui\Converters\TimeToColorConverter.cs" />
-    <Page Include="Ui\Filters.xaml">
+    <Page Include="Ui\Friends\FriendsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Ui\FriendsList.xaml">
+    <Page Include="Ui\ServerList\FiltersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Friends\ManageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -136,22 +142,41 @@
     <Compile Include="Core\ServerList.cs" />
     <Compile Include="Core\ServerQueryClient.cs" />
     <Compile Include="Core\ServerQueryResult.cs" />
-    <Compile Include="Ui\Filters.xaml.cs">
-      <DependentUpon>Filters.xaml</DependentUpon>
+    <Compile Include="Ui\Friends\FriendsView.xaml.cs">
+      <DependentUpon>FriendsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ui\FiltersViewModel.cs" />
-    <Compile Include="Ui\FriendsList.xaml.cs">
-      <DependentUpon>FriendsList.xaml</DependentUpon>
+    <Compile Include="Ui\ServerList\FiltersView.xaml.cs">
+      <DependentUpon>FiltersView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ui\FriendsListViewModel.cs" />
-    <Compile Include="Ui\FriendsViewModel.cs" />
-    <Compile Include="Ui\IsPlayingToColorConverter.cs" />
-    <Compile Include="Ui\LeftPaneViewModel.cs" />
-    <Compile Include="Ui\ListViewModel.cs" />
+    <Compile Include="Ui\ServerList\FiltersViewModel.cs" />
+    <Compile Include="Ui\Friends\ManageView.xaml.cs">
+      <DependentUpon>ManageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Friends\ManageViewModel.cs" />
+    <Compile Include="Ui\Friends\FriendsViewModel.cs" />
+    <Compile Include="Ui\Converters\IsPlayingToColorConverter.cs" />
+    <Compile Include="Ui\ServerList\ListView.xaml.cs">
+      <DependentUpon>ListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\ServerList\ServerListViewModel.cs" />
+    <Compile Include="Ui\ViewModelBase.cs" />
+    <Compile Include="Ui\ServerList\FilterUpdated.cs" />
+    <Compile Include="Ui\ServerList\ServerListView.xaml.cs">
+      <DependentUpon>ServerListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\ServerList\ListViewModel.cs" />
     <Compile Include="Ui\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Ui\ServerList\ListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\ServerList\ServerListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ui\MainWindowViewModel.cs" />
@@ -236,6 +261,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

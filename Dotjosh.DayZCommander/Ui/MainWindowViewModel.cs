@@ -43,7 +43,16 @@ namespace Dotjosh.DayZCommander.Ui
 			Servers.Filter = Filter;
 			Servers.Refresh();
 
+			StartCheckingForUpdates();
+		}
+
+		private void StartCheckingForUpdates()
+		{
+			var t = new System.Timers.Timer();
+			t.Interval = TimeSpan.FromHours(2).TotalMilliseconds;
+			t.Elapsed += (sender, args) => CheckForUpdates();
 			CheckForUpdates();
+			t.Start();
 		}
 
 		private void CheckForUpdates()

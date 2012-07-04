@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Dotjosh.DayZCommander.Core;
 
 namespace Dotjosh.DayZCommander.Ui.ServerList
 {
@@ -22,6 +23,23 @@ namespace Dotjosh.DayZCommander.Ui.ServerList
 		public ListView()
 		{
 			InitializeComponent();
+		}
+
+		public ListViewModel ViewModel
+		{
+			get { return (ListViewModel) DataContext; }
+		}
+
+		private void RowDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			var server = (Server) ((Control) sender).DataContext;
+
+			ViewModel.JoinServer(server);
+		}
+
+		private void RowLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			ViewModel.LeftMouseDown();
 		}
 	}
 }

@@ -66,12 +66,7 @@ namespace Dotjosh.DayZCommander.Ui
 			ViewModel.ServerList.UpdateAll();
 		}
 
-		private void RowDoubleClick(object sender, MouseButtonEventArgs e)
-		{
-			var server = (Server) ((Control) sender).DataContext;
 
-			ViewModel.JoinServer(server);
-		}
 
 		private void TabHeader_Click(object sender, RoutedEventArgs e)
 		{

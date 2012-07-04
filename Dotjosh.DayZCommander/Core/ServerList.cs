@@ -89,10 +89,20 @@ namespace Dotjosh.DayZCommander.Core
 
 		public void UpdateAllSync()
 		{
+			int[] threadCount = {0};
 			for (int index = 0; index < Items.Count; index++)
 			{
 				var server = Items[index];
 
+//				while(threadCount[0] > 75)
+//				{
+//					Thread.Sleep(500);
+//				}
+
+				if(index % 70 == 0)
+					Thread.Sleep(200);
+
+				threadCount[0]++;
 				new Thread(() =>
 				           	{
 				           		server.Update();
@@ -101,10 +111,8 @@ namespace Dotjosh.DayZCommander.Core
 				           		                   		ProcessedServersCount++;
 														App.Events.Publish(new ServerUpdated(server));
 				           		                   	});
+				           		threadCount[0]--;
 				           	}).Start();
-
-				if (index%70 == 0)
-					Thread.Sleep(300);
 			}
 		}
 

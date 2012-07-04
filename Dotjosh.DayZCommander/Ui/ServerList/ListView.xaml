@@ -20,8 +20,8 @@
 					  AutoGenerateColumns="False">
 			<DataGrid.RowStyle>
 				<Style TargetType="{x:Type DataGridRow}">
-					<!--					<EventSetter Event="MouseDoubleClick" Handler="RowDoubleClick"/>-->
-					<!--					<EventSetter Event="PreviewMouseLeftButtonDown" Handler="RowLeftButtonDown"/>-->
+					<EventSetter Event="MouseDoubleClick" Handler="RowDoubleClick"/>
+					<EventSetter Event="PreviewMouseLeftButtonDown" Handler="RowLeftButtonDown"/>
 				</Style>
 			</DataGrid.RowStyle>
 			<DataGrid.Resources>

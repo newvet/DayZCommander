@@ -60,11 +60,17 @@
 						   Margin="30 -6 0 7"/>
 				</StackPanel>
 				<StackPanel Grid.Column="1"
-							Margin="0 0 45 0"
+							Margin="0 0 45 8"
 							VerticalAlignment="Bottom">
+					<StackPanel Orientation="Horizontal"
+								Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource CountToVisibilityConverter}}">
+						<TextBlock Text="(" Foreground="#CCC"/>
+						<TextBlock Text="{Binding ServerList.ProcessedServersCount}" Foreground="#CCC"/>
+						<TextBlock Text="/" Foreground="#CCC"/>
+						<TextBlock Text="{Binding ServerList.Items.Count}" Foreground="#FFF"/>
+						<TextBlock Text=")" Foreground="#CCC"/>
+					</StackPanel>
 					<Button Template="{StaticResource MetroButton}"
-								Canvas.Right="0"
-								Canvas.Top="13"
 								Click="RefreshAll_Click"
 								HorizontalAlignment="Right"
 								Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource ZeroToVisibilityConverter}}"

@@ -105,7 +105,22 @@ namespace Dotjosh.DayZCommander.Ui
 
 		private void RowLeftButtonDown(object sender, RoutedEventArgs routedEventArgs)
 		{
-			((MainWindowViewModel) DataContext).LeftMouseDown();
+			ViewModel.LeftMouseDown();
+		}
+
+		private MainWindowViewModel ViewModel
+		{
+			get { return ((MainWindowViewModel) DataContext); }
+		}
+
+		private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+
+		}
+
+		private void TabHeader_Click(object sender, RoutedEventArgs e)
+		{
+			ViewModel.LeftPaneViewModel.CurrentScreen = (ViewModelBase) ((Control) sender).DataContext;
 		}
 	}
 }

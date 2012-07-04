@@ -8,37 +8,29 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
 		<StackPanel>
-			<StackPanel Orientation="Horizontal">
-				<TextBlock 
-					Text="friends" 
-					FontSize="22" 
-					Foreground="#5A97F2"
-					Margin="0 18 0 4"/>
-
-				<Canvas VerticalAlignment="Bottom">
-					<Button Template="{StaticResource MetroTextButton}" 
-						Tag="add"
-						Foreground="#BBB"
-						Margin="3 0 0 4"
-						FontWeight="Bold"
-						Canvas.Top="-24"
-						Click="NewFriend"
-						VerticalAlignment="Bottom"/>
-					<TextBox VerticalAlignment="Bottom"
-						Canvas.ZIndex="10"
-						Canvas.Top="-24"
-						Canvas.Left="4"
-							 x:Name="NewFriendName"
-						Text="{Binding NewFriendName, Mode=TwoWay}"
-						LostFocus="NewFriendName_LostFocus"
-						Visibility="{Binding IsAdding, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityHiddenConverter}}"
-						KeyDown="NewFriendName_KeyDown"
-						Width="100"/>
-				</Canvas>
-						
+			<StackPanel Orientation="Horizontal"
+						Margin="0 6 0 0">
+				<Button Template="{StaticResource MetroTextButton}" 
+					Tag="add"
+					Foreground="#BBB"
+					Margin="0 0 0 4"
+					FontWeight="Bold"
+					Click="NewFriend"
+					Visibility="{Binding IsAdding, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityCollapsedConverter}, ConverterParameter=true}"
+					VerticalAlignment="Bottom"/>
+				<TextBox VerticalAlignment="Bottom"
+					Canvas.ZIndex="10"
+					Canvas.Left="4"
+					x:Name="NewFriendName"
+					Text="{Binding NewFriendName, Mode=TwoWay}"
+					LostFocus="NewFriendName_LostFocus"
+					Visibility="{Binding IsAdding, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityHiddenConverter}}"
+					KeyDown="NewFriendName_KeyDown"
+					Width="100"/>
 			</StackPanel>
 			
-			<ItemsControl ItemsSource="{Binding Friends}">
+			<ItemsControl ItemsSource="{Binding Friends}"
+						  Margin="0 5 0 0">
 				<ItemsControl.Resources>
 					<UI:IsPlayingToColorConverter x:Key="IsPlayingToColorConverter"/>
 				</ItemsControl.Resources>
@@ -47,8 +39,8 @@
 						<StackPanel Orientation="Horizontal" Margin="0 0 0 4">
 							<CheckBox
 								FontSize="14"
-								IsChecked="{Binding IsSelected}"
 								Content="{Binding Name}"
+								IsChecked="{Binding IsSelected, Mode=TwoWay}"
 								FontWeight="Bold"
 								Foreground="{Binding IsPlaying, Converter={StaticResource IsPlayingToColorConverter}}"
 							/>

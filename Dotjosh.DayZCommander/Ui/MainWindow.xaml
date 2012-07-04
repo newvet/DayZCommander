@@ -24,7 +24,7 @@
 				<RowDefinition />
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="180"/>
+				<ColumnDefinition Width="230"/>
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
 
@@ -77,10 +77,40 @@
 
 			<Grid Grid.Row="1" 
 						Grid.RowSpan="3" 
-						Margin="30 8 0 0"
+						Margin="30 8 5 0"
 						Grid.Column="0">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
 
-				<ContentControl DataContext="{Binding LeftPaneViewModel.CurrentScreen}"
+				<ItemsControl ItemsSource="{Binding LeftPaneViewModel.Screens}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<StackPanel Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Button Tag="{Binding Title}"
+									Foreground="{Binding IsSelected, Converter={StaticResource IsSelectedTabToColorConverter}}"
+									Click="TabHeader_Click">
+								<Button.Template>
+									<ControlTemplate>
+										<TextBlock Text="{TemplateBinding Tag}" 
+									   FontSize="22" 
+									   Foreground="{TemplateBinding Foreground}"
+									   Margin="0 0 13 4"/>
+									</ControlTemplate>
+								</Button.Template>
+							</Button>
+		
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+
+				<ContentControl Content="{Binding LeftPaneViewModel.CurrentScreen}"
+								Grid.Row="1"
 								HorizontalAlignment="Stretch"
 								VerticalAlignment="Stretch">
 					<ContentControl.Resources>
@@ -94,16 +124,16 @@
 					</ContentControl.Resources>
 				</ContentControl>
 				
-			</StackPanel>
+			</Grid>
 
 			<StackPanel
 						Grid.Column="1"
-					   Margin="36 8 20 0"
+					   Margin="5 8 20 0"
 					   Grid.Row="1">
 				<Grid>
 					<StackPanel Orientation="Horizontal">
 
-						<TextBlock Text="servers " Foreground="#EEE" Margin="0 0 0 0" FontSize="22"/>
+						<TextBlock Text="list " Foreground="#EEE" Margin="0 0 0 0" FontSize="22"/>
 						<TextBlock Text="(" FontSize="15" Foreground="#EEE" Margin="0 7 0 0"/>
 						<TextBlock Text="{Binding Servers.Count, StringFormat={}{0}/, FallbackValue=0}" 
 							   Visibility="{Binding HasFilteredServers, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}"
@@ -146,7 +176,7 @@
 			</StackPanel>
 
 				<DataGrid ItemsSource="{Binding Servers}"
-						 Margin="31 3 20 20"
+						 Margin="0 3 20 20"
 				  Grid.Column="1"
 				  Grid.Row="3"
 					  VerticalScrollBarVisibility="Visible"

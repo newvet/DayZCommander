@@ -1,4 +1,5 @@
-﻿using Dotjosh.DayZCommander.Core;
+﻿using System.Collections.ObjectModel;
+using Dotjosh.DayZCommander.Core;
 
 namespace Dotjosh.DayZCommander.Ui
 {
@@ -7,22 +8,37 @@ namespace Dotjosh.DayZCommander.Ui
 		private ViewModelBase _currentScreen;
 		private readonly FiltersViewModel _filtersScreen;
 		private readonly FriendsListViewModel _friendsListScreen;
+		private ObservableCollection<ViewModelBase> _screens;
 
 		public LeftPaneViewModel()
 		{
 			_filtersScreen = new FiltersViewModel();
 			_friendsListScreen = new FriendsListViewModel();
+			_screens = new ObservableCollection<ViewModelBase>(new ViewModelBase[] {_filtersScreen, _friendsListScreen});
 			CurrentScreen = _filtersScreen;
 		}
-
 
 		public ViewModelBase CurrentScreen
 		{
 			get { return _currentScreen; }
 			set
 			{
+				if(_currentScreen != null)
+					_currentScreen.IsSelected = false;
 				_currentScreen = value;
+				if(_currentScreen != null)
+					_currentScreen.IsSelected = true;
 				PropertyHasChanged("CurrentScreen");
+			}
+		}
+
+		public ObservableCollection<ViewModelBase> Screens
+		{
+			get { return _screens; }
+			set
+			{
+				_screens = value;
+				PropertyHasChanged("Screens");
 			}
 		}
 	}
@@ -30,6 +46,7 @@ namespace Dotjosh.DayZCommander.Ui
 	public abstract class ViewModelBase : BindableBase
 	{
 		private string _title;
+		private bool _isSelected;
 
 		public string Title
 		{
@@ -38,6 +55,16 @@ namespace Dotjosh.DayZCommander.Ui
 			{
 				_title = value;
 				PropertyHasChanged("Title");
+			}
+		}
+
+		public bool IsSelected
+		{
+			get { return _isSelected; }
+			set
+			{
+				_isSelected = value;
+				PropertyHasChanged("IsSelected");
 			}
 		}
 	}

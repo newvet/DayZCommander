@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace Dotjosh.DayZCommander.Ui.Converters
 {
-	public class BooleanToVisibilityCollapsedConverter : IValueConverter
+	public class IsSelectedTabToColorConverter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			bool inverse = parameter != null && bool.Parse((string) parameter);
-			bool val = inverse
-			           	? !(bool)value
-			           	: (bool)value;
+			if((bool)value)
+				return new SolidColorBrush(Color.FromArgb(255, 90, 151, 242));
 
-			if(val)
-				return Visibility.Visible;
-			return Visibility.Collapsed;
+			return new SolidColorBrush(Color.FromArgb(255, 187, 187, 187));
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -18,8 +18,9 @@ namespace Dotjosh.DayZCommander.Ui
 
 		public FiltersViewModel()
 		{
+			App.Events.Subscribe(this);
 			LoadDefaults();
-			Title = "Filters";
+			Title = "filters";
 		}
 
 		public void LoadDefaults()

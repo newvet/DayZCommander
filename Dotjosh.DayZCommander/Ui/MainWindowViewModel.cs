@@ -12,6 +12,7 @@ using System.Windows.Threading;
 using System.Xml;
 using Caliburn.Micro;
 using Dotjosh.DayZCommander.Core;
+using Dotjosh.DayZCommander.Properties;
 
 namespace Dotjosh.DayZCommander.Ui
 {
@@ -44,9 +45,23 @@ namespace Dotjosh.DayZCommander.Ui
 			Servers.Filter = Filter;
 			Servers.Refresh();
 
+			UpdateSettings();
+
 			StartCheckingForUpdates();
 
 			_leftPaneViewModel = new LeftPaneViewModel();
+
+			App.Events.Publish(new PublishFiltersRequest());
+		}
+
+		private void UpdateSettings()
+		{
+		   if (Settings.Default.UpgradeRequired)  
+		   {  
+			  Settings.Default.Upgrade();  
+			  Settings.Default.UpgradeRequired = false;  
+			  Settings.Default.Save();  
+		   }  
 		}
 
 		private void StartCheckingForUpdates()
@@ -201,16 +216,6 @@ namespace Dotjosh.DayZCommander.Ui
 			}
 		}
 
-		public Server SelectedServer
-		{
-			get { return _selectedServer; }
-			set
-			{
-				_selectedServer = value;
-				PropertyHasChanged("SelectedServer");
-			}
-		}
-
 		public int ProcessedServersCount
 		{
 			get { return _processedServersCount; }
@@ -243,15 +248,6 @@ namespace Dotjosh.DayZCommander.Ui
 			_filter = message.Filter;
 			Servers.Refresh();
 			PropertyHasChanged("HasFilteredServers");
-		}
-
-		public void UpdateSelectedServer()
-		{
-			if(SelectedServer != null)
-			{
-				Task.Factory
-					.StartNew(() => SelectedServer.Update(_executeOnMainThread));
-			}
 		}
 
 		#region Implementation of IHandle<ServerUpdatedEvent>

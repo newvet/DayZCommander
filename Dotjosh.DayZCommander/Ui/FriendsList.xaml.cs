@@ -13,7 +13,6 @@ namespace Dotjosh.DayZCommander.Ui
 		public FriendsList()
 		{
 			InitializeComponent();
-			DataContext = new FriendsListViewModel();
 		}
 
 		private FriendsListViewModel ViewModel

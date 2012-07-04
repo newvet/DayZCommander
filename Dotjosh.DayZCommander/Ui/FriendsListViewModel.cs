@@ -1,32 +1,33 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Linq;
 using Caliburn.Micro;
 using Dotjosh.DayZCommander.Core;
 using Dotjosh.DayZCommander.Properties;
 
 namespace Dotjosh.DayZCommander.Ui
 {
-	public class FriendsListViewModel : ViewModelBase, 
-		IHandle<PlayersChangedEvent>
+	public class FriendsListViewModel : ViewModelBase,
+	                                    IHandle<PlayersChangedEvent>
 	{
 		private bool _isAdding;
 		private string _newFriendName;
 
 		public FriendsListViewModel()
-		{			
+		{
 			Friends = new ObservableCollection<Friend>();
-			if(Settings.Default.Friends == null)
+			if (Settings.Default.Friends == null)
 			{
 				Settings.Default.Friends = new StringCollection();
 				Settings.Default.Save();
 			}
 
-			foreach(var friendName in Settings.Default.Friends)
+			foreach (string friendName in Settings.Default.Friends)
 			{
 				Friends.Add(new Friend(friendName));
 			}
 			App.Events.Subscribe(this);
-			Title = "Friends";
+			Title = "friends";
 		}
 
 		public bool IsAdding
@@ -49,36 +50,60 @@ namespace Dotjosh.DayZCommander.Ui
 			}
 		}
 
+		private ObservableCollection<Friend> _friends;
+		public ObservableCollection<Friend> Friends
+		{
+			get { return _friends; }
+			private set
+			{
+				_friends = value;
+				PropertyHasChanged("Friends");
+			}
+		}
+
+		#region IHandle<PlayersChangedEvent> Members
+
 		public void Handle(PlayersChangedEvent message)
 		{
-			foreach(var oldPlayer in message.OldPlayers)
+			foreach (Player oldPlayer in message.OldPlayers)
 			{
-				var oldPlayerHash = oldPlayer.Hash;
-				var wasRemoved = message
-									.NewPlayers
-				                  	.None(newPlayer => newPlayer.Hash == oldPlayerHash);
+				string oldPlayerHash = oldPlayer.Hash;
+				bool wasRemoved = message
+					.NewPlayers
+					.None(newPlayer => newPlayer.Hash == oldPlayerHash);
 
-				if(wasRemoved)
+				if (wasRemoved)
 					Remove(oldPlayerHash);
 			}
 
-			foreach(var newPlayer in message.NewPlayers)
+			foreach (Player newPlayer in message.NewPlayers)
 			{
 				Add(newPlayer);
 			}
 		}
 
+		#endregion
+
 		private void Add(Player newPlayer)
 		{
 			Friends.ToList(friend => friend.NewPlayer(newPlayer));
+			UpdateTitle();
 		}
 
 		private void Remove(string oldPlayerHash)
 		{
 			Friends.ToList(friend => friend.RemovedPlayer(oldPlayerHash));
+			UpdateTitle();
 		}
 
-		public ObservableCollection<Friend> Friends { get; private set; }
+		private void UpdateTitle()
+		{
+			var count = Friends.Count(f => f.IsPlaying);
+			if(count == 0)
+				Title = "friends";
+			else
+				Title = string.Format("friends({0})", count);
+		}
 
 		public void NewFriend()
 		{
@@ -87,7 +112,7 @@ namespace Dotjosh.DayZCommander.Ui
 
 		public void CreateFriend()
 		{
-			if(!string.IsNullOrWhiteSpace(NewFriendName))
+			if (!string.IsNullOrWhiteSpace(NewFriendName))
 			{
 				Friends.Add(new Friend(NewFriendName));
 				SaveFriends();
@@ -99,8 +124,9 @@ namespace Dotjosh.DayZCommander.Ui
 
 		private void SaveFriends()
 		{
+			Settings.Default.Upgrade();
 			Settings.Default.Friends.Clear();
-			foreach(var friend in Friends)
+			foreach (Friend friend in Friends)
 			{
 				Settings.Default.Friends.Add(friend.Name);
 			}
@@ -114,13 +140,13 @@ namespace Dotjosh.DayZCommander.Ui
 
 	public class FilterByFriendRequest
 	{
-		public Friend Friend { get; set; }
-		public bool IsFiltered { get; set; }
-
 		public FilterByFriendRequest(Friend friend, bool isFiltered)
 		{
 			Friend = friend;
 			IsFiltered = isFiltered;
 		}
+
+		public Friend Friend { get; set; }
+		public bool IsFiltered { get; set; }
 	}
 }

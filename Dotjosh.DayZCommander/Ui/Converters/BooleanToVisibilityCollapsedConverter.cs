@@ -9,7 +9,12 @@ namespace Dotjosh.DayZCommander.Ui.Converters
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			if((bool)value)
+			bool inverse = parameter != null && bool.Parse((string) parameter);
+			bool val = inverse
+			           	? !(bool)value
+			           	: (bool)value;
+
+			if(val)
 				return Visibility.Visible;
 			return Visibility.Hidden;
 		}

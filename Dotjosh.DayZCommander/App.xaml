@@ -16,6 +16,7 @@
 		<Converters:NonZeroToVisibilityHiddenConverter x:Key="NonZeroToVisibilityHiddenConverter" />
 		<Converters:EnabledSettingToForegroundConverter x:Key="EnabledSettingToForegroundConverter" />
 		<Converters:BooleanToVisibilityCollapsedConverter x:Key="BooleanToVisibilityCollapsedConverter" />
+		<Converters:IsSelectedTabToColorConverter x:Key="IsSelectedTabToColorConverter" />
 
 		<ControlTemplate TargetType="Button" x:Key="MetroTextButton">
 			<TextBlock Text="{TemplateBinding Tag}" 

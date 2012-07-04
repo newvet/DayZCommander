@@ -18,9 +18,9 @@ namespace Dotjosh.DayZCommander.Ui
 			InitializeComponent();
 
 			DataContext = new MainWindowViewModel();
-
-			var screen = Screen.FromHandle(new WindowInteropHelper(this).Handle);
-			MaxHeight = screen.WorkingArea.Height;
+//Causes UAC Crashes
+//			var screen = Screen.FromHandle(new WindowInteropHelper(this).Handle);
+//			MaxHeight = screen.WorkingArea.Height;
 
 		}
 
@@ -51,8 +51,9 @@ namespace Dotjosh.DayZCommander.Ui
 		{
 			if(WindowState == WindowState.Normal)
 			{
-				var screen = Screen.FromHandle(new WindowInteropHelper(this).Handle);
-				MaxHeight = screen.WorkingArea.Height;
+				//UAC Crash
+//				var screen = Screen.FromHandle(new WindowInteropHelper(this).Handle);
+//				MaxHeight = screen.WorkingArea.Height;
 				WindowState = WindowState.Maximized;
 			}
 			else

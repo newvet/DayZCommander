@@ -110,7 +110,6 @@ namespace Dotjosh.DayZCommander.Ui.ServerList
 					{
 						FileName = arma2OaBetaExePath,
 						Arguments = arguments,
-						Verb = "runas",
 						WorkingDirectory = arma2OAPath,
 						UseShellExecute = true,
 					}

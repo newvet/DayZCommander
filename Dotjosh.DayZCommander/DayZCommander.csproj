@@ -33,7 +33,7 @@
     <MinimumRequiredVersion>1.0.0.21</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>29</ApplicationRevision>
+    <ApplicationRevision>30</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -144,6 +144,7 @@
     </Compile>
     <Compile Include="Ui\FriendsListViewModel.cs" />
     <Compile Include="Ui\IsPlayingToColorConverter.cs" />
+    <Compile Include="Ui\LeftPaneViewModel.cs" />
     <Compile Include="Ui\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -169,7 +170,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="Dotjosh.DayZCommander_TemporaryKey.pfx" />
     <None Include="GSList\gslist">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

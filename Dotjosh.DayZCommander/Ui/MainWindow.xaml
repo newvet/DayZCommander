@@ -75,24 +75,25 @@
 				</StackPanel>
 			</Grid>
 
-			<StackPanel Grid.Row="1" 
+			<Grid Grid.Row="1" 
 						Grid.RowSpan="3" 
 						Margin="30 8 0 0"
 						Grid.Column="0">
-				<TextBlock Text="filter" 
-						   FontSize="22" 
-						   Foreground="#5A97F2"
-						   Margin="0 0 0 4"/>
-				<Ui:Filters 
-					Margin="0 0 8 0"
-					x:Name="Filters"
-					VerticalAlignment="Stretch"
-					HorizontalAlignment="Stretch"/>
 
-				<Ui:FriendsList
-					Margin="0 0 8 0"
-					VerticalAlignment="Stretch"
-					HorizontalAlignment="Stretch"/>
+				<ContentControl DataContext="{Binding LeftPaneViewModel.CurrentScreen}"
+								HorizontalAlignment="Stretch"
+								VerticalAlignment="Stretch">
+					<ContentControl.Resources>
+						<DataTemplate DataType="{x:Type Ui:FriendsListViewModel}">
+							<Ui:FriendsList/>
+						</DataTemplate>
+
+						<DataTemplate DataType="{x:Type Ui:FiltersViewModel}">
+							<Ui:Filters/>
+						</DataTemplate>
+					</ContentControl.Resources>
+				</ContentControl>
+				
 			</StackPanel>
 
 			<StackPanel

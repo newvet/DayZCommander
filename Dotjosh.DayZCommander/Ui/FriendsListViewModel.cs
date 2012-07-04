@@ -6,7 +6,8 @@ using Dotjosh.DayZCommander.Properties;
 
 namespace Dotjosh.DayZCommander.Ui
 {
-	public class FriendsListViewModel : BindableBase, IHandle<PlayersChangedEvent>
+	public class FriendsListViewModel : ViewModelBase, 
+		IHandle<PlayersChangedEvent>
 	{
 		private bool _isAdding;
 		private string _newFriendName;
@@ -25,6 +26,7 @@ namespace Dotjosh.DayZCommander.Ui
 				Friends.Add(new Friend(friendName));
 			}
 			App.Events.Subscribe(this);
+			Title = "Friends";
 		}
 
 		public bool IsAdding

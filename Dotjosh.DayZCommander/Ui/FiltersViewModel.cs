@@ -5,7 +5,7 @@ using Dotjosh.DayZCommander.Core;
 
 namespace Dotjosh.DayZCommander.Ui
 {
-	public class FiltersViewModel : BindableBase,
+	public class FiltersViewModel : ViewModelBase,
 		IHandle<PublishFiltersRequest>
 	{
 		private long ?_maxPing;
@@ -19,6 +19,7 @@ namespace Dotjosh.DayZCommander.Ui
 		public FiltersViewModel()
 		{
 			LoadDefaults();
+			Title = "Filters";
 		}
 
 		public void LoadDefaults()

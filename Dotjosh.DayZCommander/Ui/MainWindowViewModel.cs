@@ -31,6 +31,7 @@ namespace Dotjosh.DayZCommander.Ui
 		private Func<Server, bool> _filter;
 		private bool _restartToApplyUpdate;
 		private DateTime? _lastLeftMouseDown;
+		private readonly LeftPaneViewModel _leftPaneViewModel;
 
 		public MainWindowViewModel(Dispatcher dispatcher)
 		{
@@ -44,6 +45,8 @@ namespace Dotjosh.DayZCommander.Ui
 			Servers.Refresh();
 
 			StartCheckingForUpdates();
+
+			_leftPaneViewModel = new LeftPaneViewModel();
 		}
 
 		private void StartCheckingForUpdates()
@@ -72,6 +75,11 @@ namespace Dotjosh.DayZCommander.Ui
 			 	};
 				ApplicationDeployment.CurrentDeployment.CheckForUpdateAsync();
 			 }
+		}
+
+		public LeftPaneViewModel LeftPaneViewModel
+		{
+			get { return _leftPaneViewModel; }
 		}
 
 		public bool RestartToApplyUpdate

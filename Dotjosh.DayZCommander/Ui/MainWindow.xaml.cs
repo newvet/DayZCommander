@@ -27,12 +27,6 @@ namespace Dotjosh.DayZCommander.Ui
 			var screen = Screen.FromHandle(new WindowInteropHelper(this).Handle);
 			MaxHeight = screen.WorkingArea.Height;
 
-			Loaded += OnLoaded;
-		}
-
-		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
-		{
-			((FiltersViewModel)Filters.DataContext).PublishFilter();
 		}
 
 		private void MainWindow_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

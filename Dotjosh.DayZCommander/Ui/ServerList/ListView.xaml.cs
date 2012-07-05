@@ -34,7 +34,7 @@ namespace Dotjosh.DayZCommander.Ui.ServerList
 		{
 			var server = (Server) ((Control) sender).DataContext;
 
-			ViewModel.JoinServer(server);
+			GameLauncher.JoinServer(server);
 		}
 
 		private void RowLeftButtonDown(object sender, MouseButtonEventArgs e)

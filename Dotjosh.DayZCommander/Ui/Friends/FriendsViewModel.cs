@@ -1,4 +1,6 @@
-﻿namespace Dotjosh.DayZCommander.Ui.Friends
+﻿using System.ComponentModel;
+
+namespace Dotjosh.DayZCommander.Ui.Friends
 {
 	public class FriendsViewModel : ViewModelBase
 	{
@@ -7,10 +9,23 @@
 			Title = "friends";
 
 			ManageViewModel = new ManageViewModel();
+			ManageViewModel.PropertyChanged += (sender, args) =>
+			{
+				SyncTitle(args);
+			};
+			ListViewModel = new ListViewModel();
+		}
+
+		private void SyncTitle(PropertyChangedEventArgs args)
+		{
+			if(args.PropertyName == "Title")
+			{
+				Title = ManageViewModel.Title;
+			}
 		}
 
 		public ManageViewModel ManageViewModel { get; set; }
-
+		public ListViewModel ListViewModel { get; set; }
 
 //		private bool Filter(object o)
 //		{

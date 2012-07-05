@@ -5,7 +5,6 @@
         xmlns:Friends="clr-namespace:Dotjosh.DayZCommander.Ui.Friends" Title="MainWindow" 
 		Height="650" 
 		Width="970"
-		WindowStartupLocation="CenterScreen"
 		MouseLeftButtonDown="MainWindow_OnMouseLeftButtonDown"
 		MouseDoubleClick="MainWindow_OnMouseDoubleClick"
 		Style="{StaticResource MainWindowStyle}"
@@ -74,18 +73,8 @@
 					<Button Click="RefreshAll_Click"
 								HorizontalAlignment="Right"
 								Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource ZeroToVisibilityConverter}}"
-								Margin="0 0 0 0">
-						<Button.Style>
-							<Style TargetType="Button">
-								<Setter Property="Foreground" Value="#CCC"/>
-								<Setter Property="Cursor" Value="Hand"/>
-								<Style.Triggers>
-									<Trigger Property="IsMouseOver" Value="True">
-										<Setter Property="Foreground" Value="White" />
-									</Trigger>
-								</Style.Triggers>
-							</Style>
-						</Button.Style>
+								Margin="0 0 0 0"
+								Style="{StaticResource MetroTextButtonStyle}">
 						<Button.Template>
 							<ControlTemplate>
 								<StackPanel Orientation="Horizontal">
@@ -133,32 +122,54 @@
 							 Maximum="{Binding ServerList.Items.Count, FallbackValue=0}" 
 							 Value="{Binding ServerList.ProcessedServersCount, FallbackValue=0}" />
 
-				<ItemsControl ItemsSource="{Binding Tabs}"
+				<ListBox ItemsSource="{Binding Tabs}"
 							  Grid.Row="1"
-							  Margin="0 5 0 0">
-					<ItemsControl.ItemsPanel>
+							Background="Transparent"
+						 BorderThickness="0"
+						 Padding="0"
+							SelectedItem="{Binding CurrentTab, Mode=TwoWay}"
+							  Margin="0 5 0 5">
+					<ListBox.ItemsPanel>
 						<ItemsPanelTemplate>
 							<StackPanel Orientation="Horizontal" />
 						</ItemsPanelTemplate>
-					</ItemsControl.ItemsPanel>
-					<ItemsControl.ItemTemplate>
+					</ListBox.ItemsPanel>
+					<ListBox.ItemTemplate>
 						<DataTemplate>
-							<Button Tag="{Binding Title}"
-									Foreground="{Binding IsSelected, Converter={StaticResource IsSelectedTabToColorConverter}}"
-									Click="TabHeader_Click">
-								<Button.Template>
-									<ControlTemplate>
-										<TextBlock Text="{TemplateBinding Tag}" 
-									   FontSize="22" 
-									   Foreground="{TemplateBinding Foreground}"
-									   Margin="0 0 13 4"/>
-									</ControlTemplate>
-								</Button.Template>
-							</Button>
-		
+							<TextBlock Text="{Binding Title}"
+									   FontSize="22"
+									   Margin="0 0 15 0"/>
 						</DataTemplate>
-					</ItemsControl.ItemTemplate>
-				</ItemsControl>
+					</ListBox.ItemTemplate>
+					<ListBox.Resources>
+						<Style TargetType="ListBoxItem">
+							<Setter Property="Padding" Value="0"/>
+							<Setter Property="Margin" Value="0"/>
+							<Style.Triggers>
+								<Trigger Property="IsSelected" Value="True">
+									<Setter Property="Foreground" Value="#5A97F2" />
+								</Trigger>
+								<Trigger Property="IsSelected" Value="False">
+									<Setter Property="Foreground" Value="#CCC" />
+								</Trigger>
+								<MultiTrigger>
+									<MultiTrigger.Conditions>
+										<Condition Property="IsMouseOver" Value="True" />
+										<Condition Property="IsSelected" Value="False" />
+									</MultiTrigger.Conditions>
+									<Setter Property="Foreground" Value="White" />
+								</MultiTrigger>
+							</Style.Triggers>
+							<Style.Resources>
+								<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                             Color="Transparent"/>
+								<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}"
+													 Color="Transparent" />								
+							</Style.Resources>
+						</Style>
+					</ListBox.Resources>						
+					
+				</ListBox>
 
 				<Grid Grid.Row="2"
 					  Visibility="{Binding IsServerListSelected, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}">

@@ -9,7 +9,7 @@
 			FiltersViewModel = new FiltersViewModel();
 			ListViewModel = new ListViewModel();
 
-			FiltersViewModel.PublishFilter();
+			FiltersViewModel.Filter.PublishFilter();
 		}
 
 		public FiltersViewModel FiltersViewModel { get; set; }

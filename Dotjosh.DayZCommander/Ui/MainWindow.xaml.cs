@@ -18,10 +18,15 @@ namespace Dotjosh.DayZCommander.Ui
 			InitializeComponent();
 
 			DataContext = new MainWindowViewModel();
-//Causes UAC Crashes
-//			var screen = Screen.FromHandle(new WindowInteropHelper(this).Handle);
-//			MaxHeight = screen.WorkingArea.Height;
-
+			if(UserSettings.Current.WindowSettings != null)
+			{
+				UserSettings.Current.WindowSettings.Apply(this);
+			}
+			Closing += (sender, args) =>
+			{
+				UserSettings.Current.WindowSettings = WindowSettings.Create(this);
+				UserSettings.Current.Save();
+			};
 		}
 
 		private MainWindowViewModel ViewModel

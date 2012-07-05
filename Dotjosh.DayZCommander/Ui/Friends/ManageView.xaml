@@ -7,46 +7,58 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
 		<StackPanel>
-			<StackPanel Orientation="Horizontal"
-						Margin="0 6 0 0">
-				<Button Template="{StaticResource MetroTextButton}" 
-					Tag="add"
-					Foreground="#BBB"
-					Margin="0 0 0 4"
-					FontWeight="Bold"
-					Click="NewFriend"
-					Visibility="{Binding IsAdding, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityCollapsedConverter}, ConverterParameter=true}"
-					VerticalAlignment="Bottom"/>
+			<StackPanel Margin="0 7 0 0" HorizontalAlignment="Left">
+				<TextBlock 
+					Text="Add a friend:"
+					Foreground="#CCC"
+					Margin="0 0 0 3"/>
 				<TextBox VerticalAlignment="Bottom"
-					Canvas.ZIndex="10"
-					Canvas.Left="4"
 					x:Name="NewFriendName"
+						 
+					 Background="#555"
+					 Foreground="#EEE"
 					Text="{Binding NewFriendName, Mode=TwoWay}"
-					LostFocus="NewFriendName_LostFocus"
-					Visibility="{Binding IsAdding, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityHiddenConverter}}"
 					KeyDown="NewFriendName_KeyDown"
 					Width="100"/>
 			</StackPanel>
 			
 			<ItemsControl ItemsSource="{Binding Friends}"
-						  Margin="0 5 0 0">
+						  Margin="0 15 0 0">
 				<ItemsControl.Resources>
 					<Converters:IsPlayingToColorConverter x:Key="IsPlayingToColorConverter"/>
 				</ItemsControl.Resources>
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
-						<StackPanel Orientation="Horizontal" Margin="0 0 0 4">
-							<CheckBox
-								FontSize="14"
-								Content="{Binding Name}"
-								IsChecked="{Binding IsSelected, Mode=TwoWay}"
-								FontWeight="Bold"
-								Foreground="{Binding IsPlaying, Converter={StaticResource IsPlayingToColorConverter}}"
-							/>
-							<TextBlock Text="{Binding Players.Count, StringFormat={} ({0})}" 
-							   FontSize="14"
-								   Foreground="#AAA"
-							   Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityHiddenConverter}}"/>
+						<StackPanel Orientation="Horizontal" Margin="0 0 0 6">
+							<StackPanel Orientation="Horizontal"
+										Width="170">
+								<TextBlock
+									FontSize="14"
+									Text="{Binding Name}"
+									FontWeight="Bold"
+									Foreground="{Binding IsPlaying, Converter={StaticResource IsPlayingToColorConverter}}"
+								/>
+								<TextBlock Text="{Binding Players.Count, StringFormat={} ({0})}" 
+								   FontSize="14"
+									Foreground="#AAA"
+								   Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityHiddenConverter}}"/>
+							</StackPanel>
+							<Button
+								Click="DeleteFriend"
+								Margin="5 0 0 0"
+								Style="{StaticResource MetroTextButtonStyle}"
+							>
+								<Button.Template>
+									<ControlTemplate>
+										<Path Data="F1M608.038,178.012L595.565,165.539 576.036,185.068 556.509,165.54 544.038,178.012 563.565,197.539 544.038,217.066 556.512,229.538 576.038,210.012 595.565,229.539 608.036,217.068 588.509,197.54 608.038,178.012z" 
+											  Stretch="Uniform" 
+											  Fill="#CCC" 
+											  Width="10" 
+											  Height="10" 
+											  Margin="0,4,0,0" />
+									</ControlTemplate>
+								</Button.Template>
+							</Button>
 						</StackPanel>
 
 					</DataTemplate>

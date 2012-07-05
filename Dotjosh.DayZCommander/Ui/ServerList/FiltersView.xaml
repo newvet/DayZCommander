@@ -12,22 +12,22 @@
 					   Margin="0 6 0 0"
 						   HorizontalAlignment="Left"
 						   FontSize="12" />
-			<TextBox Text="{Binding Name, Mode=TwoWay}"
+			<TextBox Text="{Binding Filter.Name, Mode=TwoWay}"
 						   x:Name="NameEntry"
 					 KeyUp="Name_KeyUp"
-					 Background="Transparent"
+					 Background="#555"
+					 Foreground="#EEE"					 
 					 BorderBrush="#888"
 					 BorderThickness="1"
 					 Padding="4 2"
-					 Foreground="#FFF"
 						   Width="100"
 							Margin="0 3 0 0"
 						   HorizontalAlignment="Left"
 						   FontSize="12" />
 
-			
-			<TextBlock Text="{Binding MaxPing,  StringFormat={}Max ping: {0}}"
-						   Foreground="{Binding MaxPing, Converter={StaticResource PingToForegroundConverter}}" 
+
+			<TextBlock Text="{Binding Filter.MaxPing,  StringFormat={}Max ping: {0}}"
+						   Foreground="{Binding Filter.MaxPing, Converter={StaticResource PingToForegroundConverter}}" 
 						   Width="100"
 					   Margin="0 20 0 0"
 						   HorizontalAlignment="Left"
@@ -35,62 +35,66 @@
 			<Slider Width="100" Height="8" 
 					Margin="0 4 0 0"
 						HorizontalAlignment="Left"
-						Value="{Binding MaxPing, Mode=TwoWay}"
-						Background="{Binding MaxPing, Converter={StaticResource PingToForegroundConverter}}" 
+						Value="{Binding Filter.MaxPing, Mode=TwoWay}"
+						Background="{Binding Filter.MaxPing, Converter={StaticResource PingToForegroundConverter}}" 
 						IsSnapToTickEnabled="True" TickFrequency="50" Minimum="0" Maximum="500" />
 			<CheckBox Content="Hide Unresponsive"
-					  IsChecked="{Binding HideUnresponsive, Mode=TwoWay}"
+					  IsChecked="{Binding Filter.HideUnresponsive, Mode=TwoWay}"
 					  Foreground="#EEEEEE"
 					  Margin="0 10 0 0"/>			
 			
 			<CheckBox Content="Hide Full"
-					  IsChecked="{Binding HideFull, Mode=TwoWay}"
+					  IsChecked="{Binding Filter.HideFull, Mode=TwoWay}"
 					  Foreground="#EEEEEE"
 					  Margin="0 20 0 0"/>
 			<CheckBox Content="Hide Empty"
-					  IsChecked="{Binding HideEmpty, Mode=TwoWay}"
+					  IsChecked="{Binding Filter.HideEmpty, Mode=TwoWay}"
+					  Foreground="#EEEEEE"
+					  Margin="0 10 0 0"/>
+			<CheckBox Content="Hide Locked"
+					  IsChecked="{Binding Filter.HidePasswordProtected, Mode=TwoWay}"
 					  Foreground="#EEEEEE"
 					  Margin="0 10 0 0"/>
 
 			<ComboBox Margin="0 20 0 0" 
 					  Width="120"
 					  HorizontalAlignment="Left"
-					  SelectedItem="{Binding TimeOfDay, Mode=TwoWay}"
-					  ItemsSource="{Binding TimeOfDayOptions}">
+					  SelectedItem="{Binding Filter.TimeOfDay, Mode=TwoWay}"
+					  ItemsSource="{Binding Filter.TimeOfDayOptions}">
 			</ComboBox>
 
 			<CheckBox Content="Armor"
-					  IsChecked="{Binding HasArmor, Mode=TwoWay}"
+					  IsChecked="{Binding Filter.HasArmor, Mode=TwoWay}"
 					  Foreground="#EEEEEE"
 					  Margin="0 10 0 0"/>	
 			
 			<CheckBox Content="Third Person"
-					  IsChecked="{Binding HasThirdPerson, Mode=TwoWay}"
+					  IsChecked="{Binding Filter.HasThirdPerson, Mode=TwoWay}"
 					  Foreground="#EEEEEE"
 					  Margin="0 10 0 0"/>
 
 			<CheckBox Content="Tracers"
-					  IsChecked="{Binding HasTracers, Mode=TwoWay}"
+					  IsChecked="{Binding Filter.HasTracers, Mode=TwoWay}"
 					  Foreground="#EEEEEE"
 					  Margin="0 10 0 0"/>
 
 			<CheckBox Content="Nameplates"
-					  IsChecked="{Binding HasNameplates, Mode=TwoWay}"
+					  IsChecked="{Binding Filter.HasNameplates, Mode=TwoWay}"
 					  Foreground="#EEEEEE"
 					  Margin="0 10 0 0"/>
 			
 			<CheckBox Content="Crosshairs"
-					  IsChecked="{Binding HasCrosshairs, Mode=TwoWay}"
+					  IsChecked="{Binding Filter.HasCrosshairs, Mode=TwoWay}"
 					  Foreground="#EEEEEE"
 					  Margin="0 10 0 0"/>
 
 			<CheckBox Content="Death Messages"
-					  IsChecked="{Binding HasDeathMessages, Mode=TwoWay}"
+					  IsChecked="{Binding Filter.HasDeathMessages, Mode=TwoWay}"
 					  Foreground="#EEEEEE"
 					  Margin="0 10 0 0"/>
 
 			<CheckBox Content="Scores"
-					  IsChecked="{Binding HasScores, Mode=TwoWay}"
+					  IsChecked="{Binding Filter.HasScores, Mode=TwoWay}"
 					  Foreground="#EEEEEE"
 					  Margin="0 10 0 0"/>			
 

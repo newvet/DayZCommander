@@ -13,7 +13,7 @@ using Microsoft.Win32;
 
 namespace Dotjosh.DayZCommander.Ui
 {
-	public class MainWindowViewModel : BindableBase, 
+	public class MainWindowViewModel : ViewModelBase, 
 		IHandle<RepublishFriendsRequest>
 	{
 		private DayZCommanderUpdater _updater;

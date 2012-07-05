@@ -1,7 +1,9 @@
 using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace Dotjosh.DayZCommander.Core
 {
+	[DataContract]
 	public class BindableBase : INotifyPropertyChanged
 	{
 		#region Implementation of INotifyPropertyChanged

@@ -79,6 +79,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -98,6 +99,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\Execute.cs" />
+    <Compile Include="Core\Filter.cs" />
     <Compile Include="Core\GameLauncher.cs" />
     <Compile Include="Core\LocalMachineInfo.cs" />
     <Compile Include="Core\ServerDifficulty.cs" />
@@ -106,6 +108,8 @@
     <Compile Include="Core\ServerSetting.cs" />
     <Compile Include="Core\DayZCommanderUpdater.cs" />
     <Compile Include="Core\SuperQueue.cs" />
+    <Compile Include="Core\UserSettings.cs" />
+    <Compile Include="Core\WindowSettings.cs" />
     <Compile Include="Ui\Converters\BooleanToSelectedOptionColorConverter.cs" />
     <Compile Include="Ui\Converters\BooleanToVisibilityHiddenConverter.cs" />
     <Compile Include="Ui\Converters\BooleanToVisibilityCollapsedConverter.cs" />
@@ -121,6 +125,10 @@
     <Compile Include="Ui\Converters\ServerFullnessToColorConverter.cs" />
     <Compile Include="Ui\Converters\TimeToColorConverter.cs" />
     <Page Include="Ui\Friends\FriendsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Friends\ListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,6 +161,10 @@
     <Compile Include="Ui\Friends\FriendsView.xaml.cs">
       <DependentUpon>FriendsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ui\Friends\ListView.xaml.cs">
+      <DependentUpon>ListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Friends\ListViewModel.cs" />
     <Compile Include="Ui\ServerList\FiltersView.xaml.cs">
       <DependentUpon>FiltersView.xaml</DependentUpon>
     </Compile>

@@ -16,13 +16,8 @@ namespace Dotjosh.DayZCommander.Ui.Friends
 		public ManageViewModel()
 		{
 			Friends = new ObservableCollection<Friend>();
-			if (Settings.Default.Friends == null)
-			{
-				Settings.Default.Friends = new StringCollection();
-				Settings.Default.Save();
-			}
 
-			foreach (string friendName in Settings.Default.Friends)
+			foreach (string friendName in UserSettings.Current.Friends)
 			{
 				Friends.Add(new Friend(friendName));
 			}
@@ -115,25 +110,49 @@ namespace Dotjosh.DayZCommander.Ui.Friends
 			{
 				Friends.Add(new Friend(NewFriendName));
 				SaveFriends();
+				App.Events.Publish(new RepublishFriendsRequest());
 			}
 			IsAdding = false;
 			NewFriendName = "";
-			App.Events.Publish(new RepublishFriendsRequest());
 		}
 
 		private void SaveFriends()
 		{
-			Settings.Default.Upgrade();
-			Settings.Default.Friends.Clear();
+			UserSettings.Current.Friends.Clear();
 			foreach (Friend friend in Friends)
 			{
-				Settings.Default.Friends.Add(friend.Name);
+				UserSettings.Current.Friends.Add(friend.Name);
 			}
+			UserSettings.Current.Save();
 		}
 
 		public void CancelNewFriend()
 		{
 			IsAdding = false;
+		}
+
+		public void DeleteFriend(Friend friend)
+		{
+			foreach(var player in friend.Players)
+			{
+				App.Events.Publish(new FriendChanged(friend, player, false));
+			}
+			Friends.Remove(friend);
+			SaveFriends();
+		}
+	}
+
+	public class FriendChanged
+	{
+		public Friend Friend { get; set; }
+		public Player Player { get; set; }
+		public bool IsAdded { get; set; }
+
+		public FriendChanged(Friend friend, Player player, bool isAdded)
+		{
+			Friend = friend;
+			Player = player;
+			IsAdded = isAdded;
 		}
 	}
 

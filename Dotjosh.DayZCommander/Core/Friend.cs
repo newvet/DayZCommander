@@ -37,6 +37,7 @@ namespace Dotjosh.DayZCommander.Core
 
 			Players.Add(newPlayer);
 			PropertyHasChanged("IsPlaying");
+			App.Events.Publish(new FriendChanged(this, newPlayer, true));
 		}
 
 		public void RemovedPlayer(string oldPlayerHash)
@@ -47,6 +48,7 @@ namespace Dotjosh.DayZCommander.Core
 
 			Players.Remove(player);
 			PropertyHasChanged("IsPlaying");
+			App.Events.Publish(new FriendChanged(this, player, false));
 		}
 
 		public bool IsSelected

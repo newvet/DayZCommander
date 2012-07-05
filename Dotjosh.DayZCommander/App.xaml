@@ -20,7 +20,18 @@
 		<Converters:BooleanToVisibilityCollapsedConverter x:Key="BooleanToVisibilityCollapsedConverter" />
 		<Converters:IsSelectedTabToColorConverter x:Key="IsSelectedTabToColorConverter" />
 
+		<Style TargetType="Button" x:Key="MetroTextButtonStyle">
+			<Setter Property="Foreground" Value="#CCC"/>
+			<Setter Property="Cursor" Value="Hand"/>
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<Setter Property="Foreground" Value="White" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+		
 		<ControlTemplate TargetType="Button" x:Key="MetroTextButton">
+
 			<TextBlock Text="{TemplateBinding Tag}" 
 								   Foreground="{TemplateBinding Foreground}" 
 								   FontSize="{TemplateBinding FontSize}" 

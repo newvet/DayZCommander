@@ -29,9 +29,9 @@ namespace Dotjosh.DayZCommander.Deploy
 
 			var files = localDeployDirectoryInfo.GetFiles("*.*", SearchOption.AllDirectories);
 
-            foreach (var file in files)
+            foreach (var file in files.Reverse())
             {
-            	var partialFileName = file.FullName.Replace(localDeployDirectoryInfo.FullName, "");
+            	var partialFileName = file.FullName.Replace(localDeployDirectoryInfo.FullName + "\\", "");
                 var blob = container.GetBlobReference(partialFileName);
 
                 try
@@ -63,6 +63,7 @@ namespace Dotjosh.DayZCommander.Deploy
                 }
             }
 			Console.WriteLine("Deployment complete.");
+			Console.ReadLine();
 		}
 	}
 }

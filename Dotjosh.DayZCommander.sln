@@ -5,10 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DayZCommander", "Dotjosh.Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Dotjosh.DayZCommander.Tests\Tests.csproj", "{03E9A78A-A8B8-42E5-B854-F6D619AE84AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "Dotjosh.DayZCommander.Website\Website.csproj", "{E5F109DB-1B74-4FDF-8E00-955C4D4E063F}"
-EndProject
-Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "Website.Azure", "Website.Azure\Website.Azure.ccproj", "{10BFC5DD-2538-47C1-9366-FFE0FB17E516}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,26 +35,6 @@ Global
 		{03E9A78A-A8B8-42E5-B854-F6D619AE84AB}.Release|Mixed Platforms.Build.0 = Release|x86
 		{03E9A78A-A8B8-42E5-B854-F6D619AE84AB}.Release|x86.ActiveCfg = Release|x86
 		{03E9A78A-A8B8-42E5-B854-F6D619AE84AB}.Release|x86.Build.0 = Release|x86
-		{E5F109DB-1B74-4FDF-8E00-955C4D4E063F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E5F109DB-1B74-4FDF-8E00-955C4D4E063F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E5F109DB-1B74-4FDF-8E00-955C4D4E063F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{E5F109DB-1B74-4FDF-8E00-955C4D4E063F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{E5F109DB-1B74-4FDF-8E00-955C4D4E063F}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{E5F109DB-1B74-4FDF-8E00-955C4D4E063F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E5F109DB-1B74-4FDF-8E00-955C4D4E063F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E5F109DB-1B74-4FDF-8E00-955C4D4E063F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{E5F109DB-1B74-4FDF-8E00-955C4D4E063F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{E5F109DB-1B74-4FDF-8E00-955C4D4E063F}.Release|x86.ActiveCfg = Release|Any CPU
-		{10BFC5DD-2538-47C1-9366-FFE0FB17E516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10BFC5DD-2538-47C1-9366-FFE0FB17E516}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10BFC5DD-2538-47C1-9366-FFE0FB17E516}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{10BFC5DD-2538-47C1-9366-FFE0FB17E516}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{10BFC5DD-2538-47C1-9366-FFE0FB17E516}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{10BFC5DD-2538-47C1-9366-FFE0FB17E516}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10BFC5DD-2538-47C1-9366-FFE0FB17E516}.Release|Any CPU.Build.0 = Release|Any CPU
-		{10BFC5DD-2538-47C1-9366-FFE0FB17E516}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{10BFC5DD-2538-47C1-9366-FFE0FB17E516}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{10BFC5DD-2538-47C1-9366-FFE0FB17E516}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

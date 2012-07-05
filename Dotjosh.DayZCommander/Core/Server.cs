@@ -35,7 +35,7 @@ namespace Dotjosh.DayZCommander.Core
 				{
 					return "Server did not respond.";
 				}
-				return GetSettingOrDefault("hostname") ?? "Loading...";
+				return CleanServerName(GetSettingOrDefault("hostname")) ?? "Loading...";
 			}
 		}
 
@@ -209,6 +209,20 @@ namespace Dotjosh.DayZCommander.Core
 				                    	});
 				
 			}
+		}
+
+		private string CleanServerName(string name)
+		{
+			if(string.IsNullOrEmpty(name))
+			{
+				return name;
+			}
+
+			var cleanName = name.Trim();
+
+			cleanName = Regex.Replace(cleanName, @"^DayZ\s*(Zombie){0,1}\s*(RPG){0,1}\s*-\s*", "", RegexOptions.IgnoreCase);
+
+			return cleanName.Trim();
 		}
 	}
 }

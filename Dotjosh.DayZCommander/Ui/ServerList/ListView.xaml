@@ -16,27 +16,51 @@
 					  Foreground="#DDD"
 					  RowBackground="Transparent"
 					  BorderThickness="0"
+				  SelectionMode="Single"
+				  SelectionUnit="FullRow"
 					ColumnHeaderStyle="{StaticResource MetroDataGridHeader}"						  
 					  AutoGenerateColumns="False">
 			<DataGrid.RowStyle>
 				<Style TargetType="{x:Type DataGridRow}">
 					<EventSetter Event="MouseDoubleClick" Handler="RowDoubleClick"/>
 					<EventSetter Event="PreviewMouseLeftButtonDown" Handler="RowLeftButtonDown"/>
+					<Style.Triggers>
+						<Trigger Property="IsSelected"
+                        Value="True">
+							<Setter Property="Foreground"
+                               Value="#9CBFF2" />
+						</Trigger>
+						<Trigger Property="IsMouseOver"
+                           Value="True">
+							<Setter Property="Foreground"
+                               Value="#9CBFF2" />
+						</Trigger>
+					</Style.Triggers>
+					<Style.Resources>
+						<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#3B3B3B" />
+						<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="#3B3B3B" />
+						<SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#9CBFF2" />
+						<SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="#9CBFF2" />
+					</Style.Resources>
 				</Style>
 			</DataGrid.RowStyle>
-			<DataGrid.Resources>
-				<Style TargetType="{x:Type DataGridCell}">
+			<DataGrid.CellStyle>
+				<Style TargetType="DataGridCell">
+					<Setter Property="BorderThickness" 
+							Value="0"/>		
+					<Setter Property="Padding"
+							Value="2 5 8 5" />
 					<Setter Property="Template">
 						<Setter.Value>
 							<ControlTemplate TargetType="{x:Type DataGridCell}">
-								<Border Padding="3 2 8 2">
-									<ContentPresenter />
+								<Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+									<ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
 								</Border>
 							</ControlTemplate>
 						</Setter.Value>
 					</Setter>
 				</Style>
-			</DataGrid.Resources>
+			</DataGrid.CellStyle>
 			<DataGrid.Columns>
 				<DataGridTextColumn Binding="{Binding Name, Mode=OneWay}" 
 											HeaderStyle="{StaticResource MetroDataGridHeader}"
@@ -86,7 +110,7 @@
 											VerticalAlignment="Center"
 											HorizontalAlignment="Right">
 								<TextBlock Text="{Binding CurrentPlayers}" Foreground="{Binding Converter={StaticResource ServerFullnessToColorConverter}}"/>
-								<TextBlock Text="/"/>
+								<TextBlock Text=" / " Foreground="{Binding Converter={StaticResource ServerFullnessToColorConverter}}"/>
 								<TextBlock Text="{Binding MaxPlayers}" Foreground="{Binding Converter={StaticResource ServerFullnessToColorConverter}}"/>
 								<StackPanel.ToolTip>
 									<ToolTip>
@@ -116,11 +140,7 @@
 						<DataTemplate>
 							<TextBlock Text="{Binding Ping, StringFormat={}{0}ms}" 
 											Foreground="{Binding Ping, Converter={StaticResource PingToForegroundConverter}}"
-											FontSize="12" 
-											Padding="0 4 4 0"
-											Width="50" 
 											HorizontalAlignment="Right"
-											Height="20" 
 											VerticalAlignment="Center" 
 											TextAlignment="Right">
 

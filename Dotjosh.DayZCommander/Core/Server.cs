@@ -171,6 +171,34 @@ namespace Dotjosh.DayZCommander.Core
 			get { return GetSettingOrDefault("password").TryInt() > 0; }
 		}
 
+		private Version _arma2Version;
+		public Version Arma2Version
+		{
+			get
+			{
+				if(_arma2Version == null)
+				{
+					var arma2VersionString = GetSettingOrDefault("gamever");
+					Version.TryParse(arma2VersionString, out _arma2Version);
+				}
+				return _arma2Version;
+			}
+		}
+
+		private Version _dayZVersion;
+		public Version DayZVersion
+		{
+			get
+			{
+				if(_dayZVersion == null)
+				{
+					var dayZVersionString = GetDayZVersionString(Name);
+					Version.TryParse(dayZVersionString, out _dayZVersion);
+				}
+				return _dayZVersion;
+			}
+		}
+
 		private string GetSettingOrDefault(string settingName)
 		{
 			if (Settings.ContainsKey(settingName))
@@ -219,6 +247,21 @@ namespace Dotjosh.DayZCommander.Core
 			cleanName = Regex.Replace(cleanName, @"^DayZ\s*(Zombie){0,1}\s*(RPG){0,1}\s*-\s*", "", RegexOptions.IgnoreCase);
 
 			return cleanName.Trim();
+		}
+
+		private string GetDayZVersionString(string name)
+		{
+			if(string.IsNullOrEmpty(name))
+			{
+				return null;
+			}
+
+			var match = Regex.Match(name, @"\d(\.\d){1,3}");
+			if(!match.Success)
+			{
+				return null;
+			}
+			return match.Value;
 		}
 	}
 }

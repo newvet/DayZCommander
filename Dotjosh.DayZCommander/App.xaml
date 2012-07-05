@@ -1,7 +1,9 @@
 ﻿<Application x:Class="Dotjosh.DayZCommander.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:Converters="clr-namespace:Dotjosh.DayZCommander.Ui.Converters" StartupUri="UI\MainWindow.xaml">
+             xmlns:Converters="clr-namespace:Dotjosh.DayZCommander.Ui.Converters"
+             xmlns:shell="clr-namespace:Microsoft.Windows.Shell;assembly=Microsoft.Windows.Shell"
+             StartupUri="UI\MainWindow.xaml">
     <Application.Resources>
 		<Converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
 		<Converters:PingToForegroundConverter x:Key="PingToForegroundConverter" />
@@ -29,6 +31,18 @@
 		<ControlTemplate TargetType="Button" x:Key="MetroButton">
 			<ContentPresenter/>
 		</ControlTemplate>
+
+		<Style x:Key="MainWindowStyle" TargetType="{x:Type Window}">
+			<Setter Property="shell:WindowChrome.WindowChrome">
+				<Setter.Value>
+					<shell:WindowChrome
+                        ResizeBorderThickness="6"
+                        CaptionHeight="5"
+                        CornerRadius="0"
+                        GlassFrameThickness="0,0,0,1"/>
+				</Setter.Value>
+			</Setter>
+		</Style>
 
 
 		<Style x:Key="MetroDataGridHeader"

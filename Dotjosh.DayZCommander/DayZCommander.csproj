@@ -33,7 +33,7 @@
     <MinimumRequiredVersion>1.0.0.21</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>34</ApplicationRevision>
+    <ApplicationRevision>35</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -71,6 +71,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Windows.Shell\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -96,8 +100,10 @@
     <Compile Include="Core\Execute.cs" />
     <Compile Include="Core\ServerDifficulty.cs" />
     <Compile Include="Core\ServerInfo.cs" />
+    <Compile Include="Core\ServersAdded.cs" />
     <Compile Include="Core\ServerSetting.cs" />
     <Compile Include="Core\DayZCommanderUpdater.cs" />
+    <Compile Include="Core\SuperQueue.cs" />
     <Compile Include="Ui\Converters\BooleanToSelectedOptionColorConverter.cs" />
     <Compile Include="Ui\Converters\BooleanToVisibilityHiddenConverter.cs" />
     <Compile Include="Ui\Converters\BooleanToVisibilityCollapsedConverter.cs" />

@@ -5,12 +5,10 @@
         xmlns:Friends="clr-namespace:Dotjosh.DayZCommander.Ui.Friends" Title="MainWindow" 
 		Height="650" 
 		Width="970"
-		AllowsTransparency="True" 
-		WindowStyle="None"
 		WindowStartupLocation="CenterScreen"
-		ResizeMode="CanResizeWithGrip"
 		MouseLeftButtonDown="MainWindow_OnMouseLeftButtonDown"
 		MouseDoubleClick="MainWindow_OnMouseDoubleClick"
+		Style="{StaticResource MainWindowStyle}"
 		>
 	<Border Background="#222222"
 			BorderBrush="#BBBBBB"
@@ -61,6 +59,8 @@
 				</StackPanel>
 				<StackPanel Grid.Column="1"
 							Margin="0 0 45 8"
+							Canvas.ZIndex="1000"
+							HorizontalAlignment="Right"
 							VerticalAlignment="Bottom">
 					<StackPanel Orientation="Horizontal"
 								Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource CountToVisibilityConverter}}">

@@ -114,27 +114,17 @@
 				<DataGridTemplateColumn Width="65" Header="PING" SortMemberPath="Ping" HeaderStyle="{StaticResource MetroDataGridHeaderRight}">
 					<DataGridTemplateColumn.CellTemplate>
 						<DataTemplate>
-							<Grid>
-								<ProgressBar Value="{Binding Ping}" 
-												 Maximum="400" 
-												 Width="55" 
-												 Height="20" 
-													 HorizontalAlignment="Right"
-												 IsIndeterminate="False" 
-												 Foreground="{Binding Ping, Converter={StaticResource PingToForegroundConverter}}" 
-												 Background="#AAA"/>
-								<TextBlock Text="{Binding Ping, StringFormat={}{0}ms}" 
-											   Foreground="#000"  
-											   FontSize="12" 
-											   Padding="0 4 4 0"
-											   Width="50" 
-											   HorizontalAlignment="Right"
-											   Height="20" 
-											   VerticalAlignment="Center" 
-											   TextAlignment="Right">
+							<TextBlock Text="{Binding Ping, StringFormat={}{0}ms}" 
+											Foreground="{Binding Ping, Converter={StaticResource PingToForegroundConverter}}"
+											FontSize="12" 
+											Padding="0 4 4 0"
+											Width="50" 
+											HorizontalAlignment="Right"
+											Height="20" 
+											VerticalAlignment="Center" 
+											TextAlignment="Right">
 
-								</TextBlock>
-							</Grid>
+							</TextBlock>
 						</DataTemplate>
 					</DataGridTemplateColumn.CellTemplate>
 				</DataGridTemplateColumn>

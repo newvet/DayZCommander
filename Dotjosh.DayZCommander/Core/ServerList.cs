@@ -14,6 +14,7 @@ namespace Dotjosh.DayZCommander.Core
 	{
 		private int _processedServersCount;
 		private ObservableCollection<Server> _items;
+		private bool _isUpdating;
 
 		public ServerList()
 		{
@@ -82,38 +83,56 @@ namespace Dotjosh.DayZCommander.Core
 
 		public void UpdateAll()
 		{
+			if(_isUpdating)
+				return;
+
+			_isUpdating = true;
 			ProcessedServersCount = 0;
-			new Thread(UpdateAllSync)
-				.Start();
-		}
 
-		public void UpdateAllSync()
-		{
-			int[] threadCount = {0};
-			for (int index = 0; index < Items.Count; index++)
-			{
-				var server = Items[index];
+			int processed = 0;
 
-//				while(threadCount[0] > 75)
-//				{
-//					Thread.Sleep(500);
-//				}
+			var superQueue = new SuperQueue<Server>(100, server =>
+			                                             	{
+																try
+																{
+			                                             			server.Update();
+																}
+																finally
+																{
+																	processed++;
+																}
+			                                             	});
 
-				if(index % 70 == 0)
-					Thread.Sleep(200);
+			Task.Factory.StartNew(() =>
+			                      	{
 
-				threadCount[0]++;
-				new Thread(() =>
-				           	{
-				           		server.Update();
-				           		Execute.OnUiThread(() =>
-				           		                   	{
-				           		                   		ProcessedServersCount++;
-														App.Events.Publish(new ServerUpdated(server));
-				           		                   	});
-				           		threadCount[0]--;
-				           	}).Start();
-			}
+			                      		for (int index = 0; index < Items.Count; index++)
+			                      		{
+			                      			var server = Items[index];
+			                      			superQueue.EnqueueTask(server);
+			                      		}
+
+			                      		while (processed <= Items.Count)
+			                      		{
+			                      			Execute.OnUiThread(() =>
+			                      			                   	{
+			                      			                   		ProcessedServersCount = processed;
+			                      			                   	});
+			                      			if (processed == Items.Count)
+			                      			{
+			                      				superQueue.Dispose();
+			                      				_isUpdating = false;
+			                      				break;
+			                      			}
+			                      			Thread.Sleep(50);
+			                      		}
+
+			                      		Execute.OnUiThread(() =>
+			                      			                {
+			                      			                   	ProcessedServersCount = processed;
+			                      			                });
+			                      	});
+
 		}
 
 		private static string ExecuteGSList(string arguments)
@@ -139,16 +158,6 @@ namespace Dotjosh.DayZCommander.Core
 			string output = p.StandardOutput.ReadToEnd();
 			p.WaitForExit();
 			return output;
-		}
-	}
-
-	public class ServersAdded
-	{
-		public IEnumerable<Server> Servers { get; set; }
-
-		public ServersAdded(IEnumerable<Server> servers)
-		{
-			Servers = servers;
 		}
 	}
 }

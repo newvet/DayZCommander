@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Data;
 using Caliburn.Micro;
 using Dotjosh.DayZCommander.Core;
@@ -65,11 +66,11 @@ namespace Dotjosh.DayZCommander.Ui.ServerList
 		{
 			if(_lastLeftMouseDown != null && DateTime.Now - _lastLeftMouseDown < TimeSpan.FromMilliseconds(750))
 			{
-				new Thread(() =>
+				Task.Factory.StartNew(() =>
 				{
 					Thread.Sleep(TimeSpan.FromMilliseconds(500));
 					Execute.OnUiThread(() => Handle(message));
-				}).Start();
+				});
 			}
 			else
 			{

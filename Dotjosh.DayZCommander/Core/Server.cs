@@ -31,10 +31,6 @@ namespace Dotjosh.DayZCommander.Core
 		{
 			get
 			{
-				if(LastException != null)
-				{
-					return "Server did not respond.";
-				}
 				return CleanServerName(GetSettingOrDefault("hostname")) ?? "Loading...";
 			}
 		}
@@ -75,7 +71,7 @@ namespace Dotjosh.DayZCommander.Core
 		public SortedDictionary<string, string> Settings
 		{
 			get { return _settings; }
-			private set
+			internal set
 			{
 				_settings = value;
 				Info = new ServerInfo((ServerDifficulty?) Difficulty, Name);
@@ -84,8 +80,8 @@ namespace Dotjosh.DayZCommander.Core
 				PropertyHasChanged("CurrentPlayers");
 				PropertyHasChanged("MaxPlayers");
 				PropertyHasChanged("ServerTime");
+				PropertyHasChanged("HasPassword");
 				PropertyHasChanged("Difficulty");
-				PropertyHasChanged("Passworded");
 			}
 		}
 
@@ -170,7 +166,7 @@ namespace Dotjosh.DayZCommander.Core
 			}
 		}
 
-		public bool Passworded
+		public bool HasPassword
 		{
 			get { return GetSettingOrDefault("password").TryInt() > 0; }
 		}

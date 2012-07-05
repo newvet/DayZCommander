@@ -37,9 +37,6 @@ namespace Dotjosh.DayZCommander.Ui.ServerList
 		{
 			var server = (Server) obj;
 
-			if(server.Ping == 0)
-				return false;
-
 			if(_filter != null)
 				return _filter(server);
 			return true;

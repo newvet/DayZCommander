@@ -71,20 +71,32 @@ namespace Dotjosh.DayZCommander.Core
 		private List<Server> GetAllSync()
 		{
 			ExecuteGSList("-u");
-			return ExecuteGSList("-n arma2oapc -f \"mod LIKE '%@dayz%'\"")
+			return ExecuteGSList("-n arma2oapc -f \"mod LIKE '%@dayz%'\" -X \\hostname")
 				.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries)
-				.Select(line => new Server(
-				                	line.Substring(0, 15).Trim(),
-				                	line.Substring(16).Trim().TryInt()
-				                	)
+				.Select(line =>
+				{
+					var indexOfFirstSpace = line.IndexOf(" ");
+					var fullIpAddressWithPort = line.Substring(0, indexOfFirstSpace).Split(':');
+					var server = new Server(fullIpAddressWithPort[0], fullIpAddressWithPort[1].TryInt());
+
+					server.Settings = new SortedDictionary<string, string>
+					{
+						{ "hostname", line.Substring(indexOfFirstSpace + 11) }
+					};
+
+					return server;
+				}
 				)
 				.ToList();
 		}
 
+		
 		public void UpdateAll()
 		{
 			if(_isUpdating)
 				return;
+
+			object incrementLock = new object();
 
 			_isUpdating = true;
 			ProcessedServersCount = 0;
@@ -102,16 +114,12 @@ namespace Dotjosh.DayZCommander.Core
 						{
 							ProcessedServersCount = processed[0];
 						});
+						Thread.Sleep(50);
 						if(processed[0] == Items.Count)
 						{
 							_isUpdating = false;
-							Execute.OnUiThread(() =>
-							{
-								ProcessedServersCount = Items.Count;
-							});
 							break;
 						}
-						Thread.Sleep(50);
 					}
 				}
 				finally
@@ -138,11 +146,14 @@ namespace Dotjosh.DayZCommander.Core
 						}
 						finally
 						{
-							processed[0]++;
+							lock(incrementLock)
+							{
+								processed[0]++;
+							}
 						}
 					}).Start();
 
-					if(index % 50 == 0)
+					if(index % 70 == 0)
 					{
 						Thread.Sleep(100);
 					}

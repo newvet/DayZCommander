@@ -64,27 +64,41 @@
 							VerticalAlignment="Bottom">
 					<StackPanel Orientation="Horizontal"
 								Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource CountToVisibilityConverter}}">
-						<TextBlock Text="(" Foreground="#CCC"/>
-						<TextBlock Text="{Binding ServerList.ProcessedServersCount}" Foreground="#CCC"/>
-						<TextBlock Text="/" Foreground="#CCC"/>
-						<TextBlock Text="{Binding ServerList.Items.Count}" Foreground="#FFF"/>
-						<TextBlock Text=")" Foreground="#CCC"/>
+						<TextBlock Text="refreshing servers... " Foreground="LightGreen"/>
+						<TextBlock Text="( " Foreground="LightGreen"/>
+						<TextBlock Text="{Binding ServerList.ProcessedServersCount}" Foreground="#FFF"/>
+						<TextBlock Text=" / " Foreground="#FFF"/>
+						<TextBlock Text="{Binding ServerList.Items.Count}" Foreground="LightGreen"/>
+						<TextBlock Text=" )" Foreground="LightGreen"/>
 					</StackPanel>
-					<Button Template="{StaticResource MetroButton}"
-								Click="RefreshAll_Click"
+					<Button Click="RefreshAll_Click"
 								HorizontalAlignment="Right"
 								Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource ZeroToVisibilityConverter}}"
 								Margin="0 0 0 0">
-						<Button.Content>
-							<StackPanel Orientation="Horizontal">
-								<Image Source="..\Assets\Images\refresh.png" 
-									   Height="24"
-									   Width="24"/>
-								<TextBlock Text="refresh servers"
-											   VerticalAlignment="Center"
-											   Foreground="#FFF"/>
-							</StackPanel>
-						</Button.Content>
+						<Button.Style>
+							<Style TargetType="Button">
+								<Setter Property="Foreground" Value="#CCC"/>
+								<Setter Property="Cursor" Value="Hand"/>
+								<Style.Triggers>
+									<Trigger Property="IsMouseOver" Value="True">
+										<Setter Property="Foreground" Value="White" />
+									</Trigger>
+								</Style.Triggers>
+							</Style>
+						</Button.Style>
+						<Button.Template>
+							<ControlTemplate>
+								<StackPanel Orientation="Horizontal">
+									<Path Data="F1M2278.07,1272.94C2265.47,1272.94,2254.91,1281.77,2252.19,1293.55L2241.99,1293.43 2255.8,1315.74 2270.14,1293.77 2260.66,1293.66C2263.13,1286.36 2269.96,1281.07 2278.07,1281.07 2288.24,1281.07 2296.52,1289.35 2296.52,1299.52 2296.52,1309.7 2288.24,1317.98 2278.07,1317.98 2274.31,1317.98 2270.81,1316.84 2267.89,1314.9L2263.45,1321.7C2267.65,1324.48 2272.67,1326.11 2278.07,1326.11 2292.73,1326.11 2304.65,1314.18 2304.65,1299.52 2304.65,1284.87 2292.73,1272.94 2278.07,1272.94" 
+										  Stretch="Uniform" 
+										  Fill="{TemplateBinding Foreground}" 
+										  Width="16" Height="16" Margin="0,0,4,0" />
+									<TextBlock Text="refresh servers"
+												   VerticalAlignment="Center"
+												   Foreground="{TemplateBinding Foreground}"/>
+								</StackPanel>
+							</ControlTemplate>
+						</Button.Template>
 					</Button>
 
 				</StackPanel>	

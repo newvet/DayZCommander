@@ -27,8 +27,8 @@ namespace Dotjosh.DayZCommander.Core
 			var ipEndPoint = new IPEndPoint(IPAddress.Any, 0);
 			using(var client = new UdpClient(ipEndPoint))
 			{
-				client.Client.ReceiveTimeout = 1000 * 3;
-				client.Client.SendTimeout = 1000 * 3;
+				client.Client.ReceiveTimeout = 1000 * 6;
+				client.Client.SendTimeout = 1000 * 6;
 
 				s.Start();
 				client.Connect(_ipAddress, _port);

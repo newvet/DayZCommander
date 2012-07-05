@@ -17,7 +17,7 @@ namespace Dotjosh.DayZCommander.Ui.ServerList
 		IHandle<ServerUpdated>
 	{
 		private ListCollectionView _servers;
-		private ObservableCollection<Server> _observableServers = new ObservableCollection<Server>();
+		private readonly ObservableCollection<Server> _rawServers = new ObservableCollection<Server>();
 		private DateTime? _lastLeftMouseDown;
 		private Func<Server, bool> _filter;
 
@@ -29,7 +29,7 @@ namespace Dotjosh.DayZCommander.Ui.ServerList
 
 		private void ReplaceServers()
 		{
-			Servers = (ListCollectionView) CollectionViewSource.GetDefaultView(_observableServers);
+			Servers = (ListCollectionView) CollectionViewSource.GetDefaultView(_rawServers);
 			Servers.Filter = Filter;
 		}
 
@@ -40,6 +40,11 @@ namespace Dotjosh.DayZCommander.Ui.ServerList
 			if(_filter != null)
 				return _filter(server);
 			return true;
+		}
+
+		public ObservableCollection<Server> RawServers
+		{
+			get { return _rawServers; }
 		}
 
 		public ListCollectionView Servers
@@ -70,8 +75,8 @@ namespace Dotjosh.DayZCommander.Ui.ServerList
 			}
 			else
 			{
-				_observableServers.Remove(message.Server);
-				_observableServers.Add(message.Server);
+				_rawServers.Remove(message.Server);
+				_rawServers.Add(message.Server);
 			}
 		}
 
@@ -82,36 +87,6 @@ namespace Dotjosh.DayZCommander.Ui.ServerList
 
 		public void Handle(ServersAdded message)
 		{
-		}
-
-
-		public void JoinServer(Server server)
-		{
-			var arma2Path = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Bohemia Interactive Studio\ArmA 2", "main", "");
-			var arma2OAPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Bohemia Interactive Studio\ArmA 2 OA", "main", "");
-			var arma2OaBetaExePath = Path.Combine(arma2OAPath, @"Expansion\beta\arma2oa.exe");
-
-			if(string.IsNullOrWhiteSpace(arma2Path))
-			{
-				arma2Path = Path.Combine(new DirectoryInfo(arma2OAPath).Parent.FullName, "ArmA 2");
-			}
-
-			var arguments = @"";
-			arguments += " -noSplash -noFilePatching";
-			arguments += " -connect=" + server.IpAddress;
-			arguments += " -port=" + server.Port;
-			arguments += string.Format(" \"-mod={0};expansion;expansion\\beta;expansion\\beta\\expansion;@DayZ\"", arma2Path);
-			var p = new Process
-			{
-				StartInfo =
-					{
-						FileName = arma2OaBetaExePath,
-						Arguments = arguments,
-						WorkingDirectory = arma2OAPath,
-						UseShellExecute = true,
-					}
-			};
-			p.Start();			
 		}
 	}
 }

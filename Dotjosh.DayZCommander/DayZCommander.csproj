@@ -99,6 +99,7 @@
     </ApplicationDefinition>
     <Compile Include="Core\Execute.cs" />
     <Compile Include="Core\GameLauncher.cs" />
+    <Compile Include="Core\LocalMachineInfo.cs" />
     <Compile Include="Core\ServerDifficulty.cs" />
     <Compile Include="Core\ServerInfo.cs" />
     <Compile Include="Core\ServersAdded.cs" />

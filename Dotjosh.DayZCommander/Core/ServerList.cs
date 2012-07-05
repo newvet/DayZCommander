@@ -89,50 +89,65 @@ namespace Dotjosh.DayZCommander.Core
 			_isUpdating = true;
 			ProcessedServersCount = 0;
 
-			int processed = 0;
-
-			var superQueue = new SuperQueue<Server>(100, server =>
-			                                             	{
-																try
-																{
-			                                             			server.Update();
-																}
-																finally
-																{
-																	processed++;
-																}
-			                                             	});
+			//In an array to prevent modified closure access
+			int[] processed = {0};
 
 			Task.Factory.StartNew(() =>
-			                      	{
+			{
+				try
+				{
+					while(processed[0] <= Items.Count)
+					{
+						Execute.OnUiThread(() =>
+						{
+							ProcessedServersCount = processed[0];
+						});
+						if(processed[0] == Items.Count)
+						{
+							_isUpdating = false;
+							Execute.OnUiThread(() =>
+							{
+								ProcessedServersCount = Items.Count;
+							});
+							break;
+						}
+						Thread.Sleep(50);
+					}
+				}
+				finally
+				{
+					Execute.OnUiThread(() =>
+					{
+						ProcessedServersCount = Items.Count;
+					});
+					_isUpdating = false;
+				}
+			});
 
-			                      		for (int index = 0; index < Items.Count; index++)
-			                      		{
-			                      			var server = Items[index];
-			                      			superQueue.EnqueueTask(server);
-			                      		}
 
-			                      		while (processed <= Items.Count)
-			                      		{
-			                      			Execute.OnUiThread(() =>
-			                      			                   	{
-			                      			                   		ProcessedServersCount = processed;
-			                      			                   	});
-			                      			if (processed == Items.Count)
-			                      			{
-			                      				superQueue.Dispose();
-			                      				_isUpdating = false;
-			                      				break;
-			                      			}
-			                      			Thread.Sleep(50);
-			                      		}
+			Task.Factory.StartNew(() =>
+			{
+				for(var index = 0; index < Items.Count; index++)
+				{
+					var server = Items[index];
+					new Thread(() =>
+					{
+						try
+						{
+							server.Update();
+						}
+						finally
+						{
+							processed[0]++;
+						}
+					}).Start();
 
-			                      		Execute.OnUiThread(() =>
-			                      			                {
-			                      			                   	ProcessedServersCount = processed;
-			                      			                });
-			                      	});
-
+					if(index % 50 == 0)
+					{
+						Thread.Sleep(100);
+					}
+				}
+			});
 		}
 
 		private static string ExecuteGSList(string arguments)

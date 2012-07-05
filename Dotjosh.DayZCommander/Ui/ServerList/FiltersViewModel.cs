@@ -5,8 +5,7 @@ using Dotjosh.DayZCommander.Core;
 
 namespace Dotjosh.DayZCommander.Ui.ServerList
 {
-	public class FiltersViewModel : ViewModelBase,
-		IHandle<PublishFiltersRequest>
+	public class FiltersViewModel : ViewModelBase
 	{
 		private long ?_maxPing;
 		private string _name;
@@ -275,18 +274,5 @@ namespace Dotjosh.DayZCommander.Ui.ServerList
 			             	};
 			App.Events.Publish(new FilterUpdated(filter));
 		}
-
-		#region Implementation of IHandle<PublishFiltersRequest>
-
-		public void Handle(PublishFiltersRequest message)
-		{
-			PublishFilter();			
-		}
-
-		#endregion
-	}
-
-	public class PublishFiltersRequest
-	{
 	}
 }

@@ -169,6 +169,11 @@ namespace Dotjosh.DayZCommander.Core
 			}
 		}
 
+		public bool Passworded
+		{
+			get { return GetSettingOrDefault("password").TryInt() > 0; }
+		}
+
 		private string GetSettingOrDefault(string settingName)
 		{
 			if (Settings.ContainsKey(settingName))
@@ -205,6 +210,4 @@ namespace Dotjosh.DayZCommander.Core
 			}
 		}
 	}
-
-	
 }

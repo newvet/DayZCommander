@@ -85,6 +85,7 @@ namespace Dotjosh.DayZCommander.Core
 				PropertyHasChanged("MaxPlayers");
 				PropertyHasChanged("ServerTime");
 				PropertyHasChanged("Difficulty");
+				PropertyHasChanged("Passworded");
 			}
 		}
 

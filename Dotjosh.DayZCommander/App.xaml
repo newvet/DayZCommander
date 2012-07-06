@@ -59,51 +59,102 @@
 		<Style x:Key="MetroDataGridHeader"
 					  TargetType="{x:Type DataGridColumnHeader}">
 			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Foreground" Value="#CCC"/>
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
 
 						<TextBlock Text="{TemplateBinding ContentControl.Content}"
-								   Foreground="#EEE" 
+								   Foreground="{TemplateBinding Foreground}" 
 								   FontWeight="Bold"
-								   Margin="5 3 4 3"/>
+								   Margin="2 3 4 3"/>
 					</ControlTemplate>
 				</Setter.Value>
 			</Setter>
+			<Style.Triggers>
+				<Trigger Property="SortDirection" Value="Ascending">
+					<Setter Property="Foreground" Value="#5A97F2" />
+				</Trigger>
+				<Trigger Property="SortDirection" Value="Descending">
+					<Setter Property="Foreground" Value="#5A97F2" />
+				</Trigger>
+				<MultiTrigger>
+					<MultiTrigger.Conditions>
+						<Condition Property="SortDirection" Value="{x:Null}" />
+						<Condition Property="IsMouseOver" Value="true" />
+					</MultiTrigger.Conditions>
+					<Setter Property="Foreground" Value="#FFF" />
+				</MultiTrigger>
+			</Style.Triggers>
 		</Style>
 		
-		<Style x:Key="MetroDataGridHeaderRight"
-			   BasedOn="{StaticResource MetroDataGridHeader}"
-					  TargetType="{x:Type DataGridColumnHeader}">
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
-
-						<TextBlock Text="{TemplateBinding ContentControl.Content}"
-								   Foreground="#EEE" 
-								   FontWeight="Bold"
-								   TextAlignment="Right"
-								   Margin="0 3 8 3"/>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-
+		
 		<Style x:Key="MetroDataGridHeaderCenter"
-			   BasedOn="{StaticResource MetroDataGridHeader}"
 					  TargetType="{x:Type DataGridColumnHeader}">
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Foreground" Value="#CCC"/>
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
 
 						<TextBlock Text="{TemplateBinding ContentControl.Content}"
-								   Foreground="#EEE" 
-								   FontWeight="Bold"
+								   Foreground="{TemplateBinding Foreground}" 
 								   TextAlignment="Center"
+								   FontWeight="Bold"
 								   Margin="0 3 0 3"/>
 					</ControlTemplate>
 				</Setter.Value>
 			</Setter>
+			<Style.Triggers>
+				<Trigger Property="SortDirection" Value="Ascending">
+					<Setter Property="Foreground" Value="#5A97F2" />
+				</Trigger>
+				<Trigger Property="SortDirection" Value="Descending">
+					<Setter Property="Foreground" Value="#5A97F2" />
+				</Trigger>
+				<MultiTrigger>
+					<MultiTrigger.Conditions>
+						<Condition Property="SortDirection" Value="{x:Null}" />
+						<Condition Property="IsMouseOver" Value="true" />
+					</MultiTrigger.Conditions>
+					<Setter Property="Foreground" Value="#FFF" />
+				</MultiTrigger>
+			</Style.Triggers>
 		</Style>
+				
+		
+		<Style x:Key="MetroDataGridHeaderRight"
+					  TargetType="{x:Type DataGridColumnHeader}">
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Foreground" Value="#CCC"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+
+						<TextBlock Text="{TemplateBinding ContentControl.Content}"
+								   Foreground="{TemplateBinding Foreground}" 
+								   TextAlignment="Right"
+								   FontWeight="Bold"
+								   Margin="0 3 8 3"/>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			<Style.Triggers>
+				<MultiTrigger>
+					<MultiTrigger.Conditions>
+						<Condition Property="SortDirection" Value="{x:Null}" />
+						<Condition Property="IsMouseOver" Value="true" />
+					</MultiTrigger.Conditions>
+					<Setter Property="Foreground" Value="#FFF" />
+				</MultiTrigger>
+				<Trigger Property="SortDirection" Value="Ascending">
+					<Setter Property="Foreground" Value="#5A97F2" />
+				</Trigger>
+				<Trigger Property="SortDirection" Value="Descending">
+					<Setter Property="Foreground" Value="#5A97F2" />
+				</Trigger>		
+			</Style.Triggers>
+		</Style>
+		
 	</Application.Resources>
 </Application>

@@ -30,7 +30,25 @@
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
 						<StackPanel Orientation="Horizontal" Margin="0 0 0 6">
+
+							<Button
+								Click="DeleteFriend"
+								Margin="-30 0 0 0"
+								Style="{StaticResource MetroTextButtonStyle}"
+							>
+								<Button.Template>
+									<ControlTemplate>
+										<Path Data="F1M608.038,178.012L595.565,165.539 576.036,185.068 556.509,165.54 544.038,178.012 563.565,197.539 544.038,217.066 556.512,229.538 576.038,210.012 595.565,229.539 608.036,217.068 588.509,197.54 608.038,178.012z" 
+											  Stretch="Uniform" 
+											  Fill="{TemplateBinding Foreground}" 
+											  Width="10" 
+											  Height="10" 
+											  Margin="0,4,0,0" />
+									</ControlTemplate>
+								</Button.Template>
+							</Button>							
 							<StackPanel Orientation="Horizontal"
+										Margin="0 0 0 0"
 										Width="170">
 								<TextBlock
 									FontSize="14"
@@ -43,22 +61,6 @@
 									Foreground="#AAA"
 								   Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityHiddenConverter}}"/>
 							</StackPanel>
-							<Button
-								Click="DeleteFriend"
-								Margin="5 0 0 0"
-								Style="{StaticResource MetroTextButtonStyle}"
-							>
-								<Button.Template>
-									<ControlTemplate>
-										<Path Data="F1M608.038,178.012L595.565,165.539 576.036,185.068 556.509,165.54 544.038,178.012 563.565,197.539 544.038,217.066 556.512,229.538 576.038,210.012 595.565,229.539 608.036,217.068 588.509,197.54 608.038,178.012z" 
-											  Stretch="Uniform" 
-											  Fill="#CCC" 
-											  Width="10" 
-											  Height="10" 
-											  Margin="0,4,0,0" />
-									</ControlTemplate>
-								</Button.Template>
-							</Button>
 						</StackPanel>
 
 					</DataTemplate>

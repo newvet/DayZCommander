@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
@@ -30,7 +31,9 @@ namespace Dotjosh.DayZCommander.Ui.ServerList
 		private void ReplaceServers()
 		{
 			Servers = (ListCollectionView) CollectionViewSource.GetDefaultView(_rawServers);
+			Servers.SortDescriptions.Add(new SortDescription("Ping", ListSortDirection.Ascending));
 			Servers.Filter = Filter;
+			Servers.Refresh();
 		}
 
 		private bool Filter(object obj)

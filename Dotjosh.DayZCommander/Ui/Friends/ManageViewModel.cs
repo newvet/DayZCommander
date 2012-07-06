@@ -138,6 +138,7 @@ namespace Dotjosh.DayZCommander.Ui.Friends
 				App.Events.Publish(new FriendChanged(friend, player, false));
 			}
 			Friends.Remove(friend);
+			App.Events.Publish(new RepublishFriendsRequest());
 			SaveFriends();
 		}
 	}

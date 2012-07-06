@@ -65,7 +65,7 @@
 					<StackPanel Orientation="Horizontal" 
 								Margin="0 0 20 0">
 						<TextBlock Text="Arma2 Version: " Foreground="#CCC"/>
-						<TextBlock Text="{Binding Source={x:Static Member=Core:LocalMachineInfo.Arma2Version}}" Foreground="#CCC"/>
+						<TextBlock Text="{Binding Source={x:Static Member=Core:LocalMachineInfo.Arma2OABetaVersion}}" Foreground="#CCC"/>
 					</StackPanel>
 
 					<StackPanel Orientation="Horizontal" 

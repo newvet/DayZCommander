@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Text.RegularExpressions;
 using Microsoft.Win32;
+using NLog;
 
+// ReSharper disable InconsistentNaming
 namespace Dotjosh.DayZCommander.Core
 {
 	public static class LocalMachineInfo
 	{
+		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
 		static LocalMachineInfo()
 		{
 			try
@@ -22,8 +27,10 @@ namespace Dotjosh.DayZCommander.Core
 				SetArma2OABetaVersion();
 				SetDayZVersion();
 			}
-			catch(Exception ex)
+			catch//(Exception e)
 			{
+				//Disabled for now
+				//_logger.ErrorException("Unable to retrieve Local Machine Info.", e);
 			}
 		}
 
@@ -31,6 +38,7 @@ namespace Dotjosh.DayZCommander.Core
 		public static string Arma2OAPath { get; private set; }
 		public static string Arma2OABetaExe { get; private set; }
 		public static Version Arma2OABetaVersion { get; private set; }
+		public static string DayZPath { get; private set; }
 		public static Version DayZVersion { get; private set; }
 
 		public static void Touch()
@@ -85,6 +93,7 @@ namespace Dotjosh.DayZCommander.Core
 			}
 
 			Arma2OABetaExe = Path.Combine(Arma2OAPath, @"Expansion\beta\arma2oa.exe");
+			DayZPath = Path.Combine(Arma2OAPath, @"@DayZ");
 		}
 
 		private static void SetArma2OABetaVersion()
@@ -99,6 +108,31 @@ namespace Dotjosh.DayZCommander.Core
 
 		private static void SetDayZVersion()
 		{
+			var changeLogPath = Path.Combine(DayZPath, "dayz_changelog.txt");
+			if(!File.Exists(changeLogPath))
+			{
+				return;
+			}
+			var changeLogLines = File.ReadAllLines(DayZPath);
+			foreach(var changeLogLine in changeLogLines)
+			{
+				if(!changeLogLine.Contains("* dayz_code"))
+				{
+					continue;
+				}
+
+				var match = Regex.Match(changeLogLine, @"\d(\.\d){1,3}");
+				if(!match.Success)
+				{
+					continue;
+				}
+				Version version;
+				if(Version.TryParse(match.Value, out version))
+				{
+					DayZVersion = version;
+					return;
+				}
+			}
 		}
 	}
 }

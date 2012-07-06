@@ -13,6 +13,7 @@ namespace Dotjosh.DayZCommander.Core
 	public class ServerList : BindableBase
 	{
 		private int _processedServersCount;
+		private bool _downloadingServerList;
 		private ObservableCollection<Server> _items;
 		private bool _isUpdating;
 
@@ -47,6 +48,16 @@ namespace Dotjosh.DayZCommander.Core
 			}
 		}
 
+		public bool DownloadingServerList
+		{
+			get { return _downloadingServerList; }
+			set
+			{
+				_downloadingServerList = value;
+				PropertyHasChanged("DownloadingServerList");
+			}
+		}
+
 		public void GetAndUpdateAll()
 		{
 			GetAll(
@@ -56,16 +67,18 @@ namespace Dotjosh.DayZCommander.Core
 
 		public void GetAll(Action uiThreadOnComplete)
 		{
-			Task.Factory.StartNew(() =>
+			DownloadingServerList = true;
+			new Thread(() =>
 			                    {
 			                        var servers = GetAllSync();
 									Execute.OnUiThread(() =>
 														{
 															Items = new ObservableCollection<Server>(servers);
+															DownloadingServerList = false;
 															uiThreadOnComplete();
 														});
 
-			                    });
+			                    }).Start();
 		}
 
 		private List<Server> GetAllSync()

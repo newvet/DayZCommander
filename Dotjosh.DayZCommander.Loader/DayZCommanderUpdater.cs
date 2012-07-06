@@ -1,25 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Deployment.Application;
-using NLog;
 
-namespace Dotjosh.DayZCommander.Core
+namespace Dotjosh.DayZCommander.Loader
 {
-	public class DayZCommanderUpdater : BindableBase
+	public class DayZCommanderUpdater
 	{
-		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
-		private bool _restartToApplyUpdate;
-
-		public bool RestartToApplyUpdate
-		{
-			get { return _restartToApplyUpdate; }
-			set
-			{
-				_restartToApplyUpdate = value;
-				PropertyHasChanged("RestartToApplyUpdate");
-			}
-		}
-
 		public void StartCheckingForUpdates()
 		{
 			HandleExceptionsAsWarnings(() =>
@@ -61,7 +47,7 @@ namespace Dotjosh.DayZCommander.Core
 
 		private void UpdateCompleted(object sender, AsyncCompletedEventArgs e)
 		{
-			RestartToApplyUpdate = true;
+			//RestartToApplyUpdate = true;
 		}
 
 		private void HandleExceptionsAsWarnings(Action action)
@@ -72,7 +58,7 @@ namespace Dotjosh.DayZCommander.Core
 			}
 			catch(Exception ex)
 			{
-				_logger.Warn(ex);
+				//_logger.Warn(ex);
 			}
 		}
 	}

@@ -22,12 +22,23 @@ namespace Dotjosh.DayZCommander.Ui
 			{
 				UserSettings.Current.WindowSettings.Apply(this);
 			}
+			Loaded += (sender, args) =>
+			{
+				Activate();
+			};
 			Closing += (sender, args) =>
 			{
 				UserSettings.Current.WindowSettings = WindowSettings.Create(this);
 				UserSettings.Current.Save();
 			};
+
+			if(Application.Current.Properties.Contains("CurrentVersion"))
+			{
+				CurrentVersion = (string)Application.Current.Properties["CurrentVersion"];
+			}
 		}
+
+		public string CurrentVersion { get; set; }
 
 		private MainWindowViewModel ViewModel
 		{

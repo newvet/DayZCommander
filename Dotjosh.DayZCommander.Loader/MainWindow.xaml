@@ -1,0 +1,25 @@
+﻿<Window x:Class="Dotjosh.DayZCommander.Loader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		WindowState="Normal"
+		WindowStartupLocation="CenterScreen"
+		Background="#333"
+		AllowsTransparency="true"
+		BorderThickness="1"
+		WindowStyle="None"
+		 ShowInTaskbar="False"
+		BorderBrush="#EEE"
+        Title="MainWindow" Height="120" Width="342">
+    <Grid Height="58">
+		<StackPanel VerticalAlignment="Center">
+			<TextBlock Text="DayZ Commander"
+					   HorizontalAlignment="Center"
+						Foreground="#EEEEEE"
+						FontSize="28"/>
+					   
+			<TextBlock Text="Loading..." 
+					   HorizontalAlignment="Center"
+					   Foreground="lightgreen"/>
+		</StackPanel>
+    </Grid>
+</Window>

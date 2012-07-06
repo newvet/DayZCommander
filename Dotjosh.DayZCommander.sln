@@ -5,6 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DayZCommander", "Dotjosh.Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Dotjosh.DayZCommander.Tests\Tests.csproj", "{03E9A78A-A8B8-42E5-B854-F6D619AE84AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loader", "Dotjosh.DayZCommander.Loader\Loader.csproj", "{D4C9AD15-3C57-4AD9-ACC3-730F112A7D33}"
+	ProjectSection(ProjectDependencies) = postProject
+		{36618D6C-4E4A-49D9-AF1C-120D47D84CB9} = {36618D6C-4E4A-49D9-AF1C-120D47D84CB9}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +40,16 @@ Global
 		{03E9A78A-A8B8-42E5-B854-F6D619AE84AB}.Release|Mixed Platforms.Build.0 = Release|x86
 		{03E9A78A-A8B8-42E5-B854-F6D619AE84AB}.Release|x86.ActiveCfg = Release|x86
 		{03E9A78A-A8B8-42E5-B854-F6D619AE84AB}.Release|x86.Build.0 = Release|x86
+		{D4C9AD15-3C57-4AD9-ACC3-730F112A7D33}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{D4C9AD15-3C57-4AD9-ACC3-730F112A7D33}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{D4C9AD15-3C57-4AD9-ACC3-730F112A7D33}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{D4C9AD15-3C57-4AD9-ACC3-730F112A7D33}.Debug|x86.ActiveCfg = Debug|x86
+		{D4C9AD15-3C57-4AD9-ACC3-730F112A7D33}.Debug|x86.Build.0 = Debug|x86
+		{D4C9AD15-3C57-4AD9-ACC3-730F112A7D33}.Release|Any CPU.ActiveCfg = Release|x86
+		{D4C9AD15-3C57-4AD9-ACC3-730F112A7D33}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{D4C9AD15-3C57-4AD9-ACC3-730F112A7D33}.Release|Mixed Platforms.Build.0 = Release|x86
+		{D4C9AD15-3C57-4AD9-ACC3-730F112A7D33}.Release|x86.ActiveCfg = Release|x86
+		{D4C9AD15-3C57-4AD9-ACC3-730F112A7D33}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

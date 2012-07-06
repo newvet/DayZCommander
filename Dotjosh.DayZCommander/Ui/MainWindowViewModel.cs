@@ -16,17 +16,12 @@ namespace Dotjosh.DayZCommander.Ui
 	public class MainWindowViewModel : ViewModelBase, 
 		IHandle<RepublishFriendsRequest>
 	{
-		private DayZCommanderUpdater _updater;
 		private Core.ServerList _serverList;
 		private ViewModelBase _currentTab;
 		private ObservableCollection<ViewModelBase> _tabs;
 
 		public MainWindowViewModel()
 		{
-			Updater = new DayZCommanderUpdater();
-			Updater.StartCheckingForUpdates();
-
-			
 			Tabs = new ObservableCollection<ViewModelBase>(new ViewModelBase[]
 			                                               	{
 			                                               		ServerListViewModel = new ServerListViewModel(),
@@ -36,16 +31,8 @@ namespace Dotjosh.DayZCommander.Ui
 
 			ServerList = new Core.ServerList();
 			ServerList.GetAndUpdateAll();
-		}
 
-		public DayZCommanderUpdater Updater
-		{
-			get { return _updater; }
-			set
-			{
-				_updater = value;
-				PropertyHasChanged("Updater");
-			}
+			CurrentVersion = App.CurrentVersion;
 		}
 
 		public Core.ServerList ServerList
@@ -58,6 +45,9 @@ namespace Dotjosh.DayZCommander.Ui
 			}
 		}
 
+
+		public static string CurrentVersion { get; private set; }
+
 		public bool IsServerListSelected
 		{
 			get { return CurrentTab == ServerListViewModel; }
@@ -68,25 +58,6 @@ namespace Dotjosh.DayZCommander.Ui
 			get { return CurrentTab == FriendsViewModel; }
 		}
 		public FriendsViewModel FriendsViewModel { get; set; }
-
-		public string CurrentVersion
-		{
-			get
-			{
-				var xmlDoc = new XmlDocument();
-				var asmCurrent = Assembly.GetExecutingAssembly();
-				string executePath = new Uri(asmCurrent.GetName().CodeBase).LocalPath;
-
-				xmlDoc.Load(executePath + ".manifest");
-				string retval = string.Empty;
-				if (xmlDoc.HasChildNodes)
-				{
-					retval = xmlDoc.ChildNodes[1].ChildNodes[0].Attributes.GetNamedItem("version").Value;
-				}
-				return new Version(retval).ToString();
-			
-			}
-		}
 
 		public ViewModelBase CurrentTab
 		{

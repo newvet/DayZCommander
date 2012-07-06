@@ -24,7 +24,7 @@
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>true</UpdateRequired>
+    <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://files.dayzcommander.com/releases/</InstallUrl>
     <SupportUrl>http://www.dayzcommander.com</SupportUrl>
@@ -65,13 +65,19 @@
     <ManifestKeyFile>Dotjosh.DayZCommander_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Assets\Images\Run.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -112,7 +118,6 @@
     <Compile Include="Core\ServerInfo.cs" />
     <Compile Include="Core\ServersAdded.cs" />
     <Compile Include="Core\ServerSetting.cs" />
-    <Compile Include="Core\DayZCommanderUpdater.cs" />
     <Compile Include="Core\SuperQueue.cs" />
     <Compile Include="Core\UserSettings.cs" />
     <Compile Include="Core\WindowSettings.cs" />
@@ -224,6 +229,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="app.manifest" />
     <None Include="Dotjosh.DayZCommander_TemporaryKey.pfx" />
     <None Include="GSList\gslist">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

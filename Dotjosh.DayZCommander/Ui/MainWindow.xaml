@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ServerList="clr-namespace:Dotjosh.DayZCommander.Ui.ServerList"
         xmlns:Friends="clr-namespace:Dotjosh.DayZCommander.Ui.Friends"
-        xmlns:Core="clr-namespace:Dotjosh.DayZCommander.Core" Title="MainWindow" 
+        xmlns:Core="clr-namespace:Dotjosh.DayZCommander.Core" xmlns:DayZCommander="clr-namespace:Dotjosh.DayZCommander"
+        Title="MainWindow" 
 		Height="650" 
 		Width="970"
 		MouseLeftButtonDown="MainWindow_OnMouseLeftButtonDown"
@@ -36,7 +37,7 @@
 				<StackPanel>
 					<StackPanel Orientation="Horizontal"
 					           Margin="30 4 0 -8">
-						<TextBlock Text="{Binding CurrentVersion, FallbackValue=Unknown}"
+						<TextBlock Text="{Binding CurrentVersion}"
 					           FontSize="10"
 					           Width="245"
 					           TextAlignment="Right"
@@ -45,7 +46,7 @@
 						<Path Data="F1M761.907,555.626L761.907,573.258 741.571,552.926 741.571,592.889 728.63,592.889 728.63,553.067 708.4,573.295 708.432,555.626 735.169,528.889 761.907,555.626z" Stretch="Uniform" 
 							  Fill="LightGreen" Width="12" Height="12" Margin="5,0,0,0"
 							  ToolTipService.ToolTip="A new version of DayZ Commander will be automatically applied the next time you run this program."
-							  Visibility="{Binding Updater.RestartToApplyUpdate, Converter={StaticResource BooleanToVisibilityHiddenConverter}}"/>
+							  Visibility="Hidden"/>
 					</StackPanel>
 					<TextBlock Text="DayZ Commander"
 						   Foreground="#EEEEEE"
@@ -69,41 +70,50 @@
 					</StackPanel>
 
 					<StackPanel Orientation="Horizontal" 
-								Margin="0 0 20 0">
+								Margin="0 0 40 0">
 						<TextBlock Text="DayZ Version: " Foreground="#CCC"/>
 						<TextBlock Text="{Binding Source={x:Static Member=Core:LocalMachineInfo.DayZVersion}}" Foreground="#CCC"/>
 					</StackPanel>
 
-					<Grid Width="190">
-						<StackPanel Orientation="Horizontal"
+					<Grid Width="260">
+
+						<Grid Visibility="{Binding ServerList.DownloadingServerList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}, ConverterParameter=true}">
+							<StackPanel Orientation="Horizontal"
 								HorizontalAlignment="Right"
 								Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource CountToVisibilityConverter}}">
-							<TextBlock Text="refreshing servers... " Foreground="LightGreen"/>
-							<TextBlock Text="( " Foreground="LightGreen"/>
-							<TextBlock Text="{Binding ServerList.ProcessedServersCount}" Foreground="#FFF"/>
-							<TextBlock Text=" / " Foreground="#FFF"/>
-							<TextBlock Text="{Binding ServerList.Items.Count}" Foreground="LightGreen"/>
-							<TextBlock Text=" )" Foreground="LightGreen"/>
-						</StackPanel>
-						<Button Click="RefreshAll_Click"
+								<TextBlock Text="refreshing servers... " Foreground="LightGreen"  FontSize="16"/>
+								<TextBlock Text="( " Foreground="LightGreen" FontSize="16"/>
+								<TextBlock Text="{Binding ServerList.ProcessedServersCount}" Foreground="#FFF" FontSize="16"/>
+								<TextBlock Text=" / " Foreground="#FFF" FontSize="16"/>
+								<TextBlock Text="{Binding ServerList.Items.Count}" Foreground="LightGreen" FontSize="16"/>
+								<TextBlock Text=" )" Foreground="LightGreen" FontSize="16"/>
+							</StackPanel>
+							<Button Click="RefreshAll_Click"
 								HorizontalAlignment="Right"
 								Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource ZeroToVisibilityConverter}}"
 								Margin="0 0 0 0"
 								Style="{StaticResource MetroTextButtonStyle}">
-							<Button.Template>
-								<ControlTemplate>
-									<StackPanel Orientation="Horizontal">
-										<Path Data="F1M2278.07,1272.94C2265.47,1272.94,2254.91,1281.77,2252.19,1293.55L2241.99,1293.43 2255.8,1315.74 2270.14,1293.77 2260.66,1293.66C2263.13,1286.36 2269.96,1281.07 2278.07,1281.07 2288.24,1281.07 2296.52,1289.35 2296.52,1299.52 2296.52,1309.7 2288.24,1317.98 2278.07,1317.98 2274.31,1317.98 2270.81,1316.84 2267.89,1314.9L2263.45,1321.7C2267.65,1324.48 2272.67,1326.11 2278.07,1326.11 2292.73,1326.11 2304.65,1314.18 2304.65,1299.52 2304.65,1284.87 2292.73,1272.94 2278.07,1272.94" 
+								<Button.Template>
+									<ControlTemplate>
+										<StackPanel Orientation="Horizontal">
+											<Path Data="F1M2278.07,1272.94C2265.47,1272.94,2254.91,1281.77,2252.19,1293.55L2241.99,1293.43 2255.8,1315.74 2270.14,1293.77 2260.66,1293.66C2263.13,1286.36 2269.96,1281.07 2278.07,1281.07 2288.24,1281.07 2296.52,1289.35 2296.52,1299.52 2296.52,1309.7 2288.24,1317.98 2278.07,1317.98 2274.31,1317.98 2270.81,1316.84 2267.89,1314.9L2263.45,1321.7C2267.65,1324.48 2272.67,1326.11 2278.07,1326.11 2292.73,1326.11 2304.65,1314.18 2304.65,1299.52 2304.65,1284.87 2292.73,1272.94 2278.07,1272.94" 
 										  Stretch="Uniform" 
 										  Fill="{TemplateBinding Foreground}" 
-										  Width="16" Height="16" Margin="0,0,4,0" />
-										<TextBlock Text="refresh servers"
+										  Width="24" Height="24" Margin="0,0,4,0" />
+											<TextBlock Text="refresh servers"
+												   FontSize="16"
 												   VerticalAlignment="Center"
 												   Foreground="{TemplateBinding Foreground}"/>
-									</StackPanel>
-								</ControlTemplate>
-							</Button.Template>
-						</Button>
+										</StackPanel>
+									</ControlTemplate>
+								</Button.Template>
+							</Button>
+						</Grid>
+
+						<Grid Visibility="{Binding ServerList.DownloadingServerList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}">
+							<TextBlock Text="retrieving servers list... " Foreground="LightGreen"  FontSize="16"/>
+						</Grid>
+
 					</Grid>
 
 				</StackPanel>	

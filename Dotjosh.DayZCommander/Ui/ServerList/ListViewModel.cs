@@ -33,7 +33,6 @@ namespace Dotjosh.DayZCommander.Ui.ServerList
 			Servers = (ListCollectionView) CollectionViewSource.GetDefaultView(_rawServers);
 			Servers.SortDescriptions.Add(new SortDescription("Ping", ListSortDirection.Ascending));
 			Servers.Filter = Filter;
-			Servers.Refresh();
 		}
 
 		private bool Filter(object obj)

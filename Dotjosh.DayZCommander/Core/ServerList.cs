@@ -103,7 +103,7 @@ namespace Dotjosh.DayZCommander.Core
 				.ToList();
 		}
 
-		
+		private int _processed = 0;
 		public void UpdateAll()
 		{
 			if(_isUpdating)
@@ -114,21 +114,24 @@ namespace Dotjosh.DayZCommander.Core
 			_isUpdating = true;
 			ProcessedServersCount = 0;
 
-			//In an array to prevent modified closure access
-			int[] processed = {0};
+			_processed = 0;
+			var totalCount = Items.Count;
 
-			Task.Factory.StartNew(() =>
+			new Thread(() =>
 			{
 				try
 				{
-					while(processed[0] <= Items.Count)
+						lock(incrementLock)
+						{
+						}
+					while(_processed <= totalCount)
 					{
 						Execute.OnUiThread(() =>
 						{
-							ProcessedServersCount = processed[0];
+							ProcessedServersCount = _processed;
 						});
 						Thread.Sleep(50);
-						if(processed[0] == Items.Count)
+						if(_processed == totalCount)
 						{
 							_isUpdating = false;
 							break;
@@ -139,16 +142,16 @@ namespace Dotjosh.DayZCommander.Core
 				{
 					Execute.OnUiThread(() =>
 					{
-						ProcessedServersCount = Items.Count;
+						ProcessedServersCount = totalCount;
 					});
 					_isUpdating = false;
 				}
-			});
+			}).Start();
 
 
-			Task.Factory.StartNew(() =>
+			new Thread(() =>
 			{
-				for(var index = 0; index < Items.Count; index++)
+				for(var index = 0; index < totalCount; index++)
 				{
 					var server = Items[index];
 					new Thread(() =>
@@ -161,17 +164,18 @@ namespace Dotjosh.DayZCommander.Core
 						{
 							lock(incrementLock)
 							{
-								processed[0]++;
+								_processed++;
 							}
 						}
 					}).Start();
+					Thread.Sleep(new Random().Next(5, 20));
 
-					if(index % 70 == 0)
+					while(index - _processed > 150)
 					{
-						Thread.Sleep(100);
+						Thread.Sleep(30);
 					}
 				}
-			});
+			}).Start();
 		}
 
 		private static string ExecuteGSList(string arguments)

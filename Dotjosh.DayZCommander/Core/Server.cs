@@ -31,7 +31,7 @@ namespace Dotjosh.DayZCommander.Core
 		{
 			get
 			{
-				return CleanServerName(GetSettingOrDefault("hostname")) ?? "Loading...";
+				return CleanServerName(GetSettingOrDefault("hostname"));
 			}
 		}
 

@@ -57,22 +57,28 @@
 						   Margin="30 -6 0 7"/>
 				</StackPanel>
 				<StackPanel Grid.Column="1"
-							Margin="0 0 45 8"
+							Margin="0 0 25 8"
 							Canvas.ZIndex="1000"
 							Orientation="Horizontal"
 							HorizontalAlignment="Right"
 							VerticalAlignment="Bottom">
 
 					<StackPanel Orientation="Horizontal" 
+							IsHitTestVisible="False"
 								Margin="0 0 20 0">
-						<TextBlock Text="Arma2 Version: " Foreground="#CCC"/>
-						<TextBlock Text="{Binding Source={x:Static Member=Core:LocalMachineInfo.Arma2OABetaVersion}}" Foreground="#CCC"/>
+						<TextBlock Text="Arma2 Version: " Foreground="#CCC"
+							IsHitTestVisible="False"/>
+						<TextBlock Text="{Binding Source={x:Static Member=Core:LocalMachineInfo.Arma2OABetaVersion}}" Foreground="#CCC"
+							IsHitTestVisible="False"/>
 					</StackPanel>
 
 					<StackPanel Orientation="Horizontal" 
+							IsHitTestVisible="False"
 								Margin="0 0 40 0">
-						<TextBlock Text="DayZ Version: " Foreground="#CCC"/>
-						<TextBlock Text="{Binding Source={x:Static Member=Core:LocalMachineInfo.DayZVersion}}" Foreground="#CCC"/>
+						<TextBlock Text="DayZ Version: " Foreground="#CCC"
+							IsHitTestVisible="False"/>
+						<TextBlock Text="{Binding Source={x:Static Member=Core:LocalMachineInfo.DayZVersion}}" Foreground="#CCC"
+							IsHitTestVisible="False"/>
 					</StackPanel>
 
 					<Grid Width="260">
@@ -102,6 +108,7 @@
 										  Width="24" Height="24" Margin="0,0,4,0" />
 											<TextBlock Text="refresh servers"
 												   FontSize="16"
+													   Padding="4 0 0 2"
 												   VerticalAlignment="Center"
 												   Foreground="{TemplateBinding Foreground}"/>
 										</StackPanel>
@@ -111,7 +118,10 @@
 						</Grid>
 
 						<Grid Visibility="{Binding ServerList.DownloadingServerList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}">
-							<TextBlock Text="retrieving servers list... " Foreground="LightGreen"  FontSize="16"/>
+							<TextBlock Text="retrieving servers list... " 
+									   Foreground="LightGreen"  
+									   FontSize="16"
+									   TextAlignment="Right"/>
 						</Grid>
 
 					</Grid>

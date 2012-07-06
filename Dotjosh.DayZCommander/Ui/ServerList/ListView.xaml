@@ -80,6 +80,7 @@
 				<DataGridTemplateColumn
 											HeaderStyle="{StaticResource MetroDataGridHeader}"
 											Header="NAME"	
+											SortMemberPath="Name"
 											Width="*" >
 					<DataGridTemplateColumn.CellTemplate>
 						<DataTemplate>

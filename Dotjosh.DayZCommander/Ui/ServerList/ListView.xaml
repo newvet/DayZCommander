@@ -12,7 +12,7 @@
 		</Grid.RowDefinitions>
 		
 		<StackPanel Orientation="Horizontal"
-					Margin="5 6 0 0"
+					Margin="3 6 0 0"
 							Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource CountToVisibilityConverter}}">
 			<TextBlock Text="{Binding Servers.Count}" Foreground="#FFF" FontSize="16"/>
 			<TextBlock Text=" results " Foreground="#FFF" FontSize="16"/>

@@ -71,7 +71,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Assets\Images\Run.ico</ApplicationIcon>
+    <ApplicationIcon>commandericon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -243,6 +243,8 @@
     <None Include="GSList\Makefile">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Assets\Images\commandericon.ico" />
+    <Resource Include="commandericon.ico" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -282,8 +284,6 @@
     <Resource Include="GSList\gpl.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Assets\Images\refresh.png" />
-    <Resource Include="Assets\Images\Run.ico" />
     <Content Include="GSList\gslist.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

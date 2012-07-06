@@ -6,21 +6,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="324" d:DesignWidth="844">
     <Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition/>
-		</Grid.RowDefinitions>
-		
-		<StackPanel Orientation="Horizontal"
-					Margin="3 6 0 0"
-							Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource CountToVisibilityConverter}}">
-			<TextBlock Text="{Binding Servers.Count}" Foreground="#FFF" FontSize="16"/>
-			<TextBlock Text=" results " Foreground="#FFF" FontSize="16"/>
-			<TextBlock Text="{Binding RawServers.Count, StringFormat={} ({0} total)}" Foreground="#CCC" Margin="2 5 0 0" FontSize="11"/>
-		</StackPanel>
-		
 		<DataGrid ItemsSource="{Binding Servers}"
-				  Margin="0 10 0 0"
+				  Margin="0 0 0 0"
 				  Grid.Row="1"
 				  HorizontalAlignment="Stretch"
 				  VerticalAlignment="Stretch"

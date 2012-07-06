@@ -6,15 +6,36 @@
              xmlns:ServerList="clr-namespace:Dotjosh.DayZCommander.Ui.ServerList" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
+		
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="150"/>
+			<ColumnDefinition Width="180"/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
 		
-		<ServerList:FiltersView DataContext="{Binding FiltersViewModel}"/>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+
+		<StackPanel Orientation="Horizontal"
+					Margin="0 0 0 0"
+							Visibility="{Binding ListViewModel.ServerList.UnprocessedServersCount, Converter={StaticResource CountToVisibilityConverter}}">
+			<TextBlock Text="{Binding ListViewModel.Servers.Count}" Foreground="#FFF" FontSize="16"/>
+			<TextBlock Text=" results " Foreground="#FFF" FontSize="16"/>
+			<TextBlock Text="{Binding ListViewModel.RawServers.Count, StringFormat={} ({0} total)}" Foreground="#CCC" Margin="2 5 0 0" FontSize="11"/>
+		</StackPanel>
+		<ServerList:FiltersView DataContext="{Binding FiltersViewModel}"
+								Margin="0 8 0 0"
+								Grid.Row="1"/>
+		
+		
+		
 		<ServerList:ListView DataContext="{Binding ListViewModel}"
+							 Grid.RowSpan="2"
 							 HorizontalAlignment="Stretch"
 							 VerticalAlignment="Stretch"
+							 Grid.Row="0"
 							 Grid.Column="1"/>
 		
 		

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using Microsoft.Win32;
 
@@ -18,21 +19,21 @@ namespace Dotjosh.DayZCommander.Core
 				{
 					SetPathsX86();
 				}
-				LoadVersions();			
+				SetArma2OABetaVersion();
+				SetDayZVersion();
 			}
 			catch(Exception ex)
 			{
-				
 			}
 		}
 
 		public static string Arma2Path { get; private set; }
 		public static string Arma2OAPath { get; private set; }
 		public static string Arma2OABetaExe { get; private set; }
-		public static Version Arma2Version { get; private set; }
+		public static Version Arma2OABetaVersion { get; private set; }
 		public static Version DayZVersion { get; private set; }
 
-		private static void LoadVersions()
+		public static void Touch()
 		{
 		}
 
@@ -84,6 +85,20 @@ namespace Dotjosh.DayZCommander.Core
 			}
 
 			Arma2OABetaExe = Path.Combine(Arma2OAPath, @"Expansion\beta\arma2oa.exe");
+		}
+
+		private static void SetArma2OABetaVersion()
+		{
+			var versionInfo = FileVersionInfo.GetVersionInfo(Arma2OABetaExe);
+			Version version;
+			if(Version.TryParse(versionInfo.ProductVersion, out version))
+			{
+				Arma2OABetaVersion = version;
+			}
+		}
+
+		private static void SetDayZVersion()
+		{
 		}
 	}
 }

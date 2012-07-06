@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Threading;
 using Caliburn.Micro;
@@ -23,6 +22,7 @@ namespace Dotjosh.DayZCommander
 		{
 			AppDomain.CurrentDomain.UnhandledException += UncaughtThreadException;
 			DispatcherUnhandledException += UncaughtUiThreadException;
+			LocalMachineInfo.Touch();
 			base.OnStartup(e);
 		}
 

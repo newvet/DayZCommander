@@ -113,7 +113,7 @@ namespace Dotjosh.DayZCommander.Core
 			{
 				return;
 			}
-			var changeLogLines = File.ReadAllLines(DayZPath);
+			var changeLogLines = File.ReadAllLines(changeLogPath);
 			foreach(var changeLogLine in changeLogLines)
 			{
 				if(!changeLogLine.Contains("* dayz_code"))

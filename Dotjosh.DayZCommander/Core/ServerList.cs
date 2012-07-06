@@ -121,9 +121,6 @@ namespace Dotjosh.DayZCommander.Core
 			{
 				try
 				{
-						lock(incrementLock)
-						{
-						}
 					while(_processed <= totalCount)
 					{
 						Execute.OnUiThread(() =>
@@ -167,12 +164,12 @@ namespace Dotjosh.DayZCommander.Core
 								_processed++;
 							}
 						}
-					}).Start();
-					Thread.Sleep(new Random().Next(5, 20));
+					}, 1).Start();
+					Thread.Sleep(new Random().Next(5, 15));
 
-					while(index - _processed > 150)
+					while(index - _processed > 200)
 					{
-						Thread.Sleep(30);
+						Thread.Sleep(20);
 					}
 				}
 			}).Start();

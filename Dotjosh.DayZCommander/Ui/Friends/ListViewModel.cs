@@ -40,7 +40,7 @@ namespace Dotjosh.DayZCommander.Ui.Friends
 				}
 				else
 				{
-					if(!existingServer.Friends.Any(f => string.Equals(f.Name, message.Friend.Name, StringComparison.OrdinalIgnoreCase)))
+					if(!existingServer.Friends.Any(f => string.Equals(f.Name, message.Friend.Name, StringComparison.CurrentCultureIgnoreCase)))
 					{
 						existingServer.Friends.Add(message.Player);
 					}

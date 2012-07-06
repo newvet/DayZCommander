@@ -27,14 +27,12 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://files.dayzcommander.com/releases/</InstallUrl>
-    <UpdateUrl>http://files.dayzcommander.com/releases/</UpdateUrl>
     <SupportUrl>http://www.dayzcommander.com</SupportUrl>
     <ProductName>DayZ Commander</ProductName>
     <PublisherName>Dotjosh Open Source</PublisherName>
-    <MinimumRequiredVersion>0.9.0.0</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>0.9.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

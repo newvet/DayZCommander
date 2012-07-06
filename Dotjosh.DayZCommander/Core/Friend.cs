@@ -27,7 +27,7 @@ namespace Dotjosh.DayZCommander.Core
 
 		public void NewPlayer(Player newPlayer)
 		{
-			if(!string.Equals(newPlayer.Name, Name, StringComparison.OrdinalIgnoreCase))
+			if(!string.Equals(newPlayer.Name, Name, StringComparison.CurrentCultureIgnoreCase))
 			{
 				return;
 			}

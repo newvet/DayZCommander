@@ -8,15 +8,22 @@ namespace Dotjosh.DayZCommander.Core
 	{
 		static LocalMachineInfo()
 		{
-			if(IntPtr.Size == 8)
+			try
 			{
-				SetPathsX64();
+				if(IntPtr.Size == 8)
+				{
+					SetPathsX64();
+				}
+				else
+				{
+					SetPathsX86();
+				}
+				LoadVersions();			
 			}
-			else
+			catch(Exception ex)
 			{
-				SetPathsX86();
+				
 			}
-			LoadVersions();
 		}
 
 		public static string Arma2Path { get; private set; }

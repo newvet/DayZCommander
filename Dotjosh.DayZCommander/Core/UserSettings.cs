@@ -95,7 +95,14 @@ namespace Dotjosh.DayZCommander.Core
 			{
 				if(_current == null)
 				{
-					_current = Load();
+					try
+					{
+						_current = Load();
+					}
+					catch(Exception ex)
+					{
+						_current = new UserSettings();
+					}
 				}
 				return _current;
 			}
@@ -114,7 +121,11 @@ namespace Dotjosh.DayZCommander.Core
 
 		private static bool IsInClickOnceMode
 		{
-			get { return AppDomain.CurrentDomain.ActivationContext == null; }
+			get
+			{
+				return AppDomain.CurrentDomain.ActivationContext != null
+					&& System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed;
+			}
 		}
 	}
 }

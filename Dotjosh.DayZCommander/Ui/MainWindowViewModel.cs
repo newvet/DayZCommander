@@ -1,15 +1,9 @@
-using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Xml;
 using Caliburn.Micro;
 using Dotjosh.DayZCommander.Core;
 using Dotjosh.DayZCommander.Ui.Friends;
 using Dotjosh.DayZCommander.Ui.ServerList;
-using Microsoft.Win32;
 
 namespace Dotjosh.DayZCommander.Ui
 {
@@ -29,11 +23,16 @@ namespace Dotjosh.DayZCommander.Ui
 			                                               	});
 			CurrentTab = Tabs.First();
 
+			Updater = new DayZCommanderUpdater();
+			Updater.StartCheckingForUpdates();
+
 			ServerList = new Core.ServerList();
 			ServerList.GetAndUpdateAll();
-
-			CurrentVersion = App.CurrentVersion;
 		}
+
+		public DayZCommanderUpdater Updater { get; private set; }
+		public ServerListViewModel ServerListViewModel { get; set; }
+		public FriendsViewModel FriendsViewModel { get; set; }
 
 		public Core.ServerList ServerList
 		{
@@ -45,19 +44,15 @@ namespace Dotjosh.DayZCommander.Ui
 			}
 		}
 
-
-		public static string CurrentVersion { get; private set; }
-
 		public bool IsServerListSelected
 		{
 			get { return CurrentTab == ServerListViewModel; }
 		}
-		public ServerListViewModel ServerListViewModel { get; set; }
+
 		public bool IsFriendsSelected
 		{
 			get { return CurrentTab == FriendsViewModel; }
 		}
-		public FriendsViewModel FriendsViewModel { get; set; }
 
 		public ViewModelBase CurrentTab
 		{

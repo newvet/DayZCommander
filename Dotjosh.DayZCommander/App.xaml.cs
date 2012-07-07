@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
+using System.Xml;
 using Caliburn.Micro;
 using Dotjosh.DayZCommander.Core;
 using NLog;
@@ -23,18 +27,10 @@ namespace Dotjosh.DayZCommander
 		{
 			AppDomain.CurrentDomain.UnhandledException += UncaughtThreadException;
 			DispatcherUnhandledException += UncaughtUiThreadException;
-			LocalMachineInfo.Touch();
-
-			try
-			{
-				CurrentVersion = e.Args.FirstOrDefault();
-			}
-			catch(Exception ex){}
+			//LocalMachineInfo.Touch();
 
 			base.OnStartup(e);
 		}
-
-		public static string CurrentVersion { get; set; }
 
 		private void UncaughtUiThreadException(object sender, DispatcherUnhandledExceptionEventArgs e)
 		{
@@ -59,6 +55,7 @@ namespace Dotjosh.DayZCommander
 			var exception = e.ExceptionObject as Exception;
 			_logger.Fatal(exception);
 		}
+
 	}
 
 	public class PlayersChangedEvent

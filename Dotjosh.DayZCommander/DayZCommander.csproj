@@ -16,7 +16,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>C:\Users\jschwartzberg\Desktop\DayZCommanderRelease\</PublishUrl>
+    <PublishUrl>C:\Users\jschwartzberg.ACISSNET\Desktop\DayZCommanderRelease\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -24,18 +24,19 @@
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
+    <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://files.dayzcommander.com/releases/</InstallUrl>
     <SupportUrl>http://www.dayzcommander.com</SupportUrl>
-    <ProductName>DayZCommander</ProductName>
-    <PublisherName>Dotjosh open source</PublisherName>
-    <MinimumRequiredVersion>1.0.0.21</MinimumRequiredVersion>
-    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <ProductName>DayZ Commander</ProductName>
+    <PublisherName>Dotjosh Open Source</PublisherName>
+    <MinimumRequiredVersion>0.9.0.2</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>42</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>0.9.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -59,13 +60,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>AD104282CB880C19A43B542AAEC791FC2009CBC0</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>2D70AA3AD9707E32434D2A0AF53621B62DDE5C24</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Dotjosh.DayZCommander_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>DayZCommander_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>false</GenerateManifests>
+    <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
@@ -73,11 +74,12 @@
   <PropertyGroup>
     <ApplicationIcon>commandericon.ico</ApplicationIcon>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -110,6 +112,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\DayZCommanderUpdater.cs" />
     <Compile Include="Core\Execute.cs" />
     <Compile Include="Core\Filter.cs" />
     <Compile Include="Core\GameLauncher.cs" />
@@ -229,8 +232,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="app.manifest" />
-    <None Include="Dotjosh.DayZCommander_TemporaryKey.pfx" />
+    <None Include="DayZCommander_TemporaryKey.pfx" />
     <None Include="GSList\gslist">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -252,6 +254,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

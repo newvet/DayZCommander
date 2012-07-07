@@ -226,7 +226,7 @@ namespace Dotjosh.DayZCommander.Core
 
 								if(!string.IsNullOrWhiteSpace(Name))
 								{
-									if(s.Name != null && s.Name.IndexOf(Name, StringComparison.CurrentCultureIgnoreCase) == -1)
+									if(s.Name == null || s.Name.IndexOf(Name, StringComparison.CurrentCultureIgnoreCase) == -1)
 										return false;
 								}
 

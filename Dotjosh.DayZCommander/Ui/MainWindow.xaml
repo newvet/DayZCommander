@@ -37,7 +37,7 @@
 				<StackPanel>
 					<StackPanel Orientation="Horizontal"
 					           Margin="30 4 0 -8">
-						<TextBlock Text="{Binding CurrentVersion}"
+						<TextBlock Text="{Binding Updater.CurrentVersion}"
 					           FontSize="10"
 					           Width="245"
 					           TextAlignment="Right"
@@ -46,7 +46,7 @@
 						<Path Data="F1M761.907,555.626L761.907,573.258 741.571,552.926 741.571,592.889 728.63,592.889 728.63,553.067 708.4,573.295 708.432,555.626 735.169,528.889 761.907,555.626z" Stretch="Uniform" 
 							  Fill="LightGreen" Width="12" Height="12" Margin="5,0,0,0"
 							  ToolTipService.ToolTip="A new version of DayZ Commander will be automatically applied the next time you run this program."
-							  Visibility="Hidden"/>
+							  Visibility="{Binding Updater.RestartToApplyUpdate,Converter={StaticResource BooleanToVisibilityCollapsedConverter}}"/>
 					</StackPanel>
 					<TextBlock Text="DayZ Commander"
 						   Foreground="#EEEEEE"

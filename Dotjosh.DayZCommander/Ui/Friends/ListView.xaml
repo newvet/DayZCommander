@@ -15,21 +15,28 @@
 			<ItemsControl.ItemTemplate>
 				<DataTemplate>
 					<StackPanel Margin="0 0 0 15">
-							<StackPanel Orientation="Horizontal">
-								<Button Content="Join"
-											Background="LightGreen"
-											Width="75"
-											FontSize="10"
-										Margin="0 0 5 0"
-											Click="JoinServer"
-											FontWeight="Bold"
-										/>
+							<Grid MaxWidth="600"
+								  HorizontalAlignment="Left">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
 								<TextBlock Text="{Binding Server.Name}"
+										   Grid.Column="0"
 								           FontSize="14"
 								           Foreground="#CCC"/>
-							</StackPanel>
+								<Button Content="Join"
+								        Background="LightGreen"
+								        Width="75"
+								        FontSize="10"
+								        Grid.Column="1"
+								        Margin="10 0 5 0"
+								        Click="JoinServer"
+								        FontWeight="Bold"
+										/>
+							</Grid>
 							<ItemsControl ItemsSource="{Binding Friends}"
-										  Margin="80 4 0 0">
+										  Margin="0 4 0 0">
 							<ItemsControl.ItemTemplate>
 								<DataTemplate>
 									<TextBlock Text="{Binding Name}"

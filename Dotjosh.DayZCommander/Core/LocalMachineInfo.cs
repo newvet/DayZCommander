@@ -12,7 +12,14 @@ namespace Dotjosh.DayZCommander.Core
 	{
 		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-		static LocalMachineInfo()
+		public static string Arma2Path { get; private set; }
+		public static string Arma2OAPath { get; private set; }
+		public static string Arma2OABetaExe { get; private set; }
+		public static Version Arma2OABetaVersion { get; private set; }
+		public static string DayZPath { get; private set; }
+		public static Version DayZVersion { get; private set; }
+
+		public static void Touch()
 		{
 			try
 			{
@@ -32,17 +39,6 @@ namespace Dotjosh.DayZCommander.Core
 				//Disabled for now
 				//_logger.ErrorException("Unable to retrieve Local Machine Info.", e);
 			}
-		}
-
-		public static string Arma2Path { get; private set; }
-		public static string Arma2OAPath { get; private set; }
-		public static string Arma2OABetaExe { get; private set; }
-		public static Version Arma2OABetaVersion { get; private set; }
-		public static string DayZPath { get; private set; }
-		public static Version DayZVersion { get; private set; }
-
-		public static void Touch()
-		{
 		}
 
 		private static void SetPathsX64()

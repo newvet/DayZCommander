@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
 using Caliburn.Micro;
+using Dotjosh.DayZCommander.Updater;
 using NLog;
 
 namespace Dotjosh.DayZCommander.App
@@ -18,7 +23,45 @@ namespace Dotjosh.DayZCommander.App
 			AppDomain.CurrentDomain.UnhandledException += UncaughtThreadException;
 			DispatcherUnhandledException += UncaughtUiThreadException;
 
+			ApplyUpdateIfNeccessary();
+
 			base.OnStartup(e);
+		}
+
+		private static void ApplyUpdateIfNeccessary()
+		{
+			var thisLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+			var pendingUpdateDirectory = Path.Combine(thisLocation, DownloadAndExtracter.PENDING_UPDATE_DIRECTORYNAME);
+			if(Directory.Exists(pendingUpdateDirectory))
+			{
+				var tempDir = Path.GetTempPath() + Guid.NewGuid();
+				Directory.CreateDirectory(tempDir);
+				CopyAllFiles(pendingUpdateDirectory, tempDir);
+				var p = new Process()
+				            {
+				                StartInfo = new ProcessStartInfo()
+				                   		        {
+				                   		        	CreateNoWindow = false,
+				                   		        	UseShellExecute = true,
+				                   		        	Arguments = "\"" + thisLocation + "\"",
+													WorkingDirectory = tempDir,
+				                   		        	FileName = Path.Combine(tempDir, "DayZCommanderUpdater.exe")
+				                   		        }
+				            };
+				p.Start();
+				Environment.Exit(0);
+			}
+		}
+
+		private static void CopyAllFiles(string sourcePath, string destinationPath)
+		{
+			foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories))
+			{
+				var destFile = new FileInfo(newPath.Replace(sourcePath, destinationPath));
+				if(!destFile.Directory.Exists)
+					destFile.Directory.Create();
+				File.Copy(newPath, destFile.FullName);
+			}
 		}
 
 		private void UncaughtUiThreadException(object sender, DispatcherUnhandledExceptionEventArgs e)

@@ -5,6 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Dotjosh.DayZComman
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "Dotjosh.DayZCommander.App\App.csproj", "{84CB1B33-1E5C-4F82-B299-A406B85282ED}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "Dotjosh.DayZCommander.Installer\Dotjosh.DayZCommander.Installer.vdproj", "{8A5FDC48-00AE-4191-AA07-D0E2E428423F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{84CB1B33-1E5C-4F82-B299-A406B85282ED} = {84CB1B33-1E5C-4F82-B299-A406B85282ED}
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Dotjosh.DayZCommander.Updater\Updater.csproj", "{0DEA8DDF-865E-4E30-B9B0-A38EA8558634}"
 EndProject
 Global
@@ -37,6 +42,16 @@ Global
 		{84CB1B33-1E5C-4F82-B299-A406B85282ED}.Release|Mixed Platforms.Build.0 = Release|x86
 		{84CB1B33-1E5C-4F82-B299-A406B85282ED}.Release|x86.ActiveCfg = Release|x86
 		{84CB1B33-1E5C-4F82-B299-A406B85282ED}.Release|x86.Build.0 = Release|x86
+		{8A5FDC48-00AE-4191-AA07-D0E2E428423F}.Debug|Any CPU.ActiveCfg = Debug
+		{8A5FDC48-00AE-4191-AA07-D0E2E428423F}.Debug|Any CPU.Build.0 = Debug
+		{8A5FDC48-00AE-4191-AA07-D0E2E428423F}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{8A5FDC48-00AE-4191-AA07-D0E2E428423F}.Debug|x86.ActiveCfg = Debug
+		{8A5FDC48-00AE-4191-AA07-D0E2E428423F}.Debug|x86.Build.0 = Debug
+		{8A5FDC48-00AE-4191-AA07-D0E2E428423F}.Release|Any CPU.ActiveCfg = Release
+		{8A5FDC48-00AE-4191-AA07-D0E2E428423F}.Release|Any CPU.Build.0 = Release
+		{8A5FDC48-00AE-4191-AA07-D0E2E428423F}.Release|Mixed Platforms.ActiveCfg = Release
+		{8A5FDC48-00AE-4191-AA07-D0E2E428423F}.Release|x86.ActiveCfg = Release
+		{8A5FDC48-00AE-4191-AA07-D0E2E428423F}.Release|x86.Build.0 = Release
 		{0DEA8DDF-865E-4E30-B9B0-A38EA8558634}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{0DEA8DDF-865E-4E30-B9B0-A38EA8558634}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{0DEA8DDF-865E-4E30-B9B0-A38EA8558634}.Debug|Mixed Platforms.Build.0 = Debug|x86

@@ -21,26 +21,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_295CAB694E2149F49C389C7105E3BA02"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_325C90A048CD857E70F898BC69BBAC3C"
         "OwnerKey" = "8:_8604676676BC44B98556CEA8DA666351"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_4BE43E5EEC464A5B86DB133DA1694268"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_325C90A048CD857E70F898BC69BBAC3C"
+        "OwnerKey" = "8:_556E8F3AF3FB24AA0A4EC3AFD162625B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_509BACEC03D6459D8E336EDE671F61A3"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_556E8F3AF3FB24AA0A4EC3AFD162625B"
+        "OwnerKey" = "8:_8604676676BC44B98556CEA8DA666351"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -63,14 +57,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A078554C2FDC4DD2A2787994D7A38E15"
+        "MsmKey" = "8:_A19C2BD9D4A54965809B44F7AED3372F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_BAB9B6BF27D9457DA27FABD956B2202C"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_B2C67866B2EFA54144F1C5D8F20FB4D6"
+        "OwnerKey" = "8:_556E8F3AF3FB24AA0A4EC3AFD162625B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -93,8 +87,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_FC98F8437F684DBBBF3059D4315FAFE1"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8604676676BC44B98556CEA8DA666351"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_556E8F3AF3FB24AA0A4EC3AFD162625B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B2C67866B2EFA54144F1C5D8F20FB4D6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -106,19 +112,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4BE43E5EEC464A5B86DB133DA1694268"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_24DA8E2697414319A69A175A1C333051"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8604676676BC44B98556CEA8DA666351"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -183,6 +177,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -244,26 +251,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_295CAB694E2149F49C389C7105E3BA02"
-            {
-            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\bin\\Debug\\GSList\\libmysql.dll"
-            "TargetName" = "8:libmysql.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_BC18FD86EC9D4353AD31952EF6383433"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_325C90A048CD857E70F898BC69BBAC3C"
             {
             "AssemblyRegister" = "3:1"
@@ -295,20 +282,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4BE43E5EEC464A5B86DB133DA1694268"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_556E8F3AF3FB24AA0A4EC3AFD162625B"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:DayZCommanderUpdater, Version=0.9.0.27149, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_4BE43E5EEC464A5B86DB133DA1694268"
+                    "_556E8F3AF3FB24AA0A4EC3AFD162625B"
                     {
-                    "Name" = "8:NLog.dll"
+                    "Name" = "8:DayZCommanderUpdater.EXE"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\bin\\Debug\\NLog.dll"
+            "SourcePath" = "8:DayZCommanderUpdater.EXE"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
@@ -323,27 +310,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_509BACEC03D6459D8E336EDE671F61A3"
-            {
-            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\bin\\Debug\\GSList\\Makefile"
-            "TargetName" = "8:Makefile"
-            "Tag" = "8:"
-            "Folder" = "8:_BC18FD86EC9D4353AD31952EF6383433"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_583CC40CD6B944BBA9E3E60307441602"
@@ -390,7 +357,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DayZCommander, Version=0.9.0.0, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:DayZCommander, Version=0.9.0.27152, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_8604676676BC44B98556CEA8DA666351"
@@ -417,10 +384,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A078554C2FDC4DD2A2787994D7A38E15"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A19C2BD9D4A54965809B44F7AED3372F"
             {
-            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\bin\\Debug\\GSList\\gslistsql"
-            "TargetName" = "8:gslistsql"
+            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\GSList\\gpl.txt"
+            "TargetName" = "8:gpl.txt"
             "Tag" = "8:"
             "Folder" = "8:_BC18FD86EC9D4353AD31952EF6383433"
             "Condition" = "8:"
@@ -437,12 +404,23 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BAB9B6BF27D9457DA27FABD956B2202C"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B2C67866B2EFA54144F1C5D8F20FB4D6"
             {
-            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\bin\\Debug\\GSList\\gslistweb.exe"
-            "TargetName" = "8:gslistweb.exe"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_B2C67866B2EFA54144F1C5D8F20FB4D6"
+                    {
+                    "Name" = "8:Ionic.Zip.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Ionic.Zip.DLL"
+            "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_BC18FD86EC9D4353AD31952EF6383433"
+            "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -454,7 +432,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C47CC04F3D3C4AE691B56E66EB27A0B3"
@@ -501,26 +479,6 @@
             {
             "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\bin\\Debug\\GSList\\gslist.cfg"
             "TargetName" = "8:gslist.cfg"
-            "Tag" = "8:"
-            "Folder" = "8:_BC18FD86EC9D4353AD31952EF6383433"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FC98F8437F684DBBBF3059D4315FAFE1"
-            {
-            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\bin\\Debug\\GSList\\gslistsql.exe"
-            "TargetName" = "8:gslistsql.exe"
             "Tag" = "8:"
             "Folder" = "8:_BC18FD86EC9D4353AD31952EF6383433"
             "Condition" = "8:"
@@ -616,7 +574,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:DayZ Commander"
         "ProductCode" = "8:{E64E07A3-1787-44F1-A12A-73EB2CE843C2}"
-        "PackageCode" = "8:{EADCFA36-D307-48AC-8DCF-B656D995E214}"
+        "PackageCode" = "8:{FA964D75-2D9E-48BD-8A52-0BA2B205AAF3}"
         "UpgradeCode" = "8:{6CE976EC-92CB-4603-8140-5ACE0BA8B644}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -746,6 +704,20 @@
             "Transitive" = "11:FALSE"
             "Target" = "8:_8604676676BC44B98556CEA8DA666351"
             "Folder" = "8:_41014D50358B41CC95D93B68CD2F69AF"
+            "WorkingFolder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
+            "Icon" = "8:_C47CC04F3D3C4AE691B56E66EB27A0B3"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_2DD2A23F40D447798BB5D267EA397FFE"
+            {
+            "Name" = "8:DayZ Commander"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_8604676676BC44B98556CEA8DA666351"
+            "Folder" = "8:_D1DFAB9D1F2644A9BAC642F5FEECC4A3"
             "WorkingFolder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
             "Icon" = "8:_C47CC04F3D3C4AE691B56E66EB27A0B3"
             "Feature" = "8:"

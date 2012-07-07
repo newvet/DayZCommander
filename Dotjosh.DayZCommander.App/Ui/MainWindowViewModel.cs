@@ -24,8 +24,10 @@ namespace Dotjosh.DayZCommander.App.Ui
 			CurrentTab = Tabs.First();
 
 			Updater = new DayZCommanderUpdater();
-			//Updater.StartCheckingForUpdates();
 
+#if !DEBUG
+			Updater.StartCheckingForUpdates();
+#endif
 			ServerList = new Core.ServerList();
 			ServerList.GetAndUpdateAll();
 

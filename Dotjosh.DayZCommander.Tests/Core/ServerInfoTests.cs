@@ -1,4 +1,4 @@
-﻿using Dotjosh.DayZCommander.Core;
+﻿using Dotjosh.DayZCommander.App.Core;
 using NUnit.Framework;
 
 // ReSharper disable CheckNamespace

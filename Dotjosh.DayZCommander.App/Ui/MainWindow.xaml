@@ -1,0 +1,234 @@
+﻿<Window x:Class="Dotjosh.DayZCommander.App.Ui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ServerList="clr-namespace:Dotjosh.DayZCommander.App.Ui.ServerList"
+        xmlns:Friends="clr-namespace:Dotjosh.DayZCommander.App.Ui.Friends"
+        xmlns:Core="clr-namespace:Dotjosh.DayZCommander.App.Core" xmlns:DayZCommander="clr-namespace:Dotjosh.DayZCommander"
+        Title="MainWindow" 
+		Height="650" 
+		Width="970"
+		MouseLeftButtonDown="MainWindow_OnMouseLeftButtonDown"
+		MouseDoubleClick="MainWindow_OnMouseDoubleClick"
+		Style="{StaticResource MainWindowStyle}"
+		>
+	<Border Background="#222222"
+			BorderBrush="#BBBBBB"
+			x:Name="VisualRoot"
+			BorderThickness="1">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+
+			<Rectangle Fill="#444444"
+					Grid.Row="1"
+					IsHitTestVisible="True"
+					Grid.RowSpan="4"
+					Grid.ColumnSpan="2"/>
+
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+
+				<StackPanel>
+					<StackPanel Orientation="Horizontal"
+					           Margin="30 4 0 -8">
+						<TextBlock Text="{Binding Updater.CurrentVersion}"
+					           FontSize="10"
+					           Width="245"
+					           TextAlignment="Right"
+					           HorizontalAlignment="Left"
+					           Foreground="#777"/>
+						<Path Data="F1M761.907,555.626L761.907,573.258 741.571,552.926 741.571,592.889 728.63,592.889 728.63,553.067 708.4,573.295 708.432,555.626 735.169,528.889 761.907,555.626z" Stretch="Uniform" 
+							  Fill="LightGreen" Width="12" Height="12" Margin="5,0,0,0"
+							  ToolTipService.ToolTip="A new version of DayZ Commander will be automatically applied the next time you run this program."
+							  Visibility="{Binding Updater.RestartToApplyUpdate,Converter={StaticResource BooleanToVisibilityCollapsedConverter}}"/>
+					</StackPanel>
+					<TextBlock Text="DayZ Commander"
+						   Foreground="#EEEEEE"
+						   FontSize="28"
+						Grid.Column="0"
+						   HorizontalAlignment="Left"
+							IsHitTestVisible="False"
+						   Margin="30 -6 0 7"/>
+				</StackPanel>
+				<StackPanel Grid.Column="1"
+							Margin="0 0 25 8"
+							Canvas.ZIndex="1000"
+							Orientation="Horizontal"
+							HorizontalAlignment="Right"
+							VerticalAlignment="Bottom">
+
+					<StackPanel Orientation="Horizontal" 
+							IsHitTestVisible="False"
+								Margin="0 0 20 0">
+						<TextBlock Text="Arma2 Version: " Foreground="#CCC"
+							IsHitTestVisible="False"/>
+						<TextBlock Text="{Binding Source={x:Static Member=Core:LocalMachineInfo.Arma2OABetaVersion}}" Foreground="#CCC"
+							IsHitTestVisible="False"/>
+					</StackPanel>
+
+					<StackPanel Orientation="Horizontal" 
+							IsHitTestVisible="False"
+								Margin="0 0 40 0">
+						<TextBlock Text="DayZ Version: " Foreground="#CCC"
+							IsHitTestVisible="False"/>
+						<TextBlock Text="{Binding Source={x:Static Member=Core:LocalMachineInfo.DayZVersion}}" Foreground="#CCC"
+							IsHitTestVisible="False"/>
+					</StackPanel>
+
+					<Grid Width="260">
+
+						<Grid Visibility="{Binding ServerList.DownloadingServerList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}, ConverterParameter=true}">
+							<StackPanel Orientation="Horizontal"
+								HorizontalAlignment="Right"
+								Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource CountToVisibilityConverter}}">
+								<TextBlock Text="refreshing servers... " Foreground="LightGreen"  FontSize="16"/>
+								<TextBlock Text="( " Foreground="LightGreen" FontSize="16"/>
+								<TextBlock Text="{Binding ServerList.ProcessedServersCount}" Foreground="#FFF" FontSize="16"/>
+								<TextBlock Text=" / " Foreground="#FFF" FontSize="16"/>
+								<TextBlock Text="{Binding ServerList.Items.Count}" Foreground="LightGreen" FontSize="16"/>
+								<TextBlock Text=" )" Foreground="LightGreen" FontSize="16"/>
+							</StackPanel>
+							<Button Click="RefreshAll_Click"
+								HorizontalAlignment="Right"
+								Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource ZeroToVisibilityConverter}}"
+								Margin="0 0 0 0"
+								Style="{StaticResource MetroTextButtonStyle}">
+								<Button.Template>
+									<ControlTemplate>
+										<StackPanel Orientation="Horizontal">
+											<Path Data="F1M2278.07,1272.94C2265.47,1272.94,2254.91,1281.77,2252.19,1293.55L2241.99,1293.43 2255.8,1315.74 2270.14,1293.77 2260.66,1293.66C2263.13,1286.36 2269.96,1281.07 2278.07,1281.07 2288.24,1281.07 2296.52,1289.35 2296.52,1299.52 2296.52,1309.7 2288.24,1317.98 2278.07,1317.98 2274.31,1317.98 2270.81,1316.84 2267.89,1314.9L2263.45,1321.7C2267.65,1324.48 2272.67,1326.11 2278.07,1326.11 2292.73,1326.11 2304.65,1314.18 2304.65,1299.52 2304.65,1284.87 2292.73,1272.94 2278.07,1272.94" 
+										  Stretch="Uniform" 
+										  Fill="{TemplateBinding Foreground}" 
+										  Width="24" Height="24" Margin="0,0,4,0" />
+											<TextBlock Text="refresh servers"
+												   FontSize="16"
+													   Padding="4 0 0 2"
+												   VerticalAlignment="Center"
+												   Foreground="{TemplateBinding Foreground}"/>
+										</StackPanel>
+									</ControlTemplate>
+								</Button.Template>
+							</Button>
+						</Grid>
+
+						<Grid Visibility="{Binding ServerList.DownloadingServerList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}">
+							<TextBlock Text="retrieving servers list... " 
+									   Foreground="LightGreen"  
+									   FontSize="16"
+									   TextAlignment="Right"/>
+						</Grid>
+
+					</Grid>
+
+				</StackPanel>	
+				<StackPanel Grid.Column="2" 
+						HorizontalAlignment="Right">
+					<Button Tag="X" 
+						Margin="0 3 7 0"
+						Foreground="#EEE"
+						FontSize="14"
+						FontFamily="Verdana"
+						Template="{StaticResource MetroTextButton}" Click="CloseButtonClick" />
+				</StackPanel>
+			</Grid>
+
+			<Grid Grid.Row="1" 
+						Grid.RowSpan="3" 
+						Margin="30 0 20 25"
+						Grid.Column="0">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+					
+						<ProgressBar 
+							 HorizontalAlignment="Stretch" 
+							 BorderThickness="0" 
+							 Height="7" 
+							 Background="Transparent"
+							Margin="-30 0 -20 0"
+							 Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource NonZeroToVisibilityHiddenConverter}}"
+							 Maximum="{Binding ServerList.Items.Count, FallbackValue=0}" 
+							 Value="{Binding ServerList.ProcessedServersCount, FallbackValue=0}" />
+
+				<ListBox ItemsSource="{Binding Tabs}"
+							  Grid.Row="1"
+							Background="Transparent"
+						 BorderThickness="0"
+						 Padding="0"
+							SelectedItem="{Binding CurrentTab, Mode=TwoWay}"
+							  Margin="0 5 0 12">
+					<ListBox.ItemsPanel>
+						<ItemsPanelTemplate>
+							<StackPanel Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</ListBox.ItemsPanel>
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Title}"
+									   FontSize="22"
+									   Margin="0 0 15 0"/>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+					<ListBox.Resources>
+						<Style TargetType="ListBoxItem">
+							<Setter Property="Padding" Value="0"/>
+							<Setter Property="Margin" Value="0"/>
+							<Style.Triggers>
+								<Trigger Property="IsSelected" Value="True">
+									<Setter Property="Foreground" Value="#5A97F2" />
+								</Trigger>
+								<Trigger Property="IsSelected" Value="False">
+									<Setter Property="Foreground" Value="#999" />
+								</Trigger>
+								<MultiTrigger>
+									<MultiTrigger.Conditions>
+										<Condition Property="IsMouseOver" Value="True" />
+										<Condition Property="IsSelected" Value="False" />
+									</MultiTrigger.Conditions>
+									<Setter Property="Foreground" Value="#CCC" />
+								</MultiTrigger>
+							</Style.Triggers>
+							<Style.Resources>
+								<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                             Color="Transparent"/>
+								<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}"
+													 Color="Transparent" />								
+							</Style.Resources>
+						</Style>
+					</ListBox.Resources>						
+					
+				</ListBox>
+
+				<Grid Grid.Row="2"
+					  Visibility="{Binding IsServerListSelected, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}">
+					<ServerList:ServerListView
+					DataContext="{Binding ServerListViewModel}"
+					/>
+				</Grid>
+				
+				<Grid Grid.Row="2"
+					  Visibility="{Binding IsFriendsSelected, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}">
+					<Friends:FriendsView
+					Grid.Row="2"
+					DataContext="{Binding FriendsViewModel}"
+					/>
+				</Grid>
+
+
+			</Grid>
+
+
+				
+		
+		</Grid>
+
+	</Border>
+</Window>

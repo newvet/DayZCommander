@@ -41,10 +41,8 @@ namespace Dotjosh.DayZCommander.Updater
 			var tempUpdatePath = Path.GetTempPath() + Guid.NewGuid();
 			var lastVersionPath = Path.GetTempPath() + Guid.NewGuid();
 
-			Directory.Move(pendingUpdateDirectory, tempUpdatePath);
-
 			KillDayzCommanderProcesses();
-
+			Directory.Move(pendingUpdateDirectory, tempUpdatePath);
 			Directory.Move(App.ApplicationInstallDirectory, lastVersionPath);
 			Directory.Move(tempUpdatePath, App.ApplicationInstallDirectory);
 			LaunchDayZCommander();

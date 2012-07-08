@@ -15,7 +15,7 @@ namespace Dotjosh.DayZCommander.App.Core
 
 		[DataMember] private List<string> _friends = new List<string>();
 		[DataMember] private Filter _filter = new Filter();
-		[DataMember] private WindowSettings _windowSettings = new WindowSettings();
+		[DataMember] private WindowSettings _windowSettings = null; //This is null on purpose so the MainWindow view can set defaults if needed
 		[DataMember] private GameOptions _gameOptions = new GameOptions();
 
 		public List<string> Friends
@@ -54,8 +54,6 @@ namespace Dotjosh.DayZCommander.App.Core
 				_friends = new List<string>();
 			if(_filter == null)
 				_filter = new Filter();
-			if(_windowSettings == null)
-				_windowSettings = new WindowSettings();
 			if(_gameOptions == null)
 				_gameOptions = new GameOptions();
 		}

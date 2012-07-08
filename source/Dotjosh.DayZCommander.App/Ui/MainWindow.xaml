@@ -138,6 +138,10 @@
 							<StackPanel Orientation="Horizontal"
 								HorizontalAlignment="Right"
 								Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource CountToVisibilityConverter}}">
+								<Path Data="F1M2278.07,1272.94C2265.47,1272.94,2254.91,1281.77,2252.19,1293.55L2241.99,1293.43 2255.8,1315.74 2270.14,1293.77 2260.66,1293.66C2263.13,1286.36 2269.96,1281.07 2278.07,1281.07 2288.24,1281.07 2296.52,1289.35 2296.52,1299.52 2296.52,1309.7 2288.24,1317.98 2278.07,1317.98 2274.31,1317.98 2270.81,1316.84 2267.89,1314.9L2263.45,1321.7C2267.65,1324.48 2272.67,1326.11 2278.07,1326.11 2292.73,1326.11 2304.65,1314.18 2304.65,1299.52 2304.65,1284.87 2292.73,1272.94 2278.07,1272.94" 
+											  Stretch="Uniform" 
+											  Fill="LightGreen" 
+											  Width="14" Height="14" Margin="0,3,3,0" />
 								<TextBlock Text="refreshing servers... " Foreground="LightGreen"  FontSize="14"/>
 								<TextBlock Text="( " Foreground="LightGreen" FontSize="12" Margin="0 2 0 0"/>
 								<TextBlock Text="{Binding ServerList.ProcessedServersCount}" Foreground="#FFF" Margin="0 2 0 0" FontSize="12"/>
@@ -173,8 +177,13 @@
 						
 						
 
-						<StackPanel Visibility="{Binding ServerList.DownloadingServerList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}">
-							<TextBlock Text="retrieving servers list... " 
+						<StackPanel 
+							Orientation="Horizontal"
+							Visibility="{Binding ServerList.DownloadingServerList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}">
+	
+							<Path Data="F1M624.846,564.374L624.846,546.742 645.182,567.074 645.182,527.111 658.123,527.111 658.123,566.933 678.352,546.705 678.321,564.374 651.584,591.111 624.846,564.374z" 
+								  Stretch="Uniform" Fill="LightGreen" Width="14" Height="14" Margin="0,3,3,0" />
+							<TextBlock Text="downloadng servers list... " 
 									   Foreground="LightGreen"  
 									   FontSize="14"
 									   TextAlignment="Right"/>

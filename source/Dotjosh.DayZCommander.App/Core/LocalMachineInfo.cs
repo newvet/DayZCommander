@@ -11,33 +11,32 @@ namespace Dotjosh.DayZCommander.App.Core
 	public static class LocalMachineInfo
 	{
 		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
-		private static Version _alternativeVersion;
-		private static Version _alternativeVersion2;
 
 		public static string Arma2Path { get; private set; }
 		public static string Arma2OAPath { get; private set; }
+		public static string SteamPath { get; private set; }
 		public static string Arma2OABetaExe { get; private set; }
 		public static Version Arma2OABetaVersion { get; private set; }
-		public static bool EqualsArma2Version(Version version)
-		{
-			if(Arma2OABetaVersion.Equals(version))
-				return true;
-
-
-			//Ridicuously naiive.  fix....
-			if(_alternativeVersion == null)
-			{
-				_alternativeVersion = Version.Parse(Arma2OABetaVersion.ToString().Replace("1.60.0.", "1.60."));
-			}
-			if(_alternativeVersion2 == null)
-			{
-				_alternativeVersion2 = Version.Parse(Arma2OABetaVersion.ToString().Replace("1.60.0.94364", "1.60.94365"));
-			}
-			if(_alternativeVersion.Equals(version))
-				return true;
-
-			return false;
-		}
+//		public static bool EqualsArma2Version(Version version)
+//		{
+//			if(Arma2OABetaVersion.Equals(version))
+//				return true;
+//
+//
+//			//Ridicuously naiive.  fix....
+//			if(_alternativeVersion == null)
+//			{
+//				_alternativeVersion = Version.Parse(Arma2OABetaVersion.ToString().Replace("1.60.0.", "1.60."));
+//			}
+//			if(_alternativeVersion2 == null)
+//			{
+//				_alternativeVersion2 = Version.Parse(Arma2OABetaVersion.ToString().Replace("1.60.0.94364", "1.60.94365"));
+//			}
+//			if(_alternativeVersion.Equals(version))
+//				return true;
+//
+//			return false;
+//		}
 		public static string DayZPath { get; private set; }
 		public static Version DayZVersion { get; private set; }
 
@@ -67,23 +66,26 @@ namespace Dotjosh.DayZCommander.App.Core
 		{
 			const string arma2Registry = @"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Bohemia Interactive Studio\ArmA 2";
 			const string arma2OARegistry = @"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Bohemia Interactive Studio\ArmA 2 OA";
+			const string steamRegistry = @"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Valve\Steam";
 
-			SetPaths(arma2Registry, arma2OARegistry);
+			SetPaths(arma2Registry, arma2OARegistry, steamRegistry);
 		}
 
 		private static void SetPathsX86()
 		{
 			const string arma2Registry = @"HKEY_LOCAL_MACHINE\SOFTWARE\Bohemia Interactive Studio\ArmA 2";
 			const string arma2OARegistry = @"HKEY_LOCAL_MACHINE\SOFTWARE\Bohemia Interactive Studio\ArmA 2 OA";
+			const string steamRegistry = @"HKEY_LOCAL_MACHINE\SOFTWARE\Valve\Steam";
 
-			SetPaths(arma2Registry, arma2OARegistry);
+			SetPaths(arma2Registry, arma2OARegistry, steamRegistry);
 		}
 
-		private static void SetPaths(string arma2Registry, string arma2OARegistry)
+		private static void SetPaths(string arma2Registry, string arma2OARegistry, string steamRegistry)
 		{
 			// Set game paths.
 			Arma2Path = (string)Registry.GetValue(arma2Registry, "main", "");
 			Arma2OAPath = (string)Registry.GetValue(arma2OARegistry, "main", "");
+			SteamPath = (string)Registry.GetValue(steamRegistry, "InstallPath", "");
 
 			// If a user does not run a game the path will be null.
 			if(string.IsNullOrWhiteSpace(Arma2Path)

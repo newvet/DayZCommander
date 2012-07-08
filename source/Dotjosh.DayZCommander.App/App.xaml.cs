@@ -6,6 +6,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
 using Caliburn.Micro;
+using Dotjosh.DayZCommander.App.Core;
 using Dotjosh.DayZCommander.Updater;
 using NLog;
 
@@ -24,6 +25,8 @@ namespace Dotjosh.DayZCommander.App
 			DispatcherUnhandledException += UncaughtUiThreadException;
 
 			ApplyUpdateIfNeccessary();
+
+			LocalMachineInfo.Touch();
 
 			base.OnStartup(e);
 		}

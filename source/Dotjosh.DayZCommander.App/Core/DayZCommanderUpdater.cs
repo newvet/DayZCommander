@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using System.Timers;
 using Dotjosh.DayZCommander.Updater;
 
 namespace Dotjosh.DayZCommander.App.Core
@@ -8,11 +9,22 @@ namespace Dotjosh.DayZCommander.App.Core
 	public class DayZCommanderUpdater : BindableBase
 	{
 		private bool _restartToApplyUpdate;
+		private Timer _timer;
 
 		public void StartCheckingForUpdates()
 		{
+			_timer = new Timer();
+			_timer.Interval = TimeSpan.FromHours(2).TotalMilliseconds;
+			_timer.Elapsed += TimerOnElapsed;
+			_timer.Start();
+
 			CheckForUpdate();
   		}
+
+		private void TimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
+		{
+			CheckForUpdate();
+		}
 
 		public bool RestartToApplyUpdate
 		{

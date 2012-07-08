@@ -1,13 +1,10 @@
 <project name="DayZ Commander Build" default="fullRelease">
     <property name="configuration" value="release" />
 	<property name="dir.source" value="..\source" />
-	<readregistry property="dir.devenv"
-					key="SOFTWARE\Wow6432Node\Microsoft\VisualStudio\10.0\InstallDir"
-					hive="LocalMachine" />
 
     <property name="versionString" value="0-0-0-0"/>
  
-	<target name="fullRelease" depends="clean, set.version, build, build.installer, zipRelease" />
+	<target name="fullRelease" depends="clean, set.version, build, zipRelease" />
    
     <target name="clean" description="Delete all previously compiled binaries.">
         <delete>

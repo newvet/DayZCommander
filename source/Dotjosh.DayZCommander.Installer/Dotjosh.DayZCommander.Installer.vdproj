@@ -192,43 +192,6 @@
                 }
             }
         }
-        "Release64"
-        {
-        "DisplayName" = "8:Release64"
-        "IsDebugOnly" = "11:FALSE"
-        "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Release64\\Dotjosh.DayZCommander.Installer.msi"
-        "PackageFilesAs" = "3:2"
-        "PackageFileSize" = "3:-2147483648"
-        "CabType" = "3:1"
-        "Compression" = "3:2"
-        "SignOutput" = "11:FALSE"
-        "CertificateFile" = "8:"
-        "PrivateKeyFile" = "8:"
-        "TimeStampServer" = "8:"
-        "InstallerBootstrapper" = "3:2"
-            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
-            {
-            "Enabled" = "11:TRUE"
-            "PromptEnabled" = "11:TRUE"
-            "PrerequisitesLocation" = "2:1"
-            "Url" = "8:"
-            "ComponentsUrl" = "8:"
-                "Items"
-                {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
-                    {
-                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
-                    }
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
-                    {
-                    "Name" = "8:Windows Installer 3.1"
-                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
-                    }
-                }
-            }
-        }
     }
     "Deployable"
     {
@@ -628,7 +591,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_06483E579D254F559C37BA19D0AE5FC6"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -742,7 +705,7 @@
             "Target" = "8:_35CE219004E34AC5B16BB66D2BDFD5C1"
             "Folder" = "8:_29C840C579A841A78A3C608B56A1A371"
             "WorkingFolder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
-            "Icon" = "8:"
+            "Icon" = "8:_06483E579D254F559C37BA19D0AE5FC6"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C52613582ED04A34A1BBF2F4B59FA6FE"
@@ -756,7 +719,7 @@
             "Target" = "8:_35CE219004E34AC5B16BB66D2BDFD5C1"
             "Folder" = "8:_41014D50358B41CC95D93B68CD2F69AF"
             "WorkingFolder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
-            "Icon" = "8:"
+            "Icon" = "8:_06483E579D254F559C37BA19D0AE5FC6"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D2AF1AB4AFFB4C298DF0806F5268FBD9"
@@ -770,7 +733,7 @@
             "Target" = "8:_35CE219004E34AC5B16BB66D2BDFD5C1"
             "Folder" = "8:_D1DFAB9D1F2644A9BAC642F5FEECC4A3"
             "WorkingFolder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
-            "Icon" = "8:"
+            "Icon" = "8:_06483E579D254F559C37BA19D0AE5FC6"
             "Feature" = "8:"
             }
         }

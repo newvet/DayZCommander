@@ -25,14 +25,10 @@ namespace Dotjosh.DayZCommander.App.Ui
 
 			Updater = new DayZCommanderUpdater();
 
-#if !DEBUG
 			Updater.StartCheckingForUpdates();
-#endif
+
 			ServerList = new Core.ServerList();
 			ServerList.GetAndUpdateAll();
-
-			//LocalMachineInfo.Touch();
-
 		}
 
 		public DayZCommanderUpdater Updater { get; private set; }

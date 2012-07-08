@@ -28,11 +28,29 @@ namespace Dotjosh.DayZCommander.App.Core
 			Info = new ServerInfo(null, null);
 		}
 
+		private string _name;
 		public string Name
 		{
 			get
 			{
-				return CleanServerName(GetSettingOrDefault("hostname"));
+				if(string.IsNullOrEmpty(_name))
+				{
+					_name = CleanServerName(HostName);
+				}
+				return _name;
+			}
+		}
+
+		private string _hostName;
+		public string HostName
+		{
+			get
+			{
+				if(string.IsNullOrEmpty(_hostName))
+				{
+					_hostName = GetSettingOrDefault("hostname");
+				}
+				return _hostName;
 			}
 		}
 

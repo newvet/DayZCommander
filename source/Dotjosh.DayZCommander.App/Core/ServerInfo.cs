@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Dotjosh.DayZCommander.App.Core
 {
@@ -99,6 +100,44 @@ namespace Dotjosh.DayZCommander.App.Core
 
 		private void ParseName(string serverName)
 		{
+			CheckSetting(serverName, @"3(?:R){0,1}D(?:P){0,1}", ThirdPerson);
+			CheckSetting(serverName, @"NT", Nameplates);
+			CheckSetting(serverName, @"TAG(?:S){0,1}", Nameplates);
+			CheckSetting(serverName, @"NAME(?:S){0,1}", Nameplates);
+			CheckSetting(serverName, @"CH", Crosshairs);
+			CheckSetting(serverName, @"DM", DeathMessages);
+			CheckSetting(serverName, @"SC", Scores);
+		}
+
+		private static void CheckSetting(string serverName, string settingPattern, ServerSetting setting)
+		{
+			if(setting.Confirmed)
+			{
+				return;
+			}
+			const string valuePattern = @"\s*(?::|=|-)\s*(1|0|ON|OFF)";
+			string value;
+			if(TryGetRegexGroup(serverName, string.Format(@"{0}{1}", settingPattern, valuePattern), RegexOptions.IgnoreCase, 1, out value))
+			{
+				setting.Enabled = value.In("0", "ON");
+				setting.Confirmed = true;
+			}
+		}
+
+		private static bool TryGetRegexGroup(string input, string pattern, RegexOptions options, int group, out string value)
+		{
+			value = null;
+			if(string.IsNullOrEmpty(input))
+			{
+				return false;
+			}
+			var match = Regex.Match(input, pattern, options);
+			if(!match.Success)
+			{
+				return false;
+			}
+			value = match.Groups[group].Value;
+			return true;
 		}
 	}
 }

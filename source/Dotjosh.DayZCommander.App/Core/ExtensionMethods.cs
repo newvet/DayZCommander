@@ -40,5 +40,22 @@ namespace Dotjosh.DayZCommander.App.Core
 		{
 			return !items.Any(predicate);
 		}
+
+		public static bool In(this string value, params string[] values)
+		{
+			if(string.IsNullOrEmpty(value))
+			{
+				return false;
+			}
+
+			foreach(var s in values)
+			{
+				if(value.Equals(s, StringComparison.OrdinalIgnoreCase))
+				{
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 }

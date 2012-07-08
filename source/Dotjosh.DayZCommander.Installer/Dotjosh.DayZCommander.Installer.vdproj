@@ -15,104 +15,104 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_24DA8E2697414319A69A175A1C333051"
+        "MsmKey" = "8:_0524FAC1EC61469CB8780320CF3EF82C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_325C90A048CD857E70F898BC69BBAC3C"
-        "OwnerKey" = "8:_8604676676BC44B98556CEA8DA666351"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_325C90A048CD857E70F898BC69BBAC3C"
-        "OwnerKey" = "8:_556E8F3AF3FB24AA0A4EC3AFD162625B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_556E8F3AF3FB24AA0A4EC3AFD162625B"
-        "OwnerKey" = "8:_8604676676BC44B98556CEA8DA666351"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_583CC40CD6B944BBA9E3E60307441602"
+        "MsmKey" = "8:_06483E579D254F559C37BA19D0AE5FC6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_6E4E7BE365624737871E2C2C839E2A08"
+        "MsmKey" = "8:_14FEF13D5B5F4E3BB1B305DD94FFEFE9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_8604676676BC44B98556CEA8DA666351"
+        "MsmKey" = "8:_20E128696121405B9B467220DDE00473"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A19C2BD9D4A54965809B44F7AED3372F"
+        "MsmKey" = "8:_35CE219004E34AC5B16BB66D2BDFD5C1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B2C67866B2EFA54144F1C5D8F20FB4D6"
-        "OwnerKey" = "8:_556E8F3AF3FB24AA0A4EC3AFD162625B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C47CC04F3D3C4AE691B56E66EB27A0B3"
+        "MsmKey" = "8:_5754AB57A42542088DB3084F5C7697BE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_CC5112704DDE490AA23FD6E725C44A89"
+        "MsmKey" = "8:_6743E15A3A6FC25AB80CFBD2AFB32A1D"
+        "OwnerKey" = "8:_74FD90D090C8A31AAAA102CA288373BA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_74FD90D090C8A31AAAA102CA288373BA"
+        "OwnerKey" = "8:_35CE219004E34AC5B16BB66D2BDFD5C1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_90423DD0D391C58C39487907791D5208"
+        "OwnerKey" = "8:_74FD90D090C8A31AAAA102CA288373BA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_90423DD0D391C58C39487907791D5208"
+        "OwnerKey" = "8:_35CE219004E34AC5B16BB66D2BDFD5C1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B7FB80B1D1844F1A831105264BA8A953"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_D800F8EF6E3C4CB2AFFF013EC43A1F36"
+        "MsmKey" = "8:_DE933C56B6C240548390881D77800FD0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8604676676BC44B98556CEA8DA666351"
+        "OwnerKey" = "8:_6743E15A3A6FC25AB80CFBD2AFB32A1D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_556E8F3AF3FB24AA0A4EC3AFD162625B"
+        "OwnerKey" = "8:_0524FAC1EC61469CB8780320CF3EF82C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B2C67866B2EFA54144F1C5D8F20FB4D6"
+        "OwnerKey" = "8:_35CE219004E34AC5B16BB66D2BDFD5C1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_325C90A048CD857E70F898BC69BBAC3C"
+        "OwnerKey" = "8:_74FD90D090C8A31AAAA102CA288373BA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_24DA8E2697414319A69A175A1C333051"
+        "OwnerKey" = "8:_90423DD0D391C58C39487907791D5208"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -192,6 +192,43 @@
                 }
             }
         }
+        "Release64"
+        {
+        "DisplayName" = "8:Release64"
+        "IsDebugOnly" = "11:FALSE"
+        "IsReleaseOnly" = "11:FALSE"
+        "OutputFilename" = "8:Release64\\Dotjosh.DayZCommander.Installer.msi"
+        "PackageFilesAs" = "3:2"
+        "PackageFileSize" = "3:-2147483648"
+        "CabType" = "3:1"
+        "Compression" = "3:2"
+        "SignOutput" = "11:FALSE"
+        "CertificateFile" = "8:"
+        "PrivateKeyFile" = "8:"
+        "TimeStampServer" = "8:"
+        "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
+        }
     }
     "Deployable"
     {
@@ -220,20 +257,20 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_24DA8E2697414319A69A175A1C333051"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0524FAC1EC61469CB8780320CF3EF82C"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_24DA8E2697414319A69A175A1C333051"
+                    "_0524FAC1EC61469CB8780320CF3EF82C"
                     {
                     "Name" = "8:Microsoft.Windows.Shell.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\bin\\Debug\\Microsoft.Windows.Shell.dll"
+            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\bin\\Release\\Microsoft.Windows.Shell.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
@@ -251,92 +288,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_325C90A048CD857E70F898BC69BBAC3C"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_06483E579D254F559C37BA19D0AE5FC6"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_325C90A048CD857E70F898BC69BBAC3C"
-                    {
-                    "Name" = "8:NLog.DLL"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:NLog.DLL"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_556E8F3AF3FB24AA0A4EC3AFD162625B"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DayZCommanderUpdater, Version=0.9.0.27149, Culture=neutral, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_556E8F3AF3FB24AA0A4EC3AFD162625B"
-                    {
-                    "Name" = "8:DayZCommanderUpdater.EXE"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:DayZCommanderUpdater.EXE"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_583CC40CD6B944BBA9E3E60307441602"
-            {
-            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\bin\\Debug\\GSList\\gslist.exe"
-            "TargetName" = "8:gslist.exe"
-            "Tag" = "8:"
-            "Folder" = "8:_BC18FD86EC9D4353AD31952EF6383433"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6E4E7BE365624737871E2C2C839E2A08"
-            {
-            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\bin\\Debug\\NLog.config"
-            "TargetName" = "8:NLog.config"
+            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\commandericon.ico"
+            "TargetName" = "8:commandericon.ico"
             "Tag" = "8:"
             "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
             "Condition" = "8:"
@@ -353,38 +308,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8604676676BC44B98556CEA8DA666351"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DayZCommander, Version=0.9.0.27152, Culture=neutral, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_8604676676BC44B98556CEA8DA666351"
-                    {
-                    "Name" = "8:DayZCommander.exe"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\bin\\Debug\\DayZCommander.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A19C2BD9D4A54965809B44F7AED3372F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_14FEF13D5B5F4E3BB1B305DD94FFEFE9"
             {
             "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\GSList\\gpl.txt"
             "TargetName" = "8:gpl.txt"
@@ -404,14 +328,85 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B2C67866B2EFA54144F1C5D8F20FB4D6"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_20E128696121405B9B467220DDE00473"
+            {
+            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\bin\\Release\\NLog.config"
+            "TargetName" = "8:NLog.config"
+            "Tag" = "8:"
+            "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_35CE219004E34AC5B16BB66D2BDFD5C1"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:DayZCommander, Version=0.9.0.11, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_35CE219004E34AC5B16BB66D2BDFD5C1"
+                    {
+                    "Name" = "8:DayZCommander.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\bin\\Release\\DayZCommander.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5754AB57A42542088DB3084F5C7697BE"
+            {
+            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\GSList\\gslist"
+            "TargetName" = "8:gslist"
+            "Tag" = "8:"
+            "Folder" = "8:_BC18FD86EC9D4353AD31952EF6383433"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6743E15A3A6FC25AB80CFBD2AFB32A1D"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B2C67866B2EFA54144F1C5D8F20FB4D6"
+                    "_6743E15A3A6FC25AB80CFBD2AFB32A1D"
                     {
                     "Name" = "8:Ionic.Zip.DLL"
                     "Attributes" = "3:512"
@@ -435,10 +430,21 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C47CC04F3D3C4AE691B56E66EB27A0B3"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_74FD90D090C8A31AAAA102CA288373BA"
             {
-            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\Assets\\Images\\commandericon.ico"
-            "TargetName" = "8:commandericon.ico"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:DayZCommanderUpdater, Version=0.9.0.1, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_74FD90D090C8A31AAAA102CA288373BA"
+                    {
+                    "Name" = "8:DayZCommanderUpdater.EXE"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:DayZCommanderUpdater.EXE"
+            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
             "Condition" = "8:"
@@ -452,13 +458,44 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CC5112704DDE490AA23FD6E725C44A89"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_90423DD0D391C58C39487907791D5208"
             {
-            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\bin\\Debug\\GSList\\gslist"
-            "TargetName" = "8:gslist"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_90423DD0D391C58C39487907791D5208"
+                    {
+                    "Name" = "8:NLog.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:NLog.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B7FB80B1D1844F1A831105264BA8A953"
+            {
+            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\GSList\\gslist.cfg"
+            "TargetName" = "8:gslist.cfg"
             "Tag" = "8:"
             "Folder" = "8:_BC18FD86EC9D4353AD31952EF6383433"
             "Condition" = "8:"
@@ -475,10 +512,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D800F8EF6E3C4CB2AFFF013EC43A1F36"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DE933C56B6C240548390881D77800FD0"
             {
-            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\bin\\Debug\\GSList\\gslist.cfg"
-            "TargetName" = "8:gslist.cfg"
+            "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\GSList\\gslist.exe"
+            "TargetName" = "8:gslist.exe"
             "Tag" = "8:"
             "Folder" = "8:_BC18FD86EC9D4353AD31952EF6383433"
             "Condition" = "8:"
@@ -574,7 +611,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:DayZ Commander"
         "ProductCode" = "8:{E64E07A3-1787-44F1-A12A-73EB2CE843C2}"
-        "PackageCode" = "8:{FA964D75-2D9E-48BD-8A52-0BA2B205AAF3}"
+        "PackageCode" = "8:{B044305C-AB96-4438-B512-3494C3C86695}"
         "UpgradeCode" = "8:{6CE976EC-92CB-4603-8140-5ACE0BA8B644}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -591,7 +628,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:_C47CC04F3D3C4AE691B56E66EB27A0B3"
+        "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -694,7 +731,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_04C0AC84E92840E2AD742A5E8CC0A11B"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_25CB06E2A6A14DF4A523E884A41FF68D"
             {
             "Name" = "8:DayZ Commander"
             "Arguments" = "8:"
@@ -702,38 +739,38 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_8604676676BC44B98556CEA8DA666351"
-            "Folder" = "8:_41014D50358B41CC95D93B68CD2F69AF"
-            "WorkingFolder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
-            "Icon" = "8:_C47CC04F3D3C4AE691B56E66EB27A0B3"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_2DD2A23F40D447798BB5D267EA397FFE"
-            {
-            "Name" = "8:DayZ Commander"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_8604676676BC44B98556CEA8DA666351"
-            "Folder" = "8:_D1DFAB9D1F2644A9BAC642F5FEECC4A3"
-            "WorkingFolder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
-            "Icon" = "8:_C47CC04F3D3C4AE691B56E66EB27A0B3"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_4A2B39A8D71D4B3A90F77A21EAB11550"
-            {
-            "Name" = "8:DayZ Commander"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_8604676676BC44B98556CEA8DA666351"
+            "Target" = "8:_35CE219004E34AC5B16BB66D2BDFD5C1"
             "Folder" = "8:_29C840C579A841A78A3C608B56A1A371"
             "WorkingFolder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
-            "Icon" = "8:_C47CC04F3D3C4AE691B56E66EB27A0B3"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C52613582ED04A34A1BBF2F4B59FA6FE"
+            {
+            "Name" = "8:DayZ Commander"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_35CE219004E34AC5B16BB66D2BDFD5C1"
+            "Folder" = "8:_41014D50358B41CC95D93B68CD2F69AF"
+            "WorkingFolder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D2AF1AB4AFFB4C298DF0806F5268FBD9"
+            {
+            "Name" = "8:DayZ Commander"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_35CE219004E34AC5B16BB66D2BDFD5C1"
+            "Folder" = "8:_D1DFAB9D1F2644A9BAC642F5FEECC4A3"
+            "WorkingFolder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
         }

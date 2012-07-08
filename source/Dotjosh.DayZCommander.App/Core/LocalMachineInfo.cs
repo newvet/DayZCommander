@@ -11,11 +11,33 @@ namespace Dotjosh.DayZCommander.App.Core
 	public static class LocalMachineInfo
 	{
 		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+		private static Version _alternativeVersion;
+		private static Version _alternativeVersion2;
 
 		public static string Arma2Path { get; private set; }
 		public static string Arma2OAPath { get; private set; }
 		public static string Arma2OABetaExe { get; private set; }
 		public static Version Arma2OABetaVersion { get; private set; }
+		public static bool EqualsArma2Version(Version version)
+		{
+			if(Arma2OABetaVersion.Equals(version))
+				return true;
+
+
+			//Ridicuously naiive.  fix....
+			if(_alternativeVersion == null)
+			{
+				_alternativeVersion = Version.Parse(Arma2OABetaVersion.ToString().Replace("1.60.0.", "1.60."));
+			}
+			if(_alternativeVersion2 == null)
+			{
+				_alternativeVersion2 = Version.Parse(Arma2OABetaVersion.ToString().Replace("1.60.0.94364", "1.60.94365"));
+			}
+			if(_alternativeVersion.Equals(version))
+				return true;
+
+			return false;
+		}
 		public static string DayZPath { get; private set; }
 		public static Version DayZVersion { get; private set; }
 

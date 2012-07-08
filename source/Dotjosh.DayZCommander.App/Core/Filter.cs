@@ -16,6 +16,8 @@ namespace Dotjosh.DayZCommander.App.Core
 		[DataMember] private string _timeOfDay;
 		[DataMember] private bool _hideUnresponsive;
 		[DataMember] private bool _hidePasswordProtected;
+		[DataMember] private bool _hideWrongArma2Version;
+		[DataMember] private bool _hideWrongDayZVersion;
 		[DataMember] private bool _hasScores;
 		[DataMember] private bool _hasDeathMessages;
 		[DataMember] private bool _hasArmor;
@@ -211,6 +213,28 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 		}
 
+		public bool HideWrongArma2Version
+		{
+			get { return _hideWrongArma2Version; }
+			set
+			{
+				_hideWrongArma2Version = value;
+				PropertyHasChanged("HideWrongArma2Version");
+				PublishFilter();
+			}
+		}
+
+		public bool HideWrongDayZVersion
+		{
+			get { return _hideWrongDayZVersion; }
+			set
+			{
+				_hideWrongDayZVersion = value;
+				PropertyHasChanged("HideWrongDayZVersion");
+				PublishFilter();
+			}
+		}
+
 		public void PublishFilter()
 		{
 			if(_supressPublish)
@@ -292,6 +316,23 @@ namespace Dotjosh.DayZCommander.App.Core
 								{
 									return false;
 								}
+
+//								if(HideWrongArma2Version)
+//								{
+//									if(s.Arma2Version == null 
+//										|| !LocalMachineInfo.EqualsArma2Version(s.Arma2Version))
+//									{
+//										return false;
+//									}
+//								}
+//
+//								if(HideWrongDayZVersion)
+//								{
+//									if(s.DayZVersion == null || !s.DayZVersion.Equals(LocalMachineInfo.DayZVersion))
+//									{
+//										return false;
+//									}
+//								}
 
 								return true;
 			             	};

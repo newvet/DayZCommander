@@ -33,7 +33,7 @@
 
 							<Button
 								Click="DeleteFriend"
-								Margin="-30 0 0 0"
+								Margin="0 0 0 0"
 								Style="{StaticResource MetroTextButtonStyle}"
 							>
 								<Button.Template>
@@ -48,7 +48,7 @@
 								</Button.Template>
 							</Button>							
 							<StackPanel Orientation="Horizontal"
-										Margin="1 0 0 0"
+										Margin="10 0 0 0"
 										Width="170">
 								<TextBlock
 									FontSize="14"

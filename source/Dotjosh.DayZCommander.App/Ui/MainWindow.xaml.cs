@@ -15,25 +15,20 @@ namespace Dotjosh.DayZCommander.App.Ui
 		{
 			InitializeComponent();
 
-			DataContext = new MainWindowViewModel();
-			if(UserSettings.Current.WindowSettings != null)
-			{
-				UserSettings.Current.WindowSettings.Apply(this);
-			}
 			Loaded += (sender, args) =>
 			{
+				if(UserSettings.Current.WindowSettings != null)
+				{
+					UserSettings.Current.WindowSettings.Apply(this);
+				}
 				Activate();
+				DataContext = new MainWindowViewModel();
 			};
 			Closing += (sender, args) =>
 			{
 				UserSettings.Current.WindowSettings = WindowSettings.Create(this);
 				UserSettings.Current.Save();
 			};
-
-			if(Application.Current.Properties.Contains("CurrentVersion"))
-			{
-				CurrentVersion = (string)Application.Current.Properties["CurrentVersion"];
-			}
 		}
 
 		public string CurrentVersion { get; set; }

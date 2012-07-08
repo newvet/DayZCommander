@@ -245,6 +245,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="commandericon.ico" />
+    <SplashScreen Include="Assets\Images\splash.png" />
     <Content Include="GSList\gslist.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

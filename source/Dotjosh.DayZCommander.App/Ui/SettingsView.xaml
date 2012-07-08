@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="Dotjosh.DayZCommander.App.Ui.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+			 Background="#333333"
+             d:DesignHeight="400" d:DesignWidth="400">
+    <Grid>
+		<StackPanel Margin="18 10 18 0">
+			<TextBlock Text="settings"
+						   Foreground="#5A97F2"
+							Margin="0 0 0 15"
+						   FontSize="24"/>
+
+			<TextBlock Text="GAME OPTIONS"
+					   FontWeight="Bold"
+					   Margin="0 0 0 3"
+					   Foreground="#FFFFFF"/>
+			
+			<CheckBox Content="Launch using Steam"
+					  IsChecked="{Binding Settings.GameOptions.LaunchUsingSteam, Mode=TwoWay}"
+					  Foreground="#DDDDDD"
+					  Margin="0 8 0 0"/>				
+			<CheckBox Content="Windowed Mode"
+					  IsChecked="{Binding Settings.GameOptions.WindowedMode, Mode=TwoWay}"
+					  Foreground="#DDDDDD"
+					  Margin="0 8 0 0"/>			
+			<CheckBox Content="Multi GPU Support (Windows Vista/7 only)"
+					  IsChecked="{Binding Settings.GameOptions.MultiGpu, Mode=TwoWay}"
+					  Foreground="#DDDDDD"
+					  Margin="0 8 0 0"/>
+			<StackPanel Margin="0 8 0 0">
+				<TextBlock Text="Additional Startup Parameters"
+						   Foreground="#DDDDDD"/>
+				<TextBox Text="{Binding Settings.GameOptions.AdditionalStartupParameters, Mode=TwoWay}"
+						 Margin="0 3 0 0"/>
+			</StackPanel>
+			
+			
+			<Border Margin="0 30 0 0"
+					BorderBrush="#555555"
+					BorderThickness="0 1 0 0">
+				<Button Content="Done"
+						Margin="0 10 0 0"
+					HorizontalAlignment="Left"
+						Background="#444444"
+						Foreground="#EEEEEE"
+						Padding="8 2"
+						Click="Done_Click">
+				</Button>
+			</Border>
+		</StackPanel>
+	</Grid>
+</UserControl>

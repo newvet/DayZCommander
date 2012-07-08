@@ -82,5 +82,10 @@ namespace Dotjosh.DayZCommander.App.Ui
 		{
 			ViewModel.CurrentTab = (ViewModelBase) ((Control) sender).DataContext;
 		}
+
+		private void Settings_Click(object sender, RoutedEventArgs e)
+		{
+			ViewModel.ShowSettings();
+		}
 	}
 }

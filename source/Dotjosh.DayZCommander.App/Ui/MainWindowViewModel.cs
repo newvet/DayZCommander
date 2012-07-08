@@ -28,11 +28,14 @@ namespace Dotjosh.DayZCommander.App.Ui
 
 			Updater.StartCheckingForUpdates();
 			ServerList.GetAndUpdateAll();
+
+			SettingsViewModel = new	SettingsViewModel();
 		}
 
 		public DayZCommanderUpdater Updater { get; private set; }
 		public ServerListViewModel ServerListViewModel { get; set; }
 		public FriendsViewModel FriendsViewModel { get; set; }
+		public SettingsViewModel SettingsViewModel { get; set; }
 
 		public Core.ServerList ServerList
 		{
@@ -84,6 +87,11 @@ namespace Dotjosh.DayZCommander.App.Ui
 			{
 				App.Events.Publish(new PlayersChangedEvent(server.Players, server.Players));
 			}
+		}
+
+		public void ShowSettings()
+		{
+			SettingsViewModel.IsVisible = true;
 		}
 	}
 }

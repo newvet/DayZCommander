@@ -11,31 +11,35 @@ namespace Dotjosh.DayZCommander.App.Core
 	[DataContract]
 	public class UserSettings
 	{
-		private const string SETTINGS_FILE_NAME = "settings.xml";
 		private static UserSettings _current;
 
-		public UserSettings()
+		[DataMember] private List<string> _friends = new List<string>();
+		[DataMember] private Filter _filter = new Filter();
+		[DataMember] private WindowSettings _windowSettings = new WindowSettings();
+		[DataMember] private GameOptions _gameOptions = new GameOptions();
+
+		public List<string> Friends
 		{
-			Initialize();
+			get { return _friends; }
+			set { _friends = value; }
 		}
 
-		[DataMember]
-		public List<string> Friends { get; set; }
-
-		[DataMember]
-		public Filter Filter { get; set; }
-
-		[DataMember]
-		public WindowSettings WindowSettings { get; set; }
-
-		public void Save()
+		public Filter Filter
 		{
-			using(var fs = GetSettingsFileStream(FileMode.Create))
-			{
-				var serializer = new DataContractSerializer(GetType());
-				serializer.WriteObject(fs, this);
-				fs.Flush(true);
-			}
+			get { return _filter; }
+			set { _filter = value; }
+		}
+
+		public WindowSettings WindowSettings
+		{
+			get { return _windowSettings; }
+			set { _windowSettings = value; }
+		}
+
+		public GameOptions GameOptions
+		{
+			get { return _gameOptions; }
+			set { _gameOptions = value; }
 		}
 
 		[OnDeserializing]
@@ -46,8 +50,24 @@ namespace Dotjosh.DayZCommander.App.Core
 
 		private void Initialize()
 		{
-			Friends = new List<string>();
-			Filter = new Filter();
+			if(_friends == null)
+				_friends = new List<string>();
+			if(_filter == null)
+				_filter = new Filter();
+			if(_windowSettings == null)
+				_windowSettings = new WindowSettings();
+			if(_gameOptions == null)
+				_gameOptions = new GameOptions();
+		}
+
+		public void Save()
+		{
+			using(var fs = GetSettingsFileStream(FileMode.Create))
+			{
+				var serializer = new DataContractSerializer(GetType());
+				serializer.WriteObject(fs, this);
+				fs.Flush(true);
+			}
 		}
 
 		private static UserSettings Load()

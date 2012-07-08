@@ -119,6 +119,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\GameOptions.cs" />
     <Compile Include="Ui\Converters\BooleanToSelectedOptionColorConverter.cs" />
     <Compile Include="Ui\Converters\BooleanToVisibilityCollapsedConverter.cs" />
     <Compile Include="Ui\Converters\BooleanToVisibilityHiddenConverter.cs" />
@@ -166,6 +167,10 @@
       <DependentUpon>ServerListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ui\ServerList\ServerListViewModel.cs" />
+    <Compile Include="Ui\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\SettingsViewModel.cs" />
     <Compile Include="Ui\ViewModelBase.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -220,6 +225,10 @@
     <Page Include="Ui\ServerList\ServerListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ui\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

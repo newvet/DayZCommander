@@ -118,7 +118,7 @@
 
 					<StackPanel
 							Orientation="Horizontal"
-							Margin="0 5 44 2"
+							Margin="0 5 44 4"
 							HorizontalAlignment="Right"
 						  VerticalAlignment="Bottom"
 						  Grid.Row="1">
@@ -130,11 +130,11 @@
 								HorizontalAlignment="Right"
 								Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource CountToVisibilityConverter}}">
 								<TextBlock Text="refreshing servers... " Foreground="LightGreen"  FontSize="14"/>
-								<TextBlock Text="( " Foreground="LightGreen" FontSize="12"/>
-								<TextBlock Text="{Binding ServerList.ProcessedServersCount}" Foreground="#FFF" FontSize="12"/>
-								<TextBlock Text=" / " Foreground="#FFF" FontSize="12"/>
-								<TextBlock Text="{Binding ServerList.Items.Count}" Foreground="LightGreen" FontSize="12"/>
-								<TextBlock Text=" )" Foreground="LightGreen" FontSize="12"/>
+								<TextBlock Text="( " Foreground="LightGreen" FontSize="12" Margin="0 2 0 0"/>
+								<TextBlock Text="{Binding ServerList.ProcessedServersCount}" Foreground="#FFF" Margin="0 2 0 0" FontSize="12"/>
+								<TextBlock Text=" / " Foreground="#FFF" FontSize="12" Margin="0 2 0 0"/>
+								<TextBlock Text="{Binding ServerList.Items.Count}" Foreground="LightGreen" FontSize="12" Margin="0 2 0 0"/>
+								<TextBlock Text=" )" Foreground="LightGreen" FontSize="12" Margin="0 2 0 0"/>
 							</StackPanel>
 							<Button Click="RefreshAll_Click"
 								HorizontalAlignment="Right"

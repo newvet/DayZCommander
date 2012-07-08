@@ -28,9 +28,8 @@
 
 			<Grid>
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition/>
 					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition />
 				</Grid.ColumnDefinitions>
 
 				<StackPanel>
@@ -53,36 +52,75 @@
 						Grid.Column="0"
 						   HorizontalAlignment="Left"
 							IsHitTestVisible="False"
-						   Margin="30 -6 0 7"/>
+						   Margin="30 -3 0 7"/>
 				</StackPanel>
-				<StackPanel Grid.Column="1"
-							Margin="0 0 25 8"
-							Canvas.ZIndex="1000"
-							Orientation="Horizontal"
-							HorizontalAlignment="Right"
-							VerticalAlignment="Bottom">
+				
+				<Grid Grid.Column="1">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
 
-					<StackPanel Orientation="Horizontal" 
+					<Grid Margin="15 0 0 0">
+						<StackPanel Orientation="Horizontal"
+									Margin="0 4 0 0"
+									VerticalAlignment="Top">
+							<StackPanel Orientation="Horizontal" 
 							IsHitTestVisible="False"
 								Margin="0 0 20 0">
-						<TextBlock Text="Arma2 Version: " Foreground="#CCC"
+								<TextBlock Text="Arma2 Version: " 
+									   FontSize="10"
+									   Foreground="#CCC"
 							IsHitTestVisible="False"/>
-						<TextBlock Text="{Binding Source={x:Static Member=Core:LocalMachineInfo.Arma2OABetaVersion}}" Foreground="#CCC"
+								<TextBlock Text="{Binding Source={x:Static Member=Core:LocalMachineInfo.Arma2OABetaVersion}}" 
+									   FontSize="10"
+									   Foreground="#CCC"
 							IsHitTestVisible="False"/>
-					</StackPanel>
+							</StackPanel>
 
-					<StackPanel Orientation="Horizontal" 
+							<StackPanel Orientation="Horizontal" 
 							IsHitTestVisible="False"
-								Margin="0 0 40 0">
-						<TextBlock Text="DayZ Version: " Foreground="#CCC"
+								Margin="0 0 0 0">
+								<TextBlock Text="DayZ Version: " 
+										   FontSize="10" 
+										   Foreground="#CCC"
 							IsHitTestVisible="False"/>
-						<TextBlock Text="{Binding Source={x:Static Member=Core:LocalMachineInfo.DayZVersion}}" Foreground="#CCC"
+								<TextBlock Text="{Binding Source={x:Static Member=Core:LocalMachineInfo.DayZVersion}}" 
+										   FontSize="10"
+										   Foreground="#CCC"
 							IsHitTestVisible="False"/>
-					</StackPanel>
+							</StackPanel>
+						</StackPanel>
+						<StackPanel HorizontalAlignment="Right"
+									Margin="0 8 14 0"
+									Orientation="Horizontal">
+							<Button
+								Click="CloseButtonClick" >
+								<Button.Template>
+									<ControlTemplate>
+										<Border Background="#222"
+												IsHitTestVisible="True">
+											<Path Data="F1M54.0573,47.8776L38.1771,31.9974 54.0547,16.1198C55.7604,14.4141 55.7604,11.6511 54.0573,9.94531 52.3516,8.23962 49.5859,8.23962 47.8802,9.94531L32.0026,25.8229 16.1224,9.94531C14.4167,8.23962 11.6511,8.23962 9.94794,9.94531 8.24219,11.6511 8.24219,14.4141 9.94794,16.1198L25.8255,32 9.94794,47.8776C8.24219,49.5834 8.24219,52.3477 9.94794,54.0534 11.6511,55.7572 14.4167,55.7585 16.1224,54.0534L32.0026,38.1745 47.8802,54.0534C49.5859,55.7585 52.3516,55.7572 54.0573,54.0534 55.7604,52.3477 55.763,49.5834 54.0573,47.8776z" Stretch="Uniform"
+											  Fill="#EEEEEE" 
+											  Width="11" 
+											  Height="11"  />
+										</Border>
+									</ControlTemplate>
+								</Button.Template>
+							</Button>
+						</StackPanel>
+					</Grid>
 
-					<Grid Width="260">
+					<StackPanel
+							Orientation="Horizontal"
+							Margin="0 5 44 3"
+							HorizontalAlignment="Right"
+						  VerticalAlignment="Bottom"
+						  Grid.Row="1">
 
-						<Grid Visibility="{Binding ServerList.DownloadingServerList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}, ConverterParameter=true}">
+						<StackPanel 
+							Orientation="Horizontal"
+							Visibility="{Binding ServerList.DownloadingServerList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}, ConverterParameter=true}">
 							<StackPanel Orientation="Horizontal"
 								HorizontalAlignment="Right"
 								Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource CountToVisibilityConverter}}">
@@ -106,10 +144,10 @@
 												<Path Data="F1M2278.07,1272.94C2265.47,1272.94,2254.91,1281.77,2252.19,1293.55L2241.99,1293.43 2255.8,1315.74 2270.14,1293.77 2260.66,1293.66C2263.13,1286.36 2269.96,1281.07 2278.07,1281.07 2288.24,1281.07 2296.52,1289.35 2296.52,1299.52 2296.52,1309.7 2288.24,1317.98 2278.07,1317.98 2274.31,1317.98 2270.81,1316.84 2267.89,1314.9L2263.45,1321.7C2267.65,1324.48 2272.67,1326.11 2278.07,1326.11 2292.73,1326.11 2304.65,1314.18 2304.65,1299.52 2304.65,1284.87 2292.73,1272.94 2278.07,1272.94" 
 											  Stretch="Uniform" 
 											  Fill="{TemplateBinding Foreground}" 
-											  Width="24" Height="24" Margin="0,0,4,0" />
+											  Width="20" Height="20" Margin="0,0,4,0" />
 												<TextBlock Text="refresh servers"
 													   FontSize="16"
-														   Padding="4 0 0 2"
+														   Padding="2 0 0 4"
 													   VerticalAlignment="Center"
 													   Foreground="{TemplateBinding Foreground}"/>
 											</StackPanel>
@@ -117,27 +155,18 @@
 									</ControlTemplate>
 								</Button.Template>
 							</Button>
-						</Grid>
+						</StackPanel>
 
-						<Grid Visibility="{Binding ServerList.DownloadingServerList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}">
+						<StackPanel Visibility="{Binding ServerList.DownloadingServerList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}">
 							<TextBlock Text="retrieving servers list... " 
 									   Foreground="LightGreen"  
 									   FontSize="16"
 									   TextAlignment="Right"/>
-						</Grid>
+						</StackPanel>
 
-					</Grid>
+					</StackPanel>
 
-				</StackPanel>	
-				<StackPanel Grid.Column="2" 
-						HorizontalAlignment="Right">
-					<Button Tag="X" 
-						Margin="0 3 7 0"
-						Foreground="#EEE"
-						FontSize="14"
-						FontFamily="Verdana"
-						Template="{StaticResource MetroTextButton}" Click="CloseButtonClick" />
-				</StackPanel>
+				</Grid>
 			</Grid>
 
 			<Grid Grid.Row="1" 

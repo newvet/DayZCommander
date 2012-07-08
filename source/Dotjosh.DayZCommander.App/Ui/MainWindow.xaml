@@ -94,14 +94,19 @@
 						<StackPanel HorizontalAlignment="Right"
 									Margin="0 8 14 0"
 									Orientation="Horizontal">
+
+
+							
 							<Button
+								Margin="20 0 0 0"
+								Style="{StaticResource MetroTextButtonStyle}"
 								Click="CloseButtonClick" >
 								<Button.Template>
 									<ControlTemplate>
 										<Border Background="#222"
 												IsHitTestVisible="True">
 											<Path Data="F1M54.0573,47.8776L38.1771,31.9974 54.0547,16.1198C55.7604,14.4141 55.7604,11.6511 54.0573,9.94531 52.3516,8.23962 49.5859,8.23962 47.8802,9.94531L32.0026,25.8229 16.1224,9.94531C14.4167,8.23962 11.6511,8.23962 9.94794,9.94531 8.24219,11.6511 8.24219,14.4141 9.94794,16.1198L25.8255,32 9.94794,47.8776C8.24219,49.5834 8.24219,52.3477 9.94794,54.0534 11.6511,55.7572 14.4167,55.7585 16.1224,54.0534L32.0026,38.1745 47.8802,54.0534C49.5859,55.7585 52.3516,55.7572 54.0573,54.0534 55.7604,52.3477 55.763,49.5834 54.0573,47.8776z" Stretch="Uniform"
-											  Fill="#EEEEEE" 
+											  Fill="{TemplateBinding Foreground}" 
 											  Width="11" 
 											  Height="11"  />
 										</Border>
@@ -113,7 +118,7 @@
 
 					<StackPanel
 							Orientation="Horizontal"
-							Margin="0 5 44 3"
+							Margin="0 5 44 2"
 							HorizontalAlignment="Right"
 						  VerticalAlignment="Bottom"
 						  Grid.Row="1">
@@ -124,12 +129,12 @@
 							<StackPanel Orientation="Horizontal"
 								HorizontalAlignment="Right"
 								Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource CountToVisibilityConverter}}">
-								<TextBlock Text="refreshing servers... " Foreground="LightGreen"  FontSize="16"/>
-								<TextBlock Text="( " Foreground="LightGreen" FontSize="16"/>
-								<TextBlock Text="{Binding ServerList.ProcessedServersCount}" Foreground="#FFF" FontSize="16"/>
-								<TextBlock Text=" / " Foreground="#FFF" FontSize="16"/>
-								<TextBlock Text="{Binding ServerList.Items.Count}" Foreground="LightGreen" FontSize="16"/>
-								<TextBlock Text=" )" Foreground="LightGreen" FontSize="16"/>
+								<TextBlock Text="refreshing servers... " Foreground="LightGreen"  FontSize="14"/>
+								<TextBlock Text="( " Foreground="LightGreen" FontSize="12"/>
+								<TextBlock Text="{Binding ServerList.ProcessedServersCount}" Foreground="#FFF" FontSize="12"/>
+								<TextBlock Text=" / " Foreground="#FFF" FontSize="12"/>
+								<TextBlock Text="{Binding ServerList.Items.Count}" Foreground="LightGreen" FontSize="12"/>
+								<TextBlock Text=" )" Foreground="LightGreen" FontSize="12"/>
 							</StackPanel>
 							<Button Click="RefreshAll_Click"
 								HorizontalAlignment="Right"
@@ -144,10 +149,10 @@
 												<Path Data="F1M2278.07,1272.94C2265.47,1272.94,2254.91,1281.77,2252.19,1293.55L2241.99,1293.43 2255.8,1315.74 2270.14,1293.77 2260.66,1293.66C2263.13,1286.36 2269.96,1281.07 2278.07,1281.07 2288.24,1281.07 2296.52,1289.35 2296.52,1299.52 2296.52,1309.7 2288.24,1317.98 2278.07,1317.98 2274.31,1317.98 2270.81,1316.84 2267.89,1314.9L2263.45,1321.7C2267.65,1324.48 2272.67,1326.11 2278.07,1326.11 2292.73,1326.11 2304.65,1314.18 2304.65,1299.52 2304.65,1284.87 2292.73,1272.94 2278.07,1272.94" 
 											  Stretch="Uniform" 
 											  Fill="{TemplateBinding Foreground}" 
-											  Width="20" Height="20" Margin="0,0,4,0" />
+											  Width="14" Height="14" Margin="0,3,3,0" />
 												<TextBlock Text="refresh servers"
-													   FontSize="16"
-														   Padding="2 0 0 4"
+													   FontSize="14"
+														   Padding="2 0 0 0"
 													   VerticalAlignment="Center"
 													   Foreground="{TemplateBinding Foreground}"/>
 											</StackPanel>
@@ -156,13 +161,42 @@
 								</Button.Template>
 							</Button>
 						</StackPanel>
+						
+						
 
 						<StackPanel Visibility="{Binding ServerList.DownloadingServerList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}">
 							<TextBlock Text="retrieving servers list... " 
 									   Foreground="LightGreen"  
-									   FontSize="16"
+									   FontSize="14"
 									   TextAlignment="Right"/>
 						</StackPanel>
+
+						<Button 
+							Margin="16 0 0 0"
+								Style="{StaticResource MetroTextButtonStyle}">
+							<Button.Template>
+								<ControlTemplate>
+									<Border IsHitTestVisible="True"
+											Margin="0"
+											Padding="0"
+											  Background="#222">
+										<StackPanel Orientation="Horizontal">
+											<Path Data="F1M-1782,1953.02C-1781.98,1951.66,-1782.12,1950.33,-1782.32,1949.03L-1776.88,1944.7C-1778.28,1939.49,-1780.97,1934.82,-1784.62,1931.06L-1791.11,1933.51C-1793.17,1931.81,-1795.5,1930.45,-1798.03,1929.48L-1799.07,1922.62C-1801.57,1921.95 -1804.19,1921.55 -1806.9,1921.53 -1809.61,1921.52 -1812.24,1921.88 -1814.76,1922.52L-1815.87,1929.36C-1818.41,1930.31,-1820.77,1931.64,-1822.84,1933.31L-1829.31,1930.78C-1833,1934.49,-1835.75,1939.12,-1837.22,1944.31L-1831.84,1948.71C-1832.05,1950.01 -1832.2,1951.34 -1832.21,1952.7 -1832.22,1954.07 -1832.09,1955.4 -1831.89,1956.7L-1837.33,1961.03C-1835.92,1966.24,-1833.23,1970.91,-1829.58,1974.67L-1823.09,1972.22C-1821.04,1973.91,-1818.7,1975.27,-1816.17,1976.26L-1815.15,1983.11C-1812.64,1983.78 -1810.02,1984.18 -1807.3,1984.2 -1804.59,1984.21 -1801.97,1983.85 -1799.45,1983.22L-1798.33,1976.37C-1795.79,1975.42,-1793.44,1974.09,-1791.36,1972.43L-1784.91,1974.96C-1781.21,1971.24,-1778.46,1966.61,-1776.99,1961.42L-1782.37,1957.02C-1782.15,1955.72,-1782.01,1954.39,-1782,1953.02 M-1807.19,1965.84C-1814.35,1965.8 -1820.12,1959.95 -1820.07,1952.78 -1820.03,1945.61 -1814.18,1939.84 -1807.02,1939.89 -1799.85,1939.94 -1794.08,1945.78 -1794.13,1952.95 -1794.17,1960.12 -1800.02,1965.89 -1807.19,1965.84" 
+													Stretch="Uniform" 
+													Fill="{TemplateBinding Foreground}" 
+													Width="14" 
+													Height="14"
+													Margin="0,4,0,0" />
+											<TextBlock Text="settings"
+													   VerticalAlignment="Top"
+														   Margin="4 0 0 0"
+															FontSize="14"
+														   Foreground="{TemplateBinding Foreground}"/>
+										</StackPanel>
+									</Border>
+								</ControlTemplate>
+							</Button.Template>
+						</Button>
 
 					</StackPanel>
 

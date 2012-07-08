@@ -27,24 +27,15 @@
 					<EventSetter Event="MouseDoubleClick" Handler="RowDoubleClick"/>
 					<EventSetter Event="PreviewMouseLeftButtonDown" Handler="RowLeftButtonDown"/>
 					<Style.Triggers>
-						<Trigger Property="IsSelected"
-                        Value="True">
-							<Setter Property="Foreground"
-                               Value="#9CBFF2" />
-							<Setter Property="Background"
-                               Value="#555" />
-						</Trigger>
 						<Trigger Property="IsMouseOver"
                            Value="True">
 							<Setter Property="Foreground"
                                Value="#FFF" />
 							<Setter Property="Background"
-									Value="#363636"/>
+									Value="#555555"/>
 						</Trigger>
 					</Style.Triggers>
 					<Style.Resources>
-						<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#3B3B3B" />
-						<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="#3B3B3B" />
 						<SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#9CBFF2" />
 						<SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="#9CBFF2" />
 					</Style.Resources>
@@ -52,10 +43,12 @@
 			</DataGrid.RowStyle>
 			<DataGrid.CellStyle>
 				<Style TargetType="DataGridCell">
+					<Setter Property="BorderThickness" Value="0"/>
+					<Setter Property="Padding" Value="2 2 8 2"/>
 					<Setter Property="Template">
 						<Setter.Value>
 							<ControlTemplate TargetType="{x:Type DataGridCell}">
-								<Border SnapsToDevicePixels="True" Padding="2 2 8 2">
+								<Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
 									<ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
 								</Border>
 							</ControlTemplate>
@@ -63,6 +56,10 @@
 					</Setter>
 				</Style>
 			</DataGrid.CellStyle>
+			<DataGrid.Resources>
+				<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                   Color="#555555"/>
+			</DataGrid.Resources>
 			<DataGrid.Columns>
 				<DataGridTemplateColumn
 											HeaderStyle="{StaticResource MetroDataGridHeader}"

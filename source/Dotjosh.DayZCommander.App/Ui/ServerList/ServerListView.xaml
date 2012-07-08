@@ -23,7 +23,7 @@
 			<TextBlock Text="{Binding ListViewModel.RawServers.Count, StringFormat={} ({0} total)}" Foreground="#CCC" Margin="2 5 0 0" FontSize="11"/>
 		</StackPanel>
 		<ServerList:FiltersView DataContext="{Binding FiltersViewModel}"
-								Margin="0 8 0 0"
+								Margin="0 14 0 0"
 								Grid.Row="1"/>
 		
 		<ServerList:ListView DataContext="{Binding ListViewModel}"

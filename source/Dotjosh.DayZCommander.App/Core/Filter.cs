@@ -18,13 +18,13 @@ namespace Dotjosh.DayZCommander.App.Core
 		[DataMember] private bool _hidePasswordProtected;
 		[DataMember] private bool _hideWrongArma2Version;
 		[DataMember] private bool _hideWrongDayZVersion;
-		[DataMember] private bool _hasScores;
-		[DataMember] private bool _hasDeathMessages;
-		[DataMember] private bool _hasArmor;
-		[DataMember] private bool _hasThirdPerson;
-		[DataMember] private bool _hasTracers;
-		[DataMember] private bool _hasNameplates;
-		[DataMember] private bool _hasCrosshairs;
+		[DataMember] private bool? _hasScores;
+		[DataMember] private bool? _hasDeathMessages;
+		[DataMember] private bool? _hasArmor;
+		[DataMember] private bool? _hasThirdPerson;
+		[DataMember] private bool? _hasTracers;
+		[DataMember] private bool? _hasNameplates;
+		[DataMember] private bool? _hasCrosshairs;
 
 		public Filter()
 		{
@@ -123,7 +123,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 		}
 
-		public bool HasArmor
+		public bool? HasArmor
 		{
 			get { return _hasArmor; }
 			set
@@ -134,9 +134,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 		}
 
-
-	
-		public bool HasThirdPerson
+		public bool? HasThirdPerson
 		{
 			get { return _hasThirdPerson; }
 			set
@@ -147,7 +145,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 		}
 
-		public bool HasTracers
+		public bool? HasTracers
 		{
 			get { return _hasTracers; }
 			set
@@ -158,7 +156,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 		}
 
-		public bool HasNameplates
+		public bool? HasNameplates
 		{
 			get { return _hasNameplates; }
 			set
@@ -169,7 +167,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 		}
 
-		public bool HasCrosshairs
+		public bool? HasCrosshairs
 		{
 			get { return _hasCrosshairs; }
 			set
@@ -180,7 +178,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 		}
 
-		public bool HasDeathMessages
+		public bool? HasDeathMessages
 		{
 			get { return _hasDeathMessages; }
 			set
@@ -191,7 +189,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 		}
 
-		public bool HasScores
+		public bool? HasScores
 		{
 			get { return _hasScores; }
 			set
@@ -243,79 +241,103 @@ namespace Dotjosh.DayZCommander.App.Core
 			UserSettings.Current.Filter = this;
 			UserSettings.Current.Save();
 
-			Func<Server, bool> filter = s =>
-			             	{
-								if(MaxPing != null && s.Ping > MaxPing)
-									return false;
+			App.Events.Publish(new FilterUpdated(s => FilterHandler(s)));
+		}
 
-								if(!string.IsNullOrWhiteSpace(Name))
-								{
-									if(s.Name == null || s.Name.IndexOf(Name, StringComparison.CurrentCultureIgnoreCase) == -1)
-										return false;
-								}
+		private bool FilterHandler(Server s)
+		{
+			if(MaxPing != null && s.Ping > MaxPing)
+				return false;
 
-								if(HideEmpty && s.CurrentPlayers == 0)
-									return false;
+			if(!string.IsNullOrWhiteSpace(Name))
+			{
+				if(s.Name == null || s.Name.IndexOf(Name, StringComparison.CurrentCultureIgnoreCase) == -1)
+					return false;
+			}
 
-								if(HideFull && s.FreeSlots == 0)
-									return false;
+			if(HideEmpty && s.CurrentPlayers == 0)
+				return false;
 
-								if(TimeOfDay == "Night only")
-								{
-									if(s.IsNight == null || s.IsNight == false)
-										return false;
-								}
+			if(HideFull && s.FreeSlots == 0)
+				return false;
 
-								if(TimeOfDay == "Day only")
-								{
-									if(s.IsNight == null || s.IsNight == true)
-										return false;							
-								}
-//
-								if(HasArmor && !s.Info.Armor.Enabled)
-								{
-									return false;
-								}
+			if(TimeOfDay == "Night only")
+			{
+				if(s.IsNight == null || s.IsNight == false)
+					return false;
+			}
 
-								if(HasThirdPerson && !s.Info.ThirdPerson.Enabled)
-								{
-									return false;
-								}
+			if(TimeOfDay == "Day only")
+			{
+				if(s.IsNight == null || s.IsNight == true)
+					return false;							
+			}
 
-								if(HasTracers && !s.Info.Tracers.Enabled)
-								{
-									return false;
-								}
+			if(HasArmor != null)
+			{
+				if(HasArmor == true && !s.Info.Armor.Enabled)
+					return false;				
+				if(HasArmor == false && s.Info.Armor.Enabled)
+					return false;
+			}
 
-								if(HasNameplates && !s.Info.Nameplates.Enabled)
-								{
-									return false;
-								}
+			if(HasThirdPerson != null)
+			{
+				if(HasThirdPerson == true && !s.Info.ThirdPerson.Enabled)
+					return false;				
+				if(HasThirdPerson == false && s.Info.ThirdPerson.Enabled)
+					return false;
+			}
 
-								if(HasCrosshairs && !s.Info.Crosshairs.Enabled)
-								{
-									return false;
-								}
+			if(HasTracers != null)
+			{
+				if(HasTracers == true && !s.Info.Tracers.Enabled)
+					return false;				
+				if(HasTracers == false && s.Info.Tracers.Enabled)
+					return false;
+			}
 
-								if(HasDeathMessages && !s.Info.DeathMessages.Enabled)
-								{
-									return false;
-								}
+			if(HasNameplates != null)
+			{
+				if(HasNameplates == true && !s.Info.Nameplates.Enabled)
+					return false;				
+				if(HasNameplates == false && s.Info.Nameplates.Enabled)
+					return false;
+			}
 
-								if(HasScores && !s.Info.Scores.Enabled)
-								{
-									return false;
-								}
+			if(HasCrosshairs != null)
+			{
+				if(HasCrosshairs == true && !s.Info.Crosshairs.Enabled)
+					return false;				
+				if(HasCrosshairs == false && s.Info.Crosshairs.Enabled)
+					return false;
+			}
 
-								if(HideUnresponsive && s.LastException != null)
-								{
-									return false;
-								}
+			if(HasDeathMessages != null)
+			{
+				if(HasDeathMessages == true && !s.Info.DeathMessages.Enabled)
+					return false;				
+				if(HasDeathMessages == false && s.Info.DeathMessages.Enabled)
+					return false;
+			}
 
-								if(HidePasswordProtected && s.HasPassword)
-								{
-									return false;
-								}
+			if(HasScores != null)
+			{
+				if(HasScores == true && !s.Info.Scores.Enabled)
+					return false;				
+				if(HasScores == false && s.Info.Scores.Enabled)
+					return false;
+			}
+
+			if(HideUnresponsive && s.LastException != null)
+			{
+				return false;
+			}
+
+			if(HidePasswordProtected && s.HasPassword)
+			{
+				return false;
+			}
 
 //								if(HideWrongArma2Version)
 //								{
@@ -334,9 +356,7 @@ namespace Dotjosh.DayZCommander.App.Core
 //									}
 //								}
 
-								return true;
-			             	};
-			App.Events.Publish(new FilterUpdated(filter));
-		}		 
+			return true;			
+		}
 	}
 }

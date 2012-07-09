@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Input;
 using Dotjosh.DayZCommander.App.Core;
 using Application = System.Windows.Application;
@@ -86,6 +87,11 @@ namespace Dotjosh.DayZCommander.App.Ui
 		private void Settings_Click(object sender, RoutedEventArgs e)
 		{
 			ViewModel.ShowSettings();
+		}
+
+		private void Donate_Click(object sender, RoutedEventArgs e)
+		{
+			Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=S2VZJLUWUG8RG");
 		}
 	}
 }

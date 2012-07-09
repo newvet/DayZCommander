@@ -5,12 +5,12 @@ namespace Dotjosh.DayZCommander.App.Core
 	[DataContract]
 	public class GameOptions : BindableBase
 	{
-		private string _additionalStartupParameters;
-		private bool _launchUsingSteam;
-		private bool _windowedMode;
-		private bool _multiGpu;
-		private string _arma2DirectoryOverride;
-		private string _arma2OaDirectoryOverride;
+		[DataMember] private string _additionalStartupParameters;
+		[DataMember] private bool _launchUsingSteam;
+		[DataMember] private bool _windowedMode;
+		[DataMember] private bool _multiGpu;
+		[DataMember] private string _arma2DirectoryOverride;
+		[DataMember] private string _arma2OaDirectoryOverride;
 
 		public string AdditionalStartupParameters
 		{

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Net.Sockets;
 using System.Text.RegularExpressions;
 using Dotjosh.DayZCommander.App.Ui.Friends;
 
@@ -16,7 +15,7 @@ namespace Dotjosh.DayZCommander.App.Core
 		private long _ping;
 		private ObservableCollection<Player> _players;
 		private SortedDictionary<string, string> _settings;
-		public string LastException = null;
+		public string LastException;
 
 		public Server(string ipAddress, int port)
 		{
@@ -218,6 +217,15 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 		}
 
+		public bool ProtectionEnabled
+		{
+			get
+			{
+				return GetSettingOrDefault("verifySignatures").TryInt() > 0
+				       && GetSettingOrDefault("sv_battleye").TryInt() > 0;
+			}
+		}
+
 		private string GetSettingOrDefault(string settingName)
 		{
 			if (Settings.ContainsKey(settingName))
@@ -254,7 +262,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 		}
 
-		private string CleanServerName(string name)
+		private static string CleanServerName(string name)
 		{
 			if(string.IsNullOrEmpty(name))
 			{
@@ -268,7 +276,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			return cleanName.Trim();
 		}
 
-		private string GetDayZVersionString(string name)
+		private static string GetDayZVersionString(string name)
 		{
 			if(string.IsNullOrEmpty(name))
 			{

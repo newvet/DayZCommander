@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using NLog;
 
@@ -66,20 +67,35 @@ namespace Dotjosh.DayZCommander.Updater
 
 		private void KillDayzCommanderProcesses()
 		{
-			try
-				{
-				var processes = Process.GetProcessesByName("DayZCommander.exe");
-				if(processes.Length == 0)
-					return;
-
-				foreach (var process in processes)
-				{
-					process.Kill();
-				}
-			}
-			catch(Exception)
+			//Give it 10 times to kill all the dayz processes
+			for(var i = 0; i < 10; i++)
 			{
-					
+				try
+				{
+					var processes = Process.GetProcessesByName("DayZCommander.exe");
+					if (processes.Length == 0)
+						return;
+
+					foreach (var process in processes)
+					{
+						process.Kill();
+					}
+
+					processes = Process.GetProcessesByName("DayZCommander.exe");
+					if (processes.Length == 0)
+						return;
+
+					if(i == 9)
+					{
+						_logger.Log(LogLevel.Error, "Could not apply update, the DayZCommander process could not be closed.");
+					}
+
+					Thread.Sleep(100);
+				}
+				catch (Exception)
+				{
+
+				}
 			}
 		}
 	}

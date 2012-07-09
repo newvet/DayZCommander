@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Reflection;
@@ -20,6 +21,8 @@ namespace Dotjosh.DayZCommander.Updater
 		private readonly string _tempDownloadFileLocation;
 		private readonly string _tempExtractedLocation;
 		public static readonly string PENDING_UPDATE_DIRECTORYNAME = "_pendingupdate";
+		private readonly string _currentDirectory;
+		private readonly string _targetSwapDirectory;
 
 		public DownloadAndExtracter(Version serverVersion)
 		{
@@ -28,6 +31,8 @@ namespace Dotjosh.DayZCommander.Updater
 			var uniqueToken = Guid.NewGuid().ToString();
 			_tempDownloadFileLocation = Path.GetTempPath() + uniqueToken + ".zip";
 			_tempExtractedLocation = Path.GetTempPath() + uniqueToken;
+			_currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+			_targetSwapDirectory = Path.Combine(_currentDirectory, PENDING_UPDATE_DIRECTORYNAME);
 		}
 
 		public string TempExtractedLocation
@@ -39,9 +44,29 @@ namespace Dotjosh.DayZCommander.Updater
 
 		public void DownloadAndExtract()
 		{
+			var pendingUpdateVersion = GetPendingUpdateVersion();
+			if(pendingUpdateVersion != null && pendingUpdateVersion >= _serverVersion)
+			{
+				OnExtractComplete();
+				return;
+			}
+
 			var checkForUpdateClient = new WebClient();
 			checkForUpdateClient.DownloadFileCompleted += DownloadFileComplete;
 			checkForUpdateClient.DownloadFileAsync(_serverZipUri, _tempDownloadFileLocation);
+		}
+
+		private Version GetPendingUpdateVersion()
+		{
+			if(!Directory.Exists(_targetSwapDirectory))
+			{
+				return null;
+			}
+			var pendingUpdateDayZCommanderFile = new FileInfo(Path.Combine(_targetSwapDirectory, "DayZCommander.exe"));
+			if(!pendingUpdateDayZCommanderFile.Exists)
+				return null;
+
+			return AssemblyName.GetAssemblyName(pendingUpdateDayZCommanderFile.FullName).Version;
 		}
 
 		private void DownloadFileComplete(object sender, AsyncCompletedEventArgs args)
@@ -65,13 +90,10 @@ namespace Dotjosh.DayZCommander.Updater
 									zipFile.ExtractAll(_tempExtractedLocation, ExtractExistingFileAction.OverwriteSilently);
 								}
 
-								var currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-								var targetSwapDirectory = Path.Combine(currentDirectory, PENDING_UPDATE_DIRECTORYNAME);
+								if (Directory.Exists(_targetSwapDirectory))
+									Directory.Delete(_targetSwapDirectory);
 
-								if (Directory.Exists(targetSwapDirectory))
-									Directory.Delete(targetSwapDirectory);
-
-								Directory.Move(_tempExtractedLocation, targetSwapDirectory);
+								Directory.Move(_tempExtractedLocation, _targetSwapDirectory);
 
 								Action action = OnExtractComplete;
 								Application.Current.Dispatcher

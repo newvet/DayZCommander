@@ -1,6 +1,5 @@
-###################
 What is DayZ Commander
-###################
+======================
 
 An open source server browser, game launcher, and friends list for the wonderful zombie survival mod, DayZ, built for Arma2.
 

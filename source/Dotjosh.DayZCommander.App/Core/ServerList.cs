@@ -152,20 +152,13 @@ namespace Dotjosh.DayZCommander.App.Core
 				for(var index = 0; index < totalCount; index++)
 				{
 					var server = Items[index];
-					new Thread(() =>
-					{
-						try
-						{
-							server.Update();
-						}
-						finally
-						{
-							lock(incrementLock)
-							{
-								_processed++;
-							}
-						}
-					}, 1).Start();
+					server.BeginUpdate(s =>
+					                   	{
+											lock(incrementLock)
+											{
+												_processed++;
+											}
+					                   	});
 					Thread.Sleep(new Random().Next(5, 15));
 
 					while(index - _processed > 200)

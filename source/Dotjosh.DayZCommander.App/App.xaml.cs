@@ -71,16 +71,16 @@ namespace Dotjosh.DayZCommander.App
 		{
 			_isUncaughtUiThreadException = true;
 			_logger.Fatal(e.Exception);
-			var messageBoxResult = MessageBox.Show(
-				"It wasn't your fault, but something went really wrong!\r\nWould you like me to try and restart DayZ Commander for you?",
-				"Oh noes",
-				MessageBoxButton.YesNo);
-			if (messageBoxResult == MessageBoxResult.Yes)
-			{
-				e.Handled = true;
-				//System.Windows.Forms.Application.Restart();
-				Current.Shutdown();
-			}
+//			var messageBoxResult = MessageBox.Show(
+//				"It wasn't your fault, but something went really wrong!\r\nWould you like me to try and restart DayZ Commander for you?",
+//				"Oh noes",
+//				MessageBoxButton.YesNo);
+//			if (messageBoxResult == MessageBoxResult.Yes)
+//			{
+//				e.Handled = true;
+//				//System.Windows.Forms.Application.Restart();
+//				Current.Shutdown();
+//			}
 		}
 
 		private void UncaughtThreadException(object sender, UnhandledExceptionEventArgs e)

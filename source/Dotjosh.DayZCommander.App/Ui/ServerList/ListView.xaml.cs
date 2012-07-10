@@ -36,10 +36,10 @@ namespace Dotjosh.DayZCommander.App.Ui.ServerList
 
 			GameLauncher.JoinServer(server);
 		}
-
-		private void RowLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			ViewModel.LeftMouseDown();
-		}
+//
+//		private void RowLeftButtonDown(object sender, MouseButtonEventArgs e)
+//		{
+//			ViewModel.LeftMouseDown();
+//		}
 	}
 }

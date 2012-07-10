@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using Caliburn.Micro;
 using Dotjosh.DayZCommander.App.Core;
+using Dotjosh.DayZCommander.App.Ui.Controls;
 using Dotjosh.DayZCommander.App.Ui.Friends;
 using Microsoft.Win32;
 
@@ -16,7 +17,8 @@ namespace Dotjosh.DayZCommander.App.Ui.ServerList
 	public class ListViewModel : ViewModelBase,
 		IHandle<ServersAdded>,
 		IHandle<FilterUpdated>,
-		IHandle<ServerUpdated>
+		IHandle<ServerUpdated>,
+		IHandle<DataGridRowSelected>
 	{
 		private ListCollectionView _servers;
 		private readonly ObservableCollection<Server> _rawServers = new ObservableCollection<Server>();
@@ -83,13 +85,14 @@ namespace Dotjosh.DayZCommander.App.Ui.ServerList
 			}
 		}
 
-		public void LeftMouseDown()
-		{
-			_lastLeftMouseDown = DateTime.Now;
-		}
-
 		public void Handle(ServersAdded message)
 		{
+		}
+
+		public void Handle(DataGridRowSelected message)
+		{
+			_lastLeftMouseDown = DateTime.Now;
+			
 		}
 	}
 }

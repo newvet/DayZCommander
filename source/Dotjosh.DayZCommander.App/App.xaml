@@ -19,6 +19,7 @@
 		<Converters:EnabledSettingToForegroundConverter x:Key="EnabledSettingToForegroundConverter" />
 		<Converters:BooleanToVisibilityCollapsedConverter x:Key="BooleanToVisibilityCollapsedConverter" />
 		<Converters:IsSelectedTabToColorConverter x:Key="IsSelectedTabToColorConverter" />
+		<Converters:IsFavoriteToForegroundConverter x:Key="IsFavoriteToForegroundConverter" />
 
 		<Style TargetType="Button" x:Key="MetroTextButtonStyle">
 			<Setter Property="Foreground" Value="#CCC"/>
@@ -67,7 +68,7 @@
 						<TextBlock Text="{TemplateBinding ContentControl.Content}"
 								   Foreground="{TemplateBinding Foreground}" 
 								   FontWeight="Bold"
-								   Margin="2 3 4 3"/>
+								   Margin="4 3 4 3"/>
 					</ControlTemplate>
 				</Setter.Value>
 			</Setter>

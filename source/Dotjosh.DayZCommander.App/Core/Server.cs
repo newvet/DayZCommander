@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using Dotjosh.DayZCommander.App.Ui.Friends;
 
 namespace Dotjosh.DayZCommander.App.Core
 {
-	public class Server : BindableBase
+	public class Server : BindableBase, IEquatable<Server>
 	{
 		private readonly string _ipAddress;
 		private readonly int _port;
@@ -50,6 +51,19 @@ namespace Dotjosh.DayZCommander.App.Core
 					_hostName = GetSettingOrDefault("hostname");
 				}
 				return _hostName;
+			}
+		}
+
+		public bool IsFavorite
+		{
+			get { return UserSettings.Current.IsFavorite(this); }
+			set
+			{
+				if(value)
+					UserSettings.Current.AddFavorite(this);
+				else
+					UserSettings.Current.RemoveFavorite(this);
+				PropertyHasChanged("IsFavorite");
 			}
 		}
 
@@ -289,6 +303,29 @@ namespace Dotjosh.DayZCommander.App.Core
 				return null;
 			}
 			return match.Value;
+		}
+
+		public bool Equals(Server other)
+		{
+			if(other == null)
+				return false;
+			return (other.IpAddress == this.IpAddress
+			        && other.Port == this.Port);
+		}
+
+		public void BeginUpdate(Action<Server> onComplete)
+		{
+			new Thread(() =>
+			{
+				try
+				{
+					Update();
+				}
+				finally
+				{
+					onComplete(this);
+				}
+			}, 1).Start();			
 		}
 	}
 }

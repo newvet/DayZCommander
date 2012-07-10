@@ -119,13 +119,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\FavoriteServer.cs" />
     <Compile Include="Core\GameOptions.cs" />
+    <Compile Include="Ui\Controls\ServerListGrid.xaml.cs">
+      <DependentUpon>ServerListGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ui\Converters\BooleanToSelectedOptionColorConverter.cs" />
     <Compile Include="Ui\Converters\BooleanToVisibilityCollapsedConverter.cs" />
     <Compile Include="Ui\Converters\BooleanToVisibilityHiddenConverter.cs" />
     <Compile Include="Ui\Converters\CountToVisibilityConverter.cs" />
     <Compile Include="Ui\Converters\DifficultyToDescriptionConverter.cs" />
     <Compile Include="Ui\Converters\EnabledSettingToForegroundConverter.cs" />
+    <Compile Include="Ui\Converters\IsFavoriteToForegroundConverter.cs" />
     <Compile Include="Ui\Converters\IsPlayingToColorConverter.cs" />
     <Compile Include="Ui\Converters\IsSelectedTabToColorConverter.cs" />
     <Compile Include="Ui\Converters\NonZeroToVisibilityCollapsedConverter.cs" />
@@ -135,6 +140,10 @@
     <Compile Include="Ui\Converters\ServerFullnessToColorConverter.cs" />
     <Compile Include="Ui\Converters\TimeToColorConverter.cs" />
     <Compile Include="Ui\Converters\ZeroToVisibilityConverter.cs" />
+    <Compile Include="Ui\Favorites\FavoritesView.xaml.cs">
+      <DependentUpon>FavoritesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Favorites\FavoritesViewModel.cs" />
     <Compile Include="Ui\Friends\FriendsView.xaml.cs">
       <DependentUpon>FriendsView.xaml</DependentUpon>
     </Compile>
@@ -159,9 +168,6 @@
     </Compile>
     <Compile Include="Ui\ServerList\FiltersViewModel.cs" />
     <Compile Include="Ui\ServerList\FilterUpdated.cs" />
-    <Compile Include="Ui\ServerList\ListView.xaml.cs">
-      <DependentUpon>ListView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Ui\ServerList\ListViewModel.cs" />
     <Compile Include="Ui\ServerList\ServerListView.xaml.cs">
       <DependentUpon>ServerListView.xaml</DependentUpon>
@@ -198,6 +204,14 @@
     <Compile Include="Core\SuperQueue.cs" />
     <Compile Include="Core\UserSettings.cs" />
     <Compile Include="Core\WindowSettings.cs" />
+    <Page Include="Ui\Controls\ServerListGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Favorites\FavoritesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ui\Friends\FriendsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -215,10 +229,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ui\ServerList\FiltersView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Ui\ServerList\ListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -306,6 +316,7 @@
       <Name>Updater</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

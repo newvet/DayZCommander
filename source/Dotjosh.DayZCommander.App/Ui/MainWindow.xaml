@@ -4,7 +4,7 @@
         xmlns:ServerList="clr-namespace:Dotjosh.DayZCommander.App.Ui.ServerList"
         xmlns:Friends="clr-namespace:Dotjosh.DayZCommander.App.Ui.Friends"
         xmlns:Core="clr-namespace:Dotjosh.DayZCommander.App.Core" xmlns:Ui="clr-namespace:Dotjosh.DayZCommander.App.Ui"
-        Title="MainWindow" 
+        xmlns:Favorites="clr-namespace:Dotjosh.DayZCommander.App.Ui.Favorites" Title="MainWindow" 
 		Height="650" 
 		Width="970"
 		MouseLeftButtonDown="MainWindow_OnMouseLeftButtonDown"
@@ -292,7 +292,7 @@
 						<DataTemplate>
 							<TextBlock Text="{Binding Title}"
 									   FontSize="22"
-									   Margin="0 0 15 0"/>
+									   Margin="0 0 22 0"/>
 						</DataTemplate>
 					</ListBox.ItemTemplate>
 					<ListBox.Resources>
@@ -337,6 +337,14 @@
 					<Friends:FriendsView
 					Grid.Row="2"
 					DataContext="{Binding FriendsViewModel}"
+					/>
+				</Grid>
+				
+				<Grid Grid.Row="2"
+					  Visibility="{Binding IsFavoritesSelected, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}">
+					<Favorites:FavoritesView
+					Grid.Row="2"
+					DataContext="{Binding FavoritesViewModel}"
 					/>
 				</Grid>
 

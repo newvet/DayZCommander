@@ -20,17 +20,32 @@ namespace Dotjosh.DayZCommander.App.Core
 		[DataMember] private Filter _filter = new Filter();
 		[DataMember] private WindowSettings _windowSettings = null; //This is null on purpose so the MainWindow view can set defaults if needed
 		[DataMember] private GameOptions _gameOptions = new GameOptions();
-		[DataMember] private List<FavoriteServer> _favorites;
+		[DataMember] private List<FavoriteServer> _favorites = new List<FavoriteServer>();
+
 
 		public List<string> Friends
 		{
-			get { return _friends; }
+			get
+			{
+				if(_friends == null)
+				{
+					_friends = new List<string>();
+				}
+				return _friends;
+			}
 			set { _friends = value; }
 		}
 
 		public Filter Filter
 		{
-			get { return _filter; }
+			get
+			{
+				if(_filter == null)
+				{
+					_filter = new Filter();
+				}
+				return _filter;
+			}
 			set { _filter = value; }
 		}
 
@@ -42,32 +57,28 @@ namespace Dotjosh.DayZCommander.App.Core
 
 		public GameOptions GameOptions
 		{
-			get { return _gameOptions; }
+			get
+			{
+				if(_gameOptions == null)
+				{
+					_gameOptions = new GameOptions();
+				}
+				return _gameOptions;
+			}
 			set { _gameOptions = value; }
 		}
 
 		public List<FavoriteServer> Favorites
 		{
-			get { return _favorites; }
+			get
+			{
+				if(_favorites == null)
+				{
+					_favorites = new List<FavoriteServer>();
+				}
+				return _favorites;
+			}
 			set { _favorites = value; }
-		}
-
-		[OnDeserializing]
-		public void OnDeserializing(StreamingContext ctx)
-		{
-			Initialize();
-		}
-
-		private void Initialize()
-		{
-			if(_friends == null)
-				_friends = new List<string>();
-			if(_filter == null)
-				_filter = new Filter();
-			if(_gameOptions == null)
-				_gameOptions = new GameOptions();
-			if(_favorites == null)
-				_favorites = new List<FavoriteServer>();
 		}
 
 		public void Save()
@@ -157,24 +168,24 @@ namespace Dotjosh.DayZCommander.App.Core
 
 		public bool IsFavorite(Server server)
 		{
-			return _favorites.Any(f => f.Matches(server));
+			return Favorites.Any(f => f.Matches(server));
 		}
 
 		public void AddFavorite(Server server)
 		{
-			if(_favorites.Any(f => f.Matches(server)))
+			if(Favorites.Any(f => f.Matches(server)))
 				return;
-			_favorites.Add(new FavoriteServer(server));
+			Favorites.Add(new FavoriteServer(server));
 			App.Events.Publish(new FavoritesUpdated(server));
 			Save();
 		}
 
 		public void RemoveFavorite(Server server)
 		{
-			var favorite = _favorites.FirstOrDefault(f => f.Matches(server));
+			var favorite = Favorites.FirstOrDefault(f => f.Matches(server));
 			if(favorite == null)
 				return;
-			_favorites.Remove(favorite);
+			Favorites.Remove(favorite);
 			App.Events.Publish(new FavoritesUpdated(server));
 			Save();
 		}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Timers;
 using Dotjosh.DayZCommander.App.Ui.ServerList;
 
 namespace Dotjosh.DayZCommander.App.Core
@@ -25,6 +26,7 @@ namespace Dotjosh.DayZCommander.App.Core
 		[DataMember] private bool? _hasTracers;
 		[DataMember] private bool? _hasNameplates;
 		[DataMember] private bool? _hasCrosshairs;
+		private Timer _publishTimer;
 
 		public Filter()
 		{
@@ -241,7 +243,24 @@ namespace Dotjosh.DayZCommander.App.Core
 			UserSettings.Current.Filter = this;
 			UserSettings.Current.Save();
 
-			App.Events.Publish(new FilterUpdated(s => FilterHandler(s)));
+			if(_publishTimer == null)
+			{
+				_publishTimer = new Timer(300);
+				_publishTimer.Elapsed += PublishTimerOnElapsed;
+			}
+
+			_publishTimer.Stop();
+			_publishTimer.Start();
+
+		}
+
+		private void PublishTimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
+		{
+			_publishTimer.Stop();
+			Execute.OnUiThread(() =>
+			{
+				App.Events.Publish(new FilterUpdated(s => FilterHandler(s)));
+			});
 		}
 
 		private bool FilterHandler(Server s)

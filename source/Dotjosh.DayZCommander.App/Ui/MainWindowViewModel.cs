@@ -21,9 +21,9 @@ namespace Dotjosh.DayZCommander.App.Ui
 			Tabs = new ObservableCollection<ViewModelBase>(new ViewModelBase[]
 			                                               	{
 			                                               		ServerListViewModel = new ServerListViewModel(),
-																FriendsViewModel = new FriendsViewModel(),
+																RecentViewModel = new RecentViewModel(),
 																FavoritesViewModel = new FavoritesViewModel(),
-																RecentViewModel = new RecentViewModel()
+																FriendsViewModel = new FriendsViewModel()
 			                                               	});
 			CurrentTab = Tabs.First();
 

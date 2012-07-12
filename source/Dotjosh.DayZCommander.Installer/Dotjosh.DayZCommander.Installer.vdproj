@@ -57,6 +57,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_82B1EEE6D60B4AD42185182C68F0BAA5"
+        "OwnerKey" = "8:_D319E7020D5525DDFE23657A80010F56"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B7FB80B1D1844F1A831105264BA8A953"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -119,6 +125,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_CFAFF22BEA117034501FC0893CD1AC22"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_82B1EEE6D60B4AD42185182C68F0BAA5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -355,7 +367,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DayZCommander, Version=0.9.0.25, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:DayZCommander, Version=0.9.0.27, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_35CE219004E34AC5B16BB66D2BDFD5C1"
@@ -400,6 +412,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_82B1EEE6D60B4AD42185182C68F0BAA5"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:DayZCommanderInstallUtilities, Version=0.9.0.23, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_82B1EEE6D60B4AD42185182C68F0BAA5"
+                    {
+                    "Name" = "8:DayZCommanderInstallUtilities.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:DayZCommanderInstallUtilities.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B7FB80B1D1844F1A831105264BA8A953"
@@ -613,15 +656,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:DayZ Commander"
-        "ProductCode" = "8:{56B7EE49-8E68-4995-9685-77499557FC61}"
-        "PackageCode" = "8:{DC231EB5-4A43-4371-B81E-869126B6A734}"
+        "ProductCode" = "8:{C22AB9BE-4830-4F0E-8C7E-92263706C05A}"
+        "PackageCode" = "8:{8379C536-21C6-4390-9D6A-E0BC327BD14F}"
         "UpgradeCode" = "8:{6CE976EC-92CB-4603-8140-5ACE0BA8B644}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.09.25"
+        "ProductVersion" = "8:1.09.27"
         "Manufacturer" = "8:Dotjosh Open Source"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.dayzcommander.com"

@@ -3,7 +3,6 @@ using System.Collections;
 using System.ComponentModel;
 using System.Configuration.Install;
 using System.IO;
-using System.Windows.Forms;
 
 namespace Dotjosh.DayZCommander.InstallUtilities
 {
@@ -17,10 +16,13 @@ namespace Dotjosh.DayZCommander.InstallUtilities
 			InitializeComponent();
 		}
 
+		public string InstallDirectory { get; set; }
+
 		public override void Install(IDictionary stateSaver)
 		{
 			//MessageBox.Show("attach install");
 			base.Install(stateSaver);
+			InstallDirectory = Context.Parameters["targetdir"].Replace("|", "");
 			CreateShortcuts();
 		}
 
@@ -31,10 +33,34 @@ namespace Dotjosh.DayZCommander.InstallUtilities
 			base.Uninstall(savedState);
 		}
 
+		public void UpdateShortcuts()
+		{
+			if(DeleteShortcut(InstallDirectory))
+			{
+				CreateDayZCommanderShortcut(InstallDirectory);
+			}
+			if(DeleteShortcut(Environment.GetFolderPath(Environment.SpecialFolder.CommonDesktopDirectory)))
+			{
+				CreateDayZCommanderShortcut(Environment.GetFolderPath(Environment.SpecialFolder.CommonDesktopDirectory));
+			}
+			if(DeleteShortcut(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)))
+			{
+				CreateDayZCommanderShortcut(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory));
+			}
+			if(DeleteShortcut(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu)))
+			{
+				CreateDayZCommanderShortcut(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu));
+			}
+			if(DeleteShortcut(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu)))
+			{
+				CreateDayZCommanderShortcut(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu));
+			}
+		}
+
 		private void CreateShortcuts()
 		{
 			var allUsers = Context.Parameters["allusers"];
-			CreateDayZCommanderShortcut(null);
+			CreateDayZCommanderShortcut(InstallDirectory);
 			if(!string.IsNullOrEmpty(allUsers)
 				&& allUsers.Equals("1"))
 			{
@@ -60,13 +86,8 @@ namespace Dotjosh.DayZCommander.InstallUtilities
 
 		private void CreateDayZCommanderShortcut(string shortcutPath)
 		{
-			var installDirectory = Context.Parameters["targetdir"].Replace("|", "");
-			var workingDirectory = Path.Combine(installDirectory, @"Current");
+			var workingDirectory = Path.Combine(InstallDirectory, @"Current");
 			var targetPath = Path.Combine(workingDirectory, _mainExecutable);
-			if(string.IsNullOrEmpty(shortcutPath))
-			{
-				shortcutPath = installDirectory;
-			}
 			var shortcutFile = Path.Combine(shortcutPath, "DayZ Commander.lnk");
 			CreateShortcut(targetPath, workingDirectory, "DayZ Commander", shortcutFile);
 		}
@@ -83,14 +104,15 @@ namespace Dotjosh.DayZCommander.InstallUtilities
 			}
 		}
 
-		private static void DeleteShortcut(string shortcutPath)
+		private static bool DeleteShortcut(string shortcutPath)
 		{
 			var shortcutFile = Path.Combine(shortcutPath, "DayZ Commander.lnk");
 			if(!File.Exists(shortcutFile))
 			{
-				return;
+				return false;
 			}
 			File.Delete(shortcutFile);
+			return true;
 		}
 	}
 }

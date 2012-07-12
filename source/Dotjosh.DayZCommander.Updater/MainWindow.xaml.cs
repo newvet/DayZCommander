@@ -3,16 +3,17 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Windows;
+using Dotjosh.DayZCommander.InstallUtilities;
 using NLog;
 
 namespace Dotjosh.DayZCommander.Updater
 {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	/// 	Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class MainWindow
 	{
-		private static Logger _logger = LogManager.GetCurrentClassLogger();
+		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
 		public MainWindow()
 		{
@@ -21,7 +22,7 @@ namespace Dotjosh.DayZCommander.Updater
 			Loaded += OnLoaded;
 		}
 
-		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+		private static void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
 		{
 			try
 			{
@@ -35,37 +36,40 @@ namespace Dotjosh.DayZCommander.Updater
 			}
 		}
 
-		private void ApplyUpdate()
+		private static void ApplyUpdate()
 		{
-			var pendingUpdateDirectory = Path.Combine(App.ApplicationInstallDirectory, DownloadAndExtracter.PENDING_UPDATE_DIRECTORYNAME);
+			//Debugger.Launch();
+			var installDirectory = App.ApplicationInstallDirectory;
+			var pendingUpdateDirectory = Path.Combine(installDirectory, DownloadAndExtracter.PENDING_UPDATE_DIRECTORYNAME);
 
-			var tempUpdatePath = Path.GetTempPath() + Guid.NewGuid();
-			var lastVersionPath = Path.GetTempPath() + Guid.NewGuid();
+			var tempUpdatePath = string.Format("{0}{1}", Path.GetTempPath(), Guid.NewGuid());
+			var lastVersionPath = string.Format("{0}{1}", Path.GetTempPath(), Guid.NewGuid());
 
 			KillDayzCommanderProcesses();
 			Directory.Move(pendingUpdateDirectory, tempUpdatePath);
-			Directory.Move(App.ApplicationInstallDirectory, lastVersionPath);
-			Directory.Move(tempUpdatePath, App.ApplicationInstallDirectory);
+			Directory.Move(installDirectory, lastVersionPath);
+			Directory.Move(tempUpdatePath, installDirectory);
+			UpdateShortcuts(Directory.GetParent(installDirectory).FullName);
 			LaunchDayZCommander();
 		}
 
-		private void LaunchDayZCommander()
+		private static void LaunchDayZCommander()
 		{
-			var p = new Process()
-			{
-				StartInfo = new ProcessStartInfo()
-				                {
-				                   	CreateNoWindow = false,
-				                   	UseShellExecute = true,
-									WorkingDirectory = App.ApplicationInstallDirectory,
-				                   	FileName = Path.Combine(App.ApplicationInstallDirectory, "DayZCommander.exe")
-				                }
-			};
+			var p = new Process
+			        	{
+			        		StartInfo = new ProcessStartInfo
+			        		            	{
+			        		            		CreateNoWindow = false,
+			        		            		UseShellExecute = true,
+			        		            		WorkingDirectory = App.ApplicationInstallDirectory,
+			        		            		FileName = Path.Combine(App.ApplicationInstallDirectory, "DayZCommander.exe")
+			        		            	}
+			        	};
 			p.Start();
 			Environment.Exit(0);
 		}
 
-		private void KillDayzCommanderProcesses()
+		private static void KillDayzCommanderProcesses()
 		{
 			//Give it 10 times to kill all the dayz processes
 			for(var i = 0; i < 10; i++)
@@ -73,17 +77,21 @@ namespace Dotjosh.DayZCommander.Updater
 				try
 				{
 					var processes = Process.GetProcessesByName("DayZCommander.exe");
-					if (processes.Length == 0)
+					if(processes.Length == 0)
+					{
 						return;
+					}
 
-					foreach (var process in processes)
+					foreach(var process in processes)
 					{
 						process.Kill();
 					}
 
 					processes = Process.GetProcessesByName("DayZCommander.exe");
-					if (processes.Length == 0)
+					if(processes.Length == 0)
+					{
 						return;
+					}
 
 					if(i == 9)
 					{
@@ -92,11 +100,21 @@ namespace Dotjosh.DayZCommander.Updater
 
 					Thread.Sleep(100);
 				}
-				catch (Exception)
+				// ReSharper disable EmptyGeneralCatchClause
+				catch
 				{
-
 				}
+				// ReSharper restore EmptyGeneralCatchClause
 			}
+		}
+
+		private static void UpdateShortcuts(string installDirectory)
+		{
+			var installActions = new InstallActions
+			                     	{
+			                     		InstallDirectory = installDirectory
+			                     	};
+			installActions.UpdateShortcuts();
 		}
 	}
 }

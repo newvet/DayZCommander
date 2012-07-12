@@ -12,7 +12,7 @@
 			<RowDefinition/>
 		</Grid.RowDefinitions>
 		
-		<Grid Margin="0 4 15 0">
+		<Grid Margin="0 0 15 0">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition MinWidth="350"/>
@@ -39,11 +39,11 @@
 				   Margin="5 0 0 0"
 				    Grid.Column="1"
 				    VerticalAlignment="Center"
-				   Foreground="#EEE"/>
+				   Foreground="#DDD"/>
 			<TextBlock  Grid.Column="2"
 						Text="SETTINGS"
 						
-				   Foreground="#EEE"
+				   Foreground="#DDD"
 										 HorizontalAlignment="Center"
 										  VerticalAlignment="Center"
 						TextAlignment="Center"
@@ -52,21 +52,21 @@
 										 Width="130"/>
 			<TextBlock Text="VERSION"  Grid.Column="3"
 					   
-				   Foreground="#EEE"
+				   Foreground="#DDD"
 								   VerticalAlignment="Center"
 					   TextAlignment="Right"
 					   FontWeight="Bold"
 								  Width="100"/>
 			<TextBlock Text="DAY/NIGHT"  Grid.Column="4"
 					   
-				   Foreground="#EEE"
+				   Foreground="#DDD"
 							    VerticalAlignment="Center"
 					   TextAlignment="Right"
 					   FontWeight="Bold"
 							   Width="80"/>
 			<TextBlock Text="PLAYERS"  Grid.Column="5" 
 					   
-				   Foreground="#EEE"
+				   Foreground="#DDD"
 								   VerticalAlignment="Center"
 					   TextAlignment="Right"
 					   FontWeight="Bold"
@@ -75,7 +75,7 @@
 							   Margin="0 0 4 0"
 					   TextAlignment="Right"
 					   Padding="0 0 8 0"
-				   Foreground="#EEE"
+				   Foreground="#DDD"
 					   FontWeight="Bold"
 							    VerticalAlignment="Center"
 							   Width="70"/>
@@ -115,7 +115,7 @@
 						</Grid.RowDefinitions>
 						<TextBlock Text="{Binding Ago}"
 								   FontSize="16"
-								   Foreground="#CCC"/>
+								   Foreground="#FFF"/>
 						<Controls:ServerStandaloneRow DataContext="{Binding Server}" 
 													  Grid.Row="1"
 													  HorizontalAlignment="Stretch"

@@ -93,5 +93,15 @@ namespace Dotjosh.DayZCommander.App.Ui
 		{
 			Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=S2VZJLUWUG8RG");
 		}
+
+		private void MinimizeClick(object sender, RoutedEventArgs e)
+		{
+			WindowState = WindowState.Minimized;
+		}
+
+		private void ToggleMaxamimizeClick(object sender, RoutedEventArgs e)
+		{
+			ToggleMaximized();
+		}
 	}
 }

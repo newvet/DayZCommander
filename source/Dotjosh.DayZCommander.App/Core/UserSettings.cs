@@ -209,6 +209,11 @@ namespace Dotjosh.DayZCommander.App.Core
 		public void AddRecent(Server server)
 		{
 			var recentServer = new RecentServer(server, DateTime.Now);
+			if(RecentServers.Count > 50)
+			{
+				var oldest = RecentServers.OrderBy(x => x.On).FirstOrDefault();
+				RecentServers.Remove(oldest);
+			}
 			RecentServers.Add(recentServer);
 			recentServer.Server = server;
 			App.Events.Publish(new RecentAdded(recentServer));

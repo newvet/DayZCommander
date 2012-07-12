@@ -28,6 +28,8 @@ namespace Dotjosh.DayZCommander.App.Ui.Recent
 		private void RowDoubleClick(object sender, MouseButtonEventArgs e)
 		{			
 			var recentServer = (RecentServer) TheList.SelectedItem;
+			if(recentServer == null)
+				return;
 
 			GameLauncher.JoinServer(recentServer.Server);
 		}

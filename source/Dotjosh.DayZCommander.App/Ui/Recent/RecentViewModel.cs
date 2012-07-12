@@ -29,7 +29,7 @@ namespace Dotjosh.DayZCommander.App.Ui.Recent
 				AddToDictionary(recent);
 			}
 
-			_updateTimeTimer = new Timer(TimeSpan.FromSeconds(10).TotalMilliseconds);
+			_updateTimeTimer = new Timer(TimeSpan.FromMinutes(1).TotalMilliseconds);
 			_updateTimeTimer.Elapsed += UpdateTimeTimerOnElapsed;
 			_updateTimeTimer.Start();
 

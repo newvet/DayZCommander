@@ -57,5 +57,25 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 			return false;
 		}
+
+		public static bool SafeContainsIgnoreCase(this string source, string value)
+		{
+			if(string.IsNullOrEmpty(source)
+				|| string.IsNullOrEmpty(value))
+			{
+				return false;
+			}
+			return SafeContains(source.ToLowerInvariant(), value.ToLowerInvariant());
+		}
+
+		public static bool SafeContains(this string source, string value)
+		{
+			if(string.IsNullOrEmpty(source)
+				|| string.IsNullOrEmpty(value))
+			{
+				return false;
+			}
+			return source.Contains(value);
+		}
 	}
 }

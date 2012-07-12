@@ -203,6 +203,11 @@ namespace Dotjosh.DayZCommander.App.Core
 			get { return GetSettingOrDefault("password").TryInt() > 0; }
 		}
 
+		public bool Hive
+		{
+			get { return GetSettingOrDefault("mod").SafeContainsIgnoreCase("@hive"); }
+		}
+
 		private Version _arma2Version;
 		public Version Arma2Version
 		{

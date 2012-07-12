@@ -66,13 +66,18 @@ namespace Dotjosh.DayZCommander.App.Core
 			        					UseShellExecute = true,
 			        				}
 			        		};
-				arguments.Clear();
 				p.Start();
+
+				UserSettings.Current.AddRecent(server);
 			}
 			catch(Exception ex)
 			{
 				var joinServerException = new JoinServerException(exePath, arguments.ToString(), GetArma2OAPath(), ex);
 				_logger.Error(joinServerException);
+			}
+			finally
+			{
+				arguments.Clear();
 			}
 
 		}

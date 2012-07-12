@@ -4,6 +4,7 @@ using Caliburn.Micro;
 using Dotjosh.DayZCommander.App.Core;
 using Dotjosh.DayZCommander.App.Ui.Favorites;
 using Dotjosh.DayZCommander.App.Ui.Friends;
+using Dotjosh.DayZCommander.App.Ui.Recent;
 using Dotjosh.DayZCommander.App.Ui.ServerList;
 
 namespace Dotjosh.DayZCommander.App.Ui
@@ -21,7 +22,8 @@ namespace Dotjosh.DayZCommander.App.Ui
 			                                               	{
 			                                               		ServerListViewModel = new ServerListViewModel(),
 																FriendsViewModel = new FriendsViewModel(),
-																FavoritesViewModel = new FavoritesViewModel()
+																FavoritesViewModel = new FavoritesViewModel(),
+																RecentViewModel = new RecentViewModel()
 			                                               	});
 			CurrentTab = Tabs.First();
 
@@ -39,6 +41,7 @@ namespace Dotjosh.DayZCommander.App.Ui
 		public FriendsViewModel FriendsViewModel { get; set; }
 		public SettingsViewModel SettingsViewModel { get; set; }
 		public FavoritesViewModel FavoritesViewModel { get; set; }
+		public RecentViewModel RecentViewModel { get; set; }
 
 		public Core.ServerList ServerList
 		{
@@ -65,6 +68,11 @@ namespace Dotjosh.DayZCommander.App.Ui
 			get { return CurrentTab == FavoritesViewModel; }
 		}
 
+		public bool IsRecentSelected
+		{
+			get { return CurrentTab == RecentViewModel; }
+		}
+
 		public ViewModelBase CurrentTab
 		{
 			get { return _currentTab; }
@@ -75,7 +83,7 @@ namespace Dotjosh.DayZCommander.App.Ui
 				_currentTab = value;
 				if(_currentTab != null)
 					_currentTab.IsSelected = true;
-				PropertyHasChanged("CurrentTab", "IsFriendsSelected", "IsFavoritesSelected", "IsServerListSelected");
+				PropertyHasChanged("CurrentTab", "IsFriendsSelected", "IsFavoritesSelected", "IsServerListSelected", "IsRecentSelected");
 			}
 		}
 

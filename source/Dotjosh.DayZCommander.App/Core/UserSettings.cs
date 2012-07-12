@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Xml.Linq;
 using Dotjosh.DayZCommander.App.Ui.Friends;
+using Dotjosh.DayZCommander.App.Ui.Recent;
 
 namespace Dotjosh.DayZCommander.App.Core
 {
@@ -21,6 +22,7 @@ namespace Dotjosh.DayZCommander.App.Core
 		[DataMember] private WindowSettings _windowSettings = null; //This is null on purpose so the MainWindow view can set defaults if needed
 		[DataMember] private GameOptions _gameOptions = new GameOptions();
 		[DataMember] private List<FavoriteServer> _favorites = new List<FavoriteServer>();
+		[DataMember] private List<RecentServer> _recentServers = new List<RecentServer>();
 
 
 		public List<string> Friends
@@ -80,6 +82,20 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 			set { _favorites = value; }
 		}
+
+		public List<RecentServer> RecentServers
+		{
+			get
+			{
+				if(_recentServers == null)
+				{
+					_recentServers = new List<RecentServer>();
+				}
+				return _recentServers;
+			}
+			set { _recentServers = value; }
+		}
+
 
 		public void Save()
 		{
@@ -188,6 +204,25 @@ namespace Dotjosh.DayZCommander.App.Core
 			Favorites.Remove(favorite);
 			App.Events.Publish(new FavoritesUpdated(server));
 			Save();
+		}
+
+		public void AddRecent(Server server)
+		{
+			var recentServer = new RecentServer(server, DateTime.Now);
+			RecentServers.Add(recentServer);
+			recentServer.Server = server;
+			App.Events.Publish(new RecentAdded(recentServer));
+			Save();			
+		}
+	}
+
+	public class RecentAdded
+	{
+		public RecentServer Recent { get; set; }
+
+		public RecentAdded(RecentServer recent)
+		{
+			Recent = recent;
 		}
 	}
 

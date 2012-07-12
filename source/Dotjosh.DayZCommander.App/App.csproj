@@ -121,8 +121,30 @@
     </ApplicationDefinition>
     <Compile Include="Core\FavoriteServer.cs" />
     <Compile Include="Core\GameOptions.cs" />
+    <Compile Include="Core\RecentServer.cs" />
+    <Compile Include="Ui\Controls\FavoriteControl.xaml.cs">
+      <DependentUpon>FavoriteControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Controls\PingControl.xaml.cs">
+      <DependentUpon>PingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Controls\PlayersControl.xaml.cs">
+      <DependentUpon>PlayersControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ui\Controls\ServerListGrid.xaml.cs">
       <DependentUpon>ServerListGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Controls\ServerSettingsControl.xaml.cs">
+      <DependentUpon>ServerSettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Controls\ServerStandaloneRow.xaml.cs">
+      <DependentUpon>ServerStandaloneRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Controls\TimeControl.xaml.cs">
+      <DependentUpon>TimeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Controls\VersionControl.xaml.cs">
+      <DependentUpon>VersionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ui\Converters\BooleanToSelectedOptionColorConverter.cs" />
     <Compile Include="Ui\Converters\BooleanToVisibilityCollapsedConverter.cs" />
@@ -163,6 +185,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ui\MainWindowViewModel.cs" />
+    <Compile Include="Ui\Recent\RecentView.xaml.cs">
+      <DependentUpon>RecentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Recent\RecentViewModel.cs" />
     <Compile Include="Ui\ServerList\FiltersView.xaml.cs">
       <DependentUpon>FiltersView.xaml</DependentUpon>
     </Compile>
@@ -204,7 +230,35 @@
     <Compile Include="Core\SuperQueue.cs" />
     <Compile Include="Core\UserSettings.cs" />
     <Compile Include="Core\WindowSettings.cs" />
+    <Page Include="Ui\Controls\FavoriteControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Controls\PingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Controls\PlayersControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ui\Controls\ServerListGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Controls\ServerSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Controls\ServerStandaloneRow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Controls\TimeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Controls\VersionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -227,6 +281,10 @@
     <Page Include="Ui\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ui\Recent\RecentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ui\ServerList\FiltersView.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -24,7 +24,7 @@ namespace Dotjosh.DayZCommander.App.Ui.Favorites
 			foreach(var favorite in UserSettings.Current.Favorites)
 			{
 				var server = favorite.CreateServer();
-				server.BeginUpdate(s => { });
+//				server.BeginUpdate(s => { });
 				App.Events.Publish(new FavoritesUpdated(server));
 			}
 		}

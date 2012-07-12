@@ -29,23 +29,6 @@ namespace Dotjosh.DayZCommander.App.Ui.Controls
 			App.Events.Publish(new DataGridRowSelected());
 		}
 
-		private void IsFavorite_Checked(object sender, RoutedEventArgs e)
-		{
-			e.Handled = true;
-			var button = (ToggleButton) sender;
-			var server = (Server) button.DataContext;
-
-			server.IsFavorite = (bool) button.IsChecked;
-		}
-
-		private void IsFavorite_UnChecked(object sender, RoutedEventArgs e)
-		{
-			e.Handled = true;
-			var button = (ToggleButton) sender;
-			var server = (Server) button.DataContext;
-
-			server.IsFavorite = (bool) button.IsChecked;
-		}
 	}
 
 	public class DataGridRowSelected

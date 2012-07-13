@@ -67,6 +67,7 @@
 			<CheckBox
 					  IsChecked="{Binding Filter.HasArmor, Mode=TwoWay}"
 					  IsThreeState="True"
+					Style="{StaticResource FilterCheckBox}"
 					  Margin="0 10 0 0">
 				<CheckBox.Content>
 					<StackPanel Orientation="Horizontal">
@@ -87,6 +88,7 @@
 			<CheckBox
 					  IsChecked="{Binding Filter.HasThirdPerson, Mode=TwoWay}"
 					  IsThreeState="True"
+				Style="{StaticResource FilterCheckBox}"
 					  Margin="0 10 0 0">
 				<CheckBox.Content>
 					<StackPanel Orientation="Horizontal">
@@ -107,6 +109,7 @@
 			<CheckBox
 					  IsChecked="{Binding Filter.HasTracers, Mode=TwoWay}"
 					  IsThreeState="True"
+				Style="{StaticResource FilterCheckBox}"
 					  Margin="0 10 0 0">
 				<CheckBox.Content>
 					<StackPanel Orientation="Horizontal">
@@ -128,6 +131,7 @@
 			<CheckBox
 					  IsChecked="{Binding Filter.HasNameplates, Mode=TwoWay}"
 					  IsThreeState="True"
+				Style="{StaticResource FilterCheckBox}"
 					  Margin="0 10 0 0">
 				<CheckBox.Content>
 					<StackPanel Orientation="Horizontal">
@@ -148,6 +152,7 @@
 			<CheckBox
 					  IsChecked="{Binding Filter.HasCrosshairs, Mode=TwoWay}"
 					  IsThreeState="True"
+				Style="{StaticResource FilterCheckBox}"
 					  Margin="0 10 0 0">
 				<CheckBox.Content>
 					<StackPanel Orientation="Horizontal">
@@ -168,6 +173,7 @@
 			<CheckBox
 					  IsChecked="{Binding Filter.HasDeathMessages, Mode=TwoWay}"
 					  IsThreeState="True"
+				Style="{StaticResource FilterCheckBox}"
 					  Margin="0 10 0 0">
 				<CheckBox.Content>
 					<StackPanel Orientation="Horizontal">
@@ -188,6 +194,7 @@
 			<CheckBox
 					  IsChecked="{Binding Filter.HasScores, Mode=TwoWay}"
 					  IsThreeState="True"
+				Style="{StaticResource FilterCheckBox}"
 					  Margin="0 10 0 0">
 				<CheckBox.Content>
 					<StackPanel Orientation="Horizontal">

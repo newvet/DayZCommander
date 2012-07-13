@@ -24,7 +24,14 @@
 
 			<Ui:SettingsView DataContext="{Binding SettingsViewModel}"
 							 Grid.RowSpan="5"
-							 Width="400"
+							 Width="500"
+							 HorizontalAlignment="Right"
+							 Canvas.ZIndex="1000"
+								 Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityCollapsedConverter}, FallbackValue=Hidden}"/>
+
+			<Ui:UpdatesView DataContext="{Binding UpdatesViewModel}"
+							 Grid.RowSpan="5"
+							 Width="500"
 							 HorizontalAlignment="Right"
 							 Canvas.ZIndex="1000"
 								 Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityCollapsedConverter}, FallbackValue=Hidden}"/>
@@ -141,6 +148,34 @@
 									   TextAlignment="Right"/>
 						</StackPanel>
 
+						<Button 
+							Margin="16 0 0 0"
+							Click="Updates_Click"
+								Style="{StaticResource MetroTextButtonStyle}">
+							<Button.Template>
+								<ControlTemplate>
+									<Border IsHitTestVisible="True"
+											Margin="0"
+											Padding="0"
+											  Background="#222">
+										<StackPanel Orientation="Horizontal">
+											<Path Data="F1M-1782,1953.02C-1781.98,1951.66,-1782.12,1950.33,-1782.32,1949.03L-1776.88,1944.7C-1778.28,1939.49,-1780.97,1934.82,-1784.62,1931.06L-1791.11,1933.51C-1793.17,1931.81,-1795.5,1930.45,-1798.03,1929.48L-1799.07,1922.62C-1801.57,1921.95 -1804.19,1921.55 -1806.9,1921.53 -1809.61,1921.52 -1812.24,1921.88 -1814.76,1922.52L-1815.87,1929.36C-1818.41,1930.31,-1820.77,1931.64,-1822.84,1933.31L-1829.31,1930.78C-1833,1934.49,-1835.75,1939.12,-1837.22,1944.31L-1831.84,1948.71C-1832.05,1950.01 -1832.2,1951.34 -1832.21,1952.7 -1832.22,1954.07 -1832.09,1955.4 -1831.89,1956.7L-1837.33,1961.03C-1835.92,1966.24,-1833.23,1970.91,-1829.58,1974.67L-1823.09,1972.22C-1821.04,1973.91,-1818.7,1975.27,-1816.17,1976.26L-1815.15,1983.11C-1812.64,1983.78 -1810.02,1984.18 -1807.3,1984.2 -1804.59,1984.21 -1801.97,1983.85 -1799.45,1983.22L-1798.33,1976.37C-1795.79,1975.42,-1793.44,1974.09,-1791.36,1972.43L-1784.91,1974.96C-1781.21,1971.24,-1778.46,1966.61,-1776.99,1961.42L-1782.37,1957.02C-1782.15,1955.72,-1782.01,1954.39,-1782,1953.02 M-1807.19,1965.84C-1814.35,1965.8 -1820.12,1959.95 -1820.07,1952.78 -1820.03,1945.61 -1814.18,1939.84 -1807.02,1939.89 -1799.85,1939.94 -1794.08,1945.78 -1794.13,1952.95 -1794.17,1960.12 -1800.02,1965.89 -1807.19,1965.84" 
+													Stretch="Uniform" 
+													Fill="{TemplateBinding Foreground}" 
+													Width="14" 
+													Height="14"
+													Margin="0,4,0,0" />
+											<TextBlock Text="updates"
+													   VerticalAlignment="Top"
+														   Margin="4 0 0 0"
+															FontSize="14"
+														   Foreground="{TemplateBinding Foreground}"/>
+										</StackPanel>
+									</Border>
+								</ControlTemplate>
+							</Button.Template>
+						</Button>
+	
 						<Button 
 							Margin="16 0 0 0"
 							Click="Settings_Click"

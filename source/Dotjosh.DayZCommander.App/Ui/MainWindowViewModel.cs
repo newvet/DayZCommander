@@ -34,6 +34,7 @@ namespace Dotjosh.DayZCommander.App.Ui
 			ServerList.GetAndUpdateAll();
 
 			SettingsViewModel = new	SettingsViewModel();
+			UpdatesViewModel = new	UpdatesViewModel();
 		}
 
 		public DayZCommanderUpdater Updater { get; private set; }
@@ -42,6 +43,7 @@ namespace Dotjosh.DayZCommander.App.Ui
 		public SettingsViewModel SettingsViewModel { get; set; }
 		public FavoritesViewModel FavoritesViewModel { get; set; }
 		public RecentViewModel RecentViewModel { get; set; }
+		public UpdatesViewModel UpdatesViewModel { get; set; }
 
 		public Core.ServerList ServerList
 		{
@@ -108,6 +110,14 @@ namespace Dotjosh.DayZCommander.App.Ui
 		public void ShowSettings()
 		{
 			SettingsViewModel.IsVisible = true;
+			UpdatesViewModel.IsVisible = false;
 		}
+
+		public void ShowUpdates()
+		{
+			SettingsViewModel.IsVisible = false;
+			UpdatesViewModel.IsVisible = true;
+		}
+
 	}
 }

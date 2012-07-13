@@ -203,6 +203,10 @@
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ui\SettingsViewModel.cs" />
+    <Compile Include="Ui\UpdatesView.xaml.cs">
+      <DependentUpon>UpdatesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\UpdatesViewModel.cs" />
     <Compile Include="Ui\ViewModelBase.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -295,6 +299,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ui\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\UpdatesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

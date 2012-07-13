@@ -103,5 +103,10 @@ namespace Dotjosh.DayZCommander.App.Ui
 		{
 			ToggleMaximized();
 		}
+
+		private void Updates_Click(object sender, RoutedEventArgs e)
+		{
+			ViewModel.ShowUpdates();
+		}
 	}
 }

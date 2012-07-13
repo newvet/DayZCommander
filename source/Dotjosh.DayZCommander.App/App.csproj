@@ -161,6 +161,7 @@
     <Compile Include="Ui\Converters\PingToForegroundConverter.cs" />
     <Compile Include="Ui\Converters\ServerFullnessToColorConverter.cs" />
     <Compile Include="Ui\Converters\TimeToColorConverter.cs" />
+    <Compile Include="Ui\Converters\UpdateStatusToForegroundConverter.cs" />
     <Compile Include="Ui\Converters\ZeroToVisibilityConverter.cs" />
     <Compile Include="Ui\Favorites\FavoritesView.xaml.cs">
       <DependentUpon>FavoritesView.xaml</DependentUpon>

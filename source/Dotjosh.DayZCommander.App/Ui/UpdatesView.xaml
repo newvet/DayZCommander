@@ -13,30 +13,58 @@
 							Margin="0 0 0 20"
 						   FontSize="24"/>
 
-			<TextBlock Text="DAYZ COMMANDER"
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="DAYZ COMMANDER"
 					   FontWeight="Bold"
 					   Margin="0 0 0 3"
 					   Foreground="#FFFFFF"/>
+				<TextBlock Text="{Binding DayZCommanderUpdater.Status}"
+						   Foreground="{Binding DayZCommanderUpdater.Status, Converter={StaticResource UpdateStatusToForegroundConverter}}"
+						   Margin="12 0 0 0"/>
+			</StackPanel>
+
+			<StackPanel Margin="0 8 0 0">
+				<StackPanel Orientation="Horizontal">
+					<TextBlock Text="Your Version: "
+							   Foreground="#DDD"/>
+					<TextBlock Text="{Binding DayZCommanderUpdater.CurrentVersion}"
+							   Foreground="#FFFFFF"/>
+				</StackPanel>
+				<StackPanel Margin="0 9 0 0"
+							Orientation="Horizontal">
+					<TextBlock Text="Latest Version: "
+								   Foreground="#DDD"/>
+					<TextBlock Text="{Binding DayZCommanderUpdater.LatestVersion}"
+							   Foreground="#FFFFFF"/>
+				</StackPanel>				
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal"
+						Margin="0 18 0 0">
+				<TextBlock Text="ARMA 2"
+					   FontWeight="Bold"
+					   Margin="0 0 0 3"
+					   Foreground="#FFFFFF"/>
+				<TextBlock Text="{Binding DayZCommanderUpdater.Status}"
+						   Foreground="{Binding DayZCommanderUpdater.Status, Converter={StaticResource UpdateStatusToForegroundConverter}}"
+						   Margin="12 0 0 0"/>
+			</StackPanel>
 
 			<StackPanel Margin="0 8 0 0"
 						Orientation="Horizontal">
 				
 			</StackPanel>
-			
-			<TextBlock Text="ARMA2"
-					   FontWeight="Bold"
-					   Margin="0 0 0 3"
-					   Foreground="#FFFFFF"/>
 
-			<StackPanel Margin="0 8 0 0"
-						Orientation="Horizontal">
-				
-			</StackPanel>
-			
-			<TextBlock Text="DAYZ"
+			<StackPanel Orientation="Horizontal"
+						Margin="0 18 0 0">
+				<TextBlock Text="DAYZ"
 					   FontWeight="Bold"
 					   Margin="0 0 0 3"
 					   Foreground="#FFFFFF"/>
+				<TextBlock Text="{Binding DayZCommanderUpdater.Status}"
+						   Foreground="{Binding DayZCommanderUpdater.Status, Converter={StaticResource UpdateStatusToForegroundConverter}}"
+						   Margin="12 0 0 0"/>
+			</StackPanel>
 
 			<StackPanel Margin="0 8 0 0"
 						Orientation="Horizontal">
@@ -49,14 +77,22 @@
 			<Border Margin="0 30 0 0"
 					BorderBrush="#555555"
 					BorderThickness="0 1 0 0">
-				<Button Content="Done"
-						Margin="0 10 0 0"
-					HorizontalAlignment="Left"
-						Background="#444444"
-						Foreground="#EEEEEE"
-						Padding="8 2"
-						Click="Done_Click">
-				</Button>
+				<StackPanel Orientation="Horizontal">
+					<Button Content="Check Now"
+							Margin="0 10 0 0"
+						HorizontalAlignment="Left"
+							Background="#444444"
+							Foreground="#EEEEEE"
+							Padding="8 2"
+							Click="CheckNow_Click"/>
+					<Button Content="Done"
+							Margin="14 10 0 0"
+						HorizontalAlignment="Left"
+							Background="#444444"
+							Foreground="#EEEEEE"
+							Padding="8 2"
+							Click="Done_Click"/>
+				</StackPanel>
 			</Border>
 		</StackPanel>
 

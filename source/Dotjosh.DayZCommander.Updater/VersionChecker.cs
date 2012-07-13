@@ -35,10 +35,9 @@ namespace Dotjosh.DayZCommander.Updater
 			}
 			if(Version.TryParse(args.Result, out serverVersion))
 			{
-				if(serverVersion > _thisVersion)
-				{
-					OnComplete(serverVersion, true);
-				}
+				var isNew = serverVersion > _thisVersion;
+				OnComplete(serverVersion, isNew);
+				return;
 			}
 			OnComplete(null, false);
 		}

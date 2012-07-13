@@ -28,5 +28,10 @@ namespace Dotjosh.DayZCommander.App.Ui
 		{
 			((UpdatesViewModel) DataContext).IsVisible = false;
 		}
+
+		private void CheckNow_Click(object sender, RoutedEventArgs e)
+		{
+			((UpdatesViewModel) DataContext).CheckForUpdates();
+		}
 	}
 }

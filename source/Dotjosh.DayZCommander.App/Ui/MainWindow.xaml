@@ -297,7 +297,7 @@
 									   FontSize="10"
 									   Foreground="#AAA"
 							IsHitTestVisible="False"/>
-								<TextBlock Text="{Binding Source={x:Static Member=Core:LocalMachineInfo.Arma2OABetaVersion}}" 
+								<TextBlock Text="{Binding UpdatesViewModel.DayZCommanderUpdater.CurrentVersion}" 
 									   FontSize="10"
 									   Foreground="#CCC"
 							IsHitTestVisible="False"/>

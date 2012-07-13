@@ -27,10 +27,8 @@ namespace Dotjosh.DayZCommander.App.Ui
 			                                               	});
 			CurrentTab = Tabs.First();
 
-			Updater = new DayZCommanderUpdater();
 			ServerList = new Core.ServerList();
 
-			Updater.StartCheckingForUpdates();
 			ServerList.GetAndUpdateAll();
 
 			SettingsViewModel = new	SettingsViewModel();

@@ -104,7 +104,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			set
 			{
 				_latestVersion = value;
-				Execute.OnUiThread(() => PropertyHasChanged("LatestVersion"));			
+				Execute.OnUiThread(() => PropertyHasChanged("LatestVersion", "VersionMismatch"));			
 			}
 		}
 
@@ -114,7 +114,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			set
 			{
 				_status = value;
-				Execute.OnUiThread(() => PropertyHasChanged("Status", "VersionMismatch"));
+				Execute.OnUiThread(() => PropertyHasChanged("Status", "VersionMismatch", "LatestVersion"));
 			}
 		}
 	}

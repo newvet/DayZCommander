@@ -7,7 +7,7 @@ namespace Dotjosh.DayZCommander.App.Core
 	public class Arma2Updater : BindableBase
 	{
 		private string _latestDownloadUrl;
-		private Version _latestVersion;
+		private int? _latestVersion;
 		private bool _isChecking;
 		private string _status;
 		public const string ArmaBetaListingUrl = "http://www.arma2.com/beta-patch.php";
@@ -21,7 +21,7 @@ namespace Dotjosh.DayZCommander.App.Core
 				if(LatestVersion == null)
 					return false;
 				
-				return !CurrentVersion.Equals(LatestVersion);
+				return CurrentVersion != LatestVersion;
 			}
 		}
 
@@ -35,7 +35,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			Status = DayZCommanderUpdater.STATUS_CHECKINGFORUPDATES;
 
 			string responseBody;
-			Version latestVersion = null;
+			int? latestRevision = null;
 
 			new Thread(() =>
 			           	{
@@ -60,11 +60,10 @@ namespace Dotjosh.DayZCommander.App.Core
 									Status = "Latest patch doesn't match pattern";
 									return;
 								}
-								var latestRevision = latestBetaRevisionMatch.Groups[1].Value.TryIntNullable();
+								latestRevision = latestBetaRevisionMatch.Groups[1].Value.TryIntNullable();
 								if(latestRevision != null)
 								{
-									latestVersion = new Version(1,60,0, (int) latestRevision);
-									if(!latestVersion.Equals(CurrentVersion))
+									if(CurrentVersion == null || CurrentVersion != latestRevision)
 									{
 										Status = DayZCommanderUpdater.STATUS_OUTOFDATE;
 									}
@@ -86,23 +85,29 @@ namespace Dotjosh.DayZCommander.App.Core
 							finally
 							{
 								_isChecking = false;
-								LatestVersion = latestVersion;
+								LatestVersion = latestRevision;
 							}
 						}).Start();
 		}
 
-		public Version CurrentVersion
+		public int? CurrentVersion
 		{
-			get { return LocalMachineInfo.Arma2OABetaVersion; }
+			get
+			{
+				if(LocalMachineInfo.Arma2OABetaVersion == null)
+					return null;
+
+				return LocalMachineInfo.Arma2OABetaVersion.Revision;
+			}
 		}
 
-		public Version LatestVersion
+		public int? LatestVersion
 		{
 			get { return _latestVersion; }
 			set
 			{
 				_latestVersion = value;
-				Execute.OnUiThread(() => PropertyHasChanged("LatestVersion"));			
+				Execute.OnUiThread(() => PropertyHasChanged("LatestVersion", "VersionMismatch"));			
 			}
 		}
 

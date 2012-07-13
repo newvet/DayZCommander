@@ -52,14 +52,14 @@
 
 			<StackPanel Margin="0 8 0 0">
 				<StackPanel Orientation="Horizontal">
-					<TextBlock Text="Your Version: "
+					<TextBlock Text="Your Revision: "
 							   Foreground="#DDD"/>
 					<TextBlock Text="{Binding Arma2Updater.CurrentVersion}"
 							   Foreground="#FFFFFF"/>
 				</StackPanel>
 				<StackPanel Margin="0 9 0 0"
 							Orientation="Horizontal">
-					<TextBlock Text="Latest Version: "
+					<TextBlock Text="Latest Revision: "
 								   Foreground="#DDD"/>
 					<TextBlock Text="{Binding Arma2Updater.LatestVersion}"
 							   Foreground="#FFFFFF"/>

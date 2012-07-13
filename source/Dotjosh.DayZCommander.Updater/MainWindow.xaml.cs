@@ -76,7 +76,7 @@ namespace Dotjosh.DayZCommander.Updater
 			{
 				try
 				{
-					var processes = Process.GetProcessesByName("DayZCommander.exe");
+					var processes = Process.GetProcessesByName("DayZCommander");
 					if(processes.Length == 0)
 					{
 						return;
@@ -87,7 +87,7 @@ namespace Dotjosh.DayZCommander.Updater
 						process.Kill();
 					}
 
-					processes = Process.GetProcessesByName("DayZCommander.exe");
+					processes = Process.GetProcessesByName("DayZCommander");
 					if(processes.Length == 0)
 					{
 						return;

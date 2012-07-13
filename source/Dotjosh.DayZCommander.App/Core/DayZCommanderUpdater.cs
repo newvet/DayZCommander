@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using Dotjosh.DayZCommander.Updater;
-using Timer = System.Timers.Timer;
 
 namespace Dotjosh.DayZCommander.App.Core
 {
@@ -9,9 +8,10 @@ namespace Dotjosh.DayZCommander.App.Core
 	{
 		private string _status;
 		private Version _latestVersion;
-		public static readonly string STATUS_CHECKINGFORUPDATES = "Checking for updates";
-		public static readonly string STATUS_DOWNLOADING = "Downloading";
-		public static readonly string STATUS_UPTODATE = "Up To Date";
+		public static readonly string STATUS_CHECKINGFORUPDATES = "Checking for updates...";
+		public static readonly string STATUS_DOWNLOADING = "Downloading...";
+		public static readonly string STATUS_UPTODATE = "Up to date";
+		public static readonly string STATUS_OUTOFDATE = "Out of date";
 		public static readonly string STATUS_RESTARTTOAPPLY = "Restart to apply update";
 
 		public Version CurrentVersion
@@ -36,6 +36,19 @@ namespace Dotjosh.DayZCommander.App.Core
 			{
 				_status = value;
 				PropertyHasChanged("Status");
+			}
+		}
+
+		public bool VersionMismatch
+		{
+			get
+			{
+				if(CurrentVersion == null)
+					return true;
+				if(LatestVersion == null)
+					return false;
+				
+				return !CurrentVersion.Equals(LatestVersion);
 			}
 		}
 

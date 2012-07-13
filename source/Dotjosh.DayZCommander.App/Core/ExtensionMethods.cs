@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Dotjosh.DayZCommander.App.Core
@@ -58,24 +59,37 @@ namespace Dotjosh.DayZCommander.App.Core
 			return false;
 		}
 
-		public static bool SafeContainsIgnoreCase(this string source, string value)
+		public static bool EndsWithAny(this string value, params string[] values)
 		{
-			if(string.IsNullOrEmpty(source)
-				|| string.IsNullOrEmpty(value))
+			if(string.IsNullOrEmpty(value))
 			{
 				return false;
 			}
-			return SafeContains(source.ToLowerInvariant(), value.ToLowerInvariant());
+			foreach(var s in values)
+			{
+				if(value.EndsWith(s, StringComparison.OrdinalIgnoreCase))
+				{
+					return true;
+				}
+			}
+			return false;
 		}
 
-		public static bool SafeContains(this string source, string value)
+		public static string MakeSurePathExists(this string path)
 		{
-			if(string.IsNullOrEmpty(source)
-				|| string.IsNullOrEmpty(value))
+			if(!Directory.Exists(path))
 			{
-				return false;
+				Directory.CreateDirectory(path);
 			}
-			return source.Contains(value);
+			return path;
+		}
+
+		public static bool SafeContainsIgnoreCase(this string value, string contains)
+		{
+			if(string.IsNullOrEmpty(value))
+				return false;
+
+			return value.IndexOf(contains, StringComparison.CurrentCultureIgnoreCase) > -1;
 		}
 	}
 }

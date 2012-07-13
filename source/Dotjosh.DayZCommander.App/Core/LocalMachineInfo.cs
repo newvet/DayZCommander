@@ -15,6 +15,7 @@ namespace Dotjosh.DayZCommander.App.Core
 		public static string Arma2Path { get; private set; }
 		public static string Arma2OAPath { get; private set; }
 		public static string SteamPath { get; private set; }
+		public static string Arma2OABetaPath { get; private set; }
 		public static string Arma2OABetaExe { get; private set; }
 		public static Version Arma2OABetaVersion { get; private set; }
 //		public static bool EqualsArma2Version(Version version)
@@ -112,7 +113,8 @@ namespace Dotjosh.DayZCommander.App.Core
 				return;
 			}
 
-			Arma2OABetaExe = Path.Combine(Arma2OAPath, @"Expansion\beta\arma2oa.exe");
+			Arma2OABetaPath = Path.Combine(Arma2OAPath, @"Expansion\beta");
+			Arma2OABetaExe = Path.Combine(Arma2OABetaPath, @"arma2oa.exe");
 			DayZPath = Path.Combine(Arma2OAPath, @"@DayZ");
 		}
 
@@ -141,7 +143,7 @@ namespace Dotjosh.DayZCommander.App.Core
 					continue;
 				}
 
-				var match = Regex.Match(changeLogLine, @"\d(\.\d){1,3}");
+				var match = Regex.Match(changeLogLine, @"\d(?:\.\d){1,3}");
 				if(!match.Success)
 				{
 					continue;

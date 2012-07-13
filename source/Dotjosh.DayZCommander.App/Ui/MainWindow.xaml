@@ -130,6 +130,7 @@
 						<Button 
 							Margin="16 0 0 0"
 							Click="Updates_Click"
+							Foreground="{Binding UpdatesViewModel.Status, Converter={StaticResource UpdateStatusToForegroundConverter}}"
 								Style="{StaticResource MetroTextButtonStyle}">
 							<Button.Template>
 								<ControlTemplate>

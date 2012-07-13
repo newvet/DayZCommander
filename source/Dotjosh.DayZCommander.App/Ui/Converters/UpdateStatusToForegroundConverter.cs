@@ -11,7 +11,7 @@ namespace Dotjosh.DayZCommander.App.Ui.Converters
 		private static SolidColorBrush InProgress = new SolidColorBrush(Colors.LightGreen);
 		private static SolidColorBrush ActionRequired = new SolidColorBrush(Colors.Yellow);
 		private static SolidColorBrush OK = new SolidColorBrush(Colors.LightBlue);
-		private static SolidColorBrush Default = new SolidColorBrush(Colors.White);
+		private static SolidColorBrush Default = new SolidColorBrush(Colors.Red);
 
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
@@ -23,7 +23,8 @@ namespace Dotjosh.DayZCommander.App.Ui.Converters
 			{
 				return InProgress;
 			}
-			if((string) value == DayZCommanderUpdater.STATUS_RESTARTTOAPPLY)
+			if((string) value == DayZCommanderUpdater.STATUS_RESTARTTOAPPLY
+				|| (string)value == DayZCommanderUpdater.STATUS_OUTOFDATE)
 			{
 				return ActionRequired;
 			}

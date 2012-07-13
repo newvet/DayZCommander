@@ -128,7 +128,7 @@ namespace Dotjosh.DayZCommander.App.Core
 						{
 							ProcessedServersCount = _processed;
 						});
-						Thread.Sleep(75);
+						Thread.Sleep(250);
 						if(_processed == totalCount)
 						{
 							_isUpdating = false;

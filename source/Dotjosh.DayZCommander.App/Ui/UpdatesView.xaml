@@ -45,14 +45,35 @@
 					   FontWeight="Bold"
 					   Margin="0 0 0 3"
 					   Foreground="#FFFFFF"/>
-				<TextBlock Text="{Binding DayZCommanderUpdater.Status}"
-						   Foreground="{Binding DayZCommanderUpdater.Status, Converter={StaticResource UpdateStatusToForegroundConverter}}"
+				<TextBlock Text="{Binding Arma2Updater.Status}"
+						   Foreground="{Binding Arma2Updater.Status, Converter={StaticResource UpdateStatusToForegroundConverter}}"
 						   Margin="12 0 0 0"/>
 			</StackPanel>
 
-			<StackPanel Margin="0 8 0 0"
-						Orientation="Horizontal">
-				
+			<StackPanel Margin="0 8 0 0">
+				<StackPanel Orientation="Horizontal">
+					<TextBlock Text="Your Version: "
+							   Foreground="#DDD"/>
+					<TextBlock Text="{Binding Arma2Updater.CurrentVersion}"
+							   Foreground="#FFFFFF"/>
+				</StackPanel>
+				<StackPanel Margin="0 9 0 0"
+							Orientation="Horizontal">
+					<TextBlock Text="Latest Version: "
+								   Foreground="#DDD"/>
+					<TextBlock Text="{Binding Arma2Updater.LatestVersion}"
+							   Foreground="#FFFFFF"/>
+					<Button Content="download" 
+							Background="#444444"
+							Foreground="LightGreen"
+							Padding="3 0"
+							Margin="8 0"
+							Style="{StaticResource MetroButtonStyle}"
+							Visibility="{Binding Arma2Updater.VersionMismatch, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}"
+										
+							Click="DownloadArma2_Click"/>
+
+				</StackPanel>
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal"
@@ -61,14 +82,33 @@
 					   FontWeight="Bold"
 					   Margin="0 0 0 3"
 					   Foreground="#FFFFFF"/>
-				<TextBlock Text="{Binding DayZCommanderUpdater.Status}"
-						   Foreground="{Binding DayZCommanderUpdater.Status, Converter={StaticResource UpdateStatusToForegroundConverter}}"
+				<TextBlock Text="{Binding DayZUpdater.Status}"
+						   Foreground="{Binding DayZUpdater.Status, Converter={StaticResource UpdateStatusToForegroundConverter}}"
 						   Margin="12 0 0 0"/>
 			</StackPanel>
 
-			<StackPanel Margin="0 8 0 0"
-						Orientation="Horizontal">
-				
+			<StackPanel Margin="0 8 0 0">
+				<StackPanel Orientation="Horizontal">
+					<TextBlock Text="Your Version: "
+							   Foreground="#DDD"/>
+					<TextBlock Text="{Binding DayZUpdater.CurrentVersion}"
+							   Foreground="#FFFFFF"/>
+				</StackPanel>
+				<StackPanel Margin="0 9 0 0"
+							Orientation="Horizontal">
+					<TextBlock Text="Latest Version: "
+								   Foreground="#DDD"/>
+					<TextBlock Text="{Binding DayZUpdater.LatestVersion}"
+							   Foreground="#FFFFFF"/>
+					<Button Content="download" 
+							Background="#444444"
+							Foreground="LightGreen"
+							Padding="3 0"
+							Margin="8 0"
+							Style="{StaticResource MetroButtonStyle}"
+							Visibility="{Binding DayZUpdater.VersionMismatch, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}"
+							Click="DownloadDayZ_Click"/>
+				</StackPanel>				
 			</StackPanel>
 
 		
@@ -84,12 +124,14 @@
 							Background="#444444"
 							Foreground="#EEEEEE"
 							Padding="8 2"
+							Style="{StaticResource MetroButtonStyle}"
 							Click="CheckNow_Click"/>
 					<Button Content="Done"
 							Margin="14 10 0 0"
 						HorizontalAlignment="Left"
 							Background="#444444"
 							Foreground="#EEEEEE"
+							Style="{StaticResource MetroButtonStyle}"
 							Padding="8 2"
 							Click="Done_Click"/>
 				</StackPanel>

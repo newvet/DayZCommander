@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -11,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Dotjosh.DayZCommander.App.Core;
 
 namespace Dotjosh.DayZCommander.App.Ui
 {
@@ -32,6 +34,16 @@ namespace Dotjosh.DayZCommander.App.Ui
 		private void CheckNow_Click(object sender, RoutedEventArgs e)
 		{
 			((UpdatesViewModel) DataContext).CheckForUpdates();
+		}
+
+		private void DownloadArma2_Click(object sender, RoutedEventArgs e)
+		{
+			Process.Start(Arma2Updater.ArmaBetaListingUrl);
+		}
+
+		private void DownloadDayZ_Click(object sender, RoutedEventArgs e)
+		{
+			Process.Start(DayZUpdater.DayZListingUrl);
 		}
 	}
 }

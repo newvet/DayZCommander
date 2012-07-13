@@ -15,6 +15,6 @@ using System.Reflection;
 [assembly: AssemblyCompanyAttribute("Dotjosh Open Source")]
 [assembly: AssemblyProductAttribute("DayZ Commander")]
 [assembly: AssemblyCopyrightAttribute("Copyright 2012")]
-[assembly: AssemblyVersionAttribute("0.9.0.30")]
-[assembly: AssemblyFileVersionAttribute("0.9.0.30")]
+[assembly: AssemblyVersionAttribute("0.9.0.31")]
+[assembly: AssemblyFileVersionAttribute("0.9.0.31")]
 

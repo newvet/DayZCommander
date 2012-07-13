@@ -339,8 +339,9 @@
     <Resource Include="GSList\gpl.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="commandericon.ico" />
     <SplashScreen Include="Assets\Images\splash.png" />
+    <Resource Include="Assets\Images\logo.png" />
+    <Resource Include="commandericon.ico" />
     <Content Include="GSList\gslist.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -49,26 +49,94 @@
 					<ColumnDefinition />
 				</Grid.ColumnDefinitions>
 
-				<TextBlock Text="DayZ Commander"
-						Foreground="#FFFFFF"
-						FontSize="28"
-					Grid.Column="0"
-						HorizontalAlignment="Left"
-						IsHitTestVisible="False"
-						Margin="30 10 0 7"/>
+				<Image Source="../Assets/Images/logo.png"
+					   Width="200"
+					   IsHitTestVisible="False"
+					   Margin="30 10 0 10"/>
 
 				<Grid Grid.Column="1">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="Auto"/>
 						<RowDefinition/>
 					</Grid.RowDefinitions>
-					
-<StackPanel
+
+					<StackPanel HorizontalAlignment="Right"
+									Margin="0 10 20 0"
+								Grid.Row="0"
+									Orientation="Horizontal">
+
+
+
+						<Button
+								Margin="12 0 0 0"
+								Style="{StaticResource MetroTextButtonStyle}"
+								Click="MinimizeClick" >
+							<Button.Template>
+								<ControlTemplate>
+									<Border Background="#222"
+												IsHitTestVisible="True">
+										<Canvas Width="11"
+													Height="11">
+											<Line Stroke="{TemplateBinding Foreground}" 
+													  Width="11" 
+													  StrokeThickness="2" Canvas.Top="10"
+													  X1="1" X2="11"/>
+										</Canvas>
+									</Border>
+								</ControlTemplate>
+							</Button.Template>
+						</Button>
+
+						<Button
+								Margin="12 0 0 0"
+								Style="{StaticResource MetroTextButtonStyle}"
+								Click="ToggleMaxamimizeClick" >
+							<Button.Template>
+								<ControlTemplate>
+									<Border Background="#222"
+												IsHitTestVisible="True">
+										<Canvas Width="11"
+													Height="11">
+											<Line Stroke="{TemplateBinding Foreground}" 
+													  Width="11" 
+													  StrokeThickness="2" Canvas.Top="2"
+													  X1="1" X2="11"/>
+											<Rectangle Stroke="{TemplateBinding Foreground}"
+														   StrokeThickness="1"
+													   Width="11"
+													   Height="11">
+
+											</Rectangle>
+										</Canvas>
+									</Border>
+								</ControlTemplate>
+							</Button.Template>
+						</Button>
+
+						<Button
+								Margin="12 0 0 0"
+								Style="{StaticResource MetroTextButtonStyle}"
+								Click="CloseButtonClick" >
+							<Button.Template>
+								<ControlTemplate>
+									<Border Background="#222"
+												IsHitTestVisible="True">
+										<Path Data="F1M54.0573,47.8776L38.1771,31.9974 54.0547,16.1198C55.7604,14.4141 55.7604,11.6511 54.0573,9.94531 52.3516,8.23962 49.5859,8.23962 47.8802,9.94531L32.0026,25.8229 16.1224,9.94531C14.4167,8.23962 11.6511,8.23962 9.94794,9.94531 8.24219,11.6511 8.24219,14.4141 9.94794,16.1198L25.8255,32 9.94794,47.8776C8.24219,49.5834 8.24219,52.3477 9.94794,54.0534 11.6511,55.7572 14.4167,55.7585 16.1224,54.0534L32.0026,38.1745 47.8802,54.0534C49.5859,55.7585 52.3516,55.7572 54.0573,54.0534 55.7604,52.3477 55.763,49.5834 54.0573,47.8776z" Stretch="Uniform"
+											  Fill="{TemplateBinding Foreground}" 
+											  Width="11" 
+											  Height="11"  />
+									</Border>
+								</ControlTemplate>
+							</Button.Template>
+						</Button>
+					</StackPanel>
+
+					<StackPanel
 							Orientation="Horizontal"
-							Margin="0 10 115 4"
+							Margin="0 20 45 4"
 							HorizontalAlignment="Right"
 						  VerticalAlignment="Bottom"
-						  Grid.Row="0">
+						  Grid.Row="1">
 
 						<StackPanel 
 							Orientation="Horizontal"
@@ -145,7 +213,7 @@
 													Width="14" 
 													Height="14"
 													Margin="0,4,0,0" />
-											<TextBlock Text="updates"
+											<TextBlock Text="versions"
 													   VerticalAlignment="Top"
 														   Margin="4 0 0 0"
 															FontSize="14"
@@ -214,77 +282,10 @@
 
 					</StackPanel>
 
-					<StackPanel HorizontalAlignment="Right"
-									Margin="0 10 20 0"
-									Orientation="Horizontal">
-
-
-
-						<Button
-								Margin="12 0 0 0"
-								Style="{StaticResource MetroTextButtonStyle}"
-								Click="MinimizeClick" >
-							<Button.Template>
-								<ControlTemplate>
-									<Border Background="#222"
-												IsHitTestVisible="True">
-										<Canvas Width="11"
-													Height="11">
-											<Line Stroke="{TemplateBinding Foreground}" 
-													  Width="11" 
-													  StrokeThickness="2" Canvas.Top="10"
-													  X1="1" X2="11"/>
-										</Canvas>
-									</Border>
-								</ControlTemplate>
-							</Button.Template>
-						</Button>
-
-						<Button
-								Margin="12 0 0 0"
-								Style="{StaticResource MetroTextButtonStyle}"
-								Click="ToggleMaxamimizeClick" >
-							<Button.Template>
-								<ControlTemplate>
-									<Border Background="#222"
-												IsHitTestVisible="True">
-										<Canvas Width="11"
-													Height="11">
-											<Line Stroke="{TemplateBinding Foreground}" 
-													  Width="11" 
-													  StrokeThickness="2" Canvas.Top="2"
-													  X1="1" X2="11"/>
-											<Rectangle Stroke="{TemplateBinding Foreground}"
-														   StrokeThickness="1"
-													   Width="11"
-													   Height="11">
-
-											</Rectangle>
-										</Canvas>
-									</Border>
-								</ControlTemplate>
-							</Button.Template>
-						</Button>
-
-						<Button
-								Margin="12 0 0 0"
-								Style="{StaticResource MetroTextButtonStyle}"
-								Click="CloseButtonClick" >
-							<Button.Template>
-								<ControlTemplate>
-									<Border Background="#222"
-												IsHitTestVisible="True">
-										<Path Data="F1M54.0573,47.8776L38.1771,31.9974 54.0547,16.1198C55.7604,14.4141 55.7604,11.6511 54.0573,9.94531 52.3516,8.23962 49.5859,8.23962 47.8802,9.94531L32.0026,25.8229 16.1224,9.94531C14.4167,8.23962 11.6511,8.23962 9.94794,9.94531 8.24219,11.6511 8.24219,14.4141 9.94794,16.1198L25.8255,32 9.94794,47.8776C8.24219,49.5834 8.24219,52.3477 9.94794,54.0534 11.6511,55.7572 14.4167,55.7585 16.1224,54.0534L32.0026,38.1745 47.8802,54.0534C49.5859,55.7585 52.3516,55.7572 54.0573,54.0534 55.7604,52.3477 55.763,49.5834 54.0573,47.8776z" Stretch="Uniform"
-											  Fill="{TemplateBinding Foreground}" 
-											  Width="11" 
-											  Height="11"  />
-									</Border>
-								</ControlTemplate>
-							</Button.Template>
-						</Button>
-					</StackPanel>
+			
 
 					<Grid Margin="0 5 115 3" 
+						  Visibility="Collapsed"
 						  HorizontalAlignment="Right"
 						  VerticalAlignment="Bottom"
 						  Grid.Row="1">

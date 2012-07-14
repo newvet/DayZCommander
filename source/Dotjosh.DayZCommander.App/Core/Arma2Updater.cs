@@ -16,12 +16,12 @@ namespace Dotjosh.DayZCommander.App.Core
 		{
 			get
 			{
-				if(CurrentVersion == null)
+				if(LocalMachineInfo.Current.Arma2OABetaVersion == null)
 					return true;
 				if(LatestVersion == null)
 					return false;
 				
-				return CurrentVersion != LatestVersion;
+				return LocalMachineInfo.Current.Arma2OABetaVersion.Revision != LatestVersion;
 			}
 		}
 
@@ -63,7 +63,7 @@ namespace Dotjosh.DayZCommander.App.Core
 								latestRevision = latestBetaRevisionMatch.Groups[1].Value.TryIntNullable();
 								if(latestRevision != null)
 								{
-									if(CurrentVersion == null || CurrentVersion != latestRevision)
+									if(LocalMachineInfo.Current.Arma2OABetaVersion == null || LocalMachineInfo.Current.Arma2OABetaVersion.Revision != latestRevision)
 									{
 										Status = DayZCommanderUpdater.STATUS_OUTOFDATE;
 									}
@@ -88,17 +88,6 @@ namespace Dotjosh.DayZCommander.App.Core
 								LatestVersion = latestRevision;
 							}
 						}).Start();
-		}
-
-		public int? CurrentVersion
-		{
-			get
-			{
-				if(LocalMachineInfo.Arma2OABetaVersion == null)
-					return null;
-
-				return LocalMachineInfo.Arma2OABetaVersion.Revision;
-			}
 		}
 
 		public int? LatestVersion

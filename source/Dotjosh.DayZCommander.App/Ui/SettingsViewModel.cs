@@ -31,7 +31,7 @@ namespace Dotjosh.DayZCommander.App.Ui
 				{
 					return Settings.GameOptions.Arma2DirectoryOverride;
 				}
-				return LocalMachineInfo.Arma2Path;
+				return LocalMachineInfo.Current.Arma2Path;
 			}
 			set
 			{
@@ -46,7 +46,7 @@ namespace Dotjosh.DayZCommander.App.Ui
 			set
 			{
 				if(value)
-					Settings.GameOptions.Arma2DirectoryOverride = LocalMachineInfo.Arma2Path ?? "Replace with full Arma2 Path";
+					Settings.GameOptions.Arma2DirectoryOverride = LocalMachineInfo.Current.Arma2Path ?? "Replace with full Arma2 Path";
 				else
 					Settings.GameOptions.Arma2DirectoryOverride = null;
 				PropertyHasChanged("Arma2Directory", "Arma2DirectoryOverride");
@@ -61,7 +61,7 @@ namespace Dotjosh.DayZCommander.App.Ui
 				{
 					return Settings.GameOptions.Arma2OADirectoryOverride;
 				}
-				return LocalMachineInfo.Arma2OAPath;
+				return LocalMachineInfo.Current.Arma2OAPath;
 			}
 			set
 			{
@@ -76,7 +76,7 @@ namespace Dotjosh.DayZCommander.App.Ui
 			set
 			{
 				if(value)
-					Settings.GameOptions.Arma2OADirectoryOverride = LocalMachineInfo.Arma2OAPath ?? "Replace with full Arma2 OA Path";
+					Settings.GameOptions.Arma2OADirectoryOverride = LocalMachineInfo.Current.Arma2OAPath ?? "Replace with full Arma2 OA Path";
 				else
 					Settings.GameOptions.Arma2OADirectoryOverride = null;
 				PropertyHasChanged("Arma2OADirectory", "Arma2OADirectoryOverride");
@@ -91,7 +91,7 @@ namespace Dotjosh.DayZCommander.App.Ui
                 {
                     return Settings.GameOptions.DayZDirectoryOverride;
                 }
-                return LocalMachineInfo.DayZPath;
+                return LocalMachineInfo.Current.DayZPath;
             }
             set
             {
@@ -106,7 +106,7 @@ namespace Dotjosh.DayZCommander.App.Ui
             set
             {
                 if (value)
-                    Settings.GameOptions.DayZDirectoryOverride = LocalMachineInfo.DayZPath ?? "Replace with full DayZ Path";
+                    Settings.GameOptions.DayZDirectoryOverride = LocalMachineInfo.Current.DayZPath ?? "Replace with full DayZ Path";
                 else
                     Settings.GameOptions.DayZDirectoryOverride = null;
                 PropertyHasChanged("DayZDirectory", "DayZDirectoryOverride");

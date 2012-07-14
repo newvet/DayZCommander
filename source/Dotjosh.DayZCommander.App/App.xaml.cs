@@ -26,7 +26,7 @@ namespace Dotjosh.DayZCommander.App
 
 			ApplyUpdateIfNeccessary();
 
-			LocalMachineInfo.Touch();
+			LocalMachineInfo.Current.Update();
 
 			base.OnStartup(e);
 		}

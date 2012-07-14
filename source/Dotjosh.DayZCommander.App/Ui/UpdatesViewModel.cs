@@ -13,6 +13,7 @@ namespace Dotjosh.DayZCommander.App.Ui
 
 		public UpdatesViewModel()
 		{
+			LocalMachineInfo = LocalMachineInfo.Current;
 			DayZCommanderUpdater = new DayZCommanderUpdater();
 			Arma2Updater = new Arma2Updater();
 			DayZUpdater = new DayZUpdater();
@@ -55,6 +56,7 @@ namespace Dotjosh.DayZCommander.App.Ui
 		public DayZCommanderUpdater DayZCommanderUpdater { get; private set; }
 		public Arma2Updater Arma2Updater { get; private set; }
 		public DayZUpdater DayZUpdater { get; private set; }
+		public LocalMachineInfo LocalMachineInfo { get; private set; }
 
 		public bool IsVisible
 		{
@@ -68,6 +70,7 @@ namespace Dotjosh.DayZCommander.App.Ui
 
 		public void CheckForUpdates()
 		{
+			LocalMachineInfo.Current.Update();
 			DayZCommanderUpdater.CheckForUpdate();
 			Arma2Updater.CheckForUpdate();
 			DayZUpdater.CheckForUpdate();

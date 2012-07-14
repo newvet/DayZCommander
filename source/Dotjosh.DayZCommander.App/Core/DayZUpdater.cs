@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Threading;
-using Dotjosh.DayZCommander.App.Core;
 
 namespace Dotjosh.DayZCommander.App.Core
 {
@@ -16,12 +15,12 @@ namespace Dotjosh.DayZCommander.App.Core
 		{
 			get
 			{
-				if(CurrentVersion == null)
+				if(LocalMachineInfo.Current.DayZVersion == null)
 					return true;
 				if(LatestVersion == null)
 					return false;
 
-				return !CurrentVersion.Equals(LatestVersion);
+				return !LocalMachineInfo.Current.DayZVersion.Equals(LatestVersion);
 			}
 		}
 	
@@ -66,7 +65,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			           			if (Version.TryParse(latestCodeVersionMatch.Value, out version))
 			           			{
 			           				latestVersion = version;
-			           				if (!latestVersion.Equals(CurrentVersion))
+			           				if (!latestVersion.Equals(LocalMachineInfo.Current.DayZVersion))
 			           				{
 			           					Status = DayZCommanderUpdater.STATUS_OUTOFDATE;
 			           				}
@@ -91,11 +90,6 @@ namespace Dotjosh.DayZCommander.App.Core
 								LatestVersion = latestVersion;
 							}
 						}).Start();
-		}
-
-		public Version CurrentVersion
-		{
-			get { return LocalMachineInfo.DayZVersion; }
 		}
 
 		public Version LatestVersion

@@ -280,55 +280,6 @@
 
 					</StackPanel>
 
-					<Grid Margin="0 5 115 3" 
-						  Visibility="Collapsed"
-						  HorizontalAlignment="Right"
-						  VerticalAlignment="Bottom"
-						  Grid.Row="1">
-						<StackPanel Orientation="Horizontal"
-									Margin="0 4 0 0"
-									VerticalAlignment="Top">
-							<StackPanel Orientation="Horizontal" 
-							IsHitTestVisible="False"
-								Margin="0 0 20 0">
-								<TextBlock Text="DayZ Commander Version: " 
-									   FontSize="10"
-									   Foreground="#AAA"
-							IsHitTestVisible="False"/>
-								<TextBlock Text="{Binding UpdatesViewModel.DayZCommanderUpdater.CurrentVersion}" 
-									   FontSize="10"
-									   Foreground="#CCC"
-							IsHitTestVisible="False"/>
-							</StackPanel>
-						<StackPanel Orientation="Horizontal" 
-							IsHitTestVisible="False"
-								Margin="0 0 20 0">
-								<TextBlock Text="Arma2 Version: " 
-									   FontSize="10"
-									   Foreground="#AAA"
-							IsHitTestVisible="False"/>
-								<TextBlock Text="{Binding Source={x:Static Member=Core:LocalMachineInfo.Arma2OABetaVersion}}" 
-									   FontSize="10"
-									   Foreground="#CCC"
-							IsHitTestVisible="False"/>
-							</StackPanel>
-
-							<StackPanel Orientation="Horizontal" 
-							IsHitTestVisible="False"
-								Margin="0 0 0 0">
-								<TextBlock Text="DayZ Version: " 
-										   FontSize="10" 
-										   Foreground="#AAA"
-							IsHitTestVisible="False"/>
-								<TextBlock Text="{Binding Source={x:Static Member=Core:LocalMachineInfo.DayZVersion}}" 
-										   FontSize="10"
-										   Foreground="#CCC"
-							IsHitTestVisible="False"/>
-							</StackPanel>
-						</StackPanel>
-	
-					</Grid>
-
 				</Grid>
 			</Grid>
 

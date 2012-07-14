@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using Microsoft.Win32;
 using NLog;
@@ -8,40 +9,116 @@ using NLog;
 // ReSharper disable InconsistentNaming
 namespace Dotjosh.DayZCommander.App.Core
 {
-	public static class LocalMachineInfo
+	public class LocalMachineInfo : BindableBase
 	{
-		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+		private static LocalMachineInfo _current;
+		public static LocalMachineInfo Current
+		{
+			get
+			{
+				if(_current == null)
+				{
+					_current = new LocalMachineInfo();
+					_current.Update();
+				}
+				return _current;
+			}
+		}
 
-		public static string Arma2Path { get; private set; }
-		public static string Arma2OAPath { get; private set; }
-		public static string SteamPath { get; private set; }
-		public static string Arma2OABetaPath { get; private set; }
-		public static string Arma2OABetaExe { get; private set; }
-		public static Version Arma2OABetaVersion { get; private set; }
-//		public static bool EqualsArma2Version(Version version)
-//		{
-//			if(Arma2OABetaVersion.Equals(version))
-//				return true;
-//
-//
-//			//Ridicuously naiive.  fix....
-//			if(_alternativeVersion == null)
-//			{
-//				_alternativeVersion = Version.Parse(Arma2OABetaVersion.ToString().Replace("1.60.0.", "1.60."));
-//			}
-//			if(_alternativeVersion2 == null)
-//			{
-//				_alternativeVersion2 = Version.Parse(Arma2OABetaVersion.ToString().Replace("1.60.0.94364", "1.60.94365"));
-//			}
-//			if(_alternativeVersion.Equals(version))
-//				return true;
-//
-//			return false;
-//		}
-		public static string DayZPath { get; private set; }
-		public static Version DayZVersion { get; private set; }
+		public Version DayZCommanderVersion
+		{
+			get { return Assembly.GetEntryAssembly().GetName().Version; }
+		}
 
-		public static void Touch()
+		private string _arma2Path;
+		public string Arma2Path
+		{
+			get { return _arma2Path; }
+			private set
+			{
+				_arma2Path = value;
+				PropertyHasChanged("Arma2Path");
+			}
+		}
+
+		private string _arma2OaPath;
+		public string Arma2OAPath
+		{
+			get { return _arma2OaPath; }
+			private set
+			{
+				_arma2OaPath = value;
+				PropertyHasChanged("Arma2OAPath");
+			}
+		}
+
+		private string _steamPath;
+		public string SteamPath
+		{
+			get { return _steamPath; }
+			private set
+			{
+				_steamPath = value;
+				PropertyHasChanged("SteamPath");
+			}
+		}
+
+		private string _arma2OaBetaPath;
+		public string Arma2OABetaPath
+		{
+			get { return _arma2OaBetaPath; }
+			private set
+			{
+				_arma2OaBetaPath = value;
+				PropertyHasChanged("Arma2OABetaPath");
+			}
+		}
+
+		private string _arma2OaBetaExe;
+		public string Arma2OABetaExe
+		{
+			get { return _arma2OaBetaExe; }
+			private set
+			{
+				_arma2OaBetaExe = value;
+				PropertyHasChanged("Arma2OABetaExe");
+			}
+		}
+
+		private Version _arma2OaBetaVersion;
+		public Version Arma2OABetaVersion
+		{
+			get { return _arma2OaBetaVersion; }
+			private set
+			{
+				_arma2OaBetaVersion = value;
+				PropertyHasChanged("Arma2OABetaVersion");
+			}
+		}
+
+		private string _dayZPath;
+		public string DayZPath
+		{
+			get { return _dayZPath; }
+			private set
+			{
+				_dayZPath = value;
+				PropertyHasChanged("DayZPath");
+			}
+		}
+
+		private Version _dayZVersion;
+		public Version DayZVersion
+		{
+			get { return _dayZVersion; }
+			private set
+			{
+				_dayZVersion = value;
+				PropertyHasChanged("DayZVersion");
+			}
+		}
+
+		public void Update()
 		{
 			try
 			{
@@ -63,7 +140,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 		}
 
-		private static void SetPathsX64()
+		private void SetPathsX64()
 		{
 			const string arma2Registry = @"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Bohemia Interactive Studio\ArmA 2";
 			const string arma2OARegistry = @"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Bohemia Interactive Studio\ArmA 2 OA";
@@ -72,7 +149,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			SetPaths(arma2Registry, arma2OARegistry, steamRegistry);
 		}
 
-		private static void SetPathsX86()
+		private void SetPathsX86()
 		{
 			const string arma2Registry = @"HKEY_LOCAL_MACHINE\SOFTWARE\Bohemia Interactive Studio\ArmA 2";
 			const string arma2OARegistry = @"HKEY_LOCAL_MACHINE\SOFTWARE\Bohemia Interactive Studio\ArmA 2 OA";
@@ -81,7 +158,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			SetPaths(arma2Registry, arma2OARegistry, steamRegistry);
 		}
 
-		private static void SetPaths(string arma2Registry, string arma2OARegistry, string steamRegistry)
+		private void SetPaths(string arma2Registry, string arma2OARegistry, string steamRegistry)
 		{
 			// Set game paths.
 			Arma2Path = (string)Registry.GetValue(arma2Registry, "main", "");
@@ -118,7 +195,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			DayZPath = Path.Combine(Arma2OAPath, @"@DayZ");
 		}
 
-		private static void SetArma2OABetaVersion()
+		private void SetArma2OABetaVersion()
 		{
 			var versionInfo = FileVersionInfo.GetVersionInfo(Arma2OABetaExe);
 			Version version;
@@ -128,7 +205,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 		}
 
-		private static void SetDayZVersion()
+		private void SetDayZVersion()
 		{
 			var changeLogPath = Path.Combine(DayZPath, "dayz_changelog.txt");
 			if(!File.Exists(changeLogPath))

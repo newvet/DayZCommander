@@ -20,7 +20,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			
 			if(UserSettings.Current.GameOptions.LaunchUsingSteam)
 			{
-				exePath = Path.Combine(LocalMachineInfo.SteamPath, "steam.exe");
+				exePath = Path.Combine(LocalMachineInfo.Current.SteamPath, "steam.exe");
 				if(!File.Exists(exePath))
 				{
 					MessageBox.Show("Could not find Steam, please adjust your options or check your Steam installation.");
@@ -92,28 +92,28 @@ namespace Dotjosh.DayZCommander.App.Core
 			if(!string.IsNullOrWhiteSpace(UserSettings.Current.GameOptions.Arma2OADirectoryOverride))
 				return Path.Combine(UserSettings.Current.GameOptions.Arma2OADirectoryOverride, "arma2oa.exe");
 
-			return LocalMachineInfo.Arma2OABetaExe;
+			return LocalMachineInfo.Current.Arma2OABetaExe;
 		}
 
 		private static string GetArma2Path()
 		{
 			if(!string.IsNullOrWhiteSpace(UserSettings.Current.GameOptions.Arma2DirectoryOverride))
 				return UserSettings.Current.GameOptions.Arma2DirectoryOverride;
-			return LocalMachineInfo.Arma2Path;
+			return LocalMachineInfo.Current.Arma2Path;
 		}
 
 		private static string GetArma2OAPath()
 		{
 			if(!string.IsNullOrWhiteSpace(UserSettings.Current.GameOptions.Arma2OADirectoryOverride))
 				return UserSettings.Current.GameOptions.Arma2OADirectoryOverride;
-			return LocalMachineInfo.Arma2OAPath;
+			return LocalMachineInfo.Current.Arma2OAPath;
 		}
 
         private static string GetDayZPath()
         {
             if (!string.IsNullOrWhiteSpace(UserSettings.Current.GameOptions.DayZDirectoryOverride))
                 return UserSettings.Current.GameOptions.DayZDirectoryOverride;
-            return LocalMachineInfo.DayZPath;
+            return LocalMachineInfo.Current.DayZPath;
         }
 	}
 

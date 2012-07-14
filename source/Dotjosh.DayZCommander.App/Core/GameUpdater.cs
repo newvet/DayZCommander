@@ -20,7 +20,7 @@ namespace Dotjosh.DayZCommander.App.Core
 
 		public bool UpdateArma2OABeta()
 		{
-			if(string.IsNullOrEmpty(LocalMachineInfo.Arma2OABetaPath)
+			if(string.IsNullOrEmpty(LocalMachineInfo.Current.Arma2OABetaPath)
 				|| string.IsNullOrEmpty(LatestArma2OABetaUrl))
 			{
 				return false;
@@ -30,7 +30,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			{
 				return false;
 			}
-			var arma2OABetaFilePath = Path.Combine(LocalMachineInfo.Arma2OABetaPath, latestArma2OABetaFile);
+			var arma2OABetaFilePath = Path.Combine(LocalMachineInfo.Current.Arma2OABetaPath, latestArma2OABetaFile);
 			if(LatestArma2OABetaUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase))
 			{
 				var webClient = new WebClient();
@@ -64,7 +64,7 @@ namespace Dotjosh.DayZCommander.App.Core
 						{
 							continue;
 						}
-						reader.WriteEntryToDirectory(LocalMachineInfo.Arma2OABetaPath, ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
+						reader.WriteEntryToDirectory(LocalMachineInfo.Current.Arma2OABetaPath, ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
 						if(fileName.EndsWith(".exe"))
 						{
 							var p = new Process
@@ -74,8 +74,8 @@ namespace Dotjosh.DayZCommander.App.Core
 							        				CreateNoWindow = true,
 							        				UseShellExecute = false,
 							        				WindowStyle = ProcessWindowStyle.Hidden,
-							        				WorkingDirectory = LocalMachineInfo.Arma2OABetaPath,
-							        				FileName = Path.Combine(LocalMachineInfo.Arma2OABetaPath, fileName)
+							        				WorkingDirectory = LocalMachineInfo.Current.Arma2OABetaPath,
+							        				FileName = Path.Combine(LocalMachineInfo.Current.Arma2OABetaPath, fileName)
 							        			}
 							        	};
 							p.Start();
@@ -90,16 +90,16 @@ namespace Dotjosh.DayZCommander.App.Core
 
 		public bool UpdateDayZ()
 		{
-			if(string.IsNullOrEmpty(LocalMachineInfo.DayZPath))
+			if(string.IsNullOrEmpty(LocalMachineInfo.Current.DayZPath))
 			{
 				return false;
 			}
 			var dayZFiles = GetDayZFiles();
 			foreach(var dayZFile in dayZFiles)
 			{
-				var dayZAddonPath = Path.Combine(LocalMachineInfo.DayZPath, @"Addons").MakeSurePathExists();
+				var dayZAddonPath = Path.Combine(LocalMachineInfo.Current.DayZPath, @"Addons").MakeSurePathExists();
 				var dayZFileUrl = Path.Combine(_dayZPage, dayZFile);
-				var dayZFilePath = Path.Combine(LocalMachineInfo.DayZPath, dayZFile);
+				var dayZFilePath = Path.Combine(LocalMachineInfo.Current.DayZPath, dayZFile);
 				var webClient = new WebClient();
 				webClient.DownloadFile(dayZFileUrl, dayZFilePath);
 				if(dayZFile.EndsWithAny("zip", "rar"))

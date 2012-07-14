@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using Dotjosh.DayZCommander.Updater;
 
 namespace Dotjosh.DayZCommander.App.Core
@@ -13,11 +12,6 @@ namespace Dotjosh.DayZCommander.App.Core
 		public static readonly string STATUS_UPTODATE = "Up to date";
 		public static readonly string STATUS_OUTOFDATE = "Out of date";
 		public static readonly string STATUS_RESTARTTOAPPLY = "Restart to apply update";
-
-		public Version CurrentVersion
-		{
-			get { return Assembly.GetEntryAssembly().GetName().Version; }
-		}
 
 		public Version LatestVersion
 		{
@@ -43,12 +37,10 @@ namespace Dotjosh.DayZCommander.App.Core
 		{
 			get
 			{
-				if(CurrentVersion == null)
-					return true;
 				if(LatestVersion == null)
 					return false;
 				
-				return !CurrentVersion.Equals(LatestVersion);
+				return !LocalMachineInfo.Current.DayZCommanderVersion.Equals(LatestVersion);
 			}
 		}
 

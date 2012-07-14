@@ -41,7 +41,11 @@
 					  IsChecked="{Binding Settings.GameOptions.MultiGpu, Mode=TwoWay}"
 					  Foreground="#DDDDDD"
 					  Margin="0 8 0 0"/>
-			<StackPanel Margin="0 8 0 0">
+            <CheckBox Content="Close DayZ Commander (after joining a server)"
+					  IsChecked="{Binding Settings.GameOptions.CloseDayZCommander, Mode=TwoWay}"
+					  Foreground="#DDDDDD"
+					  Margin="0 8 0 0"/>
+            <StackPanel Margin="0 8 0 0">
 				<TextBlock Text="Additional Startup Parameters"
 						   Foreground="#DDDDDD"/>
 				<TextBox Text="{Binding Settings.GameOptions.AdditionalStartupParameters, Mode=TwoWay}"

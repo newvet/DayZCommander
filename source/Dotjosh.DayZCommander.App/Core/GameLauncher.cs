@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using NLog;
+using System.Threading;
 
 namespace Dotjosh.DayZCommander.App.Core
 {
@@ -68,6 +69,11 @@ namespace Dotjosh.DayZCommander.App.Core
 				p.Start();
 
 				UserSettings.Current.AddRecent(server);
+
+                if(UserSettings.Current.GameOptions.CloseDayZCommander){
+                    Thread.Sleep(1000);
+                    System.Environment.Exit(0);
+                }
 			}
 			catch(Exception ex)
 			{

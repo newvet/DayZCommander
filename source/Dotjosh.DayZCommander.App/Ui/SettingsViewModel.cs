@@ -83,6 +83,36 @@ namespace Dotjosh.DayZCommander.App.Ui
 			}
 		}
 
+        public string DayZDirectory
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(Settings.GameOptions.DayZDirectoryOverride))
+                {
+                    return Settings.GameOptions.DayZDirectoryOverride;
+                }
+                return LocalMachineInfo.DayZPath;
+            }
+            set
+            {
+                Settings.GameOptions.DayZDirectoryOverride = value;
+                PropertyHasChanged("DayZDirectory", "DayZDirectoryOverride");
+            }
+        }
+
+        public bool DayZDirectoryOverride
+        {
+            get { return !string.IsNullOrWhiteSpace(Settings.GameOptions.DayZDirectoryOverride); }
+            set
+            {
+                if (value)
+                    Settings.GameOptions.DayZDirectoryOverride = LocalMachineInfo.DayZPath ?? "Replace with full DayZ Path";
+                else
+                    Settings.GameOptions.DayZDirectoryOverride = null;
+                PropertyHasChanged("DayZDirectory", "DayZDirectoryOverride");
+            }
+        }
+
 		public void Done()
 		{
 			IsVisible = false;

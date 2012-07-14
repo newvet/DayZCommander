@@ -9,7 +9,7 @@ namespace Dotjosh.DayZCommander.App.Core
 		[DataMember] private bool _launchUsingSteam;
 		[DataMember] private bool _windowedMode;
 		[DataMember] private bool _multiGpu;
-        [DataMember] private bool _CloseDayZCommander;
+        [DataMember] private bool _closeDayZCommander;
 		[DataMember] private string _arma2DirectoryOverride;
 		[DataMember] private string _arma2OaDirectoryOverride;
         [DataMember] private string _DayZDirectoryOverride;
@@ -60,10 +60,10 @@ namespace Dotjosh.DayZCommander.App.Core
 
         public bool CloseDayZCommander
         {
-            get { return _CloseDayZCommander; }
+            get { return _closeDayZCommander; }
             set
             {
-                _CloseDayZCommander = value;
+                _closeDayZCommander = value;
                 PropertyHasChanged("CloseDayZCommander");
                 UserSettings.Current.Save();
             }

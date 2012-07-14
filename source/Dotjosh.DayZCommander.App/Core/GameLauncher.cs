@@ -51,8 +51,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			arguments.Append(" -noSplash -noFilePatching");
 			arguments.Append(" -connect=" + server.IpAddress);
 			arguments.Append(" -port=" + server.Port);
-			arguments.AppendFormat(" \"-mod={0};expansion;expansion\\beta;expansion\\beta\\expansion;@DayZ\"", GetArma2Path());
-
+			arguments.AppendFormat(" \"-mod={0};expansion;expansion\\beta;expansion\\beta\\expansion;{1}\"", GetArma2Path(), GetDayZPath());
 
 			try
 			{
@@ -103,6 +102,13 @@ namespace Dotjosh.DayZCommander.App.Core
 				return UserSettings.Current.GameOptions.Arma2OADirectoryOverride;
 			return LocalMachineInfo.Arma2OAPath;
 		}
+
+        private static string GetDayZPath()
+        {
+            if (!string.IsNullOrWhiteSpace(UserSettings.Current.GameOptions.DayZDirectoryOverride))
+                return UserSettings.Current.GameOptions.DayZDirectoryOverride;
+            return LocalMachineInfo.DayZPath;
+        }
 	}
 
 	public class JoinServerException : Exception

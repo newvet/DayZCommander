@@ -84,9 +84,25 @@
 					IsEnabled="{Binding Arma2OADirectoryOverride, Mode=TwoWay}"
 					Margin="0 3 0 0"/>
 			</StackPanel>
-			
-			
-			<Border Margin="0 30 0 0"
+            
+            
+            <StackPanel Margin="0 8 0 0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="DayZ Directory"
+							   Foreground="#DDDDDD"/>
+                    <CheckBox Content="Override"
+							  Foreground="#AAA"
+							  IsChecked="{Binding DayZDirectoryOverride, Mode=TwoWay}"
+							  Margin="15 0 0 0"/>
+                </StackPanel>
+                <TextBox Text="{Binding DayZDirectory, Mode=TwoWay}"
+					FontSize="10"
+					ToolTipService.ToolTip="{Binding DayZDirectoryOverride}"
+					IsEnabled="{Binding DayZDirectoryOverride, Mode=TwoWay}"
+					Margin="0 3 0 0"/>
+            </StackPanel>
+
+            <Border Margin="0 30 0 0"
 					BorderBrush="#555555"
 					BorderThickness="0 1 0 0">
 				<Button Content="Done"

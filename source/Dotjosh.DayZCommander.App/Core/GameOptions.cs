@@ -11,6 +11,7 @@ namespace Dotjosh.DayZCommander.App.Core
 		[DataMember] private bool _multiGpu;
 		[DataMember] private string _arma2DirectoryOverride;
 		[DataMember] private string _arma2OaDirectoryOverride;
+        [DataMember] private string _DayZDirectoryOverride;
 
 		public string AdditionalStartupParameters
 		{
@@ -77,5 +78,15 @@ namespace Dotjosh.DayZCommander.App.Core
 				UserSettings.Current.Save();
 			}
 		}
+        public string DayZDirectoryOverride
+        {
+            get { return _DayZDirectoryOverride; }
+            set
+            {
+                _DayZDirectoryOverride = value;
+                PropertyHasChanged("DayZDirectoryOverride");
+                UserSettings.Current.Save();
+            }
+        }
 	}
 }

@@ -57,13 +57,37 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_82B1EEE6D60B4AD42185182C68F0BAA5"
-        "OwnerKey" = "8:_D319E7020D5525DDFE23657A80010F56"
+        "MsmKey" = "8:_6743E15A3A6FC25AB80CFBD2AFB32A1D"
+        "OwnerKey" = "8:_74FD90D090C8A31AAAA102CA288373BA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A3B5AEFAD07E9D7F570808B641BEFC2A"
+        "MsmKey" = "8:_74FD90D090C8A31AAAA102CA288373BA"
+        "OwnerKey" = "8:_35CE219004E34AC5B16BB66D2BDFD5C1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7516A4685590A44B20D3EACB58B8618B"
+        "OwnerKey" = "8:_74FD90D090C8A31AAAA102CA288373BA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_90423DD0D391C58C39487907791D5208"
+        "OwnerKey" = "8:_74FD90D090C8A31AAAA102CA288373BA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_90423DD0D391C58C39487907791D5208"
+        "OwnerKey" = "8:_35CE219004E34AC5B16BB66D2BDFD5C1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9F5D33BD3C7E2D579001BA361859105A"
         "OwnerKey" = "8:_35CE219004E34AC5B16BB66D2BDFD5C1"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -75,37 +99,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BBC032E05297A1BD3062464A0409E794"
-        "OwnerKey" = "8:_D319E7020D5525DDFE23657A80010F56"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_BBC032E05297A1BD3062464A0409E794"
-        "OwnerKey" = "8:_35CE219004E34AC5B16BB66D2BDFD5C1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CFAFF22BEA117034501FC0893CD1AC22"
-        "OwnerKey" = "8:_D319E7020D5525DDFE23657A80010F56"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D319E7020D5525DDFE23657A80010F56"
-        "OwnerKey" = "8:_35CE219004E34AC5B16BB66D2BDFD5C1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_DE933C56B6C240548390881D77800FD0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F6C30E015CD2D1937718A63B3AA1CEC4"
+        "MsmKey" = "8:_E8B937AB31D50972DC906EAE27A1E337"
         "OwnerKey" = "8:_35CE219004E34AC5B16BB66D2BDFD5C1"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -124,37 +124,37 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A3B5AEFAD07E9D7F570808B641BEFC2A"
+        "OwnerKey" = "8:_E8B937AB31D50972DC906EAE27A1E337"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F6C30E015CD2D1937718A63B3AA1CEC4"
+        "OwnerKey" = "8:_9F5D33BD3C7E2D579001BA361859105A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D319E7020D5525DDFE23657A80010F56"
+        "OwnerKey" = "8:_74FD90D090C8A31AAAA102CA288373BA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BBC032E05297A1BD3062464A0409E794"
+        "OwnerKey" = "8:_90423DD0D391C58C39487907791D5208"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CFAFF22BEA117034501FC0893CD1AC22"
+        "OwnerKey" = "8:_6743E15A3A6FC25AB80CFBD2AFB32A1D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_82B1EEE6D60B4AD42185182C68F0BAA5"
+        "OwnerKey" = "8:_7516A4685590A44B20D3EACB58B8618B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -391,7 +391,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DayZCommander, Version=0.9.0.30, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:DayZCommander, Version=0.9.0.34, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_35CE219004E34AC5B16BB66D2BDFD5C1"
@@ -438,14 +438,76 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_82B1EEE6D60B4AD42185182C68F0BAA5"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6743E15A3A6FC25AB80CFBD2AFB32A1D"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_6743E15A3A6FC25AB80CFBD2AFB32A1D"
+                    {
+                    "Name" = "8:Ionic.Zip.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Ionic.Zip.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_74FD90D090C8A31AAAA102CA288373BA"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:DayZCommanderUpdater, Version=0.9.0.23, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_74FD90D090C8A31AAAA102CA288373BA"
+                    {
+                    "Name" = "8:DayZCommanderUpdater.EXE"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:DayZCommanderUpdater.EXE"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7516A4685590A44B20D3EACB58B8618B"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:DayZCommanderInstallUtilities, Version=0.9.0.23, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_82B1EEE6D60B4AD42185182C68F0BAA5"
+                    "_7516A4685590A44B20D3EACB58B8618B"
                     {
                     "Name" = "8:DayZCommanderInstallUtilities.DLL"
                     "Attributes" = "3:512"
@@ -469,20 +531,51 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A3B5AEFAD07E9D7F570808B641BEFC2A"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_90423DD0D391C58C39487907791D5208"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SharpCompress, Version=0.8.1.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_A3B5AEFAD07E9D7F570808B641BEFC2A"
+                    "_90423DD0D391C58C39487907791D5208"
                     {
-                    "Name" = "8:SharpCompress.DLL"
+                    "Name" = "8:NLog.DLL"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:SharpCompress.DLL"
+            "SourcePath" = "8:NLog.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9F5D33BD3C7E2D579001BA361859105A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:ftplib, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_9F5D33BD3C7E2D579001BA361859105A"
+                    {
+                    "Name" = "8:ftplib.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:ftplib.DLL"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
@@ -520,99 +613,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BBC032E05297A1BD3062464A0409E794"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_BBC032E05297A1BD3062464A0409E794"
-                    {
-                    "Name" = "8:NLog.DLL"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:NLog.DLL"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CFAFF22BEA117034501FC0893CD1AC22"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_CFAFF22BEA117034501FC0893CD1AC22"
-                    {
-                    "Name" = "8:Ionic.Zip.DLL"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Ionic.Zip.DLL"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D319E7020D5525DDFE23657A80010F56"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DayZCommanderUpdater, Version=0.9.0.23, Culture=neutral, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_D319E7020D5525DDFE23657A80010F56"
-                    {
-                    "Name" = "8:DayZCommanderUpdater.EXE"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:DayZCommanderUpdater.EXE"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DE933C56B6C240548390881D77800FD0"
             {
             "SourcePath" = "8:..\\Dotjosh.DayZCommander.App\\GSList\\gslist.exe"
@@ -633,20 +633,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F6C30E015CD2D1937718A63B3AA1CEC4"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E8B937AB31D50972DC906EAE27A1E337"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ftplib, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:SharpCompress, Version=0.8.1.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_F6C30E015CD2D1937718A63B3AA1CEC4"
+                    "_E8B937AB31D50972DC906EAE27A1E337"
                     {
-                    "Name" = "8:ftplib.DLL"
+                    "Name" = "8:SharpCompress.DLL"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:ftplib.DLL"
+            "SourcePath" = "8:SharpCompress.DLL"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7B4C2FE88A5948B992B73A906B732D26"
@@ -742,15 +742,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:DayZ Commander"
-        "ProductCode" = "8:{77AE3A72-577A-4CB7-890E-9DDE3E63EB48}"
-        "PackageCode" = "8:{E23B8A3F-3294-49AA-B149-DE5D85B30188}"
+        "ProductCode" = "8:{F3A230B7-5CAB-4C46-A5BE-C4BBEC41687C}"
+        "PackageCode" = "8:{39D85FC7-B2D0-4372-A4AE-17AD90AD7AD7}"
         "UpgradeCode" = "8:{6CE976EC-92CB-4603-8140-5ACE0BA8B644}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.09.30"
+        "ProductVersion" = "8:1.09.34"
         "Manufacturer" = "8:Dotjosh Open Source"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.dayzcommander.com"

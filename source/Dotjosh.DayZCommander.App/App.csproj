@@ -126,9 +126,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\Arma2Updater.cs" />
+    <Compile Include="Core\CalculatedGameSettings.cs" />
     <Compile Include="Core\DayZUpdater.cs" />
     <Compile Include="Core\FavoriteServer.cs" />
     <Compile Include="Core\GameOptions.cs" />
+    <Compile Include="Core\GameVersions.cs" />
     <Compile Include="Core\RecentServer.cs" />
     <Compile Include="Ui\Controls\FavoriteControl.xaml.cs">
       <DependentUpon>FavoriteControl.xaml</DependentUpon>
@@ -141,6 +143,9 @@
     </Compile>
     <Compile Include="Ui\Controls\ServerListGrid.xaml.cs">
       <DependentUpon>ServerListGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Controls\ServerRevisions.xaml.cs">
+      <DependentUpon>ServerRevisions.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ui\Controls\ServerSettingsControl.xaml.cs">
       <DependentUpon>ServerSettingsControl.xaml</DependentUpon>
@@ -158,6 +163,7 @@
     <Compile Include="Ui\Converters\BooleanToSelectedOptionColorConverter.cs" />
     <Compile Include="Ui\Converters\BooleanToVisibilityCollapsedConverter.cs" />
     <Compile Include="Ui\Converters\BooleanToVisibilityHiddenConverter.cs" />
+    <Compile Include="Ui\Converters\CountsToPercentageConverter.cs" />
     <Compile Include="Ui\Converters\CountToVisibilityConverter.cs" />
     <Compile Include="Ui\Converters\DifficultyToDescriptionConverter.cs" />
     <Compile Include="Ui\Converters\EnabledSettingToForegroundConverter.cs" />
@@ -169,8 +175,10 @@
     <Compile Include="Ui\Converters\NotNullToVisibilityConverter.cs" />
     <Compile Include="Ui\Converters\PingToForegroundConverter.cs" />
     <Compile Include="Ui\Converters\ServerFullnessToColorConverter.cs" />
+    <Compile Include="Ui\Converters\ServerRevisionCountToWidthConverter.cs" />
     <Compile Include="Ui\Converters\TimeToColorConverter.cs" />
     <Compile Include="Ui\Converters\UpdateStatusToForegroundConverter.cs" />
+    <Compile Include="Ui\Converters\VersionMatchesToForegroundConverter.cs" />
     <Compile Include="Ui\Converters\ZeroToVisibilityConverter.cs" />
     <Compile Include="Ui\Favorites\FavoritesView.xaml.cs">
       <DependentUpon>FavoritesView.xaml</DependentUpon>
@@ -257,6 +265,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ui\Controls\ServerListGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Controls\ServerRevisions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

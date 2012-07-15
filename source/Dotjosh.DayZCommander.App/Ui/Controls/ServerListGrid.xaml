@@ -16,7 +16,6 @@
 					  Background="Transparent"
 					 HeadersVisibility="Column"
 					  Foreground="#DDD"
-					  RowBackground="Transparent"
 					  BorderThickness="0"
 				  SelectionMode="Single"
 				  SelectionUnit="FullRow"
@@ -27,12 +26,16 @@
 					<EventSetter Event="MouseDoubleClick" Handler="RowDoubleClick"/>
 					<EventSetter Event="PreviewMouseLeftButtonDown" Handler="RowLeftButtonDown"/>
 					<Style.Triggers>
+						<Trigger Property="IsMouseOver" Value="False">
+							<Setter Property="Background"
+									Value="Transparent"/>
+						</Trigger>
 						<Trigger Property="IsMouseOver"
                            Value="True">
 							<Setter Property="Foreground"
                                Value="#FFF" />
 							<Setter Property="Background"
-									Value="#555555"/>
+									Value="#4A4A4A"/>
 						</Trigger>
 					</Style.Triggers>
 					<Style.Resources>
@@ -49,7 +52,10 @@
 					<Setter Property="Template">
 						<Setter.Value>
 							<ControlTemplate TargetType="{x:Type DataGridCell}">
-								<Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+								<Border Padding="{TemplateBinding Padding}" 
+										BorderBrush="{TemplateBinding BorderBrush}" 
+										BorderThickness="{TemplateBinding BorderThickness}" 
+										Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
 									<ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
 								</Border>
 							</ControlTemplate>
@@ -59,7 +65,7 @@
 			</DataGrid.CellStyle>
 			<DataGrid.Resources>
 				<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
-                   Color="#555555"/>
+                   Color="#666666"/>
 				<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}">#555555</SolidColorBrush>
 			</DataGrid.Resources>
 			<DataGrid.Columns>
@@ -104,18 +110,8 @@
 						<DataTemplate>
 							<TextBlock Text="{Binding Name}"
 									   Margin="4 0 0 0"
+									    Foreground="{Binding IsSameArmaAndDayZVersion, Converter={StaticResource VersionMatchesToForegroundConverter}}"
 										   VerticalAlignment="Center"/>
-						</DataTemplate>
-					</DataGridTemplateColumn.CellTemplate>
-				</DataGridTemplateColumn>
-				<DataGridTemplateColumn 
-											HeaderStyle="{StaticResource MetroDataGridHeaderCenter}"
-											Header="SETTINGS"	
-											SortMemberPath="Difficulty"
-											Width="120" >
-					<DataGridTemplateColumn.CellTemplate>
-						<DataTemplate>
-							<Controls:ServerSettingsControl />
 						</DataTemplate>
 					</DataGridTemplateColumn.CellTemplate>
 				</DataGridTemplateColumn>
@@ -128,6 +124,17 @@
 					<DataGridTemplateColumn.CellTemplate>
 						<DataTemplate>
 							<Controls:VersionControl/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTemplateColumn 
+											HeaderStyle="{StaticResource MetroDataGridHeaderCenter}"
+											Header="SETTINGS"	
+											SortMemberPath="Difficulty"
+											Width="120" >
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Controls:ServerSettingsControl />
 						</DataTemplate>
 					</DataGridTemplateColumn.CellTemplate>
 				</DataGridTemplateColumn>

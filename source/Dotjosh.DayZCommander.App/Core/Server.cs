@@ -28,6 +28,11 @@ namespace Dotjosh.DayZCommander.App.Core
 			Info = new ServerInfo(null, null);
 		}
 
+		public string Id
+		{
+			get { return _ipAddress + _port; }
+		}
+
 		private string _name;
 		public string Name
 		{
@@ -65,6 +70,39 @@ namespace Dotjosh.DayZCommander.App.Core
 					UserSettings.Current.RemoveFavorite(this);
 				PropertyHasChanged("IsFavorite");
 			}
+		}
+
+		public bool IsSameArmaAndDayZVersion
+		{
+			get { return IsSameArma2OAVersion && IsSameDayZVersion; }
+		}
+
+		public bool IsSameArma2OAVersion
+		{
+			get
+			{
+				return CalculatedGameSettings.Current.Arma2OABetaVersion != null
+				       && Arma2Version != null
+				       && (
+				          	CalculatedGameSettings.Current.Arma2OABetaVersion.Revision > Arma2Version.Build - 10
+				          	|| CalculatedGameSettings.Current.Arma2OABetaVersion.Revision < Arma2Version.Build + 10
+				          );
+			}
+		}
+
+		public bool IsSameDayZVersion
+		{
+			get
+			{
+				return CalculatedGameSettings.Current.DayZVersion != null
+				       && DayZVersion != null
+				       && CalculatedGameSettings.Current.DayZVersion.Equals(DayZVersion);
+			}
+		}
+
+		public void NotifyGameVersionChanged()
+		{
+			PropertyHasChanged("IsSameArma2OAVersion", "IsSameDayZVersion", "IsSameArmaAndDayZVersion");
 		}
 
 		public int? CurrentPlayers
@@ -114,6 +152,7 @@ namespace Dotjosh.DayZCommander.App.Core
 				PropertyHasChanged("ServerTime");
 				PropertyHasChanged("HasPassword");
 				PropertyHasChanged("Difficulty");
+				NotifyGameVersionChanged();
 			}
 		}
 
@@ -316,6 +355,11 @@ namespace Dotjosh.DayZCommander.App.Core
 				return false;
 			return (other.IpAddress == this.IpAddress
 			        && other.Port == this.Port);
+		}
+
+		public override int GetHashCode()
+		{
+			return Id.GetHashCode();
 		}
 
 		public void BeginUpdate(Action<Server> onComplete)

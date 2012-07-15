@@ -253,6 +253,7 @@
 						<Button 
 							Margin="16 0 0 0"
 							Click="Donate_Click"
+							Foreground="#FFE7EC"
 								Style="{StaticResource MetroTextButtonStyle}">
 							<Button.Template>
 								<ControlTemplate>

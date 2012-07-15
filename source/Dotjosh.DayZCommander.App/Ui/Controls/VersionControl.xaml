@@ -9,24 +9,16 @@
 		<StackPanel HorizontalAlignment="Right">
 			<StackPanel Orientation="Horizontal"
 											HorizontalAlignment="Right">
-				<TextBlock Text="Arma: " 
-											   Foreground="#AAA"
-											   FontSize="10"/>
-				<TextBlock Text="{Binding Arma2Version}"
-											   Foreground="#CCC"
-											   FontWeight="Bold"
-											   FontSize="10"/>
+				<TextBlock Text="{Binding Arma2Version, StringFormat='Arma: {0}'}"
+											   Foreground="{Binding IsSameArma2OAVersion, Converter={StaticResource VersionMatchesToForegroundConverter}}"
+											   FontSize="11"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal"
 											Margin="0 3 0 0"
 											HorizontalAlignment="Right">
-				<TextBlock Text="DayZ: " 
-											   Foreground="#AAA"
-											   FontSize="10"/>
-				<TextBlock Text="{Binding DayZVersion}"
-											   Foreground="#CCC"
-											   FontWeight="Bold"
-											   FontSize="10"/>
+				<TextBlock Text="{Binding DayZVersion, StringFormat='DayZ: {0}'}"
+											  Foreground="{Binding IsSameDayZVersion, Converter={StaticResource VersionMatchesToForegroundConverter}}"
+											   FontSize="11"/>
 			</StackPanel>
 		</StackPanel>
 	</Grid>

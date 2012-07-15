@@ -31,7 +31,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 			else
 			{
-				exePath = GetArma2OAExe();
+				exePath = CalculatedGameSettings.Current.Arma2OAExePath;
 			}
 
 			if(UserSettings.Current.GameOptions.MultiGpu)
@@ -52,7 +52,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			arguments.Append(" -noSplash -noFilePatching");
 			arguments.Append(" -connect=" + server.IpAddress);
 			arguments.Append(" -port=" + server.Port);
-			arguments.AppendFormat(" \"-mod={0};expansion;expansion\\beta;expansion\\beta\\expansion;{1}\"", GetArma2Path(), GetDayZPath());
+			arguments.AppendFormat(" \"-mod={0};expansion;expansion\\beta;expansion\\beta\\expansion;{1}\"", CalculatedGameSettings.Current.Arma2Path, CalculatedGameSettings.Current.DayZPath);
 
 			try
 			{
@@ -62,7 +62,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			        				{
 			        					FileName = exePath,
 			        					Arguments = arguments.ToString(),
-			        					WorkingDirectory = GetArma2OAPath(),
+			        					WorkingDirectory = CalculatedGameSettings.Current.Arma2OAPath,
 			        					UseShellExecute = true,
 			        				}
 			        		};
@@ -72,49 +72,19 @@ namespace Dotjosh.DayZCommander.App.Core
 
                 if(UserSettings.Current.GameOptions.CloseDayZCommander){
                     Thread.Sleep(1000);
-                    System.Environment.Exit(0);
+                    Environment.Exit(0);
                 }
 			}
 			catch(Exception ex)
 			{
-				var joinServerException = new JoinServerException(exePath, arguments.ToString(), GetArma2OAPath(), ex);
-				_logger.Error(joinServerException);
+				//var joinServerException = new JoinServerException(exePath, arguments.ToString(), CalculatedGameSettings.Current.Arma2OAPath, ex);
+				//_logger.Error(joinServerException);
 			}
 			finally
 			{
 				arguments.Clear();
 			}
-
 		}
-
-		private static string GetArma2OAExe()
-		{
-			if(!string.IsNullOrWhiteSpace(UserSettings.Current.GameOptions.Arma2OADirectoryOverride))
-				return Path.Combine(UserSettings.Current.GameOptions.Arma2OADirectoryOverride, "arma2oa.exe");
-
-			return LocalMachineInfo.Current.Arma2OABetaExe;
-		}
-
-		private static string GetArma2Path()
-		{
-			if(!string.IsNullOrWhiteSpace(UserSettings.Current.GameOptions.Arma2DirectoryOverride))
-				return UserSettings.Current.GameOptions.Arma2DirectoryOverride;
-			return LocalMachineInfo.Current.Arma2Path;
-		}
-
-		private static string GetArma2OAPath()
-		{
-			if(!string.IsNullOrWhiteSpace(UserSettings.Current.GameOptions.Arma2OADirectoryOverride))
-				return UserSettings.Current.GameOptions.Arma2OADirectoryOverride;
-			return LocalMachineInfo.Current.Arma2OAPath;
-		}
-
-        private static string GetDayZPath()
-        {
-            if (!string.IsNullOrWhiteSpace(UserSettings.Current.GameOptions.DayZDirectoryOverride))
-                return UserSettings.Current.GameOptions.DayZDirectoryOverride;
-            return LocalMachineInfo.Current.DayZPath;
-        }
 	}
 
 	public class JoinServerException : Exception

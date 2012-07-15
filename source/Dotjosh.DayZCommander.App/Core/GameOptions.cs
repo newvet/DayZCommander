@@ -77,6 +77,7 @@ namespace Dotjosh.DayZCommander.App.Core
 				_arma2DirectoryOverride = value;
 				PropertyHasChanged("Arma2DirectoryOverride");
 				UserSettings.Current.Save();
+				CalculatedGameSettings.Current.Update();
 			}
 		}
 
@@ -88,6 +89,7 @@ namespace Dotjosh.DayZCommander.App.Core
 				_arma2OaDirectoryOverride = value;
 				PropertyHasChanged("Arma2OADirectoryOverride");
 				UserSettings.Current.Save();
+				CalculatedGameSettings.Current.Update();
 			}
 		}
         public string DayZDirectoryOverride
@@ -98,6 +100,7 @@ namespace Dotjosh.DayZCommander.App.Core
                 _DayZDirectoryOverride = value;
                 PropertyHasChanged("DayZDirectoryOverride");
                 UserSettings.Current.Save();
+				CalculatedGameSettings.Current.Update();
             }
         }
 	}

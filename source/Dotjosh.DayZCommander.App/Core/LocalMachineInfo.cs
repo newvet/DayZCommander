@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using Microsoft.Win32;
 using NLog;
 
@@ -130,8 +128,8 @@ namespace Dotjosh.DayZCommander.App.Core
 				{
 					SetPathsX86();
 				}
-				SetArma2OABetaVersion();
-				SetDayZVersion();
+				Arma2OABetaVersion = GameVersions.ExtractArma2OABetaVersion(Arma2OABetaExe);
+				DayZVersion = GameVersions.ExtractDayZVersion(DayZPath);
 			}
 			catch//(Exception e)
 			{
@@ -193,45 +191,6 @@ namespace Dotjosh.DayZCommander.App.Core
 			Arma2OABetaPath = Path.Combine(Arma2OAPath, @"Expansion\beta");
 			Arma2OABetaExe = Path.Combine(Arma2OABetaPath, @"arma2oa.exe");
 			DayZPath = Path.Combine(Arma2OAPath, @"@DayZ");
-		}
-
-		private void SetArma2OABetaVersion()
-		{
-			var versionInfo = FileVersionInfo.GetVersionInfo(Arma2OABetaExe);
-			Version version;
-			if(Version.TryParse(versionInfo.ProductVersion, out version))
-			{
-				Arma2OABetaVersion = version;
-			}
-		}
-
-		private void SetDayZVersion()
-		{
-			var changeLogPath = Path.Combine(DayZPath, "dayz_changelog.txt");
-			if(!File.Exists(changeLogPath))
-			{
-				return;
-			}
-			var changeLogLines = File.ReadAllLines(changeLogPath);
-			foreach(var changeLogLine in changeLogLines)
-			{
-				if(!changeLogLine.Contains("* dayz_code"))
-				{
-					continue;
-				}
-
-				var match = Regex.Match(changeLogLine, @"\d(?:\.\d){1,3}");
-				if(!match.Success)
-				{
-					continue;
-				}
-				Version version;
-				if(Version.TryParse(match.Value, out version))
-				{
-					DayZVersion = version;
-					return;
-				}
-			}
 		}
 	}
 }

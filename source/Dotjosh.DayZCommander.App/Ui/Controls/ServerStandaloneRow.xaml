@@ -29,16 +29,16 @@
 				   Margin="0 0 0 0"
 				    Grid.Column="1"
 				    VerticalAlignment="Center"
-				   Foreground="#EEE"/>
-		<Controls:ServerSettingsControl  Grid.Column="2"
+				    Foreground="{Binding IsSameArmaAndDayZVersion, Converter={StaticResource VersionMatchesToForegroundConverter}}"/>
+    	<Controls:VersionControl  Grid.Column="2"
+    	                          VerticalAlignment="Center"
+    	                          Width="100"/>
+    	<Controls:ServerSettingsControl  Grid.Column="3"
 										 HorizontalAlignment="Center"
 										  VerticalAlignment="Center"
 										 Margin="0 0 0 0"
 										 Width="130"/>
-		<Controls:VersionControl  Grid.Column="3"
-								   VerticalAlignment="Center"
-								  Width="100"/>
-		<Controls:TimeControl  Grid.Column="4"
+    	<Controls:TimeControl  Grid.Column="4"
 							    VerticalAlignment="Center"
 							   Width="80"/>
 		<Controls:PlayersControl  Grid.Column="5" 

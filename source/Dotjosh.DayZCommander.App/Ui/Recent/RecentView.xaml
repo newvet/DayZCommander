@@ -40,23 +40,23 @@
 				    Grid.Column="1"
 				    VerticalAlignment="Center"
 				   Foreground="#DDD"/>
-			<TextBlock  Grid.Column="2"
-						Text="SETTINGS"
-						
-				   Foreground="#DDD"
-										 HorizontalAlignment="Center"
-										  VerticalAlignment="Center"
-						TextAlignment="Center"
-										 Margin="0 0 0 0"
-						FontWeight="Bold"
-										 Width="130"/>
-			<TextBlock Text="VERSION"  Grid.Column="3"
+			<TextBlock Text="VERSION"  Grid.Column="2"
 					   
 				   Foreground="#DDD"
 								   VerticalAlignment="Center"
 					   TextAlignment="Right"
 					   FontWeight="Bold"
 								  Width="100"/>
+			<TextBlock  Grid.Column="3"
+			            Text="SETTINGS"
+						
+			            Foreground="#DDD"
+			            HorizontalAlignment="Center"
+			            VerticalAlignment="Center"
+			            TextAlignment="Center"
+			            Margin="0 0 0 0"
+			            FontWeight="Bold"
+			            Width="130"/>
 			<TextBlock Text="DAY/NIGHT"  Grid.Column="4"
 					   
 				   Foreground="#DDD"

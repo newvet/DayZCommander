@@ -8,7 +8,7 @@ namespace Dotjosh.DayZCommander.App.Ui.Converters
 	public class EnabledSettingToForegroundConverter : IValueConverter
 	{
 		public static SolidColorBrush Empty = new SolidColorBrush(Colors.Transparent);
-		public static SolidColorBrush Enabled = new SolidColorBrush(Color.FromArgb(255, 204, 204, 204));
+		public static SolidColorBrush Enabled = new SolidColorBrush(Color.FromArgb(255, 238, 238, 238));
 		public static SolidColorBrush Disabled = new SolidColorBrush(Color.FromArgb(255, 87, 87, 87));
 
 		#region Implementation of IValueConverter

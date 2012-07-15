@@ -379,7 +379,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DayZCommander, Version=0.9.0.35, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:DayZCommander, Version=0.9.0.37, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_35CE219004E34AC5B16BB66D2BDFD5C1"
@@ -699,15 +699,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:DayZ Commander"
-        "ProductCode" = "8:{B6B52D39-10C0-4BD6-805B-75E020B8D77F}"
-        "PackageCode" = "8:{677A862F-24FC-4660-ADDA-705484EA2D81}"
+        "ProductCode" = "8:{DE4EF26F-7B2E-449B-8077-CEA40BE951BE}"
+        "PackageCode" = "8:{D1E965E7-2A9C-4EC6-ACEB-7A7462AE53B2}"
         "UpgradeCode" = "8:{6CE976EC-92CB-4603-8140-5ACE0BA8B644}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.09.35"
+        "ProductVersion" = "8:1.09.37"
         "Manufacturer" = "8:Dotjosh Open Source"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.dayzcommander.com"
@@ -1221,7 +1221,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_2F2212D75556487C8C20059E06298BC4"
             {
-            "SourcePath" = "8:..\\Dotjosh.DayZCommander.InstallUtilities\\obj\\x86\\Debug\\DayZCommanderInstallUtilities.dll"
+            "SourcePath" = "8:..\\Dotjosh.DayZCommander.InstallUtilities\\obj\\x86\\Release\\DayZCommanderInstallUtilities.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D1DFAB9D1F2644A9BAC642F5FEECC4A3"

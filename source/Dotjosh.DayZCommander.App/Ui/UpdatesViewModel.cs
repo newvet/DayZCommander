@@ -94,7 +94,7 @@ namespace Dotjosh.DayZCommander.App.Ui
 			CalculatedGameSettings.Current.Update();
 			LocalMachineInfo.Current.Update();
 			DayZCommanderUpdater.CheckForUpdate();
-			Arma2Updater.CheckForUpdate();
+			Arma2Updater.CheckForUpdates();
 			DayZUpdater.CheckForUpdate();
 		}
 

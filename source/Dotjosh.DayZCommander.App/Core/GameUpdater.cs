@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
-using FtpLib;
 using SharpCompress.Common;
 using SharpCompress.Reader;
 
@@ -17,76 +15,6 @@ namespace Dotjosh.DayZCommander.App.Core
 		public int? LatestArma2OABetaRevision { get; private set; }
 		public string LatestArma2OABetaUrl { get; private set; }
 		public Version LatestDayZVersion { get; private set; }
-
-		public bool UpdateArma2OABeta()
-		{
-			if(string.IsNullOrEmpty(LocalMachineInfo.Current.Arma2OABetaPath)
-				|| string.IsNullOrEmpty(LatestArma2OABetaUrl))
-			{
-				return false;
-			}
-			var latestArma2OABetaFile = Path.GetFileName(LatestArma2OABetaUrl);
-			if(string.IsNullOrEmpty(latestArma2OABetaFile))
-			{
-				return false;
-			}
-			var arma2OABetaFilePath = Path.Combine(LocalMachineInfo.Current.Arma2OABetaPath, latestArma2OABetaFile);
-			if(LatestArma2OABetaUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase))
-			{
-				var webClient = new WebClient();
-				webClient.DownloadFile(LatestArma2OABetaUrl, arma2OABetaFilePath);
-			}
-			else // FTP.
-			{
-				// ftp://downloads.bistudio.com/arma2.com/update/beta/ARMA2_OA_Build_94444.zip
-				var latestArma2OABetaUri = new Uri(LatestArma2OABetaUrl);
-				var remoteDirectory = latestArma2OABetaUri.LocalPath.Replace(latestArma2OABetaFile, "");
-				using(var ftp = new FtpConnection(latestArma2OABetaUri.Host))
-				{
-					ftp.Open();
-					ftp.Login();
-					ftp.SetCurrentDirectory(remoteDirectory);
-					ftp.GetFile(latestArma2OABetaFile, arma2OABetaFilePath, false);
-				}
-			}
-			using(var stream = File.OpenRead(arma2OABetaFilePath))
-			{
-				using(var reader = ReaderFactory.Open(stream))
-				{
-					while(reader.MoveToNextEntry())
-					{
-						if(reader.Entry.IsDirectory)
-						{
-							continue;
-						}
-						var fileName = Path.GetFileName(reader.Entry.FilePath);
-						if(string.IsNullOrEmpty(fileName))
-						{
-							continue;
-						}
-						reader.WriteEntryToDirectory(LocalMachineInfo.Current.Arma2OABetaPath, ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
-						if(fileName.EndsWith(".exe"))
-						{
-							var p = new Process
-							        	{
-							        		StartInfo =
-							        			{
-							        				CreateNoWindow = true,
-							        				UseShellExecute = false,
-							        				WindowStyle = ProcessWindowStyle.Hidden,
-							        				WorkingDirectory = LocalMachineInfo.Current.Arma2OABetaPath,
-							        				FileName = Path.Combine(LocalMachineInfo.Current.Arma2OABetaPath, fileName)
-							        			}
-							        	};
-							p.Start();
-						}
-					}
-				}
-			}
-			File.Delete(arma2OABetaFilePath);
-
-			return true;
-		}
 
 		public bool UpdateDayZ()
 		{

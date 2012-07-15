@@ -73,16 +73,20 @@
 								   Foreground="#FFFFFF"/>
 					
 						</StackPanel>
-						<Button Content="download latest" 
+						<Button Content="install latest revision" 
 								Background="#444444"
 								Foreground="LightGreen"
 								HorizontalAlignment="Left"
 								Margin="0 8 0 0"
 								Style="{StaticResource MetroButtonStyle}"
-								Visibility="{Binding Arma2Updater.VersionMismatch, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}"
+								Visibility="{Binding Arma2Updater.InstallButtonVisible, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}"
 										
 								Click="DownloadArma2_Click"/>
 
+						<TextBlock Text="{Binding Arma2Updater.Installer.Status}"
+								   Foreground="#FFFFFF"
+								   Margin="0 4 0 0"
+								   FontWeight="Bold"/>
 					</StackPanel>
 				</StackPanel>
 				

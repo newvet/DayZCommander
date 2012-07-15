@@ -38,7 +38,7 @@ namespace Dotjosh.DayZCommander.App.Ui
 
 		private void DownloadArma2_Click(object sender, RoutedEventArgs e)
 		{
-			Process.Start(Arma2Updater.ArmaBetaListingUrl);
+			((UpdatesViewModel) DataContext).Arma2Updater.InstallLatestVersion();
 		}
 
 		private void DownloadDayZ_Click(object sender, RoutedEventArgs e)

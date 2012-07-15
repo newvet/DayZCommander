@@ -12,20 +12,44 @@ namespace Dotjosh.DayZCommander.App.Core
 		private string _status;
 		public const string ArmaBetaListingUrl = "http://www.arma2.com/beta-patch.php";
 
+		public Arma2Updater()
+		{
+			Installer = new Arma2Installer();
+			Installer.PropertyChanged += (sender, args) =>
+			                             	{
+												if(args.PropertyName == "IsRunning")
+												{
+													PropertyHasChanged("InstallButtonVisible");
+												}
+												else if(args.PropertyName == "Status")
+												{
+													if(Installer.Status == "Install complete")
+													{
+														CheckForUpdates();
+													}
+												}
+			                             	};
+		}
+
 		public bool VersionMismatch
 		{
 			get
 			{
-				if(LocalMachineInfo.Current.Arma2OABetaVersion == null)
+				if(CalculatedGameSettings.Current.Arma2OABetaVersion == null)
 					return true;
 				if(LatestVersion == null)
 					return false;
 				
-				return LocalMachineInfo.Current.Arma2OABetaVersion.Revision != LatestVersion;
+				return CalculatedGameSettings.Current.Arma2OABetaVersion.Revision != LatestVersion;
 			}
 		}
 
-		public void CheckForUpdate()
+		public bool InstallButtonVisible
+		{
+			get { return VersionMismatch && !_isChecking && !Installer.IsRunning; }
+		}
+
+		public void CheckForUpdates()
 		{
 			if(_isChecking)
 				return;
@@ -90,13 +114,29 @@ namespace Dotjosh.DayZCommander.App.Core
 						}).Start();
 		}
 
+		public void InstallLatestVersion()
+		{
+			Installer.DownloadAndInstall(_latestDownloadUrl);
+		}
+
+		private Arma2Installer _installer;
+		public Arma2Installer Installer
+		{
+			get { return _installer; }
+			set
+			{
+				_installer = value;
+				PropertyHasChanged("Installer");
+			}
+		}
+
 		public int? LatestVersion
 		{
 			get { return _latestVersion; }
 			set
 			{
 				_latestVersion = value;
-				Execute.OnUiThread(() => PropertyHasChanged("LatestVersion", "VersionMismatch"));			
+				Execute.OnUiThread(() => PropertyHasChanged("LatestVersion", "VersionMismatch", "InstallButtonVisible"));			
 			}
 		}
 
@@ -106,7 +146,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			set
 			{
 				_status = value;
-				Execute.OnUiThread(() => PropertyHasChanged("Status", "VersionMismatch"));
+				Execute.OnUiThread(() => PropertyHasChanged("Status", "VersionMismatch", "InstallButtonVisible"));
 			}
 		}
 	}

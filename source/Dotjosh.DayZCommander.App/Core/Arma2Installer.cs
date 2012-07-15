@@ -131,6 +131,13 @@ namespace Dotjosh.DayZCommander.App.Core
 			           					}
 			           				}
 			           			}
+
+                                if (UserSettings.Current.GameOptions.Arma2OASteamUpdate && UserSettings.Current.GameOptions.LaunchUsingSteam)
+                                {
+                                    File.Copy(Path.Combine(CalculatedGameSettings.Current.Arma2OAPath, @"arma2oa.exe"), Path.Combine(CalculatedGameSettings.Current.Arma2OAPath, @"arma2oa.exe_" + LocalMachineInfo.Current.Arma2OABetaVersion), true);
+                                    File.Copy(Path.Combine(CalculatedGameSettings.Current.Arma2OAPath, @"Expansion\beta\arma2oa.exe"), Path.Combine(CalculatedGameSettings.Current.Arma2OAPath, @"arma2oa.exe"), true);
+                                }
+
 			           			Status = "Install complete";
 			           		}
 			           		catch(Exception ex)

@@ -13,12 +13,22 @@
 							Margin="0 0 0 20"
 						   FontSize="24"/>
 
-			<TextBlock Text="GAME OPTIONS"
+            <TextBlock Text="UPDATER OPTIONS"
 					   FontWeight="Bold"
 					   Margin="0 0 0 3"
 					   Foreground="#FFFFFF"/>
-			
-			<StackPanel Margin="0 8 0 0"
+
+            <CheckBox Content="Update Arma2 OA Exe on Beta Update (Launch using Steam only)"
+					  IsChecked="{Binding Settings.GameOptions.Arma2OASteamUpdate, Mode=TwoWay}"
+					  Foreground="#DDDDDD"
+					  Margin="0 8 0 0"/>
+            
+            <TextBlock Text="GAME OPTIONS"
+					   FontWeight="Bold"
+					   Margin="0 16 0 3"
+					   Foreground="#FFFFFF"/>
+
+            <StackPanel Margin="0 8 0 0"
 						Orientation="Horizontal">
 				<CheckBox Content="Launch using Steam"
 						  IsChecked="{Binding Settings.GameOptions.LaunchUsingSteam, Mode=TwoWay}"
@@ -33,7 +43,7 @@
 					  Margin="8,0,0,0" />
 				
 			</StackPanel>
-			<CheckBox Content="Windowed Mode"
+            <CheckBox Content="Windowed Mode"
 					  IsChecked="{Binding Settings.GameOptions.WindowedMode, Mode=TwoWay}"
 					  Foreground="#DDDDDD"
 					  Margin="0 8 0 0"/>			

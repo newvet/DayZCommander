@@ -7,6 +7,7 @@ namespace Dotjosh.DayZCommander.App.Core
 	{
 		[DataMember] private string _additionalStartupParameters;
 		[DataMember] private bool _launchUsingSteam;
+        [DataMember] private bool _arma2OASteamUpdate;
 		[DataMember] private bool _windowedMode;
 		[DataMember] private bool _multiGpu;
         [DataMember] private bool _closeDayZCommander;
@@ -32,6 +33,17 @@ namespace Dotjosh.DayZCommander.App.Core
 			{
 				_launchUsingSteam = value;
 				PropertyHasChanged("LaunchUsingSteam");
+				UserSettings.Current.Save();
+			}
+		}
+
+        public bool Arma2OASteamUpdate
+		{
+            get { return _arma2OASteamUpdate; }
+			set
+			{
+                _arma2OASteamUpdate = value;
+                PropertyHasChanged("Arma2OASteamUpdate");
 				UserSettings.Current.Save();
 			}
 		}

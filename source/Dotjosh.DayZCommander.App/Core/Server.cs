@@ -81,11 +81,12 @@ namespace Dotjosh.DayZCommander.App.Core
 		{
 			get
 			{
+				
 				return CalculatedGameSettings.Current.Arma2OABetaVersion != null
 				       && Arma2Version != null
 				       && (
 				          	CalculatedGameSettings.Current.Arma2OABetaVersion.Revision > Arma2Version.Build - 10
-				          	|| CalculatedGameSettings.Current.Arma2OABetaVersion.Revision < Arma2Version.Build + 10
+				          	&& CalculatedGameSettings.Current.Arma2OABetaVersion.Revision < Arma2Version.Build + 10
 				          );
 			}
 		}

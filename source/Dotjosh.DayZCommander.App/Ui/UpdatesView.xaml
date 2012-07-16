@@ -145,7 +145,7 @@
 
 
 				<StackPanel Grid.Column="1">
-					<TextBlock Text="Servers are running::"
+					<TextBlock Text="Servers are running:"
 						   Foreground="#DDD"/>
 					<Controls:ServerRevisions DataContext="{Binding DayZVersionStats}"/>
 				</StackPanel>

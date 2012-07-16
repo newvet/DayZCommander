@@ -28,6 +28,20 @@ namespace Dotjosh.DayZCommander.App.Core
 				}
 				
 				 arguments.Append(" -applaunch 33930");
+
+                if(UserSettings.Current.GameOptions.Arma2OASteamUpdate){
+                    string mainEXE = Path.Combine(CalculatedGameSettings.Current.Arma2OAPath, @"arma2oa.exe");
+                    string betaEXE = Path.Combine(CalculatedGameSettings.Current.Arma2OAPath, @"Expansion\beta\arma2oa.exe");
+                    var mainEXE_version = FileVersionInfo.GetVersionInfo(mainEXE).ProductVersion;
+                    var betaEXE_version = FileVersionInfo.GetVersionInfo(betaEXE).ProductVersion;
+
+                   if (mainEXE_version != betaEXE_version)
+                   {
+                        File.Copy(mainEXE, mainEXE + "_" + mainEXE_version, true);
+                        File.Copy(betaEXE, mainEXE, true);
+                   }
+                }
+
 			}
 			else
 			{

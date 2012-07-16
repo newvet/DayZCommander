@@ -134,8 +134,10 @@ namespace Dotjosh.DayZCommander.App.Core
 
                                 if (UserSettings.Current.GameOptions.Arma2OASteamUpdate && UserSettings.Current.GameOptions.LaunchUsingSteam)
                                 {
-                                    File.Copy(Path.Combine(CalculatedGameSettings.Current.Arma2OAPath, @"arma2oa.exe"), Path.Combine(CalculatedGameSettings.Current.Arma2OAPath, @"arma2oa.exe_" + LocalMachineInfo.Current.Arma2OABetaVersion), true);
-                                    File.Copy(Path.Combine(CalculatedGameSettings.Current.Arma2OAPath, @"Expansion\beta\arma2oa.exe"), Path.Combine(CalculatedGameSettings.Current.Arma2OAPath, @"arma2oa.exe"), true);
+                                    string mainEXE = Path.Combine(CalculatedGameSettings.Current.Arma2OAPath, @"arma2oa.exe");
+                                    var mainEXE_version = FileVersionInfo.GetVersionInfo(mainEXE).ProductVersion;
+                                    File.Copy(mainEXE, mainEXE + "_" + mainEXE_version, true);
+                                    File.Copy(Path.Combine(CalculatedGameSettings.Current.Arma2OAPath, @"Expansion\beta\arma2oa.exe"), mainEXE, true);
                                 }
 
 			           			Status = "Install complete";

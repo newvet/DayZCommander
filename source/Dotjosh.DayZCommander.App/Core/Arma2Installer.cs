@@ -151,7 +151,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			           		try
 			           		{
 			           			File.Delete(_downloadedFileLocation);
-			           			Directory.Delete(_extractedLocation);
+                                Directory.Delete(_extractedLocation, true);
 			           		}
 			           		catch(Exception ex)
 			           		{

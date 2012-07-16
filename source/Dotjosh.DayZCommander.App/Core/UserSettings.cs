@@ -101,11 +101,14 @@ namespace Dotjosh.DayZCommander.App.Core
 		{
 			try
 			{
-				using(var fs = GetSettingsFileStream(FileMode.Create))
+				lock(_fileLock)
 				{
-					var serializer = new DataContractSerializer(GetType());
-					serializer.WriteObject(fs, this);
-					fs.Flush(true);
+					using (var fs = GetSettingsFileStream(FileMode.Create))
+					{
+						var serializer = new DataContractSerializer(GetType());
+						serializer.WriteObject(fs, this);
+						fs.Flush(true);
+					}
 				}
 			}
 			catch(Exception)
@@ -145,36 +148,64 @@ namespace Dotjosh.DayZCommander.App.Core
 			return new FileStream(SettingsPath, fileMode);		
 		}
 
+		private static object _fileLock = new object();
 		public static UserSettings Current
 		{
 			get
 			{
-				if(_current == null)
+				lock(_fileLock)
 				{
-					try
+					if (_current == null)
 					{
-						_current = Load();
-					}
-					catch(Exception ex)
-					{
-						_current = new UserSettings();
+						try
+						{
+							_current = Load();
+						}
+						catch (Exception ex)
+						{
+							_current = new UserSettings();
+						}
 					}
 				}
 				return _current;
 			}
 		}
 
+		private static string _settingsPath;
 		private static string SettingsPath
 		{
 			get
 			{
-				var appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-				var dayzCommanderAppDataDirectory = new DirectoryInfo( Path.Combine(appDataFolder, "DayZCommander") );
-				if(!dayzCommanderAppDataDirectory.Exists)
-					dayzCommanderAppDataDirectory.Create();
-				return Path.Combine(dayzCommanderAppDataDirectory.FullName, "settings.xml");
+				if(_settingsPath == null)
+				{
+
+					var appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+					var dayzCommanderAppDataDirectory = new DirectoryInfo(Path.Combine(appDataFolder, "DayZCommander"));
+					if (!dayzCommanderAppDataDirectory.Exists)
+						dayzCommanderAppDataDirectory.Create();
+					var newFileLocation = Path.Combine(dayzCommanderAppDataDirectory.FullName, "settings.xml");
+
+					//Migrate old settings location
+					try
+					{
+						var oldAppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+						var oldFileLocation = Path.Combine(oldAppDataFolder, "DayZCommander", "settings.xml");
+						;
+						if (File.Exists(oldFileLocation) && !File.Exists(newFileLocation))
+						{
+							File.Move(oldFileLocation, newFileLocation);
+							Directory.Delete(new FileInfo(oldFileLocation).Directory.FullName);
+						}
+					}
+					catch (Exception ex)
+					{
+					}
+					_settingsPath = newFileLocation;
+				}
+				return _settingsPath;
 			}
 		}
+
 
 		private static UserSettings LoadFromXml(XDocument xDocument)
 		{

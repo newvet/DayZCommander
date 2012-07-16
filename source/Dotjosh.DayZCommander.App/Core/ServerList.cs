@@ -30,7 +30,6 @@ namespace Dotjosh.DayZCommander.App.Core
 			{
 				_items = value;
 				PropertyHasChanged("Items");
-				App.Events.Publish(new ServersAdded(_items));
 			}
 		}
 

@@ -17,6 +17,7 @@ namespace Dotjosh.DayZCommander.App.Core
 		private ObservableCollection<Player> _players;
 		private SortedDictionary<string, string> _settings;
 		public string LastException;
+		private bool _isUpdating;
 
 		public Server(string ipAddress, int port)
 		{
@@ -167,6 +168,16 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 		}
 
+		public bool IsUpdating
+		{
+			get { return _isUpdating; }
+			private set
+			{
+				_isUpdating = value;
+				Execute.OnUiThread(() => PropertyHasChanged("IsUpdating"));
+			}
+		}
+
 		public long Ping
 		{
 			get
@@ -294,10 +305,11 @@ namespace Dotjosh.DayZCommander.App.Core
 			return null;
 		}
 
-		public void Update()
+		public void Update(bool supressRefresh=false)
 		{
 			try
 			{
+				IsUpdating = true;
 				var serverResult = _queryClient.Execute();
 				Execute.OnUiThread(() =>
 				                    	{
@@ -306,7 +318,7 @@ namespace Dotjosh.DayZCommander.App.Core
 				                    		LastException = null;
 				                    		Settings = serverResult.Settings;
 				                    		Ping = serverResult.Ping;
-											App.Events.Publish(new ServerUpdated(this));
+											App.Events.Publish(new ServerUpdated(this, supressRefresh));
 				                    	});
 			}
 			catch (Exception ex)
@@ -315,9 +327,13 @@ namespace Dotjosh.DayZCommander.App.Core
 				                    	{
 											LastException = ex.Message;
 											PropertyHasChanged("Name", "Ping");
-											App.Events.Publish(new ServerUpdated(this));
+											App.Events.Publish(new ServerUpdated(this, supressRefresh));
 				                    	});
 				
+			}
+			finally
+			{
+				IsUpdating = false;
 			}
 		}
 
@@ -363,13 +379,13 @@ namespace Dotjosh.DayZCommander.App.Core
 			return Id.GetHashCode();
 		}
 
-		public void BeginUpdate(Action<Server> onComplete)
+		public void BeginUpdate(Action<Server> onComplete, bool supressRefresh=false)
 		{
 			new Thread(() =>
 			{
 				try
 				{
-					Update();
+					Update(supressRefresh);
 				}
 				finally
 				{

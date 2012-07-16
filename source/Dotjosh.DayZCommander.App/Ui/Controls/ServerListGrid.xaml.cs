@@ -1,9 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using Dotjosh.DayZCommander.App.Core;
-using Dotjosh.DayZCommander.App.Ui.ServerList;
 
 namespace Dotjosh.DayZCommander.App.Ui.Controls
 {
@@ -12,6 +10,7 @@ namespace Dotjosh.DayZCommander.App.Ui.Controls
 	/// </summary>
 	public partial class ServerListGrid : UserControl
 	{
+
 		public ServerListGrid()
 		{
 			InitializeComponent();
@@ -19,6 +18,15 @@ namespace Dotjosh.DayZCommander.App.Ui.Controls
 
 		private void RowDoubleClick(object sender, MouseButtonEventArgs e)
 		{
+			var control = e.OriginalSource as FrameworkElement;
+			if(control != null)
+			{
+				if(control.Name == "Refresh" || control.Name == "Favorite")
+				{
+					e.Handled = true;
+					return;
+				}
+			}
 			var server = (Server) ((Control) sender).DataContext;
 
 			GameLauncher.JoinServer(server);
@@ -28,7 +36,6 @@ namespace Dotjosh.DayZCommander.App.Ui.Controls
 		{
 			App.Events.Publish(new DataGridRowSelected());
 		}
-
 	}
 
 	public class DataGridRowSelected

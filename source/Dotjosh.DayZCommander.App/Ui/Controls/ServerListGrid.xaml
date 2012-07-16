@@ -9,6 +9,7 @@
 		<DataGrid ItemsSource="{Binding}"
 				  Margin="0 0 0 0"
 				  Grid.Row="1"
+				  x:Name="TheGrid"
 				  HorizontalAlignment="Stretch"
 				  VerticalAlignment="Stretch"
 					  VerticalScrollBarVisibility="Visible"
@@ -160,6 +161,13 @@
 					<DataGridTemplateColumn.CellTemplate>
 						<DataTemplate>
 							<Controls:PingControl/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTemplateColumn Width="32" Header="">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Controls:RefreshServerControl/>
 						</DataTemplate>
 					</DataGridTemplateColumn.CellTemplate>
 				</DataGridTemplateColumn>

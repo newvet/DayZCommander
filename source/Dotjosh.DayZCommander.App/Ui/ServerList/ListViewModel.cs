@@ -1,28 +1,19 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using Caliburn.Micro;
 using Dotjosh.DayZCommander.App.Core;
-using Dotjosh.DayZCommander.App.Ui.Controls;
 using Dotjosh.DayZCommander.App.Ui.Friends;
-using Microsoft.Win32;
 
 namespace Dotjosh.DayZCommander.App.Ui.ServerList
 {
 	public class ListViewModel : ViewModelBase,
-		IHandle<ServersAdded>,
 		IHandle<FilterUpdated>,
-		IHandle<ServerUpdated>,
-		IHandle<DataGridRowSelected>
+		IHandle<ServerUpdated>
 	{
 		private ListCollectionView _servers;
 		private readonly ObservableCollection<Server> _rawServers = new ObservableCollection<Server>();
-		private DateTime? _lastLeftMouseDown;
 		private Func<Server, bool> _filter;
 
 		public ListViewModel()
@@ -70,29 +61,11 @@ namespace Dotjosh.DayZCommander.App.Ui.ServerList
 
 		public void Handle(ServerUpdated message)
 		{
-			if(_lastLeftMouseDown != null && DateTime.Now - _lastLeftMouseDown < TimeSpan.FromMilliseconds(750))
-			{
-				Task.Factory.StartNew(() =>
-				{
-					Thread.Sleep(TimeSpan.FromMilliseconds(500));
-					Execute.OnUiThread(() => Handle(message));
-				});
-			}
-			else
-			{
-				_rawServers.Remove(message.Server);
-				_rawServers.Add(message.Server);
-			}
-		}
+			if(message.SupressRefresh)
+				return; 
 
-		public void Handle(ServersAdded message)
-		{
-		}
-
-		public void Handle(DataGridRowSelected message)
-		{
-			_lastLeftMouseDown = DateTime.Now;
-			
+			_rawServers.Remove(message.Server);
+			_rawServers.Add(message.Server);
 		}
 	}
 }

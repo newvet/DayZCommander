@@ -129,15 +129,8 @@ namespace Dotjosh.DayZCommander.App.Core
 					SetPathsX86();
 				}
 
-                if (!string.IsNullOrWhiteSpace(UserSettings.Current.GameOptions.Arma2OADirectoryOverride))
-                    Arma2OABetaVersion = GameVersions.ExtractArma2OABetaVersion(Path.Combine(UserSettings.Current.GameOptions.Arma2OADirectoryOverride, @"Expansion\beta\arma2oa.exe"));
-                else
-                    Arma2OABetaVersion = GameVersions.ExtractArma2OABetaVersion(Arma2OABetaExe);
-
-                if (!string.IsNullOrWhiteSpace(UserSettings.Current.GameOptions.DayZDirectoryOverride))
-                    DayZVersion = GameVersions.ExtractDayZVersion(UserSettings.Current.GameOptions.DayZDirectoryOverride);
-                else 
-                    DayZVersion = GameVersions.ExtractDayZVersion(DayZPath);
+                Arma2OABetaVersion = GameVersions.ExtractArma2OABetaVersion(Arma2OABetaExe);
+                DayZVersion = GameVersions.ExtractDayZVersion(DayZPath);
 			}
 			catch//(Exception e)
 			{

@@ -15,12 +15,12 @@ namespace Dotjosh.DayZCommander.App.Core
 		{
 			get
 			{
-				if(LocalMachineInfo.Current.DayZVersion == null)
+				if(CalculatedGameSettings.Current.DayZVersion == null)
 					return true;
 				if(LatestVersion == null)
 					return false;
 
-				return !LocalMachineInfo.Current.DayZVersion.Equals(LatestVersion);
+                return !CalculatedGameSettings.Current.DayZVersion.Equals(LatestVersion);
 			}
 		}
 	
@@ -65,7 +65,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			           			if (Version.TryParse(latestCodeVersionMatch.Value, out version))
 			           			{
 			           				latestVersion = version;
-			           				if (!latestVersion.Equals(LocalMachineInfo.Current.DayZVersion))
+                                    if (!latestVersion.Equals(CalculatedGameSettings.Current.DayZVersion))
 			           				{
 			           					Status = DayZCommanderUpdater.STATUS_OUTOFDATE;
 			           				}

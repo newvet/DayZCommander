@@ -111,7 +111,7 @@
 						<DataTemplate>
 							<TextBlock Text="{Binding Name}"
 									   Margin="4 0 0 0"
-									    Foreground="{Binding IsSameDayZVersion, Converter={StaticResource VersionMatchesToForegroundConverter}}"
+									    Foreground="{Binding IsSameArmaAndDayZVersion, Converter={StaticResource VersionMatchesToForegroundConverter}}"
 										   VerticalAlignment="Center"/>
 						</DataTemplate>
 					</DataGridTemplateColumn.CellTemplate>

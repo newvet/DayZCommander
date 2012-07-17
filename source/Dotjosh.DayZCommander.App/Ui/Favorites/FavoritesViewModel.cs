@@ -46,6 +46,16 @@ namespace Dotjosh.DayZCommander.App.Ui.Favorites
 				if(_rawServers.Contains(message.Server))
 					_rawServers.Remove(message.Server);
 			}
+			SyncTitle();
+		}
+
+		private void SyncTitle()
+		{
+			var count = _rawServers.Count;
+			if(count == 0)
+				Title = "favorites";
+			else
+				Title = string.Format("favorites({0})", count);
 		}
 
 		public void Handle(ServerUpdated message)

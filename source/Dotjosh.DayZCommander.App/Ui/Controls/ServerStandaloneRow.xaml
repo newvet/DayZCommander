@@ -11,7 +11,7 @@
 		  HorizontalAlignment="Stretch">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="Auto"/>
-			<ColumnDefinition Width="*" MinWidth="350"/>
+			<ColumnDefinition Width="*"/>
 			<ColumnDefinition Width="Auto"/>
 			<ColumnDefinition Width="Auto"/>
 			<ColumnDefinition Width="Auto"/>
@@ -46,7 +46,6 @@
 								   VerticalAlignment="Center"
 								  Width="66"/>
 		<Controls:PingControl  Grid.Column="6"
-							   Margin="0 0 0 0"
 							    VerticalAlignment="Center"
 							   Width="70"/>
 		<Controls:RefreshServerControl  Grid.Column="7"

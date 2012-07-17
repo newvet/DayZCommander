@@ -30,7 +30,13 @@ namespace Dotjosh.DayZCommander.App.Core
 			{
 				_status = value;
 				PropertyHasChanged("Status");
+				PropertyHasChanged("UpdatePending");
 			}
+		}
+
+		public bool UpdatePending
+		{
+			get { return Status == STATUS_RESTARTTOAPPLY; }
 		}
 
 		public bool VersionMismatch

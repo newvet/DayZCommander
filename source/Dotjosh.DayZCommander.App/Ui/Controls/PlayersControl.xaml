@@ -12,25 +12,7 @@
 			<TextBlock Text="{Binding CurrentPlayers}" Foreground="{Binding Converter={StaticResource ServerFullnessToColorConverter}}"/>
 			<TextBlock Text=" / " Foreground="{Binding Converter={StaticResource ServerFullnessToColorConverter}}"/>
 			<TextBlock Text="{Binding MaxPlayers}" Foreground="{Binding Converter={StaticResource ServerFullnessToColorConverter}}"/>
-			<StackPanel.ToolTip>
-				<ToolTip>
-					<ItemsControl ItemsSource="{Binding Players}">
-						<ItemsControl.Template>
-							<ControlTemplate>
-								<UniformGrid Columns="4"
-																   IsItemsHost="True"/>
-							</ControlTemplate>
-						</ItemsControl.Template>
-						<ItemsControl.ItemTemplate>
-							<DataTemplate>
-								<TextBlock Text="{Binding Name}" 
-																   Foreground="#333"
-																   Margin="0 0 6 0"/>
-							</DataTemplate>
-						</ItemsControl.ItemTemplate>
-					</ItemsControl>
-				</ToolTip>
-			</StackPanel.ToolTip>
+
 		</StackPanel>
 	</Grid>
 </UserControl>

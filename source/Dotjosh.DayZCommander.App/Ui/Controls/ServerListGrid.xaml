@@ -61,8 +61,133 @@
 								<Border Padding="{TemplateBinding Padding}" 
 										BorderBrush="{TemplateBinding BorderBrush}" 
 										BorderThickness="{TemplateBinding BorderThickness}" 
+										
+										ToolTipService.BetweenShowDelay="0" 
+										ToolTipService.HasDropShadow="True"
+										ToolTipService.ShowDuration="999999"
+										ToolTipService.InitialShowDelay="0"
+										
 										Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
 									<ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+									<Border.ToolTip>
+										<ToolTip OverridesDefaultStyle="True">
+											<ToolTip.Template>
+												<ControlTemplate TargetType="ToolTip">
+													<Border Background="#222"
+															BorderBrush="#666"
+															BorderThickness="1"
+															Width="800"
+									Padding="22 20">
+														<ContentPresenter/>
+													</Border>
+												</ControlTemplate>
+											</ToolTip.Template>
+											
+											<Grid>
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="Auto"/>
+													<ColumnDefinition/>
+												</Grid.ColumnDefinitions>
+												
+												<Grid.RowDefinitions>
+													<RowDefinition Height="Auto"/>
+													<RowDefinition/>
+												</Grid.RowDefinitions>
+
+												<TextBlock Text="{Binding Name}"
+														Foreground="#5A97F2"
+														Grid.ColumnSpan="2"
+														Margin="0 0 0 16"
+														FontSize="18"/>
+												
+												<Grid Grid.Row="1">
+													<Grid.ColumnDefinitions>
+														<ColumnDefinition Width="Auto"/>
+														<ColumnDefinition/>
+													</Grid.ColumnDefinitions>
+													
+													<Grid.RowDefinitions>
+														<RowDefinition Height="Auto"/>
+														<RowDefinition Height="Auto"/>
+														<RowDefinition Height="Auto"/>
+													</Grid.RowDefinitions>
+													
+													<TextBlock Text="DAY/NIGHT:"
+															   Foreground="#BBB"
+															   FontSize="11"
+															   FontWeight="Bold"
+															   Margin="0 0 4 0"
+																Grid.Row="0"
+															   TextAlignment="Right"
+																Grid.Column="0"/>
+													<Controls:TimeControl 
+																	Margin="0 0 10 0"
+																	HorizontalAlignment="Left"
+																	Grid.Row="0"
+																	Grid.Column="1"/>	
+													
+													<TextBlock Text="PING:"
+															   Margin="0 12 4 0"
+															   FontSize="11"
+															   Foreground="#BBB"
+															   TextAlignment="Right"
+															   FontWeight="Bold"
+																Grid.Row="1"
+																Grid.Column="0"/>
+													<Controls:PingControl 
+																	Margin="0 12 0 0"
+														HorizontalAlignment="Left"
+																	Grid.Row="1"
+																	Grid.Column="1"/>
+													
+													<TextBlock Text="SERVER VERSIONS:"
+															   Margin="0 12 4 0"
+															   FontSize="11"
+															   Foreground="#BBB"
+															   TextAlignment="Right"
+															   FontWeight="Bold"
+																Grid.Row="2"
+																Grid.Column="0"/>
+													<Controls:VersionControl 
+														Margin="0 12 0 0"
+														HorizontalAlignment="Left"
+																	Grid.Row="2"
+																	Grid.Column="1"/>
+												</Grid>
+												
+												<StackPanel Grid.Column="1" Grid.Row="1"
+															Width="500"
+															Margin="30 0 0 0"
+															HorizontalAlignment="Left">
+													<StackPanel Orientation="Horizontal"
+																Margin="0 0 0 5">
+														<TextBlock Text="PLAYERS"
+																   FontSize="11"
+																   FontWeight="Bold"
+															   Foreground="#BBB"/>
+														<Controls:PlayersControl Margin="4 0 0 0"/>
+													</StackPanel>
+													<ItemsControl ItemsSource="{Binding Players}"
+															  >
+														<ItemsControl.Template>
+															<ControlTemplate>
+																<UniformGrid Columns="5"
+																	   IsItemsHost="True"/>
+															</ControlTemplate>
+														</ItemsControl.Template>
+														<ItemsControl.ItemTemplate>
+															<DataTemplate>
+																<TextBlock Text="{Binding Name}" 
+																		 FontSize="11"
+																	   Foreground="#EEE"
+																	   Margin="0 0 8 4"/>
+															</DataTemplate>
+														</ItemsControl.ItemTemplate>
+													</ItemsControl>
+												</StackPanel>
+											</Grid>
+										</ToolTip>
+									</Border.ToolTip>
 								</Border>
 							</ControlTemplate>
 						</Setter.Value>

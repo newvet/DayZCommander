@@ -22,6 +22,14 @@
 				<TextBlock Text="{Binding DayZCommanderUpdater.Status}"
 						   Foreground="{Binding DayZCommanderUpdater.Status, Converter={StaticResource UpdateStatusToForegroundConverter}}"
 						   Margin="12 0 0 0"/>
+				
+				<Button Content="apply now" 
+						Foreground="LightGreen"
+						Visibility="{Binding DayZCommanderUpdater.UpdatePending, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}"
+						Margin="0 -4 0 0"
+						Background="#444444"
+						Click="ApplyDayZCommanderUpdateNow_Click"
+						Style="{StaticResource MetroButtonStyle}"/>
 			</StackPanel>
 
 			<StackPanel Margin="0 8 0 0">

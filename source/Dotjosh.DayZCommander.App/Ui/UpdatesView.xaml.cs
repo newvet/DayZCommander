@@ -45,5 +45,10 @@ namespace Dotjosh.DayZCommander.App.Ui
 		{
 			Process.Start(DayZUpdater.DayZListingUrl);
 		}
+
+		private void ApplyDayZCommanderUpdateNow_Click(object sender, RoutedEventArgs e)
+		{
+			App.ApplyUpdateIfNeccessary();
+		}
 	}
 }

@@ -25,10 +25,13 @@ namespace Dotjosh.DayZCommander.App.Ui.Friends
 			InitializeComponent();
 		}
 
-		private void JoinServer(object sender, RoutedEventArgs e)
-		{
-			var x = (ListViewModel.ServerWithFriends) ((Control) sender).DataContext;
-			GameLauncher.JoinServer(x.Server);
+		private void RowDoubleClick(object sender, MouseButtonEventArgs e)
+		{			
+			var recentServer = (ListViewModel.ServerWithFriends) TheList.SelectedItem;
+			if(recentServer == null)
+				return;
+
+			GameLauncher.JoinServer(recentServer.Server);
 		}
 	}
 }

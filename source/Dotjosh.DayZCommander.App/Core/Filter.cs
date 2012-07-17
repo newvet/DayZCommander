@@ -358,22 +358,21 @@ namespace Dotjosh.DayZCommander.App.Core
 				return false;
 			}
 
-//								if(HideWrongArma2Version)
-//								{
-//									if(s.Arma2Version == null 
-//										|| !LocalMachineInfo.EqualsArma2Version(s.Arma2Version))
-//									{
-//										return false;
-//									}
-//								}
-//
-//								if(HideWrongDayZVersion)
-//								{
-//									if(s.DayZVersion == null || !s.DayZVersion.Equals(LocalMachineInfo.DayZVersion))
-//									{
-//										return false;
-//									}
-//								}
+			if(HideWrongArma2Version)
+			{
+				if(!s.IsSameArma2OAVersion)
+				{
+					return false;
+				}
+			}
+
+			if(HideWrongDayZVersion)
+			{
+				if(!s.IsSameDayZVersion)
+				{
+					return false;
+				}
+			}
 
 			return true;			
 		}

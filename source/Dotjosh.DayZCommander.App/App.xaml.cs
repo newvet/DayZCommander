@@ -31,7 +31,7 @@ namespace Dotjosh.DayZCommander.App
 			base.OnStartup(e);
 		}
 
-		private static void ApplyUpdateIfNeccessary()
+		public static void ApplyUpdateIfNeccessary()
 		{
 			var thisLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 			var pendingUpdateDirectory = Path.Combine(thisLocation, DownloadAndExtracter.PENDING_UPDATE_DIRECTORYNAME);

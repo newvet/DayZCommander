@@ -9,7 +9,7 @@
     <Grid>
 		
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="180"/>
+			<ColumnDefinition Width="190"/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
 		
@@ -23,10 +23,17 @@
 			<TextBlock Text=" results " Foreground="#FFF" FontSize="16"/>
 			<TextBlock Text="{Binding ListViewModel.RawServers.Count, StringFormat={} ({0} total)}" Foreground="#CCC" Margin="2 5 0 0" FontSize="11"/>
 		</StackPanel>
+		<ScrollViewer BorderThickness="0"
+					  Padding="0 0 4 0"
+					  Margin="0 0 5 0"
+					  Grid.Row="1"
+					  VerticalScrollBarVisibility="Auto">
+			
+	
 		<ServerList:FiltersView DataContext="{Binding FiltersViewModel}"
 								Margin="0 14 0 0"
-								Grid.Row="1"/>
-		
+								/>
+		</ScrollViewer>
 		<Controls:ServerListGrid DataContext="{Binding ListViewModel.Servers}"
 							 Grid.RowSpan="2"
 							 HorizontalAlignment="Stretch"

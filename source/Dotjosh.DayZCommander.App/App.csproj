@@ -151,6 +151,9 @@
     <Compile Include="Ui\Controls\ServerSettingsControl.xaml.cs">
       <DependentUpon>ServerSettingsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ui\Controls\ServerStandaloneHeaderRow.xaml.cs">
+      <DependentUpon>ServerStandaloneHeaderRow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ui\Controls\ServerStandaloneRow.xaml.cs">
       <DependentUpon>ServerStandaloneRow.xaml</DependentUpon>
     </Compile>
@@ -277,6 +280,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ui\Controls\ServerSettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\Controls\ServerStandaloneHeaderRow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

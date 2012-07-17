@@ -47,13 +47,21 @@
 			<CheckBox Content="Hide Full"
 					  IsChecked="{Binding Filter.HideFull, Mode=TwoWay}"
 					  Foreground="#EEEEEE"
-					  Margin="0 20 0 0"/>
+					  Margin="0 10 0 0"/>
 			<CheckBox Content="Hide Empty"
 					  IsChecked="{Binding Filter.HideEmpty, Mode=TwoWay}"
 					  Foreground="#EEEEEE"
 					  Margin="0 10 0 0"/>
 			<CheckBox Content="Hide Locked"
 					  IsChecked="{Binding Filter.HidePasswordProtected, Mode=TwoWay}"
+					  Foreground="#EEEEEE"
+					  Margin="0 10 0 0"/>			
+			<CheckBox Content="Hide Wrong Arma2 Version"
+					  IsChecked="{Binding Filter.HideWrongArma2Version, Mode=TwoWay}"
+					  Foreground="#EEEEEE"
+					  Margin="0 10 0 0"/>			
+			<CheckBox Content="Hide Wrong DayZ Version"
+					  IsChecked="{Binding Filter.HideWrongDayZVersion, Mode=TwoWay}"
 					  Foreground="#EEEEEE"
 					  Margin="0 10 0 0"/>			
 

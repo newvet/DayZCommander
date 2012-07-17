@@ -119,7 +119,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			string value;
 			if(TryGetRegexGroup(serverName, string.Format(@"{0}{1}", settingPattern, valuePattern), RegexOptions.IgnoreCase, 1, out value))
 			{
-				setting.Enabled = value.In("0", "ON");
+				setting.Enabled = value.In("1", "ON");
 				setting.Confirmed = true;
 			}
 		}

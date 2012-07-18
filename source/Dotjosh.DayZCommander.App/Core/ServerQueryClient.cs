@@ -67,8 +67,9 @@ namespace Dotjosh.DayZCommander.App.Core
 				index++;
 			}
 
-			var players = items
-				.Skip(61)
+			var playerItem = items.SkipWhile(x => Convert.ToString(x).IndexOf("player_") == -1);
+			var players = playerItem
+				.Skip(2)
 				.TakeWhile(x => x != "team_" && x != "")
 				.Select(x => new Player(_server) {Name = x})
 				.ToList();

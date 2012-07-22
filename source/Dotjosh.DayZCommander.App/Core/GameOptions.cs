@@ -14,6 +14,7 @@ namespace Dotjosh.DayZCommander.App.Core
 		[DataMember] private string _arma2DirectoryOverride;
 		[DataMember] private string _arma2OaDirectoryOverride;
         [DataMember] private string _DayZDirectoryOverride;
+		[DataMember] private bool _twentyFourHourTimeFormat;
 
 		public string AdditionalStartupParameters
 		{
@@ -115,5 +116,16 @@ namespace Dotjosh.DayZCommander.App.Core
 				CalculatedGameSettings.Current.Update();
             }
         }
+		
+		public bool TwentyFourHourTimeFormat
+		{
+			get { return _twentyFourHourTimeFormat; }
+			set
+			{
+				_twentyFourHourTimeFormat = value;
+				PropertyHasChanged("TwentyFourHourTimeFormat");
+				UserSettings.Current.Save();
+			}
+		}
 	}
 }

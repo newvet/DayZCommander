@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid HorizontalAlignment="Right">
-		<TextBlock Text="{Binding ServerTime, StringFormat={}{0:h:mm tt}}"
+		<TextBlock Text="{Binding ServerTime, Converter={StaticResource TimeToTextConverter}}"
 										   TextAlignment="Right"
 										   HorizontalAlignment="Right"
 										   VerticalAlignment="Center"

@@ -43,7 +43,7 @@ namespace Dotjosh.DayZCommander.App.Ui
 
 		private void DownloadDayZ_Click(object sender, RoutedEventArgs e)
 		{
-			Process.Start(DayZUpdater.DayZListingUrl);
+			((UpdatesViewModel) DataContext).DayZUpdater.InstallLatestVersion();
 		}
 
 		private void ApplyDayZCommanderUpdateNow_Click(object sender, RoutedEventArgs e)

@@ -125,6 +125,7 @@
     <Compile Include="Core\Arma2Installer.cs" />
     <Compile Include="Core\Arma2Updater.cs" />
     <Compile Include="Core\CalculatedGameSettings.cs" />
+    <Compile Include="Core\DayZInstaller.cs" />
     <Compile Include="Core\DayZUpdater.cs" />
     <Compile Include="Core\FavoriteServer.cs" />
     <Compile Include="Core\GameOptions.cs" />

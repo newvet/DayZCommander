@@ -117,9 +117,8 @@ namespace Dotjosh.DayZCommander.App.Core
 			           							        	{
 			           							        		StartInfo =
 			           							        			{
-			           							        				CreateNoWindow = true,
-			           							        				UseShellExecute = false,
-			           							        				WindowStyle = ProcessWindowStyle.Hidden,
+			           							        				CreateNoWindow = false,
+			           							        				UseShellExecute = true,
 			           							        				WorkingDirectory = _extractedLocation,
 			           							        				FileName = Path.Combine(_extractedLocation, fileName)
 			           							        			}

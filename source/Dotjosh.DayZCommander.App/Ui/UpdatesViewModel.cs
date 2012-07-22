@@ -95,7 +95,7 @@ namespace Dotjosh.DayZCommander.App.Ui
 			LocalMachineInfo.Current.Update();
 			DayZCommanderUpdater.CheckForUpdate();
 			Arma2Updater.CheckForUpdates();
-			DayZUpdater.CheckForUpdate();
+			DayZUpdater.CheckForUpdates();
 		}
 
 		public void Handle(ServerUpdated message)

@@ -11,6 +11,27 @@ namespace Dotjosh.DayZCommander.App.Core
 		private string _status;
 		public const string DayZListingUrl = "http://cdn.armafiles.info/latest/";
 
+		public DayZUpdater()
+		{
+			Installer = new DayZInstaller();
+			Installer.PropertyChanged += (sender, args) =>
+			                             	{
+												if(args.PropertyName == "IsRunning")
+												{
+													PropertyHasChanged("InstallButtonVisible");
+												}
+												else if(args.PropertyName == "Status")
+												{
+													if(Installer.Status == "Install complete")
+													{
+														CheckForUpdates();
+													}
+												}
+			                             	};
+		}
+
+		public DayZInstaller Installer { get; set; }
+
 		public bool VersionMismatch
 		{
 			get
@@ -24,7 +45,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 		}
 	
-		public void CheckForUpdate()
+		public void CheckForUpdates()
 		{
 			if(_isChecking)
 				return;
@@ -98,7 +119,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			set
 			{
 				_latestVersion = value;
-				Execute.OnUiThread(() => PropertyHasChanged("LatestVersion", "VersionMismatch"));			
+				Execute.OnUiThread(() => PropertyHasChanged("LatestVersion", "VersionMismatch", "InstallButtonVisible"));			
 			}
 		}
 
@@ -108,8 +129,18 @@ namespace Dotjosh.DayZCommander.App.Core
 			set
 			{
 				_status = value;
-				Execute.OnUiThread(() => PropertyHasChanged("Status", "VersionMismatch", "LatestVersion"));
+				Execute.OnUiThread(() => PropertyHasChanged("Status", "VersionMismatch", "InstallButtonVisible"));
 			}
+		}
+
+		public bool InstallButtonVisible
+		{
+			get { return VersionMismatch && !_isChecking && !Installer.IsRunning; }
+		}
+
+		public void InstallLatestVersion()
+		{
+			Installer.DownloadAndInstall(DayZListingUrl);
 		}
 	}
 }

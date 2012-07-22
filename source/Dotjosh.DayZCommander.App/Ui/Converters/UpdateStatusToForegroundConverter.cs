@@ -10,7 +10,7 @@ namespace Dotjosh.DayZCommander.App.Ui.Converters
 	{
 		private static SolidColorBrush InProgress = new SolidColorBrush(Colors.LightGreen);
 		private static SolidColorBrush ActionRequired = new SolidColorBrush(Colors.Yellow);
-		private static SolidColorBrush OK = new SolidColorBrush(Color.FromArgb(255, 238, 238, 238));
+		private static SolidColorBrush OK = new SolidColorBrush(Color.FromArgb(255, 221, 221, 221));
 		private static SolidColorBrush Default = new SolidColorBrush(Colors.Red);
 
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

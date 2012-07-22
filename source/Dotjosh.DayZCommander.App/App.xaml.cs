@@ -37,7 +37,7 @@ namespace Dotjosh.DayZCommander.App
 			var pendingUpdateDirectory = Path.Combine(thisLocation, DownloadAndExtracter.PENDING_UPDATE_DIRECTORYNAME);
 			if(Directory.Exists(pendingUpdateDirectory))
 			{
-				var tempDir = Path.GetTempPath() + Guid.NewGuid();
+				var tempDir = DownloadAndExtracter.GetTempPath() + Guid.NewGuid();
 				Directory.CreateDirectory(tempDir);
 				CopyAllFiles(pendingUpdateDirectory, tempDir);
 				var p = new Process()

@@ -42,8 +42,8 @@ namespace Dotjosh.DayZCommander.Updater
 			var installDirectory = App.ApplicationInstallDirectory;
 			var pendingUpdateDirectory = Path.Combine(installDirectory, DownloadAndExtracter.PENDING_UPDATE_DIRECTORYNAME);
 
-			var tempUpdatePath = string.Format("{0}{1}", Path.GetTempPath(), Guid.NewGuid());
-			var lastVersionPath = string.Format("{0}{1}", Path.GetTempPath(), Guid.NewGuid());
+			var tempUpdatePath = string.Format("{0}{1}", DownloadAndExtracter.GetTempPath(), Guid.NewGuid());
+			var lastVersionPath = string.Format("{0}{1}", DownloadAndExtracter.GetTempPath(), Guid.NewGuid());
 
 			KillDayzCommanderProcesses();
 			Directory.Move(pendingUpdateDirectory, tempUpdatePath);

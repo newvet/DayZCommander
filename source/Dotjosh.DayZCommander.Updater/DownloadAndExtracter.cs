@@ -29,10 +29,20 @@ namespace Dotjosh.DayZCommander.Updater
 			_serverVersion = serverVersion;
 			_serverZipUri = new Uri(String.Format("http://files.dayzcommander.com/releases/{0}.zip", _serverVersion));
 			var uniqueToken = Guid.NewGuid().ToString();
-			_tempDownloadFileLocation = Path.GetTempPath() + uniqueToken + ".zip";
-			_tempExtractedLocation = Path.GetTempPath() + uniqueToken;
+			_tempDownloadFileLocation = DownloadAndExtracter.GetTempPath() + uniqueToken + ".zip";
+			_tempExtractedLocation = DownloadAndExtracter.GetTempPath() + uniqueToken;
 			_currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 			_targetSwapDirectory = Path.Combine(_currentDirectory, PENDING_UPDATE_DIRECTORYNAME);
+		}
+
+		public static string GetTempPath()
+		{
+			var current = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+			var currentInfo = new DirectoryInfo(current);
+			var tempPath = Path.Combine(currentInfo.Parent.FullName, @"Temp\");
+			if(!Directory.Exists(tempPath))
+				Directory.CreateDirectory(tempPath);
+			return tempPath;
 		}
 
 		public string TempExtractedLocation

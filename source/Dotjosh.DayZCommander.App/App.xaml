@@ -8,6 +8,7 @@
 		<Converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
 		<Converters:PingToForegroundConverter x:Key="PingToForegroundConverter" />
 		<Converters:BooleanToVisibilityHiddenConverter x:Key="BooleanToVisibilityHiddenConverter" />
+		<Converters:TimeToTextConverter x:Key="TimeToTextConverter" />
 		<Converters:TimeToColorConverter x:Key="TimeToColorConverter" />
 		<Converters:ServerFullnessToColorConverter x:Key="ServerFullnessToColorConverter" />
 		<Converters:BooleanToSelectedOptionColorConverter x:Key="BooleanToSelectedOptionColorConverter" />

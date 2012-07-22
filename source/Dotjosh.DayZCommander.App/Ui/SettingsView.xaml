@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Core="clr-namespace:Dotjosh.DayZCommander.App.Core" mc:Ignorable="d" 
 			 Background="#333333"
-             d:DesignHeight="400" d:DesignWidth="400">
+             d:DesignHeight="563" d:DesignWidth="400">
     <Grid>
 		<StackPanel Margin="18 10 18 0">
 			<TextBlock Text="settings"
@@ -30,7 +30,11 @@
 					  IsChecked="{Binding Settings.GameOptions.CloseDayZCommander, Mode=TwoWay}"
 					  Foreground="#DDDDDD"
 					  Margin="0 8 0 0"/>
-            <StackPanel Margin="0 8 0 0">
+			<CheckBox Content="24-hr Time Format"
+					  IsChecked="{Binding Settings.GameOptions.TwentyFourHourTimeFormat, Mode=TwoWay}"
+					  Foreground="#DDDDDD"
+					  Margin="0 8 0 0"/>
+			<StackPanel Margin="0 8 0 0">
 				<TextBlock Text="Additional Startup Parameters"
 						   Foreground="#DDDDDD"/>
 				<TextBox Text="{Binding Settings.GameOptions.AdditionalStartupParameters, Mode=TwoWay}"

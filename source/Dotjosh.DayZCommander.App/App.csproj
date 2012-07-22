@@ -182,6 +182,7 @@
     <Compile Include="Ui\Converters\ServerFullnessToColorConverter.cs" />
     <Compile Include="Ui\Converters\ServerRevisionCountToWidthConverter.cs" />
     <Compile Include="Ui\Converters\TimeToColorConverter.cs" />
+    <Compile Include="Ui\Converters\TimeToTextConverter.cs" />
     <Compile Include="Ui\Converters\UpdateStatusToForegroundConverter.cs" />
     <Compile Include="Ui\Converters\VersionMatchesToForegroundConverter.cs" />
     <Compile Include="Ui\Converters\ZeroToVisibilityConverter.cs" />

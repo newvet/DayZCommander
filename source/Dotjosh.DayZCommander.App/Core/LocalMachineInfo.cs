@@ -128,8 +128,9 @@ namespace Dotjosh.DayZCommander.App.Core
 				{
 					SetPathsX86();
 				}
-				Arma2OABetaVersion = GameVersions.ExtractArma2OABetaVersion(Arma2OABetaExe);
-				DayZVersion = GameVersions.ExtractDayZVersion(DayZPath);
+
+                Arma2OABetaVersion = GameVersions.ExtractArma2OABetaVersion(Arma2OABetaExe);
+                DayZVersion = GameVersions.ExtractDayZVersion(DayZPath);
 			}
 			catch//(Exception e)
 			{

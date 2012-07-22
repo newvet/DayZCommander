@@ -56,7 +56,7 @@ namespace Dotjosh.DayZCommander.App.Core
 		private void SetArma2OAExePath()
 		{
 			if (!string.IsNullOrWhiteSpace(UserSettings.Current.GameOptions.Arma2OADirectoryOverride))
-				Arma2OAExePath = Path.Combine(UserSettings.Current.GameOptions.Arma2OADirectoryOverride, "arma2oa.exe");
+                Arma2OAExePath = GameVersions.BuildArma2OAExePath(UserSettings.Current.GameOptions.Arma2OADirectoryOverride);
 			else
 				Arma2OAExePath = LocalMachineInfo.Current.Arma2OABetaExe;
 		}

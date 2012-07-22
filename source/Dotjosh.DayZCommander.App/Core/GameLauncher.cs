@@ -32,14 +32,17 @@ namespace Dotjosh.DayZCommander.App.Core
                 if(UserSettings.Current.GameOptions.Arma2OASteamUpdate){
                     string mainEXE = Path.Combine(CalculatedGameSettings.Current.Arma2OAPath, @"arma2oa.exe");
                     string betaEXE = Path.Combine(CalculatedGameSettings.Current.Arma2OAPath, @"Expansion\beta\arma2oa.exe");
-                    var mainEXE_version = FileVersionInfo.GetVersionInfo(mainEXE).ProductVersion;
-                    var betaEXE_version = FileVersionInfo.GetVersionInfo(betaEXE).ProductVersion;
+					if(File.Exists(mainEXE) && File.Exists(betaEXE))
+					{
+						var mainExeVersion = FileVersionInfo.GetVersionInfo(mainEXE).ProductVersion;
+						var betaExeVersion = FileVersionInfo.GetVersionInfo(betaEXE).ProductVersion;
 
-                   if (mainEXE_version != betaEXE_version)
-                   {
-                        File.Copy(mainEXE, mainEXE + "_" + mainEXE_version, true);
-                        File.Copy(betaEXE, mainEXE, true);
-                   }
+						if (mainExeVersion != betaExeVersion)
+						{
+							File.Copy(mainEXE, mainEXE + "_" + mainExeVersion, true);
+							File.Copy(betaEXE, mainEXE, true);
+						}
+					}
                 }
 
 			}

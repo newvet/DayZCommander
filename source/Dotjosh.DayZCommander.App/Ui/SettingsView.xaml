@@ -12,38 +12,10 @@
 						   Foreground="#5A97F2"
 							Margin="0 0 0 20"
 						   FontSize="24"/>
-
-            <TextBlock Text="STEAM OPTIONS"
-					   FontWeight="Bold"
-					   Margin="0 0 0 3"
-					   Foreground="#FFFFFF"/>
-
-            <StackPanel Margin="0 8 0 0"
-						Orientation="Horizontal">
-                <CheckBox Content="Launch using Steam"
-						  IsChecked="{Binding Settings.GameOptions.LaunchUsingSteam, Mode=TwoWay}"
-						  Foreground="#DDDDDD"/>
-            </StackPanel>
-
-            <StackPanel Margin="0 8 0 0"
-						Orientation="Horizontal">
-                <CheckBox Content="Update Arma2 OA EXE (Launch using Steam must be enabled)"
-					  IsChecked="{Binding Settings.GameOptions.Arma2OASteamUpdate, Mode=TwoWay}"
-					  Foreground="#DDDDDD"
-					  Margin="0 0 0 0"/>
-
-                <Path Data="M16.509904,50.800396L28.400504,50.800396 28.400504,62.689999 16.509904,62.689999z M22.177083,0C28.996274,0 34.425509,1.7890273 38.46503,5.3573213 42.49454,8.9256158 44.5143,13.072685 44.5143,17.81024 44.5143,20.428875 43.774405,22.906968 42.294493,25.256224 40.814704,27.594746 37.645186,30.782395 32.795714,34.810391 30.286149,36.899052 28.72629,38.578766 28.116383,39.84758 27.516484,41.077355 27.236491,43.375859 27.29642,46.673798L16.50789,46.673798C16.477864,45.075093 16.457846,44.175213 16.457846,43.775048 16.457846,40.317044 17.03785,37.448548 18.197614,35.19006 19.357499,32.931572 21.667138,30.392968 25.136784,27.57425 28.606311,24.756506 30.67599,22.906968 31.355958,22.037341 32.395861,20.658238 32.9257,19.139567 32.9257,17.470589 32.9257,15.161347 31.995889,13.173213 30.146151,11.533516 28.3063,9.8850341 25.81663,9.0554252 22.677018,9.0554252 19.657508,9.0554252 17.137812,9.9143147 15.108044,11.634045 13.078275,13.3528 11.678431,15.981196 10.918519,19.498738L0,18.149891C0.30989633,13.102941 2.4696532,8.8153272 6.4591306,5.2968087 10.448608,1.7695071 15.687926,0 22.177083,0z" 
-					  Stretch="Uniform" 
-					  Fill="Yellow" 
-					  Width="12" 
-					  Height="12"
-					  ToolTip="If enabled DayZCommander will automaticly update the games main EXE to the latest beta patch EXE if required."
-					  Margin="8,0,0,0" />
-            </StackPanel>
             
             <TextBlock Text="GAME OPTIONS"
 					   FontWeight="Bold"
-					   Margin="0 16 0 3"
+					   Margin="0 0 0 3"
 					   Foreground="#FFFFFF"/>
 
             <CheckBox Content="Windowed Mode"
@@ -64,6 +36,35 @@
 				<TextBox Text="{Binding Settings.GameOptions.AdditionalStartupParameters, Mode=TwoWay}"
 						 FontSize="10"
 						 Margin="0 3 0 0"/>
+			</StackPanel>
+
+			<TextBlock Text="STEAM OPTIONS"
+					   FontWeight="Bold"
+					   Margin="0 16 0 3"
+					   Foreground="#FFFFFF"/>
+
+			<StackPanel Margin="0 8 0 0"
+						Orientation="Horizontal">
+				<CheckBox Content="Launch using Steam"
+						  IsChecked="{Binding Settings.GameOptions.LaunchUsingSteam, Mode=TwoWay}"
+						  Foreground="#DDDDDD"/>
+			</StackPanel>
+
+			<StackPanel Margin="0 8 0 0"
+						Orientation="Horizontal">
+				<CheckBox Content="Replace original Arma2OA files with Beta so Steam works"
+					  IsChecked="{Binding Settings.GameOptions.Arma2OASteamUpdate, Mode=TwoWay}"
+					  Foreground="#DDDDDD"
+					  Margin="0 0 0 0"/>
+
+				<Path Data="M16.509904,50.800396L28.400504,50.800396 28.400504,62.689999 16.509904,62.689999z M22.177083,0C28.996274,0 34.425509,1.7890273 38.46503,5.3573213 42.49454,8.9256158 44.5143,13.072685 44.5143,17.81024 44.5143,20.428875 43.774405,22.906968 42.294493,25.256224 40.814704,27.594746 37.645186,30.782395 32.795714,34.810391 30.286149,36.899052 28.72629,38.578766 28.116383,39.84758 27.516484,41.077355 27.236491,43.375859 27.29642,46.673798L16.50789,46.673798C16.477864,45.075093 16.457846,44.175213 16.457846,43.775048 16.457846,40.317044 17.03785,37.448548 18.197614,35.19006 19.357499,32.931572 21.667138,30.392968 25.136784,27.57425 28.606311,24.756506 30.67599,22.906968 31.355958,22.037341 32.395861,20.658238 32.9257,19.139567 32.9257,17.470589 32.9257,15.161347 31.995889,13.173213 30.146151,11.533516 28.3063,9.8850341 25.81663,9.0554252 22.677018,9.0554252 19.657508,9.0554252 17.137812,9.9143147 15.108044,11.634045 13.078275,13.3528 11.678431,15.981196 10.918519,19.498738L0,18.149891C0.30989633,13.102941 2.4696532,8.8153272 6.4591306,5.2968087 10.448608,1.7695071 15.687926,0 22.177083,0z" 
+					  Stretch="Uniform" 
+					  Fill="Yellow" 
+					  Width="12" 
+					  Height="12"
+					  ToolTipService.InitialShowDelay="0"
+					  ToolTip="If enabled, DayZCommander will automatically update the games main EXE to the latest beta patch EXE if required."
+					  Margin="8,0,0,0" />
 			</StackPanel>
 
 			<TextBlock Text="GAME DIRECTORIES"

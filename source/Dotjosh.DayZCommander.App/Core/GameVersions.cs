@@ -28,26 +28,25 @@ namespace Dotjosh.DayZCommander.App.Core
 
 		public static Version ExtractDayZVersion(string dayZPath)
 		{
-			var changeLogPath = Path.Combine(dayZPath, "dayz_changelog.txt");
-			if(!File.Exists(changeLogPath))
+			var dayz_code_file = Path.Combine(dayZPath, @"addons\dayz_code.pbo");
+			if(!File.Exists(dayz_code_file))
 			{
 				return null;
 			}
-			var changeLogLines = File.ReadAllLines(changeLogPath);
-			foreach(var changeLogLine in changeLogLines)
+			var dayz_code_file_lines = File.ReadAllLines(dayz_code_file);
+			foreach(var changeLogLine in dayz_code_file_lines)
 			{
-				if(!changeLogLine.Contains("* dayz_code"))
-				{
-					continue;
-				}
-
-				var match = Regex.Match(changeLogLine, @"\d(?:\.\d){1,3}");
+				var match = Regex.Match(changeLogLine, @"\x01\x00version\x00(?<Version>\d(?:\.\d){1,3})", RegexOptions.IgnoreCase);
 				if(!match.Success)
 				{
 					continue;
 				}
 				Version version;
-				if(Version.TryParse(match.Value, out version))
+				var versionMatch = match.Groups["Version"];
+				if(!versionMatch.Success)
+					continue;
+
+				if(Version.TryParse(versionMatch.Value, out version))
 				{
 					return version;
 				}

@@ -236,6 +236,46 @@ namespace Dotjosh.DayZCommander.App.Core
 			get { return _port; }
 		}
 
+		public string LastJoinedOn
+		{
+			get
+			{
+				var recent = UserSettings.Current.RecentServers
+								.OrderByDescending(x => x.On)
+								.FirstOrDefault(x => x.Server == this);
+				if(recent == null)
+					return "Never";
+
+				return recent.Ago;
+			}
+		}
+
+		public string Notes
+		{
+			get
+			{
+				return UserSettings.Current.GetNotes(this);
+			}
+			set
+			{
+				UserSettings.Current.SetNotes(this, value);
+				_hasNotes = !string.IsNullOrEmpty(value);
+				PropertyHasChanged("Notes", "HasNotes");
+			}
+		}
+
+		private bool? _hasNotes;
+		public bool HasNotes
+		{
+			get
+			{
+				if(_hasNotes != null)
+					return (bool) _hasNotes;
+				_hasNotes = UserSettings.Current.HasNotes(this);
+				return (bool) _hasNotes;
+			}
+		}
+
 		public bool? IsNight
 		{
 			get

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using Dotjosh.DayZCommander.App.Core;
@@ -16,6 +17,8 @@ namespace Dotjosh.DayZCommander.App.Ui
 		{
 			InitializeComponent();
 
+			KeyUp += OnKeyUp;
+
 			Loaded += (sender, args) =>
 			{
 				if(UserSettings.Current.WindowSettings != null)
@@ -30,6 +33,14 @@ namespace Dotjosh.DayZCommander.App.Ui
 				UserSettings.Current.WindowSettings = WindowSettings.Create(this);
 				UserSettings.Current.Save();
 			};
+		}
+
+		private void OnKeyUp(object sender, KeyEventArgs keyEventArgs)
+		{
+			if(keyEventArgs.Key == Key.Escape)
+			{
+				ViewModel.Escape();
+			}
 		}
 
 		public string CurrentVersion { get; set; }

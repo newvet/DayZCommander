@@ -36,6 +36,13 @@
 							 Canvas.ZIndex="1000"
 								 Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityCollapsedConverter}, FallbackValue=Hidden}"/>
 
+			<Ui:NotesView DataContext="{Binding NotesViewModel}"
+							 Grid.RowSpan="5"
+							 Width="600"
+							 HorizontalAlignment="Right"
+							 Canvas.ZIndex="1000"
+								 Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityCollapsedConverter}, FallbackValue=Hidden}"/>
+
 
 			<Rectangle Fill="#444444"
 					Grid.Row="1"

@@ -6,6 +6,7 @@ using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
+using System.Text;
 using System.Xml.Linq;
 using Dotjosh.DayZCommander.App.Ui.Friends;
 using Dotjosh.DayZCommander.App.Ui.Recent;
@@ -23,7 +24,6 @@ namespace Dotjosh.DayZCommander.App.Core
 		[DataMember] private GameOptions _gameOptions = new GameOptions();
 		[DataMember] private List<FavoriteServer> _favorites = new List<FavoriteServer>();
 		[DataMember] private List<RecentServer> _recentServers = new List<RecentServer>();
-
 
 		public List<string> Friends
 		{
@@ -95,7 +95,6 @@ namespace Dotjosh.DayZCommander.App.Core
 			}
 			set { _recentServers = value; }
 		}
-
 
 		public void Save()
 		{
@@ -249,6 +248,38 @@ namespace Dotjosh.DayZCommander.App.Core
 			recentServer.Server = server;
 			App.Events.Publish(new RecentAdded(recentServer));
 			Save();			
+		}
+
+		public string GetNotes(Server server)
+		{
+			var fileName = GetNoteFileName(server);
+			if(!File.Exists(fileName))
+				return "";
+			return File.ReadAllText(fileName, Encoding.UTF8);
+		}
+
+		public void SetNotes(Server server, string text)
+		{
+			var fileName = GetNoteFileName(server);
+			if(string.IsNullOrWhiteSpace(text))
+			{
+				if(File.Exists(fileName))
+					File.Delete(fileName);
+			}
+			else
+			{
+				File.WriteAllText(fileName, text, Encoding.UTF8);
+			}
+		}
+
+		private static string GetNoteFileName(Server server)
+		{
+			return Path.Combine(new FileInfo(SettingsPath).Directory.FullName, string.Format("Notes_{0}_{1}.txt", server.IpAddress.Replace(".", "_"), server.Port));
+		}
+
+		public bool HasNotes(Server server)
+		{
+			return File.Exists(GetNoteFileName(server));
 		}
 	}
 

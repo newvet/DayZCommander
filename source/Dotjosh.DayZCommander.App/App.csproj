@@ -134,6 +134,9 @@
     <Compile Include="Ui\Controls\FavoriteControl.xaml.cs">
       <DependentUpon>FavoriteControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ui\Controls\NotesControl.xaml.cs">
+      <DependentUpon>NotesControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ui\Controls\PingControl.xaml.cs">
       <DependentUpon>PingControl.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,7 @@
     <Compile Include="Ui\Converters\CountToVisibilityConverter.cs" />
     <Compile Include="Ui\Converters\DifficultyToDescriptionConverter.cs" />
     <Compile Include="Ui\Converters\EnabledSettingToForegroundConverter.cs" />
+    <Compile Include="Ui\Converters\HasNotesToForegroundConverter.cs" />
     <Compile Include="Ui\Converters\IsFavoriteToForegroundConverter.cs" />
     <Compile Include="Ui\Converters\IsPlayingToColorConverter.cs" />
     <Compile Include="Ui\Converters\IsSelectedTabToColorConverter.cs" />
@@ -186,6 +190,10 @@
     <Compile Include="Ui\Converters\UpdateStatusToForegroundConverter.cs" />
     <Compile Include="Ui\Converters\VersionMatchesToForegroundConverter.cs" />
     <Compile Include="Ui\Converters\ZeroToVisibilityConverter.cs" />
+    <Compile Include="Ui\NotesView.xaml.cs">
+      <DependentUpon>NotesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\NotesViewModel.cs" />
     <Compile Include="Ui\Favorites\FavoritesView.xaml.cs">
       <DependentUpon>FavoritesView.xaml</DependentUpon>
     </Compile>
@@ -261,6 +269,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Ui\Controls\NotesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ui\Controls\PingControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -320,6 +332,10 @@
     <Page Include="Ui\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ui\NotesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ui\Recent\RecentView.xaml">
       <SubType>Designer</SubType>

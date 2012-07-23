@@ -44,7 +44,7 @@
 
 			<TextBlock Text="STEAM OPTIONS"
 					   FontWeight="Bold"
-					   Margin="0 16 0 3"
+					   Margin="0 25 0 3"
 					   Foreground="#FFFFFF"/>
 
 			<StackPanel Margin="0 8 0 0"
@@ -73,7 +73,7 @@
 
 			<TextBlock Text="GAME DIRECTORIES"
 					   FontWeight="Bold"
-					   Margin="0 20 0 3"
+					   Margin="0 25 0 3"
 					   Foreground="#FFFFFF"/>
 			
 			<StackPanel Margin="0 8 0 0">

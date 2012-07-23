@@ -25,6 +25,7 @@
 		<Converters:ServerRevisionCountToWidthConverter x:Key="ServerRevisionCountToWidthConverter" />
 		<Converters:CountsToPercentageConverter x:Key="CountsToPercentageConverter" />
 		<Converters:VersionMatchesToForegroundConverter x:Key="VersionMatchesToForegroundConverter" />
+		<Converters:HasNotesToForegroundConverter x:Key="HasNotesToForegroundConverter" />
 
 		<Style TargetType="Button" x:Key="MetroTextButtonStyle">
 			<Setter Property="Foreground" Value="#CCC"/>

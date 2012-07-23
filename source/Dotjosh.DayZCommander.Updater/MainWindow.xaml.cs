@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Windows;
 using Dotjosh.DayZCommander.InstallUtilities;
@@ -38,24 +39,41 @@ namespace Dotjosh.DayZCommander.Updater
 
 		private static void ApplyUpdate()
 		{
-			//Debugger.Launch();
 			var installDirectory = App.ApplicationInstallDirectory;
-
 			var pendingUpdateDirectory = Path.Combine(installDirectory, DownloadAndExtracter.PENDING_UPDATE_DIRECTORYNAME);
-			var tempDirectory = Path.Combine(new DirectoryInfo(installDirectory).Parent.FullName, @"Temp\");
 
-			var tempUpdatePath = string.Format("{0}{1}", tempDirectory, Guid.NewGuid());
-			var lastVersionPath = string.Format("{0}{1}", tempDirectory, Guid.NewGuid());
-
-			KillDayzCommanderProcesses();
-			Directory.Move(pendingUpdateDirectory, tempUpdatePath);
-			Directory.Move(installDirectory, lastVersionPath);
-			Directory.Move(tempUpdatePath, installDirectory);
-			try
+			var currentDirectory = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+			var windowsTemp = new DirectoryInfo(Path.GetTempPath());
+			var oldWindowsTempDirectoryStyle = currentDirectory.FullName.IndexOf(windowsTemp.FullName, StringComparison.CurrentCultureIgnoreCase) > -1;
+			if(oldWindowsTempDirectoryStyle)
 			{
-				Directory.Delete(tempDirectory, true);
+				var tempUpdatePath = string.Format("{0}{1}", Path.GetTempPath(), Guid.NewGuid());
+				var lastVersionPath = string.Format("{0}{1}", Path.GetTempPath(), Guid.NewGuid());
+
+				KillDayzCommanderProcesses();
+				Directory.Move(pendingUpdateDirectory, tempUpdatePath);
+				Directory.Move(installDirectory, lastVersionPath);
+				Directory.Move(tempUpdatePath, installDirectory);
 			}
-			catch(Exception){}
+			else
+			{
+				var tempDirectory = Path.Combine(new DirectoryInfo(installDirectory).Parent.FullName, @"Temp\");
+
+				var tempUpdatePath = string.Format("{0}{1}", tempDirectory, Guid.NewGuid());
+				var lastVersionPath = string.Format("{0}{1}", tempDirectory, Guid.NewGuid());
+
+				KillDayzCommanderProcesses();
+				Directory.Move(pendingUpdateDirectory, tempUpdatePath);
+				Directory.Move(installDirectory, lastVersionPath);
+				Directory.Move(tempUpdatePath, installDirectory);
+				try
+				{
+					Directory.Delete(tempDirectory, true);
+				}
+				catch (Exception)
+				{
+				}
+			}
 			UpdateShortcuts(Directory.GetParent(installDirectory).FullName);
 			LaunchDayZCommander();
 		}

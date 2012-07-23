@@ -40,15 +40,22 @@ namespace Dotjosh.DayZCommander.Updater
 		{
 			//Debugger.Launch();
 			var installDirectory = App.ApplicationInstallDirectory;
-			var pendingUpdateDirectory = Path.Combine(installDirectory, DownloadAndExtracter.PENDING_UPDATE_DIRECTORYNAME);
 
-			var tempUpdatePath = string.Format("{0}{1}", DownloadAndExtracter.GetTempPath(), Guid.NewGuid());
-			var lastVersionPath = string.Format("{0}{1}", DownloadAndExtracter.GetTempPath(), Guid.NewGuid());
+			var pendingUpdateDirectory = Path.Combine(installDirectory, DownloadAndExtracter.PENDING_UPDATE_DIRECTORYNAME);
+			var tempDirectory = Path.Combine(new DirectoryInfo(installDirectory).Parent.FullName, @"Temp\");
+
+			var tempUpdatePath = string.Format("{0}{1}", tempDirectory, Guid.NewGuid());
+			var lastVersionPath = string.Format("{0}{1}", tempDirectory, Guid.NewGuid());
 
 			KillDayzCommanderProcesses();
 			Directory.Move(pendingUpdateDirectory, tempUpdatePath);
 			Directory.Move(installDirectory, lastVersionPath);
 			Directory.Move(tempUpdatePath, installDirectory);
+			try
+			{
+				Directory.Delete(tempDirectory, true);
+			}
+			catch(Exception){}
 			UpdateShortcuts(Directory.GetParent(installDirectory).FullName);
 			LaunchDayZCommander();
 		}

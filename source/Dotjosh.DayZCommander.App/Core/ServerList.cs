@@ -6,21 +6,32 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
+using Caliburn.Micro;
+using Dotjosh.DayZCommander.App.Ui;
+using Dotjosh.DayZCommander.App.Ui.Controls;
 
 namespace Dotjosh.DayZCommander.App.Core
 {
-	public class ServerList : BindableBase
+	public class ServerList : ViewModelBase,
+		IHandle<RefreshServerRequest>
 	{
-		private int _processedServersCount;
 		private bool _downloadingServerList;
 		private ObservableCollection<Server> _items;
-		private bool _isUpdating;
 
 		public ServerList()
 		{
 			Items = new ObservableCollection<Server>();
+		}
+
+		private ServerBatchRefresher _refreshAllBatch;
+		public ServerBatchRefresher RefreshAllBatch
+		{
+			get { return _refreshAllBatch; }
+			private set
+			{
+				_refreshAllBatch = value;
+				PropertyHasChanged("RefreshAllBatch");
+			}
 		}
 
 		public ObservableCollection<Server> Items
@@ -30,21 +41,6 @@ namespace Dotjosh.DayZCommander.App.Core
 			{
 				_items = value;
 				PropertyHasChanged("Items");
-			}
-		}
-
-		public int UnprocessedServersCount
-		{
-			get { return Items.Count - ProcessedServersCount; }
-		}
-
-		public int ProcessedServersCount
-		{
-			get { return _processedServersCount; }
-			set
-			{
-				_processedServersCount = value;
-				PropertyHasChanged("ProcessedServersCount", "UnprocessedServersCount");
 			}
 		}
 
@@ -103,72 +99,10 @@ namespace Dotjosh.DayZCommander.App.Core
 				.ToList();
 		}
 
-		private int _processed = 0;
 		public void UpdateAll()
 		{
-			if(_isUpdating)
-				return;
-
-			object incrementLock = new object();
-
-			_isUpdating = true;
-			ProcessedServersCount = 0;
-
-			_processed = 0;
-			var totalCount = Items.Count;
-
-			new Thread(() =>
-			{
-				try
-				{
-					while(_processed <= totalCount)
-					{
-						Execute.OnUiThread(() =>
-						{
-							ProcessedServersCount = _processed;
-						});
-						Thread.Sleep(250);
-						if(_processed == totalCount)
-						{
-							_isUpdating = false;
-							break;
-						}
-					}
-				}
-				finally
-				{
-					Execute.OnUiThread(() =>
-					{
-						ProcessedServersCount = totalCount;
-					});
-					_isUpdating = false;
-				}
-			}).Start();
-
-			var maxThreadCount = UserSettings.Current.AppOptions.LowPingRate 
-						? 30 
-						: 200;
-
-			new Thread(() =>
-			{
-				for(var index = 0; index < totalCount; index++)
-				{
-					var server = Items[index];
-					server.BeginUpdate(s =>
-					                   	{
-											lock(incrementLock)
-											{
-												_processed++;
-											}
-					                   	});
-					Thread.Sleep(new Random().Next(5, 17));
-
-					while(index - _processed > maxThreadCount)
-					{
-						Thread.Sleep(20);
-					}
-				}
-			}).Start();
+			var batch = new ServerBatchRefresher("Refreshing all servers...", Items);
+			App.Events.Publish(new RefreshServerRequest(batch));
 		}
 
 		private static string ExecuteGSList(string arguments)
@@ -192,6 +126,39 @@ namespace Dotjosh.DayZCommander.App.Core
 			string output = p.StandardOutput.ReadToEnd();
 			p.WaitForExit();
 			return output;
+		}
+
+		private bool _isRunningRefreshBatch;
+		public void Handle(RefreshServerRequest message)
+		{
+			if(_isRunningRefreshBatch)
+				return;
+
+			_isRunningRefreshBatch = true;
+			App.Events.Publish(new RefreshingServersChange(true));
+			RefreshAllBatch = message.Batch;
+			RefreshAllBatch.RefreshAllComplete += RefreshAllBatchOnRefreshAllComplete;
+			RefreshAllBatch.RefreshAll();
+		}
+
+		private void RefreshAllBatchOnRefreshAllComplete()
+		{
+			RefreshAllBatch.RefreshAllComplete -= RefreshAllBatchOnRefreshAllComplete;
+			_isRunningRefreshBatch = false;
+			Execute.OnUiThread(() =>
+			                   	{
+			                   		App.Events.Publish(new RefreshingServersChange(false));
+			                   	});
+		}
+	}
+
+	public class RefreshingServersChange
+	{
+		public bool IsRunning { get; set; }
+
+		public RefreshingServersChange(bool isRunning)
+		{
+			IsRunning = isRunning;
 		}
 	}
 }

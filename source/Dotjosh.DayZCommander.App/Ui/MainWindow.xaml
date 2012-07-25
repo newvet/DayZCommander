@@ -150,21 +150,21 @@
 							Visibility="{Binding ServerList.DownloadingServerList, Converter={StaticResource BooleanToVisibilityCollapsedConverter}, ConverterParameter=true}">
 							<StackPanel Orientation="Horizontal"
 								HorizontalAlignment="Right"
-								Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource CountToVisibilityConverter}}">
+								Visibility="{Binding ServerList.RefreshAllBatch.UnprocessedServersCount, Converter={StaticResource CountToVisibilityConverter}}">
 								<Path Data="F1M2278.07,1272.94C2265.47,1272.94,2254.91,1281.77,2252.19,1293.55L2241.99,1293.43 2255.8,1315.74 2270.14,1293.77 2260.66,1293.66C2263.13,1286.36 2269.96,1281.07 2278.07,1281.07 2288.24,1281.07 2296.52,1289.35 2296.52,1299.52 2296.52,1309.7 2288.24,1317.98 2278.07,1317.98 2274.31,1317.98 2270.81,1316.84 2267.89,1314.9L2263.45,1321.7C2267.65,1324.48 2272.67,1326.11 2278.07,1326.11 2292.73,1326.11 2304.65,1314.18 2304.65,1299.52 2304.65,1284.87 2292.73,1272.94 2278.07,1272.94" 
 											  Stretch="Uniform" 
 											  Fill="LightGreen" 
-											  Width="14" Height="14" Margin="0,3,3,0" />
-								<TextBlock Text="refreshing servers... " Foreground="LightGreen"  FontSize="14"/>
+											  Width="14" Height="14" Margin="0,3,5,0" />
+								<TextBlock Text="{Binding ServerList.RefreshAllBatch.InProgressText}" Foreground="LightGreen"  FontSize="14"/>
 								<TextBlock Text="( " Foreground="LightGreen" FontSize="12" Margin="0 2 0 0"/>
-								<TextBlock Text="{Binding ServerList.ProcessedServersCount}" Foreground="#FFF" Margin="0 2 0 0" FontSize="12"/>
+								<TextBlock Text="{Binding ServerList.RefreshAllBatch.ProcessedServersCount}" Foreground="#FFF" Margin="0 2 0 0" FontSize="12"/>
 								<TextBlock Text=" / " Foreground="#FFF" FontSize="12" Margin="0 2 0 0"/>
-								<TextBlock Text="{Binding ServerList.Items.Count}" Foreground="LightGreen" FontSize="12" Margin="0 2 0 0"/>
+								<TextBlock Text="{Binding ServerList.RefreshAllBatch.TotalCount}" Foreground="LightGreen" FontSize="12" Margin="0 2 0 0"/>
 								<TextBlock Text=" )" Foreground="LightGreen" FontSize="12" Margin="0 2 0 0"/>
 							</StackPanel>
 							<Button Click="RefreshAll_Click"
 								HorizontalAlignment="Right"
-								Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource ZeroToVisibilityConverter}}"
+								Visibility="{Binding ServerList.RefreshAllBatch.UnprocessedServersCount, Converter={StaticResource ZeroToVisibilityConverter}}"
 								Margin="0 0 0 0"
 								Style="{StaticResource MetroTextButtonStyle}">
 								<Button.Template>
@@ -176,7 +176,7 @@
 											  Stretch="Uniform" 
 											  Fill="{TemplateBinding Foreground}" 
 											  Width="14" Height="14" Margin="0,3,3,0" />
-												<TextBlock Text="refresh servers"
+												<TextBlock Text="refresh all servers"
 													   FontSize="14"
 														   Padding="2 0 0 0"
 													   VerticalAlignment="Center"
@@ -307,9 +307,9 @@
 							 Height="7" 
 							 Background="Transparent"
 							Margin="-30 0 -20 0"
-							 Visibility="{Binding ServerList.UnprocessedServersCount, Converter={StaticResource NonZeroToVisibilityHiddenConverter}}"
-							 Maximum="{Binding ServerList.Items.Count, FallbackValue=0}" 
-							 Value="{Binding ServerList.ProcessedServersCount, FallbackValue=0}" />
+							 Visibility="{Binding ServerList.RefreshAllBatch.UnprocessedServersCount, Converter={StaticResource NonZeroToVisibilityHiddenConverter}}"
+							 Maximum="{Binding ServerList.RefreshAllBatch.TotalCount, FallbackValue=0}" 
+							 Value="{Binding ServerList.RefreshAllBatch.ProcessedServersCount, FallbackValue=0}" />
 
 				<ListBox ItemsSource="{Binding Tabs}"
 							  Grid.Row="1"

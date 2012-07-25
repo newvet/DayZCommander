@@ -31,6 +31,11 @@ namespace Dotjosh.DayZCommander.App.Ui.Favorites
 
 		public ListCollectionView Servers { get; private set; }
 
+		public ObservableCollection<Server> RawServers
+		{
+			get { return _rawServers; }
+		}
+
 		public void Handle(FavoritesUpdated message)
 		{
 			if(UserSettings.Current.IsFavorite(message.Server))

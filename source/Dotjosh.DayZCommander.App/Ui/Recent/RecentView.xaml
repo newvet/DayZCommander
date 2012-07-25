@@ -11,9 +11,9 @@
 			<RowDefinition Height="Auto"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
-		
 
-		<Controls:ServerStandaloneHeaderRow/>
+
+		<Controls:ServerStandaloneHeaderRow />
 		
 		<ListView ItemsSource="{Binding Servers}"
 				  Grid.Row="1"

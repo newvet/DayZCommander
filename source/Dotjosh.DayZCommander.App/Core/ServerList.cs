@@ -145,6 +145,9 @@ namespace Dotjosh.DayZCommander.App.Core
 				}
 			}).Start();
 
+			var maxThreadCount = UserSettings.Current.AppOptions.LowPingRate 
+						? 30 
+						: 200;
 
 			new Thread(() =>
 			{
@@ -160,7 +163,7 @@ namespace Dotjosh.DayZCommander.App.Core
 					                   	});
 					Thread.Sleep(new Random().Next(5, 17));
 
-					while(index - _processed > 200)
+					while(index - _processed > maxThreadCount)
 					{
 						Thread.Sleep(20);
 					}

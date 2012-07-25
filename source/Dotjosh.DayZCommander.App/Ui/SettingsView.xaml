@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Core="clr-namespace:Dotjosh.DayZCommander.App.Core" mc:Ignorable="d" 
 			 Background="#333333"
-             d:DesignHeight="563" d:DesignWidth="400">
+             d:DesignHeight="800" d:DesignWidth="400">
     <Grid>
 		<StackPanel Margin="18 10 18 0">
 			<TextBlock Text="settings"
@@ -13,7 +13,7 @@
 							Margin="0 0 0 20"
 						   FontSize="24"/>
             
-            <TextBlock Text="GAME OPTIONS"
+            <TextBlock Text="GAME LAUNCH OPTIONS"
 					   FontWeight="Bold"
 					   Margin="0 0 0 3"
 					   Foreground="#FFFFFF"/>
@@ -30,12 +30,8 @@
 					  IsChecked="{Binding Settings.GameOptions.CloseDayZCommander, Mode=TwoWay}"
 					  Foreground="#DDDDDD"
 					  Margin="0 8 0 0"/>
-			<CheckBox Content="24-hr Time Format"
-					  IsChecked="{Binding Settings.GameOptions.TwentyFourHourTimeFormat, Mode=TwoWay}"
-					  Foreground="#DDDDDD"
-					  Margin="0 8 0 0"/>
 			<StackPanel Margin="0 8 0 0">
-				<TextBlock Text="Additional Startup Parameters"
+				<TextBlock Text="Additional Launch Parameters"
 						   Foreground="#DDDDDD"/>
 				<TextBox Text="{Binding Settings.GameOptions.AdditionalStartupParameters, Mode=TwoWay}"
 						 FontSize="10"
@@ -124,7 +120,24 @@
 					Margin="0 3 0 0"/>
             </StackPanel>
 
-            <Border Margin="0 30 0 0"
+
+			<TextBlock Text="COMMANDER OPTIONS"
+					   FontWeight="Bold"
+					   Margin="0 25 0 3"
+					   Foreground="#FFFFFF"/>
+
+			<CheckBox Content="Reduced ping rate (enable if you lose your internet connection during refresh)"
+						IsChecked="{Binding Settings.AppOptions.LowPingRate, Mode=TwoWay}"
+						Foreground="#DDDDDD"
+						Margin="0 8 0 0"/>
+
+			<CheckBox Content="24-hr Time Format"
+					  IsChecked="{Binding Settings.GameOptions.TwentyFourHourTimeFormat, Mode=TwoWay}"
+					  Foreground="#DDDDDD"
+					  Margin="0 8 0 0"/>
+
+
+			<Border Margin="0 30 0 0"
 					BorderBrush="#555555"
 					BorderThickness="0 1 0 0">
 				<Button Content="Done"

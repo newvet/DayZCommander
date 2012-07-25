@@ -122,6 +122,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\AppOptions.cs" />
     <Compile Include="Core\Arma2Installer.cs" />
     <Compile Include="Core\Arma2Updater.cs" />
     <Compile Include="Core\CalculatedGameSettings.cs" />

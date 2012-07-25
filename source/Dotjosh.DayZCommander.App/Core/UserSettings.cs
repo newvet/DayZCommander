@@ -22,6 +22,7 @@ namespace Dotjosh.DayZCommander.App.Core
 		[DataMember] private Filter _filter = new Filter();
 		[DataMember] private WindowSettings _windowSettings = null; //This is null on purpose so the MainWindow view can set defaults if needed
 		[DataMember] private GameOptions _gameOptions = new GameOptions();
+		[DataMember] private AppOptions _appOptions = new AppOptions();
 		[DataMember] private List<FavoriteServer> _favorites = new List<FavoriteServer>();
 		[DataMember] private List<RecentServer> _recentServers = new List<RecentServer>();
 
@@ -68,6 +69,19 @@ namespace Dotjosh.DayZCommander.App.Core
 				return _gameOptions;
 			}
 			set { _gameOptions = value; }
+		}
+
+		public AppOptions AppOptions
+		{
+			get
+			{
+				if(_appOptions == null)
+				{
+					_appOptions = new AppOptions();
+				}
+				return _appOptions;
+			}
+			set { _appOptions = value; }
 		}
 
 		public List<FavoriteServer> Favorites
@@ -204,7 +218,6 @@ namespace Dotjosh.DayZCommander.App.Core
 				return _settingsPath;
 			}
 		}
-
 
 		private static UserSettings LoadFromXml(XDocument xDocument)
 		{

@@ -115,7 +115,7 @@ namespace Dotjosh.DayZCommander.App.Core
 			get { return GetSettingOrDefault("maxplayers").TryIntNullable(); }
 		}
 
-        public static Regex ServerTimeRegex = new Regex(@"((GmT|Utc)[\s]*(?<Offset>([+]|[-])[\s]?[\d])?)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        public static Regex ServerTimeRegex = new Regex(@"((GmT|Utc)[\s]*(?<Offset>([+]|[-])[\s]?[\d]{1,2})?)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 		private ServerInfo _info;
 
 		public DateTime? ServerTime

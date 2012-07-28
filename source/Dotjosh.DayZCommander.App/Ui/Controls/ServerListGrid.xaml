@@ -27,6 +27,8 @@
 			<DataGrid.RowStyle>
 				<Style TargetType="{x:Type DataGridRow}">
 					<EventSetter Event="MouseDoubleClick" Handler="RowDoubleClick"/>
+                    <EventSetter Event="KeyDown" Handler="RowKeyDown"/>
+                    <EventSetter Event="KeyUp" Handler="RowKeyUp"/>
 					<EventSetter Event="PreviewMouseLeftButtonDown" Handler="RowLeftButtonDown"/>
 					<Style.Triggers>
 						<Trigger Property="IsMouseOver" Value="False">

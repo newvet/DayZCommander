@@ -40,6 +40,18 @@ namespace Dotjosh.DayZCommander.App.Ui.Controls
 			GameLauncher.JoinServer(server);
 		}
 
+        void RowKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+                e.Handled = true;
+        }
+
+        void RowKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+                GameLauncher.JoinServer((Server)((Control)sender).DataContext);
+        }
+
 		private void RowLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			App.Events.Publish(new DataGridRowSelected());
